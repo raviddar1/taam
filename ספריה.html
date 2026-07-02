@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>ספריה</title>
+  <style>
+    @font-face { font-family: 'BuGlobal'; src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype'); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #fff; font-family: 'BuGlobal', sans-serif; overflow: hidden; }
+
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
+    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
+    .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000; text-decoration: none; white-space: nowrap; }
+    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; }
+
+    .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
+    
+    
+    
+    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:18px; padding:2px 4px; line-height:1; }
+
+    body.dark { background: #131111; }
+    body.dark .nav-link:not(.active) { color: #fff; }
+    body.dark .nav-logo-sq { background: #fff; }
+
+    #grid {
+      position: fixed;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 20px;
+      padding: 6vh 8vw;
+    }
+
+    .pad {
+      background: #ececec;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      outline: 0.5px solid #000;
+    }
+    body.dark .pad { background: #1e1c1c; outline-color: #fff; }
+
+    .pad img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .pad-del {
+      position: absolute;
+      top: 5px; left: 5px;
+      width: 20px; height: 20px;
+      background: rgba(0,0,0,0.40);
+      color: #fff;
+      border: none; border-radius: 50%;
+      font-size: 11px; line-height: 1;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pad:hover .pad-del { opacity: 1; }
+    .pad.active-pad { outline: 2.5px solid #FF179C; outline-offset: -2px; }
+
+    #melody-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      pointer-events: none;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    #melody-overlay.open { pointer-events: all; opacity: 1; }
+    #melody-frame-wrap { position: absolute; inset: 0; }
+    #melody-frame { width: 100%; height: 100%; border: none; display: block; }
+    #melody-meta {
+      display: none; position: absolute; bottom: 26vh; left: 0; right: 0;
+      padding: 0 2vw;
+      font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000;
+      flex-direction: row; justify-content: space-between; align-items: baseline;
+      direction: rtl; pointer-events: none;
+    }
+    #melody-meta.active { display: flex; }
+    body.dark #melody-meta { color: #fff; }
+    #meta-datetime { display: flex; direction: rtl; gap: 120px; }
+  </style>
+</head>
+<body>
+  <script>if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark');</script>
+  <nav class="navbar">
+    <button class="page-nav-btn" id="pnav-next"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
+    <a href="טעמים.html" class="nav-link nav-taamim">טעמים</a>
+    <a href="פסוקים.html" class="nav-link nav-psukkim">פסוקים</a>
+    <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
+    <a href="ספריה.html" class="nav-link nav-info active">גלריה</a>
+    <button class="page-nav-btn" id="pnav-prev"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
+    <a href="אודות.html" class="nav-link nav-aodot">אודות</a>
+  </nav>
+  <div id="page-nav"></div>
+
+  <div id="grid"></div>
+  <div id="melody-overlay">
+    <div id="melody-frame-wrap">
+      <iframe id="melody-frame" src="" allowautoplay></iframe>
+
+    <div id="melody-meta">
+      <div id="meta-datetime"><span id="meta-date"></span><span id="meta-time"></span></div>
+      <div>מספר טעמים: <span id="meta-count"></span></div>
+
+  </div>
+
+  <script>
+  // ---- מיפוי שמע ----
+  const AUDIO_PATH = {
+    'ספרדי': {'צ':'ספרדי/זקף גדול.mp3','מ':'ספרדי/זקף קטון.mp3','נ':'ספרדי/אתנח.mp3','ה':'ספרדי/סוף פסוק.mp3','ב':'ספרדי/שני גרשין.mp3','ת':'ספרדי/תביר.mp3','ך':'ספרדי/אזלא.mp3','ל':'ספרדי/שופר מהופך.mp3','ח':'ספרדי/רביע.mp3','ע':'ספרדי/טרחא.mp3','כ':'ספרדי/זרקא.mp3','ג':'ספרדי/שופר הולך.mp3','י':'ספרדי/יתיב.mp3','ש':'ספרדי/תרי קדמין.mp3','ף':'ספרדי/מאריך.mp3','ד':'ספרדי/דרגא.mp3'},
+    'מרוקאי':{'צ':'מרוקאי/מ זקף גדול.mp4','מ':'מרוקאי/מ זקף קטון.mp4','נ':'מרוקאי/מ אתנח.mp4','ה':'מרוקאי/מ סוף פסוק.mp4','ב':'מרוקאי/מ שני גרשין.mp4','ת':'מרוקאי/מ תביר.mp4','ך':'מרוקאי/מ אזלא.mp4','ל':'מרוקאי/מ שופר מהופך.mp4','ח':'מרוקאי/מ רביע.mp4','ע':'מרוקאי/מ טרחא.mp4','כ':'מרוקאי/מ זרקא.mp4','ג':'מרוקאי/מ שופר הולך.mp4','י':'מרוקאי/מ יתיב.mp4','ש':'מרוקאי/מ תרי קדמין.mp4','ף':'מרוקאי/מ מאריך.mp4','ד':'מרוקאי/מ דרגא.mp4'},
+    'אשכנזי':{'צ':'אשכנזי/א זקף גדול.mp4','מ':'אשכנזי/א זקף קטון.mp4','נ':'אשכנזי/א אתנחתא.mp4','ה':'אשכנזי/א סוף פסוק.mp4','ב':'אשכנזי/א שני גרשין.mp4','ת':'אשכנזי/א תביר.mp4','ך':'אשכנזי/א אזלא.mp4','ל':'אשכנזי/א שופר מהופך.mp4','ח':'אשכנזי/א רביע.mp4','ע':'אשכנזי/א טרחא.mp4','כ':'אשכנזי/א זרקא.mp4','ג':'אשכנזי/א שופר הולך.mp4','י':'אשכנזי/א יתיב.mp4','ש':'אשכנזי/א תרי קדמין.mp4','ף':'אשכנזי/א מאריך.mp3','ד':'אשכנזי/א דרגא.mp4'},
+  };
+
+  // ---- אוברליי ----
+  let _activePadEl = null;
+  let _activeSlot = -1;
+  let _pageDark = false;
+
+  // טעינת iframe ברקע מיידית
+  (function(){
+    const dark = sessionStorage.getItem('darkMode')==='1' ? '&light=0' : '&light=1';
+    document.getElementById('melody-frame').src = 'טעמים.html?seq&embed' + dark;
+  })();
+
+  function closeMelody() {
+    if(_activeSlot === -1) return;
+    document.getElementById('melody-overlay').classList.remove('open');
+    document.getElementById('melody-meta').classList.remove('active');
+    if(_activePadEl){ _activePadEl.classList.remove('active-pad'); _activePadEl=null; }
+    _activeSlot = -1;
+    document.body.classList.toggle('dark', _pageDark);
+    const frame = document.getElementById('melody-frame');
+    setTimeout(function(){
+      if(frame.contentWindow) frame.contentWindow.postMessage({type:'stopMelody'}, '*');
+    }, 320);
+  }
+
+  document.getElementById('melody-overlay').addEventListener('click', function(e){
+    if(e.target === this || e.target === document.getElementById('melody-frame-wrap')) closeMelody();
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMelody(); });
+
+  function openMelody(padSlot) {
+    if(padSlot === _activeSlot) { closeMelody(); return; }
+    const arr = JSON.parse(localStorage.getItem('taam_saved_melodies') || '[]');
+    const melIdx = arr.length - 1 - padSlot;
+    if(melIdx < 0 || !arr[melIdx]) { closeMelody(); return; }
+    const mel = arr[melIdx];
+    _pageDark = document.body.classList.contains('dark');
+
+    function doOpen() {
+      _activeSlot = padSlot;
+      if(_activePadEl) _activePadEl.classList.remove('active-pad');
+      const pads = document.querySelectorAll('.pad');
+      _activePadEl = pads[padSlot] || null;
+      if(_activePadEl) _activePadEl.classList.add('active-pad');
+      const melDark = mel.dark ?? false;
+      document.body.classList.toggle('dark', melDark);
+      const frame = document.getElementById('melody-frame');
+      if(frame.contentWindow) frame.contentWindow.postMessage({type:'loadMelody', shapes: mel.shapes, vR: mel.vR, vL: mel.vL, intervals: mel.intervals, dark: melDark}, '*');
+      // metadata
+      if(mel.savedAt) {
+        const d = new Date(mel.savedAt);
+        const p = function(n){ return String(n).padStart(2,'0'); };
+        document.getElementById('meta-date').textContent = p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear();
+        document.getElementById('meta-time').textContent = p(d.getHours())+':'+p(d.getMinutes());
+      }
+      document.getElementById('meta-count').textContent = mel.shapes ? mel.shapes.length : 0;
+      document.getElementById('melody-meta').classList.add('active');
+      document.getElementById('melody-overlay').classList.add('open');
+    }
+
+    if(_activeSlot !== -1) {
+      // ניגון פתוח — fade-out, עצור אחרי שנגמר, פתח חדש
+      document.getElementById('melody-overlay').classList.remove('open');
+      if(_activePadEl){ _activePadEl.classList.remove('active-pad'); _activePadEl=null; }
+      _activeSlot = -1;
+      const frame = document.getElementById('melody-frame');
+      setTimeout(function(){
+        if(frame.contentWindow) frame.contentWindow.postMessage({type:'stopMelody'}, '*');
+        doOpen();
+      }, 320);
+    } else {
+      doOpen();
+    }
+  }
+
+  function render() {
+    const saved = JSON.parse(localStorage.getItem('taam_saved_melodies') || '[]');
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    for(let i = 0; i < 16; i++) {
+      const idx = saved.length - 1 - i; // newest first
+      const mel = saved[idx];
+      const pad = document.createElement('div');
+      pad.className = 'pad';
+      if(mel && mel.screenshot) {
+        const img = document.createElement('img');
+        img.src = mel.screenshot;
+        pad.appendChild(img);
+        const del = document.createElement('button');
+        del.className = 'pad-del';
+        del.textContent = '✕';
+        del.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const arr = JSON.parse(localStorage.getItem('taam_saved_melodies') || '[]');
+          arr.splice(idx, 1);
+          localStorage.setItem('taam_saved_melodies', JSON.stringify(arr));
+          render();
+        });
+        pad.appendChild(del);
+      }
+      grid.appendChild(pad);
+    }
+  }
+  render();
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowLeft')  navPage(-1);
+    if(e.key==='ArrowRight') navPage(1);
+  });
+
+  // MIDI ניווט
+  if(navigator.requestMIDIAccess){
+    const LS = localStorage;
+    const nR  = LS.getItem('m_nR')  !== null ? +LS.getItem('m_nR')  : null;
+    const nRt = LS.getItem('m_nRt') || null;
+    const nL  = LS.getItem('m_nL')  !== null ? +LS.getItem('m_nL')  : null;
+    const nLt = LS.getItem('m_nLt') || null;
+    const kR  = LS.getItem('m_kR')  !== null ? +LS.getItem('m_kR')  : null;
+    const NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+    const CURRENT_IDX = 0;
+    document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
+    document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
+    let _nRprev=false, _nLprev=false;
+    function navPage(dir){ window.location.href = NAV_PAGES[(CURRENT_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length]; }
+    function onMidiMsg(msg){
+      if(typeof _idleReset==='function') _idleReset();
+      const [st,note,vel]=msg.data;
+      if((st&0xF0)===0x90&&vel>0){
+        const PAD_NOTE_TO_SLOT={53:0,52:1,51:2,50:3,49:4,48:5,47:6,46:7,45:8,44:9,43:10,42:11,41:12,40:13,39:14,38:15};
+        if(note in PAD_NOTE_TO_SLOT){ openMelody(PAD_NOTE_TO_SLOT[note]); return; }
+        if(note===nR&&nRt==='note'){ navPage(-1); return; }
+        if(note===nL&&nLt==='note'){ navPage(1);  return; }
+      }
+      if((st&0xF0)===0xB0){
+        if(note===nR&&nRt==='cc'){ const on=vel/127>0.5; if(on&&!_nRprev) navPage(-1); _nRprev=on; return; }
+        if(note===nL&&nLt==='cc'){ const on=vel/127>0.5; if(on&&!_nLprev) navPage(1);  _nLprev=on; return; }
+        if(note===kR){ const dark=vel/127>0; document.body.classList.toggle('dark',dark); sessionStorage.setItem('darkMode',dark?'1':'0'); return; }
+      }
+    }
+    navigator.requestMIDIAccess({sysex:false}).then(function(midi){
+      midi.inputs.forEach(function(inp){
+        inp.open().then(function(){ inp.onmidimessage=onMidiMsg; }).catch(function(){ inp.onmidimessage=onMidiMsg; });
+      });
+      midi.onstatechange=function(e){
+        if(e.port.type==='input'&&e.port.state==='connected'){
+          e.port.open().then(function(){ inp.onmidimessage=onMidiMsg; }).catch(function(){ inp.onmidimessage=onMidiMsg; });
+        }
+      };
+    }).catch(function(){});
+  }
+  </script>
+  <script>
+  (function(){
+    var t;
+    function reset(){ clearTimeout(t); t=setTimeout(function(){ sessionStorage.removeItem('darkMode'); window.location.href='אודות.html'; },120000); }
+    window._idleReset = reset;
+    ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
+    reset();
+  })();
+  </script>
+</body>
+</html>

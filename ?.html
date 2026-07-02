@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>?</title>
+  <style>
+    @font-face {
+      font-family: 'GretaSerif';
+      src: url('GretaTextH+L-Regular.otf') format('opentype');
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { background: #ffffff; }
+
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      padding: 0 32px;
+    }
+
+    .nav-logo {
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    .nav-logo img { height: 38px; }
+
+    .nav-buttons {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      gap: 0;
+      border: 1.5px solid #000;
+      border-radius: 50px;
+      overflow: hidden;
+    }
+
+    .nav-slider {
+      position: absolute;
+      top: 0; height: 100%;
+      background: #000;
+      border-radius: 50px;
+      transition: left 0.32s cubic-bezier(.4,0,.2,1), width 0.32s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .nav-btn {
+      position: relative;
+      z-index: 1;
+      font-family: 'GretaSerif', serif;
+      font-size: 15px;
+      color: #000;
+      background: transparent;
+      border: none;
+      border-radius: 50px;
+      padding: 7px 22px;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.32s;
+    }
+    .nav-btn.active { color: #fff; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">
+      <img src="logo.png" alt="תורה שבמרחב">
+    </a>
+    <div class="nav-buttons">
+      <div class="nav-slider"></div>
+      <a href="טעמים.html" class="nav-btn">טעמים</a>
+      <a href="פסוקים.html" class="nav-btn">פסוקים</a>
+      <a href="?.html" class="nav-btn active">?</a>
+    </div>
+  </nav>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.nav-buttons');
+    const slider    = document.querySelector('.nav-slider');
+    function positionSlider(btn, animate) {
+      if (!slider || !btn) return;
+      const cr = container.getBoundingClientRect();
+      const br = btn.getBoundingClientRect();
+      if (!animate) slider.style.transition = 'none';
+      slider.style.left  = (br.left - cr.left) + 'px';
+      slider.style.width = br.width + 'px';
+      if (!animate) requestAnimationFrame(() => slider.style.transition = '');
+    }
+    const active = document.querySelector('.nav-btn.active');
+    if (active) positionSlider(active, false);
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        positionSlider(this, true);
+        const href = this.href;
+        setTimeout(() => { window.location = href; }, 340);
+      });
+    });
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>מידע</title>
+  <style>
+    @font-face { font-family: 'BuGlobal'; src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype'); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #130F10; font-family: 'BuGlobal', sans-serif; }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
+    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #fff; display: block; }
+    .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #fff; text-decoration: none; white-space: nowrap; }
+    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; }
+
+    .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
+    
+    
+    
+    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:18px; padding:2px 4px; line-height:1; }
+    body.dark { background: #130F10; }
+    body.dark .nav-link:not(.active) { color: #fff; }
+    body.dark .nav-logo-sq { background: #fff; }
+    #video-wrap {
+      position: fixed;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    #video-wrap video {
+      width: 70vw;
+      max-height: 70vh;
+      object-fit: contain;
+      cursor: pointer;
+    }
+    #sound-hint {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.4);
+      font-family: 'BuGlobal', sans-serif;
+      font-size: 13px;
+      pointer-events: none;
+      transition: opacity 0.5s;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+  <script>if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark');</script>
+  <nav class="navbar">
+    <button class="page-nav-btn" id="pnav-next"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
+    <a href="טעמים.html" class="nav-link nav-taamim">טעמים</a>
+    <a href="פסוקים.html" class="nav-link nav-psukkim">פסוקים</a>
+    <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
+    <a href="ספריה.html" class="nav-link nav-info">גלריה</a>
+    <button class="page-nav-btn" id="pnav-prev"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
+    <a href="אודות.html" class="nav-link nav-aodot active">אודות</a>
+  </nav>
+  <div id="page-nav"></div>
+  <div id="video-wrap">
+    <video id="intro-vid" autoplay loop muted playsinline>
+      <source src="intro w pink b.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div id="sound-hint">לחץ על כל מקש להפעלת סאונד</div>
+  <script>
+    var vid = document.getElementById('intro-vid');
+    var hint = document.getElementById('sound-hint');
+    if(sessionStorage.getItem('soundOn')==='1'){ vid.muted=false; hint.style.opacity='0'; }
+    function unmute(){
+      if(vid.muted){
+        vid.muted=false;
+        hint.style.opacity='0';
+        sessionStorage.setItem('soundOn','1');
+      }
+    }
+    var _NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+    var _NAV_CUR = _NAV_PAGES.indexOf('אודות.html');
+    function navPage(dir){ window.location.href = _NAV_PAGES[(_NAV_CUR + dir + _NAV_PAGES.length) % _NAV_PAGES.length]; }
+    vid.addEventListener('click', unmute);
+    document.addEventListener('keydown', function(e){
+      if(e.key==='ArrowRight'){ unmute(); navPage(1);  return; }
+      if(e.key==='ArrowLeft'){  unmute(); navPage(-1); return; }
+      unmute();
+    });
+    window.addEventListener('pageshow', function(){ vid.currentTime=0; vid.play().catch(function(){}); });
+  </script>
+  <script>
+  if(navigator.requestMIDIAccess){
+    const _LS  = localStorage;
+    const _nR  = _LS.getItem('m_nR') !== null ? +_LS.getItem('m_nR') : null;
+    const _nRt = _LS.getItem('m_nRt') || null;
+    const _nL  = _LS.getItem('m_nL') !== null ? +_LS.getItem('m_nL') : null;
+    const _nLt = _LS.getItem('m_nLt') || null;
+    const _kR  = _LS.getItem('m_kR') !== null ? +_LS.getItem('m_kR') : null;
+    let _nRprev=false, _nLprev=false;
+    function _setDark(on){ document.body.classList.toggle('dark',on); sessionStorage.setItem('darkMode',on?'1':'0'); }
+    document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
+    document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
+    function onMidiMsg(msg){
+      const [st,note,vel] = msg.data;
+      if((st&0xF0)===0x90&&vel>0){
+        unmute();
+        if(note===_nR&&_nRt==='note'){ navPage(-1); return; }
+        if(note===_nL&&_nLt==='note'){ navPage(1);  return; }
+      }
+      if((st&0xF0)===0xB0){
+        const val=vel/127;
+        if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev) navPage(-1); _nRprev=on; return; }
+        if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev) navPage(1);  _nLprev=on; return; }
+        if(_kR!==null && note===_kR){ _setDark(val>0); return; }
+      }
+    }
+    navigator.requestMIDIAccess({sysex:false}).then(function(midi){
+      midi.inputs.forEach(function(inp){
+        inp.open().then(function(){ inp.onmidimessage=onMidiMsg; })
+                  .catch(function(){ inp.onmidimessage=onMidiMsg; });
+      });
+      midi.onstatechange=function(e){
+        if(e.port.type==='input'&&e.port.state==='connected'){
+          e.port.open().then(function(){ e.port.onmidimessage=onMidiMsg; })
+                       .catch(function(){ e.port.onmidimessage=onMidiMsg; });
+        }
+      };
+    }).catch(function(){});
+  }
+  </script>
+</body>
+</html>
