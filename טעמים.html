@@ -11,13 +11,18 @@
       font-family: 'BuGlobal';
       src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype');
     }
+    @font-face {
+      font-family: 'BuGlobal';
+      font-weight: 600;
+      src: url('גלובל/buGlobal1.0-SemiBold.otf') format('opentype');
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fff; font-family: 'BuGlobal', sans-serif; }
     /* ---- נאב-בר ---- */
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
     .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000; text-decoration: none; white-space: nowrap; }
-    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; }
+    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
     
@@ -123,7 +128,7 @@
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
     #trad-list { display:flex; flex-direction:column; gap:5px; text-align:right; direction:rtl; min-width: max-content; }
     .trad-item { font-size:14px; color:#000; cursor:pointer; pointer-events:all; font-family:'BuGlobal', sans-serif; padding:1px 0; }
-    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; align-self: flex-start; }
+    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; align-self: flex-start; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
 
     #ipus-btn {
@@ -164,6 +169,16 @@
     body.dark #solo-interp { color: #fff; }
     body.dark #solo-symbol-visual img { filter: invert(1); }
     body.dark .mini-label { color: #fff; }
+
+    /* ---- מיקרו אנימציות חצים ---- */
+    @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afu { 0%{transform:none;opacity:1} 35%{transform:translateY(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afd { 0%{transform:none;opacity:1} 35%{transform:translateY(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    .arrow-flash-left  { animation:_afl .55s ease-out; }
+    .arrow-flash-right { animation:_afr .55s ease-out; }
+    .arrow-flash-up    { animation:_afu .55s ease-out; }
+    .arrow-flash-down  { animation:_afd .55s ease-out; }
 
     /* ---- אוברליי טעינה ---- */
     #loading-overlay {
@@ -274,7 +289,7 @@
 
   <!-- גריד פדים idle -->
   <div id="pad-grid-overlay">
-    <div id="pad-grid-label">לחצו על הטעמים במקלדת</div>
+    <div id="pad-grid-label">בחרו טעם במקלדת</div>
     <div id="pad-preview-container"></div>
   </div>
   <script>
@@ -291,6 +306,14 @@
     window._hidePadGrid = function(){ hidePadGrid(); if(window._padP5) window._padP5.noLoop(); };
     document.addEventListener('keydown', hidePadGrid);
     document.addEventListener('mousedown', hidePadGrid);
+    window.addEventListener('pageshow', function(e) {
+      if (!e.persisted) return;
+      ov.classList.remove('out');
+      ov.style.display = 'flex';
+      document.addEventListener('keydown', hidePadGrid);
+      document.addEventListener('mousedown', hidePadGrid);
+      if (window._padP5) window._padP5.loop();
+    });
   })();
   </script>
 
@@ -1855,10 +1878,10 @@
       allAudios.forEach(function(a){
         var done=false;
         function check(){ if(!done){ done=true; if(++n>=total&&window._hideLoader) window._hideLoader(); } }
-        if(a.readyState>=4) check();
-        else { a.addEventListener('canplaythrough',check,{once:true}); a.addEventListener('error',check,{once:true}); }
+        if(a.readyState>=2) check();
+        else { a.addEventListener('loadeddata',check,{once:true}); a.addEventListener('canplay',check,{once:true}); a.addEventListener('canplaythrough',check,{once:true}); a.addEventListener('error',check,{once:true}); }
       });
-      setTimeout(function(){ if(window._hideLoader) window._hideLoader(); },12000);
+      setTimeout(function(){ if(window._hideLoader) window._hideLoader(); },1500);
     })();
 
     let audioReady = false;
@@ -1987,18 +2010,28 @@
       playTofim(activeKey);
     };
 
+    function flashArrow(id, cls) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove('arrow-flash-left','arrow-flash-right','arrow-flash-up','arrow-flash-down');
+      void el.offsetWidth;
+      el.classList.add(cls);
+    }
+
     document.addEventListener('keydown', function(e){
       if(e.key==='m'||e.key==='M'){
         resetMidiLearn();
         return;
       }
       if(e.key==='ArrowUp') {
+        flashArrow('trad-up','arrow-flash-up');
         const i = TRADITION_ORDER.indexOf(currentTradition);
         if(i === 0){ if(currentMode==='רצף') doReset(); return; }
         selectTradition(TRADITION_ORDER[i - 1]);
         return;
       }
       if(e.key==='ArrowDown') {
+        flashArrow('trad-down','arrow-flash-down');
         const i = TRADITION_ORDER.indexOf(currentTradition);
         if(i < TRADITION_ORDER.length - 1) selectTradition(TRADITION_ORDER[i + 1]);
         else if(seqShapes.length>0) doScreenshotAndNavigate();
@@ -2008,8 +2041,8 @@
       if(e.key==='1'){ selectTradition('ספרדי'); return; }
       if(e.key==='2'){ selectTradition('מרוקאי'); return; }
       if(e.key==='3'){ selectTradition('אשכנזי'); return; }
-      if(e.key==='ArrowLeft'){  if(typeof navPage==='function') navPage(-1); return; }
-      if(e.key==='ArrowRight'){ if(typeof navPage==='function') navPage(1);  return; }
+      if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  if(typeof navPage==='function') navPage(-1); return; }
+      if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); if(typeof navPage==='function') navPage(1);  return; }
       doKey(e.key);
     });
 
@@ -2147,7 +2180,9 @@
       document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
       let _nRprev=false, _nLprev=false;
       function navPage(dir){
-        window.location.href = NAV_PAGES[(CURRENT_PAGE_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length];
+        setTimeout(function(){
+          window.location.href = NAV_PAGES[(CURRENT_PAGE_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length];
+        }, 350);
       }
 
       function onMidiMsg(msg){
@@ -2176,19 +2211,19 @@
           // ---- מצב רגיל ----
           if((st&0xF0)===0x90&&vel>0){
             if(TAAM_SET.has(note)){ if(!location.search.includes('embed')) doKey(NOTE_KEY[note]); return; }
-            if(note===tU&&tUt==='note'){ cycleTrad(-1); return; }
-            if(note===tD&&tDt==='note'){ cycleTrad(1);  return; }
-            if(note===nR&&nRt==='note'){ navPage(-1);   return; }
-            if(note===nL&&nLt==='note'){ navPage(1);    return; }
+            if(note===tU&&tUt==='note'){ flashArrow('trad-up','arrow-flash-up');     cycleTrad(-1); return; }
+            if(note===tD&&tDt==='note'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
+            if(note===nR&&nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1);   return; }
+            if(note===nL&&nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);    return; }
             return;
           }
 
           if((st&0xF0)===0xB0){
             const cc=note, val=vel/127;
-            if(cc===tU&&tUt==='cc'){ if(val>0.5) cycleTrad(-1); return; }
-            if(cc===tD&&tDt==='cc'){ cycleTrad(1);  return; }
-            if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev) navPage(-1); _nRprev=on; return; }
-            if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev) navPage(1);  _nLprev=on; return; }
+            if(cc===tU&&tUt==='cc'){ if(val>0.5){ flashArrow('trad-up','arrow-flash-up');     cycleTrad(-1); } return; }
+            if(cc===tD&&tDt==='cc'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
+            if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
+            if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); return; }
             if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); LS.setItem('m_vL',val); return; }
             if(cc===kR){

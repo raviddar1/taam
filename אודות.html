@@ -6,13 +6,18 @@
   <meta name="google" content="notranslate">
   <title>מידע</title>
   <style>
-    @font-face { font-family: 'BuGlobal'; src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'BuGlobal';   src: url('גלובל/buGlobal1.0-Regular.otf')  format('opentype'); }
+    @font-face { font-family: 'BuGlobal'; font-weight: 600; src: url('גלובל/buGlobal1.0-SemiBold.otf') format('opentype'); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #130F10; font-family: 'BuGlobal', sans-serif; }
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #fff; display: block; }
     .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #fff; text-decoration: none; white-space: nowrap; }
-    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; }
+    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
+    @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    .arrow-flash-left  { animation:_afl .55s ease-out; }
+    .arrow-flash-right { animation:_afr .55s ease-out; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
     
@@ -81,11 +86,15 @@
     }
     var _NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
     var _NAV_CUR = _NAV_PAGES.indexOf('אודות.html');
-    function navPage(dir){ window.location.href = _NAV_PAGES[(_NAV_CUR + dir + _NAV_PAGES.length) % _NAV_PAGES.length]; }
+    function flashArrow(id, cls) {
+      var el = document.getElementById(id); if(!el) return;
+      el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
+    }
+    function navPage(dir){ setTimeout(function(){ window.location.href = _NAV_PAGES[(_NAV_CUR + dir + _NAV_PAGES.length) % _NAV_PAGES.length]; }, 500); }
     vid.addEventListener('click', unmute);
     document.addEventListener('keydown', function(e){
-      if(e.key==='ArrowRight'){ unmute(); navPage(1);  return; }
-      if(e.key==='ArrowLeft'){  unmute(); navPage(-1); return; }
+      if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); unmute(); navPage(1);  return; }
+      if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  unmute(); navPage(-1); return; }
       unmute();
     });
     window.addEventListener('pageshow', function(){ vid.currentTime=0; vid.play().catch(function(){}); });
@@ -106,13 +115,13 @@
       const [st,note,vel] = msg.data;
       if((st&0xF0)===0x90&&vel>0){
         unmute();
-        if(note===_nR&&_nRt==='note'){ navPage(-1); return; }
-        if(note===_nL&&_nLt==='note'){ navPage(1);  return; }
+        if(note===_nR&&_nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); return; }
+        if(note===_nL&&_nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  return; }
       }
       if((st&0xF0)===0xB0){
         const val=vel/127;
-        if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev) navPage(-1); _nRprev=on; return; }
-        if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev) navPage(1);  _nLprev=on; return; }
+        if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
+        if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
         if(_kR!==null && note===_kR){ _setDark(val>0); return; }
       }
     }

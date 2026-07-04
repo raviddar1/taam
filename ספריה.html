@@ -6,14 +6,19 @@
   <meta name="google" content="notranslate">
   <title>ספריה</title>
   <style>
-    @font-face { font-family: 'BuGlobal'; src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'BuGlobal';   src: url('גלובל/buGlobal1.0-Regular.otf')  format('opentype'); }
+    @font-face { font-family: 'BuGlobal'; font-weight: 600; src: url('גלובל/buGlobal1.0-SemiBold.otf') format('opentype'); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fff; font-family: 'BuGlobal', sans-serif; overflow: hidden; }
 
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
     .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000; text-decoration: none; white-space: nowrap; }
-    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; }
+    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
+    @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    .arrow-flash-left  { animation:_afl .55s ease-out; }
+    .arrow-flash-right { animation:_afr .55s ease-out; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
     
@@ -226,9 +231,13 @@
   }
   render();
 
+  function flashArrow(id, cls) {
+    var el = document.getElementById(id); if(!el) return;
+    el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
+  }
   document.addEventListener('keydown', function(e){
-    if(e.key==='ArrowLeft')  navPage(-1);
-    if(e.key==='ArrowRight') navPage(1);
+    if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  navPage(-1); }
+    if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  }
   });
 
   // MIDI ניווט
@@ -244,19 +253,19 @@
     document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
     document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
     let _nRprev=false, _nLprev=false;
-    function navPage(dir){ window.location.href = NAV_PAGES[(CURRENT_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length]; }
+    function navPage(dir){ setTimeout(function(){ window.location.href = NAV_PAGES[(CURRENT_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length]; }, 500); }
     function onMidiMsg(msg){
       if(typeof _idleReset==='function') _idleReset();
       const [st,note,vel]=msg.data;
       if((st&0xF0)===0x90&&vel>0){
         const PAD_NOTE_TO_SLOT={53:0,52:1,51:2,50:3,49:4,48:5,47:6,46:7,45:8,44:9,43:10,42:11,41:12,40:13,39:14,38:15};
         if(note in PAD_NOTE_TO_SLOT){ openMelody(PAD_NOTE_TO_SLOT[note]); return; }
-        if(note===nR&&nRt==='note'){ navPage(-1); return; }
-        if(note===nL&&nLt==='note'){ navPage(1);  return; }
+        if(note===nR&&nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); return; }
+        if(note===nL&&nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  return; }
       }
       if((st&0xF0)===0xB0){
-        if(note===nR&&nRt==='cc'){ const on=vel/127>0.5; if(on&&!_nRprev) navPage(-1); _nRprev=on; return; }
-        if(note===nL&&nLt==='cc'){ const on=vel/127>0.5; if(on&&!_nLprev) navPage(1);  _nLprev=on; return; }
+        if(note===nR&&nRt==='cc'){ const on=vel/127>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
+        if(note===nL&&nLt==='cc'){ const on=vel/127>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
         if(note===kR){ const dark=vel/127>0; document.body.classList.toggle('dark',dark); sessionStorage.setItem('darkMode',dark?'1':'0'); return; }
       }
     }

@@ -9,11 +9,17 @@
   <style>
     @font-face {
       font-family: 'BuGlobal';
+      font-weight: 400;
       src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype');
     }
     @font-face {
       font-family: 'BuGlobalLight';
       src: url('גלובל/buGlobal1.0-Light.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'BuGlobal';
+      font-weight: 600;
+      src: url('גלובל/buGlobal1.0-SemiBold.otf') format('opentype');
     }
 * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #ffffff; font-family: 'BuGlobal', sans-serif; }
@@ -73,7 +79,7 @@
       transform: translate(calc(75vw + 33px), calc(48vh - 15px)) scale(0.49);
     }
     #canvas-outer-005.open {
-      transform: translate(calc(50vw - 1040px), calc(50vh - 434px)) scale(1.6) !important;
+      transform: translate(calc(50vw - 1040px), calc(50vh - 464px)) scale(1.6) !important;
     }
     #canvas-outer-006 { z-index: 1; }
     #canvas-outer-006 {
@@ -156,7 +162,7 @@
       color: #000;
       z-index: 5;
       left: calc(50vw - 485px);
-      top: calc(50vh + 260px);
+      top: calc(50vh + 140px);
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease;
@@ -274,7 +280,7 @@
     .w004-3 { right: calc(50vw - 192px); }  /* bluMiddle center x=917 → אשא */
     .w004-4 { right: calc(50vw - 45px);  }  /* greenArc x=770 → עיני */
     .w004-5 { right: calc(50vw + 110px); }  /* red center x=615 → אל-ההרים */
-    .w004-6 { right: calc(50vw + 191px); }  /* triLeft center x=534 → מאין */
+    .w004-6 { right: calc(50vw + 211px); }  /* triLeft center x=514 → מאין */
     .w004-7 { right: calc(50vw + 353px); }  /* bluUpper center x=372 → יבא */
     .w004-8 { right: calc(50vw + 530px); }  /* blackSq center x=195 → עזרי */
 
@@ -347,15 +353,15 @@
     .w010-9  { right: calc(50vw + 486px); }  /* blueRect   x=232  → היתה */
     .w010-10 { right: calc(50vw + 627px); }  /* halfCirc   x=76   → תהו */
     /* שורה תחתונה */
-    .w010-11 { right: calc(50vw - 511px); top: calc(50vh + 173px); }  /* three     x=1340 → ובהו */
-    .w010-12 { right: calc(50vw - 391px); top: calc(50vh + 173px); }  /* greenArc  x=1240 → וחשך (טרחא+30) */
-    .w010-13 { right: calc(50vw - 266px); top: calc(50vh + 173px); }  /* blueRect  x=1068 → על-פני */
-    .w010-14 { right: calc(50vw - 144px); top: calc(50vh + 173px); }  /* redBar    x=932  → תהום */
-    .w010-15 { right: calc(50vw -  19px); top: calc(50vh + 173px); }  /* blueRect  x=793  → ורוח */
-    .w010-16 { right: calc(50vw + 146px); top: calc(50vh + 173px); }  /* three     x=610  → אלהים */
-    .w010-17 { right: calc(50vw + 245px); top: calc(50vh + 173px); }  /* greenArc  x=500  → מרחפת */
-    .w010-18 { right: calc(50vw + 407px); top: calc(50vh + 173px); }  /* blueRect  x=320  → על-פני */
-    .w010-19 { right: calc(50vw + 556px); top: calc(50vh + 173px); }  /* blackSq   x=154  → המים */
+    .w010-11 { right: calc(50vw - 583px); top: calc(50vh + 173px); }  /* three     x=1420 → ובהו */
+    .w010-12 { right: calc(50vw - 451px); top: calc(50vh + 173px); }  /* greenArc  x=1307 → וחשך (טרחא+30) */
+    .w010-13 { right: calc(50vw - 306px); top: calc(50vh + 173px); }  /* blueRect  x=1112 → על-פני */
+    .w010-14 { right: calc(50vw - 167px); top: calc(50vh + 173px); }  /* redBar    x=958  → תהום */
+    .w010-15 { right: calc(50vw -  25px); top: calc(50vh + 173px); }  /* blueRect  x=800  → ורוח */
+    .w010-16 { right: calc(50vw + 161px); top: calc(50vh + 173px); }  /* three     x=593  → אלהים */
+    .w010-17 { right: calc(50vw + 274px); top: calc(50vh + 173px); }  /* greenArc  x=468  → מרחפת */
+    .w010-18 { right: calc(50vw + 457px); top: calc(50vh + 173px); }  /* blueRect  x=264  → על-פני */
+    .w010-19 { right: calc(50vw + 627px); top: calc(50vh + 173px); }  /* blackSq   x=76   → המים */
 
     /* 009 — right = 50vw + 620 − center_x × 1.15 */
     #meta-009.active { display: block; width: auto; }
@@ -378,12 +384,12 @@
     .w009-6  { right: calc(50vw + 369px); }  /* blueRect  x=218 → אשר */
     .w009-7  { right: calc(50vw + 498px); }  /* redBar    x=106 → עשה */
     /* שורה תחתונה */
-    .w009-8  { right: calc(50vw - 448px); top: calc(50vh + 151px); }  /* greenRect x=929 → וישבת */
+    .w009-8  { right: calc(50vw - 475px); top: calc(50vh + 151px); }  /* greenRect x=952 → וישבת */
     .w009-9  { right: calc(50vw - 276px); top: calc(50vh + 151px); }  /* blueRect  x=779 → ביום */
-    .w009-10 { right: calc(50vw -  83px); top: calc(50vh + 151px); }  /* three     x=611 → השביעי */
-    .w009-11 { right: calc(50vw +  60px); top: calc(50vh + 151px); }  /* greenArc  x=513 → מכל-מלאכתו (טרחא+30) */
-    .w009-12 { right: calc(50vw + 228px); top: calc(50vh + 151px); }  /* blueRect  x=341 → אשר */
-    .w009-13 { right: calc(50vw + 393px); top: calc(50vh + 151px); }  /* blackSq   x=197 → עשה */
+    .w009-10 { right: calc(50vw -  53px); top: calc(50vh + 151px); }  /* three     x=585 → השביעי */
+    .w009-11 { right: calc(50vw + 108px); top: calc(50vh + 151px); }  /* greenArc  x=471 → מכל-מלאכתו (טרחא+30) */
+    .w009-12 { right: calc(50vw + 307px); top: calc(50vh + 151px); }  /* blueRect  x=272 → אשר */
+    .w009-13 { right: calc(50vw + 498px); top: calc(50vh + 151px); }  /* blackSq   x=106 → עשה */
 
     /* 008 — right = 50vw + 600 − center_x × 1.65 */
     #meta-008.active { display: block; width: auto; }
@@ -398,22 +404,22 @@
       z-index: 3;
     }
     /* שורה עליונה */
-    .w008-1  { right: calc(50vw - 264px); }  /* blueRect  x=648 → יברכך */
-    .w008-2  { right: calc(50vw - 139px); }  /* greenArc  x=590 → יהוה (טרחא+30) */
-    .w008-3  { right: calc(50vw -  23px); }  /* blackSq   x=502 → וישמרך */
-    .w008-4  { right: calc(50vw + 140px); }  /* greenRect x=403 → יאר */
-    .w008-5  { right: calc(50vw + 280px); }  /* z         x=318 → יהוה */
-    .w008-6  { right: calc(50vw + 409px); }  /* purpleArc x=240 → פניו */
-    .w008-7  { right: calc(50vw + 538px); }  /* greenArc  x=180 → אליך (טרחא+30) */
-    .w008-8  { right: calc(50vw + 665px); }  /* blackSq   x=85  → ויחנך */
+    .w008-1  { right: calc(50vw - 454px); }  /* blueRect  x=648 → יברכך */
+    .w008-2  { right: calc(50vw - 329px); }  /* greenArc  x=590 → יהוה (טרחא+30) */
+    .w008-3  { right: calc(50vw - 213px); }  /* blackSq   x=502 → וישמרך */
+    .w008-4  { right: calc(50vw -  50px); }  /* greenRect x=403 → יאר */
+    .w008-5  { right: calc(50vw +  90px); }  /* z         x=318 → יהוה */
+    .w008-6  { right: calc(50vw + 219px); }  /* purpleArc x=240 → פניו */
+    .w008-7  { right: calc(50vw + 348px); }  /* greenArc  x=180 → אליך (טרחא+30) */
+    .w008-8  { right: calc(50vw + 475px); }  /* blackSq   x=85  → ויחנך */
     /* שורה תחתונה */
-    .w008-9  { right: calc(50vw - 264px); top: calc(50vh + 260px); }  /* greenRect   x=648 → ישא */
-    .w008-10 { right: calc(50vw - 111px); top: calc(50vh + 260px); }  /* blueCircle  x=555 → יהוה */
-    .w008-11 { right: calc(50vw +  49px); top: calc(50vh + 260px); }  /* greenRect   x=458 → פניו */
-    .w008-12 { right: calc(50vw + 226px); top: calc(50vh + 260px); }  /* threeCirc   x=351 → אליך */
-    .w008-13 { right: calc(50vw + 412px); top: calc(50vh + 260px); }  /* blueRect    x=238 → וישם */
-    .w008-14 { right: calc(50vw + 538px); top: calc(50vh + 260px); }  /* greenArc    x=180 → לך (טרחא+30) */
-    .w008-15 { right: calc(50vw + 670px); top: calc(50vh + 260px); }  /* blackSq     x=82  → שלום */
+    .w008-9  { right: calc(50vw - 454px); top: calc(50vh + 215px); }  /* greenRect   x=648 → ישא */
+    .w008-10 { right: calc(50vw - 301px); top: calc(50vh + 215px); }  /* blueCircle  x=555 → יהוה */
+    .w008-11 { right: calc(50vw - 141px); top: calc(50vh + 215px); }  /* greenRect   x=458 → פניו */
+    .w008-12 { right: calc(50vw +  36px); top: calc(50vh + 215px); }  /* threeCirc   x=351 → אליך */
+    .w008-13 { right: calc(50vw + 222px); top: calc(50vh + 215px); }  /* blueRect    x=238 → וישם */
+    .w008-14 { right: calc(50vw + 348px); top: calc(50vh + 215px); }  /* greenArc    x=180 → לך (טרחא+30) */
+    .w008-15 { right: calc(50vw + 480px); top: calc(50vh + 215px); }  /* blackSq     x=82  → שלום */
 
     /* 007 — right = 50vw + 760 − center_x × 1.75 */
     #meta-007.active { display: block; width: auto; }
@@ -427,16 +433,16 @@
       text-align: center;
       z-index: 3;
     }
-    .w007-1  { right: calc(50vw - 348px); }  /* tri  x=804 → יהוה */
-    .w007-2  { right: calc(50vw - 180px); }  /* bar  x=708 → ישמרך */
-    .w007-3  { right: calc(50vw -  30px); }  /* red  x=622 → מכל-רע */
-    .w007-4  { right: calc(50vw +  89px); }  /* tri  x=554 → ישמר */
-    .w007-5  { right: calc(50vw + 199px); }  /* sq   x=492 → את-נפשך */
-    .w007-6  { right: calc(50vw + 343px); }  /* tri  x=409 → יהוה */
-    .w007-7  { right: calc(50vw + 512px); }  /* bar  x=313 → ישמר-צאתך */
-    .w007-8  { right: calc(50vw + 662px); }  /* red  x=227 → ובואך */
-    .w007-9  { right: calc(50vw + 772px); }  /* tri  x=164 → מעתה */
-    .w007-10 { right: calc(50vw + 883px); }  /* sq   x=101 → ועד-עולם */
+    .w007-1  { right: calc(50vw - 622px); }  /* tri  x=804 → יהוה */
+    .w007-2  { right: calc(50vw - 454px); }  /* bar  x=708 → ישמרך */
+    .w007-3  { right: calc(50vw - 304px); }  /* red  x=622 → מכל-רע */
+    .w007-4  { right: calc(50vw - 185px); }  /* tri  x=554 → ישמר */
+    .w007-5  { right: calc(50vw -  75px); }  /* sq   x=492 → את-נפשך */
+    .w007-6  { right: calc(50vw +  69px); }  /* tri  x=409 → יהוה */
+    .w007-7  { right: calc(50vw + 238px); }  /* bar  x=313 → ישמר-צאתך */
+    .w007-8  { right: calc(50vw + 388px); }  /* red  x=227 → ובואך */
+    .w007-9  { right: calc(50vw + 498px); }  /* tri  x=164 → מעתה */
+    .w007-10 { right: calc(50vw + 609px); }  /* sq   x=101 → ועד-עולם */
 
     /* 006 — right = 50vw + 490 − center_x × 1.3 */
     #meta-006.active { display: block; width: auto; }
@@ -462,7 +468,7 @@
       font-family: 'BuGlobalLight', sans-serif;
       font-size: 27px;
       color: #000;
-      top: calc(50vh - 34px);
+      top: calc(50vh - 64px);
       transform: translateX(50%);
       text-align: center;
       z-index: 3;
@@ -475,12 +481,12 @@
     .w005-5  { right: calc(50vw + 148px); }  /* [4] bar  x=557 → יארכון */
     .w005-6  { right: calc(50vw + 333px); }  /* [5] dots x=442 → ימיך */
     /* שורה תחתונה */
-    .w005-7  { right: calc(50vw - 390px); top: calc(50vh + 254px); }  /* [6] tri  x=894 → על */
-    .w005-8  { right: calc(50vw - 267px); top: calc(50vh + 254px); }  /* [7] dots x=817 → האדמה */
-    .w005-9  { right: calc(50vw - 84px);  top: calc(50vh + 254px); }  /* [8] bar  x=702 → אשר-יהוה */
-    .w005-10 { right: calc(50vw + 48px);   top: calc(50vh + 254px); }  /* [9] arc  x=645 → אלהיך */
-    .w005-11 { right: calc(50vw + 188px); top: calc(50vh + 254px); }  /* [10] bar x=532 → נתן */
-    .w005-12 { right: calc(50vw + 358px); top: calc(50vh + 254px); }  /* [11] sq  x=426 → לך */
+    .w005-7  { right: calc(50vw - 390px); top: calc(50vh + 224px); }  /* [6] tri  x=894 → על */
+    .w005-8  { right: calc(50vw - 267px); top: calc(50vh + 224px); }  /* [7] dots x=817 → האדמה */
+    .w005-9  { right: calc(50vw - 84px);  top: calc(50vh + 224px); }  /* [8] bar  x=702 → אשר-יהוה */
+    .w005-10 { right: calc(50vw + 48px);   top: calc(50vh + 224px); }  /* [9] arc  x=645 → אלהיך */
+    .w005-11 { right: calc(50vw + 188px); top: calc(50vh + 224px); }  /* [10] bar x=532 → נתן */
+    .w005-12 { right: calc(50vw + 358px); top: calc(50vh + 224px); }  /* [11] sq  x=426 → לך */
 
     #close-btn { display: none !important; }
 
@@ -489,9 +495,25 @@
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
     .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000; text-decoration: none; white-space: nowrap; }
-    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; }
+    .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
+    @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afu { 0%{transform:none;opacity:1} 35%{transform:translateY(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    @keyframes _afd { 0%{transform:none;opacity:1} 35%{transform:translateY(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
+    .arrow-flash-left  { animation:_afl .55s ease-out; }
+    .arrow-flash-right { animation:_afr .55s ease-out; }
+    .arrow-flash-up    { animation:_afu .55s ease-out; }
+    .arrow-flash-down  { animation:_afd .55s ease-out; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
+    #psuk-hint {
+      position: fixed; top: 92px; left: 50%; transform: translateX(-50%);
+      font-family: 'BuGlobal', sans-serif; font-size: 18px;
+      color: #000; white-space: nowrap; direction: rtl;
+      pointer-events: none; transition: opacity 0.3s ease;
+    }
+    body.dark #psuk-hint { color: #fff; }
+    #psuk-hint.hidden { opacity: 0; }
     
     
     
@@ -521,7 +543,7 @@
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
     #trad-list { display:flex; flex-direction:column; gap:5px; text-align:right; direction:rtl; min-width: max-content; }
     .trad-item { font-size:14px; color:#000; cursor:pointer; pointer-events:all; font-family:'BuGlobal', sans-serif; padding:1px 0; }
-    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; }
+    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
     body.dark .trad-item:not(.active) { color: #fff; }
   </style>
@@ -539,6 +561,7 @@
   </nav>
   <div id="page-nav">
   </div>
+  <div id="psuk-hint">בחרו פסוק במקלדת</div>
 
   <div id="tradition-wrap">
     <div id="trad-col">
@@ -827,7 +850,9 @@
   }
   function cycleTrad(dir) {
     const i = TRADITION_ORDER.indexOf(currentTradition);
-    selectTradition(TRADITION_ORDER[(i + dir + TRADITION_ORDER.length) % TRADITION_ORDER.length]);
+    const next = i + dir;
+    if (next < 0 || next >= TRADITION_ORDER.length) return;
+    selectTradition(TRADITION_ORDER[next]);
   }
   document.querySelectorAll('#trad-list .trad-item').forEach(function(el){
     el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
@@ -1396,7 +1421,7 @@
 
     // [5] triLeft — רביע-style, slide from right (bx=535)
     { const _tl4 = anim004[5];
-      const xl4=lx(170,535), yl4=ly(420,150);
+      const xl4=lx(170,515), yl4=ly(420,150);
       if(_tl4.phase>=1){
         const pR4l=Math.min(1,_tl4.t*1.5); const pL4l=Math.max(0,Math.min(1,(_tl4.t-0.2)*1.5));
         const eR4l=1-Math.pow(1-pR4l,3), eL4l=1-Math.pow(1-pL4l,3);
@@ -1690,13 +1715,13 @@
       { type:'rect',            ax:87,  ay:121, aw:43, ah:43, bx:470, by:51,  bw:63, bh:64, c:black              },
       { type:'greenArc',        ax:268, ay:40,  aw:72, ah:72, bx:590, by:75,  bw:72, bh:72, c:green              },
       { type:'rect',            ax:82,  ay:99,  aw:63, ah:9,  bx:600, by:51,  bw:96, bh:15, c:blue               },
-      { type:'rect',            ax:221, ay:90,  aw:43, ah:43, bx:50,  by:231, bw:63, bh:64, c:black              },
-      { type:'greenArc',        ax:312, ay:98,  aw:72, ah:72, bx:180, by:255, bw:72, bh:72, c:green              },
-      { type:'rect',            ax:227, ay:187, aw:65, ah:9,  bx:190, by:233, bw:96, bh:15, c:blue               },
-      { type:'threeCircles',    ax:80,  ay:185, aw:22, ah:22, bx:320, by:264, bw:31, bh:31, c:blue               },
-      { type:'rect',            ax:144, ay:164, aw:65, ah:10, bx:410, by:233, bw:96, bh:15, c:green              },
-      { type:'blueCircle',      ax:177, ay:125, aw:50, ah:24, bx:555, by:264, bw:72, bh:36, c:blue, c2:lightBlue },
-      { type:'rect',            ax:144, ay:187, aw:65, ah:10, bx:600, by:233, bw:96, bh:15, c:green              },
+      { type:'rect',            ax:221, ay:90,  aw:43, ah:43, bx:50,  by:222, bw:63, bh:64, c:black              },
+      { type:'greenArc',        ax:312, ay:98,  aw:72, ah:72, bx:180, by:246, bw:72, bh:72, c:green              },
+      { type:'rect',            ax:227, ay:187, aw:65, ah:9,  bx:190, by:224, bw:96, bh:15, c:blue               },
+      { type:'threeCircles',    ax:80,  ay:185, aw:22, ah:22, bx:320, by:255, bw:31, bh:31, c:blue               },
+      { type:'rect',            ax:144, ay:164, aw:65, ah:10, bx:410, by:224, bw:96, bh:15, c:green              },
+      { type:'blueCircle',      ax:177, ay:125, aw:50, ah:24, bx:555, by:255, bw:72, bh:36, c:blue, c2:lightBlue },
+      { type:'rect',            ax:144, ay:187, aw:65, ah:10, bx:600, by:224, bw:96, bh:15, c:green              },
     ];
 
     const DUR8=900; const now8=performance.now();
@@ -1873,12 +1898,12 @@
     rct( 212, 67,88,14,  589, 89,137, 23, blue);
     rct(  95, 66,88,14,  740, 20,135, 23, green);
     dbl( 282,124,54,27,  952, 66, 81, 41, lightBlue,blue);
-    rct( 183,120,58,58,  151,260, 91, 91, black);
-    rct( 252,164,88,14,  273,260,136, 23, blue);
-    arc_(351,187,86,86,16, 513,285,122,122,20, green);
-    three(226,204,29, 566,307, 45, blue);
+    rct( 183,120,58,58,   61,260, 91, 91, black);
+    rct( 252,164,88,14,  204,260,136, 23, blue);
+    arc_(351,187,86,86,16, 471,285,122,122,20, green);
+    three(226,204,29, 540,307, 45, blue);
     rct(  78,218,88,14,  711,330,136, 23, blue);
-    rct( 110,189,87,14,  861,261,136, 23, green);
+    rct( 110,189,87,14,  884,261,136, 23, green);
   }
 
   new p5(function(p) {
@@ -1998,15 +2023,15 @@
     rct(62,157,18,73,   1100, 80, 24,101, red);
     rct(284,203,111,18, 1180,155,150, 25, blue);
     arc_(421,243,112,112,22,  1420,125,112,112,22, green);
-    rct(181,234,76,76,   103,375,101,101, black);
-    rct(28,242,112,18,   245,372,150, 25, blue);
-    arc_(85,272,112,112,22,   500,410,112,112,22, green);
-    three(80,290,37, 560,420,50, blue);
-    rct(134,323,114,18,  718,455,150, 25, blue);
-    rct(404,157,18,73,   920,380, 24,101, red);
-    rct(308,323,113,18,  993,455,150, 25, blue);
-    arc_(158,165,112,112,22,  1240,410,112,112,22, green);
-    three(333,109,37, 1290,420,50, blue);
+    rct(181,234,76,76,    26,375,101,101, black);
+    rct(28,242,112,18,   189,372,150, 25, blue);
+    arc_(85,272,112,112,22,   468,410,112,112,22, green);
+    three(80,290,37, 543,420,50, blue);
+    rct(134,323,114,18,  725,455,150, 25, blue);
+    rct(404,157,18,73,   946,380, 24,101, red);
+    rct(308,323,113,18, 1037,455,150, 25, blue);
+    arc_(158,165,112,112,22,  1307,410,112,112,22, green);
+    three(333,109,37, 1370,420,50, blue);
   }
 
   new p5(function(p) {
@@ -2322,6 +2347,7 @@
 
     document.getElementById('bg').classList.add('active');
     document.getElementById('tradition-wrap').classList.add('visible');
+    document.getElementById('psuk-hint').classList.add('hidden');
     const el = document.getElementById('canvas-outer-' + pid(n));
     el.classList.add('open');
     el.style.zIndex = 6;
@@ -2342,10 +2368,16 @@
       const numRights = {
         1:'calc(50vw - 490px)', 2:'calc(50vw - 605px)', 3:'calc(50vw - 605px)',
         4:'calc(50vw - 574px)', 5:'calc(50vw - 420px)', 6:'calc(50vw - 336px)',
-        7:'calc(50vw - 378px)', 8:'calc(50vw - 294px)', 9:'calc(50vw - 505px)',
+        7:'calc(50vw - 652px)', 8:'calc(50vw - 484px)', 9:'calc(50vw - 505px)',
         10:'calc(50vw - 583px)',11:'calc(50vw - 645px)',12:'calc(50vw - 660px)'
       };
       if (numRights[n]) numEl.style.right = numRights[n];
+      const numTops = {
+        2:'calc(50vh + 146px)', 3:'calc(50vh + 109px)', 4:'calc(50vh + 151px)',
+        5:'calc(50vh + 304px)', 8:'calc(50vh + 295px)', 9:'calc(50vh + 231px)',
+        10:'calc(50vh + 253px)',11:'calc(50vh +  85px)',12:'calc(50vh +  87px)'
+      };
+      numEl.style.top = numTops[n] || 'calc(50vh + 140px)';
       numEl.classList.add('active');
       const srcEl = document.getElementById('source-label');
       if (sources[n]) {
@@ -2353,10 +2385,11 @@
         const srcLefts = {
           1:'calc(50vw - 447px)', 2:'calc(50vw - 639px)', 3:'calc(50vw - 658px)',
           4:'calc(50vw - 560px)', 5:'calc(50vw - 388px)', 6:'calc(50vw - 320px)',
-          7:'calc(50vw - 913px)', 8:'calc(50vw - 700px)', 9:'calc(50vw - 528px)',
+          7:'calc(50vw - 639px)', 8:'calc(50vw - 510px)', 9:'calc(50vw - 528px)',
           10:'calc(50vw - 657px)',11:'calc(50vw - 641px)',12:'calc(50vw - 690px)'
         };
         if (srcLefts[n]) srcEl.style.left = srcLefts[n];
+        srcEl.style.top = numTops[n] || 'calc(50vh + 140px)';
         srcEl.classList.add('active');
       }
       if (currentItem !== n) return;
@@ -2398,6 +2431,7 @@
     document.getElementById('canvas-outer-' + pid(n)).classList.remove('open');
     document.getElementById('bg').classList.remove('active');
     document.getElementById('tradition-wrap').classList.remove('visible');
+    document.getElementById('psuk-hint').classList.remove('hidden');
     stopVerseAudio();
     stopVerseDrums();
 
@@ -2433,14 +2467,20 @@
   // ---- ניווט עמודים (חיצים + MIDI) ----
   const _NAV = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
   const _CUR = 2;
-  function _navPage(dir){ window.location.href = _NAV[(_CUR + dir + _NAV.length) % _NAV.length]; }
+  function flashArrow(id, cls) {
+    var el = document.getElementById(id); if(!el) return;
+    el.classList.remove('arrow-flash-left','arrow-flash-right','arrow-flash-up','arrow-flash-down'); void el.offsetWidth; el.classList.add(cls);
+  }
+  function _navPage(dir){ setTimeout(function(){ window.location.href = _NAV[(_CUR + dir + _NAV.length) % _NAV.length]; }, 500); }
   let _nRprev=false, _nLprev=false;
 
   document.getElementById('pnav-next').addEventListener('click', function(){ _navPage(-1); });
   document.getElementById('pnav-prev').addEventListener('click', function(){ _navPage(1); });
   document.addEventListener('keydown', function(e){
-    if(e.key==='ArrowLeft')  _navPage(-1);
-    if(e.key==='ArrowRight') _navPage(1);
+    if(e.key==='ArrowUp'){    flashArrow('trad-up','arrow-flash-up');      cycleTrad(-1); }
+    if(e.key==='ArrowDown'){  flashArrow('trad-down','arrow-flash-down');  cycleTrad(1);  }
+    if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  _navPage(-1); }
+    if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); _navPage(1);  }
   });
 
   // ---- MIDI ----
@@ -2456,6 +2496,8 @@
   const _nL  = _LS.getItem('m_nL') !== null ? +_LS.getItem('m_nL') : null;
   const _nLt = _LS.getItem('m_nLt') || null;
   const _kR  = _LS.getItem('m_kR') !== null ? +_LS.getItem('m_kR') : null;
+  const _fR  = _LS.getItem('m_fR') !== null ? +_LS.getItem('m_fR') : null;
+  const _fL  = _LS.getItem('m_fL') !== null ? +_LS.getItem('m_fL') : null;
   const _tU  = _LS.getItem('m_tU') !== null ? +_LS.getItem('m_tU') : null;
   const _tUt = _LS.getItem('m_tUt') || 'cc';
   const _tD  = _LS.getItem('m_tD') !== null ? +_LS.getItem('m_tD') : null;
@@ -2468,10 +2510,10 @@
     const [st, note, vel] = msg.data;
     if ((st & 0xF0) === 0x90 && vel > 0) {
       console.log('[MIDI] note_on note:'+note+' → item:'+PAD_TO_ITEM[note]);
-      if(note===_nR&&_nRt==='note'){ _navPage(-1); return; }
-      if(note===_nL&&_nLt==='note'){ _navPage(1);  return; }
-      if(note===_tU&&_tUt==='note'){ cycleTrad(-1); return; }
-      if(note===_tD&&_tDt==='note'){ cycleTrad(1);  return; }
+      if(note===_nR&&_nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); _navPage(-1); return; }
+      if(note===_nL&&_nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  _navPage(1);  return; }
+      if(note===_tU&&_tUt==='note'){ flashArrow('trad-up','arrow-flash-up');     cycleTrad(-1); return; }
+      if(note===_tD&&_tDt==='note'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
       const item = PAD_TO_ITEM[note];
       if (!item) return;
       if (currentItem === item) { closeItem(); }
@@ -2480,11 +2522,13 @@
     }
     if ((st & 0xF0) === 0xB0) {
       const val = vel / 127;
-      if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev) _navPage(-1); _nRprev=on; return; }
-      if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev) _navPage(1);  _nLprev=on; return; }
-      if(note===_tU&&_tUt==='cc'){ if(vel/127>0.5) cycleTrad(-1); return; }
-      if(note===_tD&&_tDt==='cc'){ if(vel/127>0.5) cycleTrad(1);  return; }
+      if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); _navPage(-1); } _nRprev=on; return; }
+      if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  _navPage(1);  } _nLprev=on; return; }
+      if(note===_tU&&_tUt==='cc'){ if(vel/127>0.5){ flashArrow('trad-up','arrow-flash-up');     cycleTrad(-1); } return; }
+      if(note===_tD&&_tDt==='cc'){ if(vel/127>0.5){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  } return; }
       if(_kR!==null && note===_kR){ _setDark(val>0); return; }
+      if(_fR!==null && note===_fR){ _LS.setItem('m_vR',val); _drumsClones.forEach(function(a){ a.volume=val; }); return; }
+      if(_fL!==null && note===_fL){ _LS.setItem('m_vL',val); if(_verseAudio) _verseAudio.volume=val; return; }
     }
   }
 
