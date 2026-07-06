@@ -2662,12 +2662,12 @@
       window._volFaderSetL = function(v){ thumbL.style.top = volToTop(v)+'px'; };
       window._volFaderSetR = function(v){ thumbR.style.top = volToTop(v)+'px'; };
       initFader(
-        document.getElementById('fader-L'), thumbL, 'm_vL',
-        function(v){ localStorage.setItem('m_vL',v); if(window._volFaderCantorAudios) window._volFaderCantorAudios.forEach(function(a){ a.volume=v; }); }
+        document.getElementById('fader-L'), thumbL, 'm_vR',
+        function(v){ localStorage.setItem('m_vR',v); if(window._volFaderTofimGain) window._volFaderTofimGain.gain.value=v*(window._volFaderTofimBase||1); }
       );
       initFader(
-        document.getElementById('fader-R'), thumbR, 'm_vR',
-        function(v){ localStorage.setItem('m_vR',v); if(window._volFaderTofimGain) window._volFaderTofimGain.gain.value=v*(window._volFaderTofimBase||1); }
+        document.getElementById('fader-R'), thumbR, 'm_vL',
+        function(v){ localStorage.setItem('m_vL',v); if(window._volFaderCantorAudios) window._volFaderCantorAudios.forEach(function(a){ a.volume=v; }); }
       );
     });
   })();
