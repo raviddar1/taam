@@ -3027,6 +3027,7 @@
     triggerAnim(n, 1);
 
     setTimeout(function() {
+      if (currentItem !== n) return;
       document.getElementById('meta-' + pid(n)).classList.add('active');
       document.getElementById('close-btn').classList.add('active');
       const numEl = document.getElementById('open-number');
@@ -3062,7 +3063,6 @@
         srcEl.style.top = numTops[n] || 'calc(50vh + 140px)';
         srcEl.classList.add('active');
       }
-      if (currentItem !== n) return;
       if (n === 1) playVerse001();
       if (n === 2) playVerse002();
       if (n === 3) playVerse003();
