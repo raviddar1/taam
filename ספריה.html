@@ -97,6 +97,12 @@
     #melody-meta.active { display: flex; }
     body.dark #melody-meta { color: #fff; }
     #meta-datetime { display: flex; direction: rtl; gap: 120px; }
+    #gallery-hint {
+      position: fixed; top: 92px; left: 50%; transform: translateX(-50%);
+      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 14px;
+      color: #343434; white-space: nowrap; direction: rtl; pointer-events: none;
+    }
+    body.dark #gallery-hint { color: #fff; }
   </style>
 </head>
 <body>
@@ -112,6 +118,7 @@
   </nav>
   <div id="page-nav"></div>
 
+  <div id="gallery-hint">[בחרו נגינה במקלדת]</div>
   <div id="grid"></div>
   <div id="melody-overlay">
     <div id="melody-frame-wrap">
