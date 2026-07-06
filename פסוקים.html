@@ -101,7 +101,7 @@
     }
     #canvas-outer-007 { z-index: 2; }
     #canvas-outer-007 {
-      transform: translate(calc(27vw - 150px), calc(39vh + 7px)) scale(0.47);
+      transform: translate(calc(27vw - 120px), calc(39vh + 7px)) scale(0.47);
     }
     #canvas-outer-007.open {
       transform: translate(calc(50vw - 785px), calc(50vh - 265px)) scale(1.75) !important;
@@ -146,7 +146,28 @@
       transform: translate(calc(75vw + 75px), calc(69vh + 75px)) scale(0.25);
     }
     #canvas-outer-013.open {
-      transform: translate(calc(50vw - 641px), calc(50vh - 133px)) scale(0.85) !important;
+      transform: translate(calc(50vw - 641px), calc(50vh - 153px)) scale(0.85) !important;
+    }
+    #canvas-outer-014 { z-index: 1; }
+    #canvas-outer-014 {
+      transform: translate(calc(51vw + 60px), calc(69vh + 65px)) scale(0.35);
+    }
+    #canvas-outer-014.open {
+      transform: translate(calc(50vw - 540px), calc(50vh - 135px)) scale(0.9) !important;
+    }
+    #canvas-outer-015 { z-index: 1; }
+    #canvas-outer-015 {
+      transform: translate(calc(27vw + 95px), calc(69vh + 85px)) scale(0.20);
+    }
+    #canvas-outer-015.open {
+      transform: translate(calc(50vw - 595px), calc(50vh - 170px)) scale(0.85) !important;
+    }
+    #canvas-outer-016 { z-index: 1; }
+    #canvas-outer-016 {
+      transform: translate(calc(3vw + 83px), calc(69vh + 75px)) scale(0.16);
+    }
+    #canvas-outer-016.open {
+      transform: translate(calc(50vw - 624px), calc(50vh - 224px)) scale(0.65) !important;
     }
     #meta-001, #meta-002, #meta-003, #meta-004, #meta-005, #meta-006, #meta-007, #meta-008, #meta-009, #meta-010, #meta-011, #meta-012 { top: calc(50vh - 130px); }
 
@@ -319,16 +340,77 @@
       text-align: center;
       z-index: 3;
     }
-    .w013-1  { right: calc(50vw - 561px); }  /* תרי קדמין   x=1414 → וי֨אמר֙ */
-    .w013-2  { right: calc(50vw - 425px); }  /* שופר הולך   x=1254 → יהו֣ה */
-    .w013-3  { right: calc(50vw - 222px); }  /* זקף קטון    x=1015 → אלה֔ים */
-    .w013-4  { right: calc(50vw - 110px); }  /* תביר        x=884  → לא־ט֛וב */
-    .w013-5  { right: calc(50vw +  52px); }  /* מאריך       x=693  → הי֥ות */
-    .w013-6  { right: calc(50vw + 120px); }  /* טרחא        x=613  → האד֖ם */
-    .w013-7  { right: calc(50vw + 236px); }  /* אתנח        x=477  → לבד֑ו */
-    .w013-8  { right: calc(50vw + 344px); }  /* מאריך       x=349  → אעשה־ל֥ו */
-    .w013-9  { right: calc(50vw + 412px); }  /* טרחא        x=269  → ע֖זר */
-    .w013-10 { right: calc(50vw + 559px); }  /* סוף פסוק    x=96   → כנגדֽו׃ */
+    .w013-1  { right: calc(50vw - 583px); }  /* תרי קדמין   x=1440 → וי֨אמר֙ */
+    .w013-2  { right: calc(50vw - 442px); }  /* שופר הולך   x=1274 → יהו֣ה */
+    .w013-3  { right: calc(50vw - 280px); }  /* זקף קטון    x=1025 → אלה֔ים */
+    .w013-4  { right: calc(50vw - 115px); }  /* תביר        x=889  → לא־ט֛וב */
+    .w013-5  { right: calc(50vw +  54px); }  /* מאריך       x=691  → הי֥ות */
+    .w013-6  { right: calc(50vw + 150px); }  /* טרחא        x=607  → האד֖ם */
+    .w013-7  { right: calc(50vw + 245px); }  /* אתנח        x=466  → לבד֑ו */
+    .w013-8  { right: calc(50vw + 358px); }  /* מאריך       x=333  → אעשה־ל֥ו */
+    .w013-9  { right: calc(50vw + 469px); }  /* טרחא        x=250  → ע֖זר */
+    .w013-10 { right: calc(50vw + 582px); }  /* סוף פסוק    x=70   → כנגדֽו׃ */
+    #meta-014.active { display: block; width: auto; }
+    .w014 {
+      position: fixed;
+      font-family: 'BuGlobal', sans-serif;
+      font-weight: 300;
+      font-size: 27px;
+      color: #343434;
+      top: calc(50vh + 90px);
+      transform: translateX(50%);
+      text-align: center;
+      z-index: 3;
+    }
+    /* right = 50vw + 540 − cx × 0.9 */
+    .w014-1 { right: calc(50vw - 528px); }  /* ar   cx=1187 → י֖שב */
+    .w014-2 { right: calc(50vw - 285px); }  /* b2   cx=917  → בס֣תר */
+    .w014-3 { right: calc(50vw - 106px); }  /* rr   cx=718  → עלי֑ון */
+    .w014-4 { right: calc(50vw +  59px); }  /* b1   cx=535  → בצ֥ל */
+    .w014-5 { right: calc(50vw + 278px); }  /* dt   cx=291  → שד֗י */
+    .w014-6 { right: calc(50vw + 460px); }  /* sq   cx=89   → יתלונֽן׃ */
+    #meta-015.active { display: block; width: auto; }
+    .w015 {
+      position: fixed;
+      font-family: 'BuGlobal', sans-serif;
+      font-weight: 300;
+      font-size: 27px;
+      color: #343434;
+      top: calc(50vh + 45px);
+      transform: translateX(50%);
+      text-align: center;
+      z-index: 3;
+    }
+    /* right = 50vw + 595 − cx × 0.85 */
+    .w015-1 { right: calc(50vw - 485px); }  /* tg  cx=1270 → כל֫ך */
+    .w015-2 { right: calc(50vw - 307px); }  /* gr  cx=1061 → יפה֙ */
+    .w015-3 { right: calc(50vw -  99px); }  /* tc  cx=816  → רעית֔י */
+    .w015-4 { right: calc(50vw +  61px); }  /* ar  cx=675  → ומ֖ום */
+    .w015-5 { right: calc(50vw + 232px); }  /* br  cx=427  → א֥ין */
+    .w015-6 { right: calc(50vw + 420px); }  /* sq  cx=205  → בֽך׃ */
+    #meta-016.active { display: block; width: auto; }
+    .w016 {
+      position: fixed;
+      font-family: 'BuGlobal', sans-serif;
+      font-weight: 300;
+      font-size: 27px;
+      color: #343434;
+      top: calc(50vh - 35px);
+      transform: translateX(50%);
+      text-align: center;
+      z-index: 3;
+    }
+    /* right = 50vw + 597 − cx × 0.65 */
+    .w016-1  { right: calc(50vw - 571px); }  /* bc   cx=1839 → כי־עז֫ה */
+    .w016-2  { right: calc(50vw - 434px); }  /* yh   cx=1613 → כמ֨ות֙ */
+    .w016-3  { right: calc(50vw - 297px); }  /* bh   cx=1463 → אהב֔ה */
+    .w016-4  { right: calc(50vw - 104px); }  /* bl2  cx=1113 → קש֥ה */
+    .w016-5  { right: calc(50vw +  48px); }  /* ga2  cx=953  → כשא֖ול */
+    .w016-6  { right: calc(50vw + 133px); }  /* rr   cx=755  → קנא֑ה */
+    .w016-7  { right: calc(50vw + 209px); }  /* yv2  cx=638  → רשפ֕יה */
+    .w016-8  { right: calc(50vw + 299px); }  /* yv1  cx=500  → רשפ֕י */
+    .w016-9  { right: calc(50vw + 388px); }  /* ga1  cx=409  → א֖ש */
+    .w016-10 { right: calc(50vw + 550px); }  /* bl1  cx=114  → שלה֥בתיֽה׃ */
     .w012 {
       position: fixed;
       font-family: 'TheBasics', sans-serif;
@@ -564,7 +646,7 @@
     
     
     
-    .w001,.w002,.w003,.w004,.w005,.w006,.w007,.w008,.w009,.w010,.w011,.w012,.w013 { font-family: 'BuGlobal', sans-serif; font-weight: 300; }
+    .w001,.w002,.w003,.w004,.w005,.w006,.w007,.w008,.w009,.w010,.w011,.w012,.w013,.w014,.w015,.w016 { font-family: 'BuGlobal', sans-serif; font-weight: 300; }
     .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:18px; padding:2px 4px; line-height:1; }
     body.dark { background: #131111; }
     body.dark .nav-link:not(.active) { color: #fff; }
@@ -576,7 +658,7 @@
     body.dark .w001, body.dark .w002, body.dark .w003,
     body.dark .w004, body.dark .w005, body.dark .w006,
     body.dark .w007, body.dark .w008, body.dark .w009,
-    body.dark .w010, body.dark .w011, body.dark .w012, body.dark .w013 { color: #fff; }
+    body.dark .w010, body.dark .w011, body.dark .w012, body.dark .w013, body.dark .w014, body.dark .w015, body.dark .w016 { color: #fff; }
     body.dark #close-btn { color: #fff; }
     .w-active { color: #FF179C !important; }
 
@@ -864,16 +946,47 @@
   </div>
 
   <div id="mini-label-014" class="mini-label" onclick="openItem(14)">014</div>
-  <div id="canvas-outer-014" class="canvas-outer" style="display:none"></div>
-  <div id="meta-014" class="meta-panel"></div>
+  <div id="canvas-outer-014" class="canvas-outer" onclick="openItem(14)">
+    <div id="canvas-wrap-014"></div>
+  </div>
+  <div id="meta-014" class="meta-panel">
+    <span class="w014 w014-1">י֖שב</span>
+    <span class="w014 w014-2">בס֣תר</span>
+    <span class="w014 w014-3">עלי֑ון</span>
+    <span class="w014 w014-4">בצ֥ל</span>
+    <span class="w014 w014-5">שד֗י</span>
+    <span class="w014 w014-6">יתלונֽן׃</span>
+  </div>
 
   <div id="mini-label-015" class="mini-label" onclick="openItem(15)">015</div>
-  <div id="canvas-outer-015" class="canvas-outer" style="display:none"></div>
-  <div id="meta-015" class="meta-panel"></div>
+  <div id="canvas-outer-015" class="canvas-outer" onclick="openItem(15)">
+    <div id="canvas-wrap-015"></div>
+  </div>
+  <div id="meta-015" class="meta-panel">
+    <span class="w015 w015-1">כל֫ך</span>
+    <span class="w015 w015-2">יפה֙</span>
+    <span class="w015 w015-3">רעית֔י</span>
+    <span class="w015 w015-4">ומ֖ום</span>
+    <span class="w015 w015-5">א֥ין</span>
+    <span class="w015 w015-6">בֽך׃</span>
+  </div>
 
   <div id="mini-label-016" class="mini-label" onclick="openItem(16)">016</div>
-  <div id="canvas-outer-016" class="canvas-outer" style="display:none"></div>
-  <div id="meta-016" class="meta-panel"></div>
+  <div id="canvas-outer-016" class="canvas-outer" onclick="openItem(16)">
+    <div id="canvas-wrap-016"></div>
+  </div>
+  <div id="meta-016" class="meta-panel">
+    <span class="w016 w016-1">כי־עז֫ה</span>
+    <span class="w016 w016-2">כמ֨ות֙</span>
+    <span class="w016 w016-3">אהב֔ה</span>
+    <span class="w016 w016-4">קש֥ה</span>
+    <span class="w016 w016-5">כשא֖ול</span>
+    <span class="w016 w016-6">קנא֑ה</span>
+    <span class="w016 w016-7">רשפ֕יה</span>
+    <span class="w016 w016-8">רשפ֕י</span>
+    <span class="w016 w016-9">א֖ש</span>
+    <span class="w016 w016-10">שלה֥בתיֽה׃</span>
+  </div>
 
   <div id="open-number"></div>
   <div id="source-label"></div>
@@ -908,6 +1021,9 @@
     if (n === 11) stopVerse011();
     if (n === 12) stopVerse012();
     if (n === 13) stopVerse013();
+    if (n === 14) stopVerse014();
+    if (n === 15) stopVerse015();
+    if (n === 16) stopVerse016();
     setTimeout(function() {
       if (currentItem !== n) return;
       if (n === 1)  playVerse001();
@@ -923,6 +1039,7 @@
       if (n === 11) playVerse011();
       if (n === 12) playVerse012();
       if (n === 13) playVerse013();
+      if (n === 14) playVerse014();
       playVerseAudio(n);
       playVerseDrums(n);
     }, 150);
@@ -973,6 +1090,7 @@
     10: ['ע','ג','נ','ף','ע','ף','ה','ח','ף','ש','מ','ע','ג','נ','ג','מ','נ','ף','ה'],
     11: ['ל','ך','כ','נ','ף','ג','ג','נ','ע','ג','ה'],
     12: ['ל','ך','ג','מ','ף','ע','ף','ה'],
+    13: ['ה','ע','ף','נ','ע','ף','ת','מ','ג','ש'],
   };
   let _drumsTimers = [];
   let _drumsClones = [];
@@ -992,6 +1110,7 @@
     11: [350, 850, 1350, 2650, 3150, 4450, 4850, 5850, 7050, 8050, 8750],
     12: [350, 850, 2550, 3350, 4350, 4850, 6350, 7150],
     7: [350, 1850, 2650, 4050, 4850, 6150, 7450, 8850, 10350, 11350],
+    13: [8850, 7850, 6850, 5850, 4850, 3850, 2850, 1850, 850, 0],
   };
   function playVerseDrums(n) {
     stopVerseDrums();
@@ -1088,6 +1207,9 @@
     11: '[תהילים, פרק כ״ז, פסוק ב׳]',
     12: '[קהלת, פרק א׳, פסוק ב׳]',
     13: '[שיר השירים, פרק ח׳, פסוק ו׳]',
+    14: '[תהילים, פרק צ״א, פסוק א׳]',
+    15: '[שיר השירים, פרק ד\', פסוק ז\']',
+    16: '[שיר השירים, פרק ח\', פסוק ו\']',
   };
 
   // animT per item
@@ -2326,23 +2448,25 @@
     yelHalf:   { x: 434, y: 393 },
   };
   const stateB13 = {
-    blackSq:   { x:  96, y: 110 },
-    greenArc1: { x: 269, y:  87 },
-    bluBar1:   { x: 349, y:  69 },
-    redBar:    { x: 477, y: 109 },
-    greenArc2: { x: 613, y:  87 },
-    bluBar2:   { x: 693, y:  69 },
-    purpleArc: { x: 884, y:  88 },
-    bluC1:     { x:1015, y: 115 },
-    bluC2:     { x:1070, y: 115 },
-    bluC3:     { x:1125, y: 115 },
-    bluBar3:   { x:1254, y: 155 },
-    yelHalf:   { x:1414, y: 142 },
+    blackSq:   { x:  70, y: 110 },
+    greenArc1: { x: 250, y:  62 },
+    bluBar1:   { x: 333, y:  69 },
+    redBar:    { x: 466, y: 109 },
+    greenArc2: { x: 607, y:  62 },
+    bluBar2:   { x: 691, y:  69 },
+    purpleArc: { x: 889, y:  88 },
+    bluC1:     { x:1025, y: 115 },
+    bluC2:     { x:1083, y: 115 },
+    bluC3:     { x:1140, y: 115 },
+    bluBar3:   { x:1274, y: 155 },
+    yelHalf:   { x:1440, y: 105 },
   };
 
   function drawScene13(p) {
     updateAnim(13);
     p.clear();
+    const DUR13=900; const DUR13_YEL=1400; const now13=performance.now();
+    anim013.forEach(function(a,i){const dur=i===9?DUR13_YEL:DUR13;if(a.phase===1){a.t=Math.min(1,(now13-a.startTime)/dur);if(a.t>=1)a.phase=2;}});
     const t = animState[13].t;
     const blk = lerpV(stateA13.blackSq,   stateB13.blackSq,   t);
     const ga1 = lerpV(stateA13.greenArc1, stateB13.greenArc1, t);
@@ -2374,9 +2498,16 @@
     { const a=anim013[0]; const vib=a.phase>=1?Math.sin(a.t*p.PI*24)*(1-a.t)*8:0;
       df(p,0,0,0); p.rectMode(p.CENTER); p.rect(blk.x,blk.y,sz+vib,sz+vib); p.rectMode(p.CORNER); }
 
-    // [1] greenArc1 — טרחא
-    { if(anim013[1].phase===1) dfArcAnim(p,198,233,2,ga1.x,ga1.y,gaR,gaR,gaHw,eio13(anim013[1].t));
-      else dfArc(p,198,233,2,ga1.x,ga1.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
+    // [1] greenArc1 — טרחא (HALF_PI→PI)
+    { if(anim013[1].phase===1){
+        const _cA=p.lerp(p.HALF_PI,p.PI,eio13(anim013[1].t));
+        df(p,198,233,2);
+        p.beginShape();
+        for(let _a=p.HALF_PI;_a<=_cA+0.001;_a+=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR+gaHw),ga1.y+Math.sin(_a)*(gaR+gaHw));
+        p.vertex(ga1.x+Math.cos(_cA)*(gaR-gaHw),ga1.y+Math.sin(_cA)*(gaR-gaHw));
+        for(let _a=_cA;_a>=p.HALF_PI-0.001;_a-=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR-gaHw),ga1.y+Math.sin(_a)*(gaR-gaHw));
+        p.endShape(p.CLOSE);
+      } else dfArc(p,198,233,2,ga1.x,ga1.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
 
     // [2] bluBar1 — מאריך
     { const pv=anim013[2].phase>=1?eoc13(anim013[2].t):1;
@@ -2386,9 +2517,16 @@
     { const pv=anim013[3].phase>=1?eoc13(anim013[3].t):1;
       df(p,255,33,33); p.rect(red.x-rw/2,red.y-rh/2,rw,rh*pv); }
 
-    // [4] greenArc2 — טרחא
-    { if(anim013[4].phase===1) dfArcAnim(p,198,233,2,ga2.x,ga2.y,gaR,gaR,gaHw,eio13(anim013[4].t));
-      else dfArc(p,198,233,2,ga2.x,ga2.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
+    // [4] greenArc2 — טרחא (HALF_PI→PI)
+    { if(anim013[4].phase===1){
+        const _cA=p.lerp(p.HALF_PI,p.PI,eio13(anim013[4].t));
+        df(p,198,233,2);
+        p.beginShape();
+        for(let _a=p.HALF_PI;_a<=_cA+0.001;_a+=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR+gaHw),ga2.y+Math.sin(_a)*(gaR+gaHw));
+        p.vertex(ga2.x+Math.cos(_cA)*(gaR-gaHw),ga2.y+Math.sin(_cA)*(gaR-gaHw));
+        for(let _a=_cA;_a>=p.HALF_PI-0.001;_a-=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR-gaHw),ga2.y+Math.sin(_a)*(gaR-gaHw));
+        p.endShape(p.CLOSE);
+      } else dfArc(p,198,233,2,ga2.x,ga2.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
 
     // [5] bluBar2 — מאריך
     { const pv=anim013[5].phase>=1?eoc13(anim013[5].t):1;
@@ -2402,21 +2540,36 @@
       else { const pr=a.t; let ang=pr<0.65?(1-(1-pr/0.65)*(1-pr/0.65))*p.PI:p.PI-(1-(1-(pr-0.65)/0.35)*(1-(pr-0.65)/0.35))*p.HALF_PI;
         df(p,170,150,232); p.circle(pur.x+(purD/2)*0.33*Math.cos(ang),pur.y+(purD/2)*0.33*Math.sin(ang),purD*0.35); } }
 
-    // [7] bluC — זקף קטון: שלושה עיגולים כחולים
-    { const pv=anim013[7].phase>=1?eoc13(anim013[7].t):1;
-      df(p,81,162,221);
-      p.circle(bc1.x,bc1.y,cd*pv);
-      p.circle(bc2.x,bc2.y,cd*pv);
-      p.circle(bc3.x,bc3.y,cd*pv); }
+    // [7] bluC — זקף קטון: שלושה עיגולים מתפשטים ממרכז
+    { df(p,81,162,221);
+      if(anim013[7].phase===1){
+        const pv=eio13(anim013[7].t);
+        p.circle(bc2.x+(bc1.x-bc2.x)*pv, bc2.y, cd);
+        p.circle(bc2.x,                   bc2.y, cd);
+        p.circle(bc2.x+(bc3.x-bc2.x)*pv, bc2.y, cd);
+      } else {
+        p.circle(bc1.x,bc1.y,cd);
+        p.circle(bc2.x,bc2.y,cd);
+        p.circle(bc3.x,bc3.y,cd); } }
 
     // [8] bluBar3 — שופר הולך
     { const pv=anim013[8].phase>=1?eoc13(anim013[8].t):1;
       df(p,81,162,221); p.rect(bl3.x+bw/2-bw*pv,bl3.y-bh/2,bw*pv,bh); }
 
-    // [9] yelHalf — תרי קדמין
-    { const pv=anim013[9].phase>=1?eoc13(anim013[9].t):1;
-      df(p,255,220,45); p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(-40));
-      p.arc(0,0,yhD*pv,yhD*pv,0,p.PI,p.PIE); p.pop(); }
+    // [9] yelHalf — תרי קדמין — grow כעיגול שלם, morph לפרוסת פאי (כמו בטעמים)
+    { df(p,255,220,45); p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(-40));
+      if(anim013[9].phase===1){
+        const t13=eio13(anim013[9].t);
+        const grow=Math.min(1,Math.max(0,t13/0.38));
+        const gE=eio13(grow);
+        const morph=Math.min(1,Math.max(0,(t13-0.55)/0.45));
+        const mE=morph<0.5?16*morph*morph*morph*morph*morph:1-Math.pow(-2*morph+2,5)/2;
+        const endA=p.lerp(p.TWO_PI,p.PI,mE);
+        p.arc(0,0,yhD*gE,yhD*gE,0,endA,p.PIE);
+      } else {
+        p.arc(0,0,yhD,yhD,0,p.PI,p.PIE);
+      }
+      p.pop(); }
   }
 
   new p5(function(p) {
@@ -2433,6 +2586,296 @@
     })(_i);}
   }
   function stopVerse013(){timers013.forEach(clearTimeout);timers013=[];anim013.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
+
+  // ---- 014 ----
+  const stateA14 = {
+    sq:{x:238,y:138,w:75, h:75 }, dt:{x:113,y:186,w:88, h:72 },
+    b1:{x:99, y:146,w:116,h:19 }, rr:{x:361,y:186,w:18, h:72 },
+    b2:{x:219,y:239,w:116,h:19 }, ar:{x:380,y:98, w:122,h:122},
+  };
+  const stateB14 = {
+    sq:{x:13, y:52, w:152,h:152}, dt:{x:207,y:58, w:169,h:143},
+    b1:{x:421,y:59, w:228,h:39 }, rr:{x:699,y:58, w:38, h:143},
+    b2:{x:803,y:148,w:228,h:38 }, ar:{x:1187,y:110,w:238,h:238},
+  };
+
+  function drawScene14(p) {
+    updateAnim(14);
+    p.clear();
+    const DUR14=900; const now14=performance.now();
+    anim014.forEach(function(a){if(a.phase===1){a.t=Math.min(1,(now14-a.startTime)/DUR14);if(a.t>=1)a.phase=2;}});
+    const t=animState[14].t;
+    function eoc14(x){return 1-Math.pow(1-x,3);}
+    function eio14(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
+    function lS(a,b){return{x:p.lerp(a.x,b.x,t),y:p.lerp(a.y,b.y,t),w:p.lerp(a.w,b.w,t),h:p.lerp(a.h,b.h,t)};}
+    const sq=lS(stateA14.sq,stateB14.sq), dt=lS(stateA14.dt,stateB14.dt);
+    const b1=lS(stateA14.b1,stateB14.b1), rr=lS(stateA14.rr,stateB14.rr);
+    const b2=lS(stateA14.b2,stateB14.b2), ar=lS(stateA14.ar,stateB14.ar);
+
+    // [0] square — black, vibrate
+    { const a=anim014[0]; const vib=a.phase>=1?Math.sin(a.t*p.PI*24)*(1-a.t)*8:0;
+      df(p,0,0,0); p.rectMode(p.CENTER); p.rect(sq.x+sq.w/2,sq.y+sq.h/2,sq.w+vib,sq.h+vib); p.rectMode(p.CORNER); }
+
+    // [1] doubleTriangle — purple, scale from center
+    { const pv=anim014[1].phase>=1?eoc14(anim014[1].t):1;
+      df(p,165,145,230);
+      const cx=dt.x+dt.w/2, cy=dt.y+dt.h/2, gap=dt.w*0.04, triW=(dt.w-gap)/2;
+      p.beginShape();
+        p.vertex(cx+(dt.x-cx)*pv,              cy);
+        p.vertex(cx+(dt.x+triW-cx)*pv,         cy+(dt.y-cy)*pv);
+        p.vertex(cx+(dt.x+triW-cx)*pv,         cy+(dt.y+dt.h-cy)*pv);
+      p.endShape(p.CLOSE);
+      p.beginShape();
+        p.vertex(cx+(dt.x+triW+gap-cx)*pv,     cy);
+        p.vertex(cx+(dt.x+dt.w-cx)*pv,         cy+(dt.y-cy)*pv);
+        p.vertex(cx+(dt.x+dt.w-cx)*pv,         cy+(dt.y+dt.h-cy)*pv);
+      p.endShape(p.CLOSE); }
+
+    // [2] blueRect1 — slide in from right
+    { const pv=anim014[2].phase>=1?eoc14(anim014[2].t):1;
+      df(p,82,160,215); p.rect(b1.x+b1.w*(1-pv),b1.y,b1.w*pv,b1.h); }
+
+    // [3] redRect — grow height downward
+    { const pv=anim014[3].phase>=1?eoc14(anim014[3].t):1;
+      df(p,255,35,35); p.rect(rr.x,rr.y,rr.w,rr.h*pv); }
+
+    // [4] blueRect2 — slide in from right
+    { const pv=anim014[4].phase>=1?eoc14(anim014[4].t):1;
+      df(p,82,160,215); p.rect(b2.x+b2.w*(1-pv),b2.y,b2.w*pv,b2.h); }
+
+    // [5] arc — green, sweep from PI to HALF_PI
+    { const thick=ar.w*0.14;
+      df(p,200,235,0);
+      if(anim014[5].phase===1){
+        const _cA=p.lerp(p.PI,p.HALF_PI,eio14(anim014[5].t));
+        p.beginShape();
+        for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(ar.x+Math.cos(_a)*ar.w/2,ar.y+Math.sin(_a)*ar.h/2);
+        p.vertex(ar.x+Math.cos(_cA)*(ar.w/2-thick),ar.y+Math.sin(_cA)*(ar.h/2-thick));
+        for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(ar.x+Math.cos(_a)*(ar.w/2-thick),ar.y+Math.sin(_a)*(ar.h/2-thick));
+        p.endShape(p.CLOSE);
+      } else {
+        p.beginShape();
+        for(let _i=0;_i<=40;_i++){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(ar.x+Math.cos(_a)*ar.w/2,ar.y+Math.sin(_a)*ar.h/2);}
+        for(let _i=40;_i>=0;_i--){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(ar.x+Math.cos(_a)*(ar.w/2-thick),ar.y+Math.sin(_a)*(ar.h/2-thick));}
+        p.endShape(p.CLOSE);
+      } }
+  }
+
+  new p5(function(p) {
+    p.setup = function() { p.pixelDensity(2); p.createCanvas(1200, 300).parent('canvas-wrap-014'); };
+    p.draw  = function() { drawScene14(p); };
+  });
+
+  const anim014 = Array.from({length:6}, function(){ return {phase:0,t:0,startTime:null}; });
+  let timers014 = [];
+  const VERSE014_DELAYS = [5000, 4000, 3000, 2000, 1000, 0];
+  function playVerse014(){stopVerse014();for(var _i=0;_i<6;_i++){(function(idx){timers014.push(setTimeout(function(){anim014[idx].phase=1;anim014[idx].t=0;anim014[idx].startTime=performance.now();},VERSE014_DELAYS[idx]));})(_i);}}
+  function stopVerse014(){timers014.forEach(clearTimeout);timers014=[];anim014.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
+
+  // ---- 015 ----
+  const stateA15 = {
+    sq:{x:61, y:156,w:143,h:143}, br:{x:61, y:95, w:215,h:36},
+    ar:{x:431,y:5,  w:230,h:230}, tc:{x:281,y:180,r:36, gap:72},
+    gr:{x:58, y:325,w:217,h:36},  tg:{x:399,y:310,outer:145,inner:72},
+  };
+  const stateB15 = {
+    sq:{x:138,y:101,w:135,h:135}, br:{x:325,y:101,w:204,h:36},
+    ar:{x:675,y:136,w:150,h:150}, tc:{x:748,y:171,r:34, gap:68},
+    gr:{x:959,y:101,w:204,h:36},  tg:{x:1270,y:169,outer:136,inner:67},
+  };
+
+  function drawScene15(p) {
+    updateAnim(15);
+    p.clear();
+    const DUR15=900; const now15=performance.now();
+    anim015.forEach(function(a){if(a.phase===1){a.t=Math.min(1,(now15-a.startTime)/DUR15);if(a.t>=1)a.phase=2;}});
+    const t=animState[15].t;
+    function eoc15(x){return 1-Math.pow(1-x,3);}
+    function eio15(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
+    function lS(a,b){return{x:p.lerp(a.x,b.x,t),y:p.lerp(a.y,b.y,t),w:p.lerp(a.w,b.w,t),h:p.lerp(a.h,b.h,t)};}
+    const sq=lS(stateA15.sq,stateB15.sq);
+    const br=lS(stateA15.br,stateB15.br);
+    const ar={x:p.lerp(stateA15.ar.x,stateB15.ar.x,t),y:p.lerp(stateA15.ar.y,stateB15.ar.y,t),w:p.lerp(stateA15.ar.w,stateB15.ar.w,t),h:p.lerp(stateA15.ar.h,stateB15.ar.h,t)};
+    const tc={x:p.lerp(stateA15.tc.x,stateB15.tc.x,t),y:p.lerp(stateA15.tc.y,stateB15.tc.y,t),
+               r:p.lerp(stateA15.tc.r,stateB15.tc.r,t),gap:p.lerp(stateA15.tc.gap,stateB15.tc.gap,t)};
+    const gr=lS(stateA15.gr,stateB15.gr);
+    const tg={x:p.lerp(stateA15.tg.x,stateB15.tg.x,t),y:p.lerp(stateA15.tg.y,stateB15.tg.y,t),
+               outer:p.lerp(stateA15.tg.outer,stateB15.tg.outer,t),inner:p.lerp(stateA15.tg.inner,stateB15.tg.inner,t)};
+
+    // [0] square — black, vibrate
+    { const a=anim015[0]; const vib=a.phase>=1?Math.sin(a.t*p.PI*24)*(1-a.t)*8:0;
+      df(p,0,0,0); p.rectMode(p.CENTER); p.rect(sq.x+sq.w/2,sq.y+sq.h/2,sq.w+vib,sq.h+vib); p.rectMode(p.CORNER); }
+
+    // [1] blueRect — slide in from right
+    { const pv=anim015[1].phase>=1?eoc15(anim015[1].t):1;
+      df(p,82,160,215); p.rect(br.x+br.w*(1-pv),br.y,br.w*pv,br.h); }
+
+    // [2] arc — green, PI→HALF_PI
+    { const thick=ar.w*0.14;
+      df(p,200,235,0);
+      if(anim015[2].phase===1){
+        const _cA=p.lerp(p.PI,p.HALF_PI,eio15(anim015[2].t));
+        p.beginShape();
+        for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(ar.x+Math.cos(_a)*ar.w/2,ar.y+Math.sin(_a)*ar.h/2);
+        p.vertex(ar.x+Math.cos(_cA)*(ar.w/2-thick),ar.y+Math.sin(_cA)*(ar.h/2-thick));
+        for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(ar.x+Math.cos(_a)*(ar.w/2-thick),ar.y+Math.sin(_a)*(ar.h/2-thick));
+        p.endShape(p.CLOSE);
+      } else {
+        p.beginShape();
+        for(let _i=0;_i<=40;_i++){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(ar.x+Math.cos(_a)*ar.w/2,ar.y+Math.sin(_a)*ar.h/2);}
+        for(let _i=40;_i>=0;_i--){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(ar.x+Math.cos(_a)*(ar.w/2-thick),ar.y+Math.sin(_a)*(ar.h/2-thick));}
+        p.endShape(p.CLOSE);
+      } }
+
+    // [3] threeCircles — spread from center
+    { df(p,82,160,215);
+      if(anim015[3].phase===1){
+        const pv=eio15(anim015[3].t);
+        p.circle(tc.x+tc.gap*(1-pv), tc.y, tc.r*2);
+        p.circle(tc.x+tc.gap,         tc.y, tc.r*2);
+        p.circle(tc.x+tc.gap*(1+pv),  tc.y, tc.r*2);
+      } else {
+        p.circle(tc.x,           tc.y, tc.r*2);
+        p.circle(tc.x+tc.gap,    tc.y, tc.r*2);
+        p.circle(tc.x+tc.gap*2,  tc.y, tc.r*2);
+      } }
+
+    // [4] greenRect — slide in from right
+    { const pv=anim015[4].phase>=1?eoc15(anim015[4].t):1;
+      df(p,200,235,0); p.rect(gr.x+gr.w*(1-pv),gr.y,gr.w*pv,gr.h); }
+
+    // [5] targetCircle — scale up
+    { const pv=anim015[5].phase>=1?eoc15(anim015[5].t):1;
+      df(p,165,210,240); p.circle(tg.x,tg.y,tg.outer*pv);
+      df(p,82,160,215);  p.circle(tg.x,tg.y,tg.inner*pv); }
+  }
+
+  new p5(function(p) {
+    p.setup = function() { p.pixelDensity(2); p.createCanvas(1400, 400).parent('canvas-wrap-015'); };
+    p.draw  = function() { drawScene15(p); };
+  });
+
+  const anim015 = Array.from({length:6}, function(){ return {phase:0,t:0,startTime:null}; });
+  let timers015 = [];
+  const VERSE015_DELAYS = [5000, 4000, 3000, 2000, 1000, 0];
+  function playVerse015(){stopVerse015();for(var _i=0;_i<6;_i++){(function(idx){timers015.push(setTimeout(function(){anim015[idx].phase=1;anim015[idx].t=0;anim015[idx].startTime=performance.now();},VERSE015_DELAYS[idx]));})(_i);}}
+  function stopVerse015(){timers015.forEach(clearTimeout);timers015=[];anim015.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
+
+  // ---- 016 ----
+  const stateA16 = {
+    bl1:{x:119,y:126,w:245,h:42},  rr:{x:170,y:203,w:38,h:162},
+    ga1:{x:306,y:400,wo:256,ho:244,wi:188,hi:176},
+    yv1:{x:306,y:245,r:41,gap:82}, yv2:{x:432,y:164,r:41,gap:82},
+    bc: {x:588,y:206,outer:164,inner:82},
+    bl2:{x:519,y:327,w:245,h:38},  bh:{x:424,y:448,r:41,gap:82},
+    ga2:{x:602,y:527,wo:256,ho:244,wi:188,hi:176},
+    yh: {x:655,y:499,size:190,rot:-42},
+  };
+  const stateB16 = {
+    bl1:{x:0,  y:114,w:228,h:37},  rr:{x:737,y:119,w:36,h:151},
+    ga1:{x:409,y:152,wo:240,ho:227,wi:165,hi:152},
+    yv1:{x:500,y:85, r:37,gap:76}, yv2:{x:638,y:85, r:37,gap:76},
+    bc: {x:1839,y:189,outer:152,inner:75},
+    bl2:{x:999,y:114,w:228,h:37},  bh:{x:1347,y:189,r:37,gap:76},
+    ga2:{x:953,y:152,wo:240,ho:227,wi:165,hi:152},
+    yh: {x:1613,y:184,size:189,rot:-42},
+  };
+
+  function drawScene16(p) {
+    updateAnim(16);
+    p.clear();
+    const DUR16=900; const now16=performance.now();
+    anim016.forEach(function(a){if(a.phase===1){a.t=Math.min(1,(now16-a.startTime)/DUR16);if(a.t>=1)a.phase=2;}});
+    const t=animState[16].t;
+    function eoc16(x){return 1-Math.pow(1-x,3);}
+    function eio16(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
+    function lV(a,b,k){return p.lerp(a[k],b[k],t);}
+    const bl1={x:lV(stateA16.bl1,stateB16.bl1,'x'),y:lV(stateA16.bl1,stateB16.bl1,'y'),w:lV(stateA16.bl1,stateB16.bl1,'w'),h:lV(stateA16.bl1,stateB16.bl1,'h')};
+    const rr ={x:lV(stateA16.rr, stateB16.rr, 'x'),y:lV(stateA16.rr, stateB16.rr, 'y'),w:lV(stateA16.rr, stateB16.rr, 'w'),h:lV(stateA16.rr, stateB16.rr, 'h')};
+    const ga1={x:lV(stateA16.ga1,stateB16.ga1,'x'),y:lV(stateA16.ga1,stateB16.ga1,'y'),wo:lV(stateA16.ga1,stateB16.ga1,'wo'),ho:lV(stateA16.ga1,stateB16.ga1,'ho'),wi:lV(stateA16.ga1,stateB16.ga1,'wi'),hi:lV(stateA16.ga1,stateB16.ga1,'hi')};
+    const yv1={x:lV(stateA16.yv1,stateB16.yv1,'x'),y:lV(stateA16.yv1,stateB16.yv1,'y'),r:lV(stateA16.yv1,stateB16.yv1,'r'),gap:lV(stateA16.yv1,stateB16.yv1,'gap')};
+    const yv2={x:lV(stateA16.yv2,stateB16.yv2,'x'),y:lV(stateA16.yv2,stateB16.yv2,'y'),r:lV(stateA16.yv2,stateB16.yv2,'r'),gap:lV(stateA16.yv2,stateB16.yv2,'gap')};
+    const bc ={x:lV(stateA16.bc, stateB16.bc, 'x'),y:lV(stateA16.bc, stateB16.bc, 'y'),outer:lV(stateA16.bc,stateB16.bc,'outer'),inner:lV(stateA16.bc,stateB16.bc,'inner')};
+    const bl2={x:lV(stateA16.bl2,stateB16.bl2,'x'),y:lV(stateA16.bl2,stateB16.bl2,'y'),w:lV(stateA16.bl2,stateB16.bl2,'w'),h:lV(stateA16.bl2,stateB16.bl2,'h')};
+    const bh ={x:lV(stateA16.bh, stateB16.bh, 'x'),y:lV(stateA16.bh, stateB16.bh, 'y'),r:lV(stateA16.bh, stateB16.bh, 'r'),gap:lV(stateA16.bh, stateB16.bh, 'gap')};
+    const ga2={x:lV(stateA16.ga2,stateB16.ga2,'x'),y:lV(stateA16.ga2,stateB16.ga2,'y'),wo:lV(stateA16.ga2,stateB16.ga2,'wo'),ho:lV(stateA16.ga2,stateB16.ga2,'ho'),wi:lV(stateA16.ga2,stateB16.ga2,'wi'),hi:lV(stateA16.ga2,stateB16.ga2,'hi')};
+    const yh ={x:lV(stateA16.yh, stateB16.yh, 'x'),y:lV(stateA16.yh, stateB16.yh, 'y'),size:lV(stateA16.yh,stateB16.yh,'size'),rot:stateB16.yh.rot};
+
+    function drawGA(g,idx){
+      df(p,200,235,0);
+      if(anim016[idx].phase===1){
+        const _cA=p.lerp(p.PI,p.HALF_PI,eio16(anim016[idx].t));
+        p.beginShape();
+        for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(g.x+Math.cos(_a)*g.wo/2,g.y+Math.sin(_a)*g.ho/2);
+        p.vertex(g.x+Math.cos(_cA)*g.wi/2,g.y+Math.sin(_cA)*g.hi/2);
+        for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(g.x+Math.cos(_a)*g.wi/2,g.y+Math.sin(_a)*g.hi/2);
+        p.endShape(p.CLOSE);
+      } else {
+        p.beginShape();
+        for(let _i=0;_i<=40;_i++){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(g.x+Math.cos(_a)*g.wo/2,g.y+Math.sin(_a)*g.ho/2);}
+        for(let _i=40;_i>=0;_i--){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(g.x+Math.cos(_a)*g.wi/2,g.y+Math.sin(_a)*g.hi/2);}
+        p.endShape(p.CLOSE);
+      }
+    }
+
+    // [0] blueRect1 — slide
+    { const pv=anim016[0].phase>=1?eoc16(anim016[0].t):1;
+      df(p,82,160,215); p.rect(bl1.x+bl1.w*(1-pv),bl1.y,bl1.w*pv,bl1.h); }
+
+    // [1] greenArc1
+    drawGA(ga1,1);
+
+    // [2] yellowVert1 — spread vertical
+    { df(p,255,220,45);
+      if(anim016[2].phase===1){const pv=eio16(anim016[2].t);
+        p.circle(yv1.x,yv1.y+yv1.gap*(1-pv),yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap,yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap*(1+pv),yv1.r*2);
+      } else { p.circle(yv1.x,yv1.y,yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap,yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap*2,yv1.r*2); } }
+
+    // [3] yellowVert2
+    { df(p,255,220,45);
+      if(anim016[3].phase===1){const pv=eio16(anim016[3].t);
+        p.circle(yv2.x,yv2.y+yv2.gap*(1-pv),yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap,yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap*(1+pv),yv2.r*2);
+      } else { p.circle(yv2.x,yv2.y,yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap,yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap*2,yv2.r*2); } }
+
+    // [4] redRect — grow height
+    { const pv=anim016[4].phase>=1?eoc16(anim016[4].t):1;
+      df(p,255,35,35); p.rect(rr.x,rr.y,rr.w,rr.h*pv); }
+
+    // [5] greenArc2
+    drawGA(ga2,5);
+
+    // [6] blueRect2 — slide
+    { const pv=anim016[6].phase>=1?eoc16(anim016[6].t):1;
+      df(p,82,160,215); p.rect(bl2.x+bl2.w*(1-pv),bl2.y,bl2.w*pv,bl2.h); }
+
+    // [7] blueHorizontal — spread horizontal
+    { df(p,82,160,215);
+      if(anim016[7].phase===1){const pv=eio16(anim016[7].t);
+        p.circle(bh.x+bh.gap*(1-pv),bh.y,bh.r*2); p.circle(bh.x+bh.gap,bh.y,bh.r*2); p.circle(bh.x+bh.gap*(1+pv),bh.y,bh.r*2);
+      } else { p.circle(bh.x,bh.y,bh.r*2); p.circle(bh.x+bh.gap,bh.y,bh.r*2); p.circle(bh.x+bh.gap*2,bh.y,bh.r*2); } }
+
+    // [8] yellowHalf — sweep 0→PI
+    { df(p,255,220,45);
+      const eA=anim016[8].phase===1?p.PI*eio16(anim016[8].t):p.PI;
+      p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(yh.rot));
+      p.arc(0,0,yh.size,yh.size,0,eA,p.PIE); p.pop(); }
+
+    // [9] blueCircleSet — scale up
+    { const pv=anim016[9].phase>=1?eoc16(anim016[9].t):1;
+      df(p,160,205,235); p.circle(bc.x,bc.y,bc.outer*pv);
+      df(p,82,160,215);  p.circle(bc.x,bc.y,bc.inner*pv); }
+  }
+
+  new p5(function(p) {
+    p.setup = function() { p.pixelDensity(2); p.createCanvas(1920, 750).parent('canvas-wrap-016'); };
+    p.draw  = function() { drawScene16(p); };
+  });
+
+  const anim016 = Array.from({length:10}, function(){ return {phase:0,t:0,startTime:null}; });
+  let timers016 = [];
+  const VERSE016_DELAYS = [9000, 8000, 7000, 6000, 5000, 4000, 3000, 2000, 1000, 0];
+  function playVerse016(){stopVerse016();for(var _i=0;_i<10;_i++){(function(idx){timers016.push(setTimeout(function(){anim016[idx].phase=1;anim016[idx].t=0;anim016[idx].startTime=performance.now();},VERSE016_DELAYS[idx]));})(_i);}}
+  function stopVerse016(){timers016.forEach(clearTimeout);timers016=[];anim016.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   // ---- dark-mode fill helper ----
   function isDark() { return document.body.classList.contains('dark'); }
@@ -2485,7 +2928,7 @@
   const VERSE010_DELAYS = [500, 1500, 2100, 3300, 3600, 5900, 6900, 8900, 11400, 12400, 12900, 14400, 15900, 16400, 17900, 19000, 20250, 22350, 23700];
   const VERSE011_DELAYS = [500, 1000, 1500, 2800, 3300, 4600, 5000, 6000, 7200, 8200, 8900];
   const VERSE012_DELAYS = [500, 1000, 2700, 3500, 4500, 5000, 6500, 7300];
-  const VERSE013_DELAYS = [0, 700, 1400, 2100, 2800, 3500, 4200, 4900, 5600, 6300];
+  const VERSE013_DELAYS = [9000, 8000, 7000, 6000, 5000, 4000, 3000, 2000, 1000, 0];
   function playVerse001() {
     stopVerse001();
     for (var _i = 0; _i < 6; _i++) {
@@ -2579,17 +3022,18 @@
       const numEl = document.getElementById('open-number');
       numEl.textContent = pid(n);
       const numRights = {
-        1:'calc(50vw - 490px)', 2:'calc(50vw - 605px)', 3:'calc(50vw - 605px)',
-        4:'calc(50vw - 574px)', 5:'calc(50vw - 420px)', 6:'calc(50vw - 336px)',
-        7:'calc(50vw - 652px)', 8:'calc(50vw - 484px)', 9:'calc(50vw - 505px)',
-        10:'calc(50vw - 583px)',11:'calc(50vw - 645px)',12:'calc(50vw - 660px)',
-        13:'calc(50vw - 595px)'
+        1:'calc(50vw - 480px)', 2:'calc(50vw - 625px)', 3:'calc(50vw - 593px)',
+        4:'calc(50vw - 564px)', 5:'calc(50vw - 410px)', 6:'calc(50vw - 329px)',
+        7:'calc(50vw - 643px)', 8:'calc(50vw - 476px)', 9:'calc(50vw - 505px)',
+        10:'calc(50vw - 603px)',11:'calc(50vw - 640px)',12:'calc(50vw - 650px)',
+        13:'calc(50vw - 608px)',14:'calc(50vw - 543px)',15:'calc(50vw - 505px)',16:'calc(50vw - 600px)'
       };
       if (numRights[n]) numEl.style.right = numRights[n];
       const numTops = {
         2:'calc(50vh + 146px)', 3:'calc(50vh + 109px)', 4:'calc(50vh + 151px)',
         5:'calc(50vh + 304px)', 8:'calc(50vh + 295px)', 9:'calc(50vh + 231px)',
-        10:'calc(50vh + 253px)',11:'calc(50vh +  85px)',12:'calc(50vh +  87px)'
+        10:'calc(50vh + 253px)',11:'calc(50vh +  85px)',12:'calc(50vh +  87px)',
+        13:'calc(50vh + 120px)',14:'calc(50vh + 170px)',15:'calc(50vh + 125px)',16:'calc(50vh +  45px)'
       };
       numEl.style.top = numTops[n] || 'calc(50vh + 140px)';
       numEl.classList.add('active');
@@ -2597,11 +3041,12 @@
       if (sources[n]) {
         srcEl.textContent = sources[n];
         const srcLefts = {
-          1:'calc(50vw - 447px)', 2:'calc(50vw - 639px)', 3:'calc(50vw - 658px)',
-          4:'calc(50vw - 560px)', 5:'calc(50vw - 388px)', 6:'calc(50vw - 320px)',
-          7:'calc(50vw - 639px)', 8:'calc(50vw - 510px)', 9:'calc(50vw - 528px)',
-          10:'calc(50vw - 657px)',11:'calc(50vw - 641px)',12:'calc(50vw - 690px)',
-          13:'calc(50vw - 620px)'
+          1:'calc(50vw - 444px)', 2:'calc(50vw - 647px)', 3:'calc(50vw - 665px)',
+          4:'calc(50vw - 555px)', 5:'calc(50vw - 374px)', 6:'calc(50vw - 325px)',
+          7:'calc(50vw - 654px)', 8:'calc(50vw - 510px)', 9:'calc(50vw - 523px)',
+          10:'calc(50vw - 657px)',11:'calc(50vw - 636px)',12:'calc(50vw - 685px)',
+          13:'calc(50vw - 610px)',14:'calc(50vw - 490px)',15:'calc(50vw - 438px)',16:'calc(50vw - 594px)'
+
         };
         if (srcLefts[n]) srcEl.style.left = srcLefts[n];
         srcEl.style.top = numTops[n] || 'calc(50vh + 140px)';
@@ -2620,6 +3065,10 @@
       if (n === 10) playVerse010();
       if (n === 11) playVerse011();
       if (n === 12) playVerse012();
+      if (n === 13) playVerse013();
+      if (n === 14) playVerse014();
+      if (n === 15) playVerse015();
+      if (n === 16) playVerse016();
       playVerseAudio(n);
       playVerseDrums(n);
     }, 500);
@@ -2662,6 +3111,10 @@
     if (n === 10) stopVerse010();
     if (n === 11) stopVerse011();
     if (n === 12) stopVerse012();
+    if (n === 13) stopVerse013();
+    if (n === 14) stopVerse014();
+    if (n === 15) stopVerse015();
+    if (n === 16) stopVerse016();
     triggerAnim(n, 0);
 
     setTimeout(function() {
