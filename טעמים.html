@@ -175,6 +175,11 @@
       position: absolute; left: 5px; right: 5px; height: 32px;
       background: #bbb; border-radius: 8px; pointer-events: none;
     }
+    .vol-fader-label {
+      text-align: center; font-family: 'TheBasics', sans-serif;
+      font-size: 11px; color: #343434; margin-top: 5px;
+    }
+    body.dark .vol-fader-label { color: #fff; }
 
     /* ---- דארק מוד ---- */
     body.dark { background: #131111; }
@@ -2267,8 +2272,8 @@
             if(cc===tD&&tDt==='cc'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
             if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
             if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
-            if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); return; }
-            if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); LS.setItem('m_vL',val); return; }
+            if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetR) window._volFaderSetR(val); return; }
+            if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); LS.setItem('m_vL',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
             if(cc===kR){
               setDarkMode(val > 0);
               if(lastKey){
@@ -2625,7 +2630,7 @@
     function topToVol(top){ return 1-Math.max(0,Math.min(1,(top-PAD)/RANGE)); }
 
     function initFader(faderEl, thumbEl, lsKey, onUpdate){
-      var v = 0;
+      var v = 1;
       thumbEl.style.top = volToTop(v)+'px';
 
       var dragging=false, startY=0, startTop=0;
@@ -2652,16 +2657,16 @@
       if(location.search.includes('seq')){
         document.getElementById('vol-faders').classList.add('visible');
       }
+      var thumbL = document.getElementById('thumb-L');
+      var thumbR = document.getElementById('thumb-R');
+      window._volFaderSetL = function(v){ thumbL.style.top = volToTop(v)+'px'; };
+      window._volFaderSetR = function(v){ thumbR.style.top = volToTop(v)+'px'; };
       initFader(
-        document.getElementById('fader-L'),
-        document.getElementById('thumb-L'),
-        'm_vL',
+        document.getElementById('fader-L'), thumbL, 'm_vL',
         function(v){ localStorage.setItem('m_vL',v); if(window._volFaderCantorAudios) window._volFaderCantorAudios.forEach(function(a){ a.volume=v; }); }
       );
       initFader(
-        document.getElementById('fader-R'),
-        document.getElementById('thumb-R'),
-        'm_vR',
+        document.getElementById('fader-R'), thumbR, 'm_vR',
         function(v){ localStorage.setItem('m_vR',v); if(window._volFaderTofimGain) window._volFaderTofimGain.gain.value=v*(window._volFaderTofimBase||1); }
       );
     });
@@ -2669,8 +2674,14 @@
   </script>
 
   <div id="vol-faders">
-    <div class="vol-fader" id="fader-L"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-L"></div></div>
-    <div class="vol-fader" id="fader-R"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-R"></div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div class="vol-fader" id="fader-L"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-L"></div></div>
+      <div class="vol-fader-label">חזן</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div class="vol-fader" id="fader-R"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-R"></div></div>
+      <div class="vol-fader-label">תופים</div>
+    </div>
   </div>
 </body>
 </html>
