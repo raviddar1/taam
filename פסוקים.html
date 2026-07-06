@@ -363,7 +363,7 @@
       z-index: 3;
     }
     /* right = 50vw + 540 − cx × 0.9 */
-    .w014-1 { right: calc(50vw - 528px); }  /* ar   cx=1187 → י֖שב */
+    .w014-1 { right: calc(50vw - 478px); }  /* ar   cx=1187 → י֖שב */
     .w014-2 { right: calc(50vw - 285px); }  /* b2   cx=917  → בס֣תר */
     .w014-3 { right: calc(50vw - 106px); }  /* rr   cx=718  → עלי֑ון */
     .w014-4 { right: calc(50vw +  59px); }  /* b1   cx=535  → בצ֥ל */
@@ -1091,6 +1091,9 @@
     11: ['ל','ך','כ','נ','ף','ג','ג','נ','ע','ג','ה'],
     12: ['ל','ך','ג','מ','ף','ע','ף','ה'],
     13: ['ה','ע','ף','נ','ע','ף','ת','מ','ג','ש'],
+    14: ['ה','ח','ף','נ','ף','ע'],
+    15: ['ה','ף','ע','מ','ך','ג'],
+    16: ['ה','ע','צ','צ','נ','ע','ף','מ','ש','ג'],
   };
   let _drumsTimers = [];
   let _drumsClones = [];
@@ -1110,7 +1113,10 @@
     11: [350, 850, 1350, 2650, 3150, 4450, 4850, 5850, 7050, 8050, 8750],
     12: [350, 850, 2550, 3350, 4350, 4850, 6350, 7150],
     7: [350, 1850, 2650, 4050, 4850, 6150, 7450, 8850, 10350, 11350],
-    13: [8850, 7850, 6850, 5850, 4850, 3850, 2850, 1850, 850, 0],
+    13: [10800, 8700, 7900, 6700, 6000, 5200, 4000, 2000, 1000, 0],
+    14: [4450, 3400, 2800, 1800, 1000, 0],
+    15: [4150, 3550, 2700, 1650, 900, 0],
+    16: [9000, 8000, 6500, 5300, 4200, 3800, 3100, 2000, 1000, 0],
   };
   function playVerseDrums(n) {
     stopVerseDrums();
@@ -2498,7 +2504,7 @@
     const gaHw = p.lerp(14,   16, t);
     const cd   = p.lerp(51,   55, t);
     const purD = p.lerp(130, 160, t);
-    const yhD  = p.lerp(115, 180, t);
+    const yhD  = p.lerp(115, 140, t);
     function eoc13(x){ return 1-Math.pow(1-x,3); }
     function eio13(x){ return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2; }
 
@@ -2506,14 +2512,14 @@
     { const a=anim013[0]; const vib=a.phase>=1?Math.sin(a.t*p.PI*24)*(1-a.t)*8:0;
       df(p,0,0,0); p.rectMode(p.CENTER); p.rect(blk.x,blk.y,sz+vib,sz+vib); p.rectMode(p.CORNER); }
 
-    // [1] greenArc1 — טרחא (HALF_PI→PI)
+    // [1] greenArc1 — טרחא (PI→HALF_PI)
     { if(anim013[1].phase===1){
-        const _cA=p.lerp(p.HALF_PI,p.PI,eio13(anim013[1].t));
+        const _cA=p.lerp(p.PI,p.HALF_PI,eio13(anim013[1].t));
         df(p,198,233,2);
         p.beginShape();
-        for(let _a=p.HALF_PI;_a<=_cA+0.001;_a+=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR+gaHw),ga1.y+Math.sin(_a)*(gaR+gaHw));
+        for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR+gaHw),ga1.y+Math.sin(_a)*(gaR+gaHw));
         p.vertex(ga1.x+Math.cos(_cA)*(gaR-gaHw),ga1.y+Math.sin(_cA)*(gaR-gaHw));
-        for(let _a=_cA;_a>=p.HALF_PI-0.001;_a-=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR-gaHw),ga1.y+Math.sin(_a)*(gaR-gaHw));
+        for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR-gaHw),ga1.y+Math.sin(_a)*(gaR-gaHw));
         p.endShape(p.CLOSE);
       } else dfArc(p,198,233,2,ga1.x,ga1.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
 
@@ -2525,14 +2531,14 @@
     { const pv=anim013[3].phase>=1?eoc13(anim013[3].t):1;
       df(p,255,33,33); p.rect(red.x-rw/2,red.y-rh/2,rw,rh*pv); }
 
-    // [4] greenArc2 — טרחא (HALF_PI→PI)
+    // [4] greenArc2 — טרחא (PI→HALF_PI)
     { if(anim013[4].phase===1){
-        const _cA=p.lerp(p.HALF_PI,p.PI,eio13(anim013[4].t));
+        const _cA=p.lerp(p.PI,p.HALF_PI,eio13(anim013[4].t));
         df(p,198,233,2);
         p.beginShape();
-        for(let _a=p.HALF_PI;_a<=_cA+0.001;_a+=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR+gaHw),ga2.y+Math.sin(_a)*(gaR+gaHw));
+        for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR+gaHw),ga2.y+Math.sin(_a)*(gaR+gaHw));
         p.vertex(ga2.x+Math.cos(_cA)*(gaR-gaHw),ga2.y+Math.sin(_cA)*(gaR-gaHw));
-        for(let _a=_cA;_a>=p.HALF_PI-0.001;_a-=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR-gaHw),ga2.y+Math.sin(_a)*(gaR-gaHw));
+        for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR-gaHw),ga2.y+Math.sin(_a)*(gaR-gaHw));
         p.endShape(p.CLOSE);
       } else dfArc(p,198,233,2,ga2.x,ga2.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
 
@@ -2602,7 +2608,7 @@
     b2:{x:219,y:239,w:116,h:19 }, ar:{x:380,y:98, w:122,h:122},
   };
   const stateB14 = {
-    sq:{x:13, y:52, w:152,h:152}, dt:{x:207,y:58, w:169,h:143},
+    sq:{x:13, y:52, w:152,h:152}, dt:{x:207,y:98, w:130,h:110},
     b1:{x:421,y:59, w:228,h:39 }, rr:{x:699,y:58, w:38, h:143},
     b2:{x:803,y:148,w:228,h:38 }, ar:{x:1187,y:110,w:238,h:238},
   };
@@ -2624,20 +2630,19 @@
     { const a=anim014[0]; const vib=a.phase>=1?Math.sin(a.t*p.PI*24)*(1-a.t)*8:0;
       df(p,0,0,0); p.rectMode(p.CENTER); p.rect(sq.x+sq.w/2,sq.y+sq.h/2,sq.w+vib,sq.h+vib); p.rectMode(p.CORNER); }
 
-    // [1] doubleTriangle — purple, scale from center
-    { const pv=anim014[1].phase>=1?eoc14(anim014[1].t):1;
+    // [1] doubleTriangle — purple, right slides first (like verse 7)
+    { const _a14=anim014[1];
+      const cy14=dt.y+dt.h/2, gap14=dt.w*0.04, triW14=(dt.w-gap14)/2;
       df(p,165,145,230);
-      const cx=dt.x+dt.w/2, cy=dt.y+dt.h/2, gap=dt.w*0.04, triW=(dt.w-gap)/2;
-      p.beginShape();
-        p.vertex(cx+(dt.x-cx)*pv,              cy);
-        p.vertex(cx+(dt.x+triW-cx)*pv,         cy+(dt.y-cy)*pv);
-        p.vertex(cx+(dt.x+triW-cx)*pv,         cy+(dt.y+dt.h-cy)*pv);
-      p.endShape(p.CLOSE);
-      p.beginShape();
-        p.vertex(cx+(dt.x+triW+gap-cx)*pv,     cy);
-        p.vertex(cx+(dt.x+dt.w-cx)*pv,         cy+(dt.y-cy)*pv);
-        p.vertex(cx+(dt.x+dt.w-cx)*pv,         cy+(dt.y+dt.h-cy)*pv);
-      p.endShape(p.CLOSE); }
+      if(_a14.phase>=1){
+        const pR14=Math.min(1,_a14.t*1.5), pL14=Math.max(0,Math.min(1,(_a14.t-0.2)*1.5));
+        const eR14=1-Math.pow(1-pR14,3), eL14=1-Math.pow(1-pL14,3);
+        p.triangle(dt.x+triW14+gap14+p.lerp(60,0,eR14),cy14, dt.x+dt.w+p.lerp(60,0,eR14),dt.y, dt.x+dt.w+p.lerp(60,0,eR14),dt.y+dt.h);
+        p.triangle(dt.x+p.lerp(30,0,eL14),cy14, dt.x+triW14+p.lerp(30,0,eL14),dt.y, dt.x+triW14+p.lerp(30,0,eL14),dt.y+dt.h);
+      } else {
+        p.triangle(dt.x,               cy14, dt.x+triW14,      dt.y, dt.x+triW14,      dt.y+dt.h);
+        p.triangle(dt.x+triW14+gap14,  cy14, dt.x+dt.w,        dt.y, dt.x+dt.w,        dt.y+dt.h);
+      } }
 
     // [2] blueRect1 — slide in from right
     { const pv=anim014[2].phase>=1?eoc14(anim014[2].t):1;
@@ -2676,14 +2681,14 @@
 
   const anim014 = Array.from({length:6}, function(){ return {phase:0,t:0,startTime:null}; });
   let timers014 = [];
-  const VERSE014_DELAYS = [5000, 4000, 3000, 2000, 1000, 0];
+  const VERSE014_DELAYS = [4450, 3400, 2800, 1800, 1000, 0];
   function playVerse014(){stopVerse014();for(var _i=0;_i<6;_i++){(function(idx){timers014.push(setTimeout(function(){anim014[idx].phase=1;anim014[idx].t=0;anim014[idx].startTime=performance.now();},VERSE014_DELAYS[idx]));})(_i);}}
   function stopVerse014(){timers014.forEach(clearTimeout);timers014=[];anim014.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   // ---- 015 ----
   const stateA15 = {
     sq:{x:61, y:156,w:143,h:143}, br:{x:61, y:95, w:215,h:36},
-    ar:{x:431,y:5,  w:230,h:230}, tc:{x:281,y:180,r:36, gap:72},
+    ar:{x:431,y:-15,w:230,h:230}, tc:{x:281,y:180,r:36, gap:72},
     gr:{x:58, y:325,w:217,h:36},  tg:{x:399,y:310,outer:145,inner:72},
   };
   const stateB15 = {
@@ -2718,22 +2723,10 @@
     { const pv=anim015[1].phase>=1?eoc15(anim015[1].t):1;
       df(p,82,160,215); p.rect(br.x+br.w*(1-pv),br.y,br.w*pv,br.h); }
 
-    // [2] arc — green, PI→HALF_PI
-    { const thick=ar.w*0.14;
-      df(p,200,235,0);
-      if(anim015[2].phase===1){
-        const _cA=p.lerp(p.PI,p.HALF_PI,eio15(anim015[2].t));
-        p.beginShape();
-        for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(ar.x+Math.cos(_a)*ar.w/2,ar.y+Math.sin(_a)*ar.h/2);
-        p.vertex(ar.x+Math.cos(_cA)*(ar.w/2-thick),ar.y+Math.sin(_cA)*(ar.h/2-thick));
-        for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(ar.x+Math.cos(_a)*(ar.w/2-thick),ar.y+Math.sin(_a)*(ar.h/2-thick));
-        p.endShape(p.CLOSE);
-      } else {
-        p.beginShape();
-        for(let _i=0;_i<=40;_i++){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(ar.x+Math.cos(_a)*ar.w/2,ar.y+Math.sin(_a)*ar.h/2);}
-        for(let _i=40;_i>=0;_i--){const _a=p.lerp(p.HALF_PI,p.PI,_i/40);p.vertex(ar.x+Math.cos(_a)*(ar.w/2-thick),ar.y+Math.sin(_a)*(ar.h/2-thick));}
-        p.endShape(p.CLOSE);
-      } }
+    // [2] arc — green, PI→HALF_PI (like verse 2)
+    { const thick=ar.w*0.09;
+      if(anim015[2].phase===1) dfArcAnim(p,200,235,0, ar.x,ar.y, ar.w/2,ar.h/2, thick, eio15(anim015[2].t));
+      else dfArc(p,200,235,0, ar.x,ar.y, ar.w/2,ar.h/2, p.HALF_PI,p.PI, thick); }
 
     // [3] threeCircles — spread from center
     { df(p,82,160,215);
@@ -2765,7 +2758,7 @@
 
   const anim015 = Array.from({length:6}, function(){ return {phase:0,t:0,startTime:null}; });
   let timers015 = [];
-  const VERSE015_DELAYS = [5000, 4000, 3000, 2000, 1000, 0];
+  const VERSE015_DELAYS = [4150, 3550, 2700, 1650, 900, 0];
   function playVerse015(){stopVerse015();for(var _i=0;_i<6;_i++){(function(idx){timers015.push(setTimeout(function(){anim015[idx].phase=1;anim015[idx].t=0;anim015[idx].startTime=performance.now();},VERSE015_DELAYS[idx]));})(_i);}}
   function stopVerse015(){timers015.forEach(clearTimeout);timers015=[];anim015.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
@@ -2786,14 +2779,14 @@
     bc: {x:1839,y:189,outer:152,inner:75},
     bl2:{x:999,y:114,w:228,h:37},  bh:{x:1347,y:189,r:37,gap:76},
     ga2:{x:953,y:152,wo:240,ho:227,wi:165,hi:152},
-    yh: {x:1613,y:184,size:189,rot:-42},
+    yh: {x:1643,y:184,size:145,rot:-42},
   };
 
   function drawScene16(p) {
     updateAnim(16);
     p.clear();
-    const DUR16=900; const now16=performance.now();
-    anim016.forEach(function(a){if(a.phase===1){a.t=Math.min(1,(now16-a.startTime)/DUR16);if(a.t>=1)a.phase=2;}});
+    const DUR16=900; const DUR16_YH=1500; const now16=performance.now();
+    anim016.forEach(function(a,i){const dur=i===8?DUR16_YH:DUR16;if(a.phase===1){a.t=Math.min(1,(now16-a.startTime)/dur);if(a.t>=1)a.phase=2;}});
     const t=animState[16].t;
     function eoc16(x){return 1-Math.pow(1-x,3);}
     function eio16(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
@@ -2862,11 +2855,19 @@
         p.circle(bh.x+bh.gap*(1-pv),bh.y,bh.r*2); p.circle(bh.x+bh.gap,bh.y,bh.r*2); p.circle(bh.x+bh.gap*(1+pv),bh.y,bh.r*2);
       } else { p.circle(bh.x,bh.y,bh.r*2); p.circle(bh.x+bh.gap,bh.y,bh.r*2); p.circle(bh.x+bh.gap*2,bh.y,bh.r*2); } }
 
-    // [8] yellowHalf — sweep 0→PI
-    { df(p,255,220,45);
-      const eA=anim016[8].phase===1?p.PI*eio16(anim016[8].t):p.PI;
-      p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(yh.rot));
-      p.arc(0,0,yh.size,yh.size,0,eA,p.PIE); p.pop(); }
+    // [8] yellowHalf — grow+morph (like verse 13)
+    { df(p,255,220,45); p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(yh.rot));
+      if(anim016[8].phase===1){
+        const t16=eio16(anim016[8].t);
+        const grow=Math.min(1,Math.max(0,t16/0.38));
+        const gE=eio16(grow);
+        const morph=Math.min(1,Math.max(0,(t16-0.55)/0.45));
+        const mE=morph<0.5?16*morph*morph*morph*morph*morph:1-Math.pow(-2*morph+2,5)/2;
+        const endA=p.lerp(p.TWO_PI,p.PI,mE);
+        p.arc(0,0,yh.size*gE,yh.size*gE,0,endA,p.PIE);
+      } else {
+        p.arc(0,0,yh.size,yh.size,0,p.PI,p.PIE);
+      } p.pop(); }
 
     // [9] blueCircleSet — scale up
     { const pv=anim016[9].phase>=1?eoc16(anim016[9].t):1;
@@ -2881,7 +2882,7 @@
 
   const anim016 = Array.from({length:10}, function(){ return {phase:0,t:0,startTime:null}; });
   let timers016 = [];
-  const VERSE016_DELAYS = [9000, 8000, 7000, 6000, 5000, 4000, 3000, 2000, 1000, 0];
+  const VERSE016_DELAYS = [9000, 8000, 6500, 5300, 4200, 3800, 3100, 2000, 1000, 0];
   function playVerse016(){stopVerse016();for(var _i=0;_i<10;_i++){(function(idx){timers016.push(setTimeout(function(){anim016[idx].phase=1;anim016[idx].t=0;anim016[idx].startTime=performance.now();},VERSE016_DELAYS[idx]));})(_i);}}
   function stopVerse016(){timers016.forEach(clearTimeout);timers016=[];anim016.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
@@ -2936,7 +2937,7 @@
   const VERSE010_DELAYS = [500, 1500, 2100, 3300, 3600, 5900, 6900, 8900, 11400, 12400, 12900, 14400, 15900, 16400, 17900, 19000, 20250, 22350, 23700];
   const VERSE011_DELAYS = [500, 1000, 1500, 2800, 3300, 4600, 5000, 6000, 7200, 8200, 8900];
   const VERSE012_DELAYS = [500, 1000, 2700, 3500, 4500, 5000, 6500, 7300];
-  const VERSE013_DELAYS = [9000, 8000, 7000, 6000, 5000, 4000, 3000, 2000, 1000, 0];
+  const VERSE013_DELAYS = [10800, 8700, 7900, 6700, 6000, 5200, 4000, 2000, 1000, 0];
   function playVerse001() {
     stopVerse001();
     for (var _i = 0; _i < 6; _i++) {
@@ -3034,7 +3035,7 @@
         4:'calc(50vw - 564px)', 5:'calc(50vw - 410px)', 6:'calc(50vw - 329px)',
         7:'calc(50vw - 643px)', 8:'calc(50vw - 476px)', 9:'calc(50vw - 505px)',
         10:'calc(50vw - 603px)',11:'calc(50vw - 640px)',12:'calc(50vw - 650px)',
-        13:'calc(50vw - 608px)',14:'calc(50vw - 543px)',15:'calc(50vw - 505px)',16:'calc(50vw - 600px)'
+        13:'calc(50vw - 608px)',14:'calc(50vw - 493px)',15:'calc(50vw - 505px)',16:'calc(50vw - 600px)'
       };
       if (numRights[n]) numEl.style.right = numRights[n];
       const numTops = {
