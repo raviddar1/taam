@@ -6,20 +6,22 @@
   <meta name="google" content="notranslate">
   <title>מידע</title>
   <style>
-    @font-face { font-family: 'BuGlobal';   src: url('גלובל/buGlobal1.0-Regular.otf')  format('opentype'); }
-    @font-face { font-family: 'BuGlobal'; font-weight: 600; src: url('גלובל/buGlobal1.0-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'TheBasics';   src: url('the basics/TheBasics-Regular.ttf') format('truetype'); }
+    @font-face { font-family: 'TheBasics'; font-weight: 600; src: url('the basics/TheBasics-Medium.ttf') format('truetype'); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #130F10; font-family: 'BuGlobal', sans-serif; }
+    body { background: #130F10; font-family: 'TheBasics', sans-serif; }
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #fff; display: block; }
-    .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #fff; text-decoration: none; white-space: nowrap; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 14px; color: #fff; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     .arrow-flash-left  { animation:_afl .55s ease-out; }
     .arrow-flash-right { animation:_afr .55s ease-out; }
 
-    .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
+    .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
+    .nav-aodot img          { height: 11px; width: auto; display: none; }
+    .nav-aodot .logo-dark   { display: block; }
     
     
     
@@ -27,6 +29,33 @@
     body.dark { background: #130F10; }
     body.dark .nav-link:not(.active) { color: #fff; }
     body.dark .nav-logo-sq { background: #fff; }
+    #standby {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #fff;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 500;
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.5s ease;
+    }
+    #standby.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #standby img { width: 420px; height: auto; }
+    #standby-text {
+      margin-top: 28px;
+      font-family: 'TheBasics', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      color: #343434;
+      direction: rtl;
+    }
+    body.standby-active .nav-link { color: #343434 !important; }
+    body.standby-active .nav-logo-sq { display: none !important; }
+    body.standby-active .nav-aodot { display: none !important; }
     #video-wrap {
       position: fixed;
       top: 64px; left: 0; right: 0; bottom: 0;
@@ -41,18 +70,6 @@
       object-fit: contain;
       cursor: pointer;
     }
-    #sound-hint {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.4);
-      font-family: 'BuGlobal', sans-serif;
-      font-size: 13px;
-      pointer-events: none;
-      transition: opacity 0.5s;
-      z-index: 5;
-    }
   </style>
 </head>
 <body>
@@ -64,26 +81,39 @@
     <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
     <a href="ספריה.html" class="nav-link nav-info">גלריה</a>
     <button class="page-nav-btn" id="pnav-prev"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="אודות.html" class="nav-link nav-aodot active">אודות</a>
+    <a href="אודות.html" class="nav-link nav-aodot active"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
   </nav>
   <div id="page-nav"></div>
+  <div id="standby">
+    <img src="logolight.png" alt="">
+    <div id="standby-text">לחץ על כל כפתור במקלדת כדי להתחיל</div>
+  </div>
   <div id="video-wrap">
-    <video id="intro-vid" autoplay loop muted playsinline>
+    <video id="intro-vid" loop muted playsinline>
       <source src="intro w pink b.mp4" type="video/mp4">
     </video>
   </div>
-  <div id="sound-hint">לחץ על כל מקש להפעלת סאונד</div>
   <script>
     var vid = document.getElementById('intro-vid');
-    var hint = document.getElementById('sound-hint');
-    if(sessionStorage.getItem('soundOn')==='1'){ vid.muted=false; hint.style.opacity='0'; }
+    vid.muted = true;
     function unmute(){
       if(vid.muted){
         vid.muted=false;
-        hint.style.opacity='0';
         sessionStorage.setItem('soundOn','1');
       }
     }
+
+    var _sb = document.getElementById('standby');
+    document.body.classList.add('standby-active');
+    var _idleTimer;
+    function showStandby(){ _sb.classList.remove('hidden'); document.body.classList.add('standby-active'); }
+    function hideStandby(){ _sb.classList.add('hidden'); document.body.classList.remove('standby-active'); startIdle(); vid.currentTime=0; vid.muted=false; vid.play().catch(function(){}); }
+    function isStandby(){ return !_sb.classList.contains('hidden'); }
+    function startIdle(){ clearTimeout(_idleTimer); _idleTimer = setTimeout(showStandby, 120000); }
+    ['mousemove','mousedown','touchstart','wheel'].forEach(function(ev){
+      document.addEventListener(ev, function(){ if(!isStandby()) startIdle(); }, {passive:true});
+    });
+
     var _NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
     var _NAV_CUR = _NAV_PAGES.indexOf('אודות.html');
     function flashArrow(id, cls) {
@@ -93,6 +123,7 @@
     function navPage(dir){ setTimeout(function(){ window.location.href = _NAV_PAGES[(_NAV_CUR + dir + _NAV_PAGES.length) % _NAV_PAGES.length]; }, 500); }
     vid.addEventListener('click', unmute);
     document.addEventListener('keydown', function(e){
+      if(isStandby()){ hideStandby(); return; }
       if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); unmute(); navPage(1);  return; }
       if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  unmute(); navPage(-1); return; }
       unmute();
@@ -113,6 +144,7 @@
     document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
     function onMidiMsg(msg){
       const [st,note,vel] = msg.data;
+      if(isStandby()){ hideStandby(); return; }
       if((st&0xF0)===0x90&&vel>0){
         unmute();
         if(note===_nR&&_nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); return; }
@@ -138,6 +170,14 @@
       };
     }).catch(function(){});
   }
+  </script>
+  <script>
+  setTimeout(function(){
+    setInterval(function(){
+      flashArrow('pnav-prev','arrow-flash-right');
+      setTimeout(function(){ flashArrow('pnav-next','arrow-flash-left'); }, 500);
+    }, 5000);
+  }, 3000);
   </script>
 </body>
 </html>

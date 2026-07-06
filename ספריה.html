@@ -6,21 +6,25 @@
   <meta name="google" content="notranslate">
   <title>ספריה</title>
   <style>
-    @font-face { font-family: 'BuGlobal';   src: url('גלובל/buGlobal1.0-Regular.otf')  format('opentype'); }
-    @font-face { font-family: 'BuGlobal'; font-weight: 600; src: url('גלובל/buGlobal1.0-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'TheBasics';   src: url('the basics/TheBasics-Regular.ttf') format('truetype'); }
+    @font-face { font-family: 'TheBasics'; font-weight: 600; src: url('the basics/TheBasics-Medium.ttf') format('truetype'); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #fff; font-family: 'BuGlobal', sans-serif; overflow: hidden; }
+    body { background: #fff; font-family: 'TheBasics', sans-serif; overflow: hidden; }
 
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
-    .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000; text-decoration: none; white-space: nowrap; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 14px; color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     .arrow-flash-left  { animation:_afl .55s ease-out; }
     .arrow-flash-right { animation:_afr .55s ease-out; }
 
-    .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
+    .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
+    .nav-aodot img          { height: 11px; width: auto; display: none; }
+    .nav-aodot .logo-light  { display: block; }
+    body.dark .nav-aodot .logo-light { display: none; }
+    body.dark .nav-aodot .logo-dark  { display: block; }
     
     
     
@@ -86,7 +90,7 @@
     #melody-meta {
       display: none; position: absolute; bottom: 26vh; left: 0; right: 0;
       padding: 0 2vw;
-      font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000;
+      font-family: 'TheBasics', sans-serif; font-size: 14px; color: #343434;
       flex-direction: row; justify-content: space-between; align-items: baseline;
       direction: rtl; pointer-events: none;
     }
@@ -104,7 +108,7 @@
     <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
     <a href="ספריה.html" class="nav-link nav-info active">גלריה</a>
     <button class="page-nav-btn" id="pnav-prev"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="אודות.html" class="nav-link nav-aodot">אודות</a>
+    <a href="אודות.html" class="nav-link nav-aodot"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
   </nav>
   <div id="page-nav"></div>
 
@@ -284,11 +288,21 @@
   <script>
   (function(){
     var t;
-    function reset(){ clearTimeout(t); t=setTimeout(function(){ sessionStorage.removeItem('darkMode'); window.location.href='אודות.html'; },120000); }
+    function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.setItem('m_vR','1'); localStorage.setItem('m_vL','1'); }
+    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='אודות.html'; },120000); }
     window._idleReset = reset;
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
+    document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });
     reset();
   })();
+  </script>
+  <script>
+  setTimeout(function(){
+    setInterval(function(){
+      flashArrow('pnav-prev','arrow-flash-right');
+      setTimeout(function(){ flashArrow('pnav-next','arrow-flash-left'); }, 500);
+    }, 5000);
+  }, 3000);
   </script>
 </body>
 </html>

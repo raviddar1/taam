@@ -6,8 +6,8 @@
   <title>תורה שבמרחב</title>
   <style>
     @font-face {
-      font-family: 'BuGlobal';
-      src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype');
+      font-family: 'TheBasics';
+      src: url('the basics/TheBasics-Regular.ttf') format('truetype');
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,14 +15,14 @@
     html, body {
       width: 100%; height: 100%;
       background: #ffffff;
-      font-family: 'BuGlobal', sans-serif;
-      color: #000;
+      font-family: 'TheBasics', sans-serif;
+      color: #343434;
     }
 
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 100; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; cursor: pointer; transition: opacity 0.4s; }
     .nav-logo-sq.hidden { opacity: 0; pointer-events: none; }
-    .nav-link { font-family: 'BuGlobal', sans-serif; font-size: 14px; color: #000; text-decoration: none; white-space: nowrap; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 14px; color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; -webkit-text-stroke: 0.5px currentColor; text-stroke: 0.5px currentColor; }
     #nav-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; direction: rtl; gap: 80px; align-items: center; }
     .nav-info { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-50%); }
@@ -48,7 +48,12 @@
   </style>
 </head>
 <body>
-  <script>location.replace('אודות.html');</script>
+  <script>
+    sessionStorage.removeItem('darkMode');
+    localStorage.setItem('m_vR','1');
+    localStorage.setItem('m_vL','1');
+    location.replace('אודות.html');
+  </script>
 
   <nav class="navbar">
     <a class="nav-logo-sq" href="index.html" id="nav-logo-sq"></a>
