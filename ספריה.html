@@ -175,7 +175,7 @@
     const melIdx = arr.length - 1 - padSlot;
     if(melIdx < 0 || !arr[melIdx]) { closeMelody(); return; }
     const mel = arr[melIdx];
-    _pageDark = document.body.classList.contains('dark');
+    if(_activeSlot === -1) _pageDark = document.body.classList.contains('dark');
 
     function doOpen() {
       _activeSlot = padSlot;
