@@ -2625,8 +2625,7 @@
     function topToVol(top){ return 1-Math.max(0,Math.min(1,(top-PAD)/RANGE)); }
 
     function initFader(faderEl, thumbEl, lsKey, onUpdate){
-      var v = localStorage.getItem(lsKey);
-      v = v!==null ? +v : 0.1;
+      var v = 0;
       thumbEl.style.top = volToTop(v)+'px';
 
       var dragging=false, startY=0, startTop=0;
