@@ -589,7 +589,7 @@
       name: 'טרחא',
       funcText: 'תפקיד הטעם במקרא; טעם מפסיק קל, המסמן הפסקה קלה או נשימה קצרה במהלך הקריאה ומוביל אל הטעם הבא.',
       graphicText: 'משמעות הצורה; קשת ירוקה - עצירה קטנה לפני תנועה.',
-      symbolHtml: '<img src="נראות/טרחא.png" style="height:42px;object-fit:contain;">',
+      symbolHtml: '',
     },
     'ש': {
       name: 'תרי קדמין',
@@ -2626,7 +2626,7 @@
 
     function initFader(faderEl, thumbEl, lsKey, onUpdate){
       var v = localStorage.getItem(lsKey);
-      v = v!==null ? +v : 0.25;
+      v = v!==null ? +v : 0.1;
       thumbEl.style.top = volToTop(v)+'px';
 
       var dragging=false, startY=0, startTop=0;
