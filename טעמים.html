@@ -156,6 +156,26 @@
     body.embed #color-toggle,
     body.embed #color-panel { display: none !important; }
 
+    /* ---- פדרי עוצמה ---- */
+    #vol-faders {
+      position: fixed; bottom: 90px; right: 28px; z-index: 15;
+      display: none; flex-direction: row; align-items: flex-end; gap: 10px;
+    }
+    #vol-faders.visible { display: flex; }
+    .vol-fader {
+      width: 38px; height: 160px;
+      position: relative; cursor: pointer; user-select: none; touch-action: none;
+    }
+    .vol-fader-track {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      border: 1.5px solid #343434; border-radius: 20px; background: transparent;
+    }
+    body.dark .vol-fader-track { border-color: #fff; }
+    .vol-fader-thumb {
+      position: absolute; left: 4px; right: 4px; height: 52px;
+      background: #bbb; border-radius: 12px; pointer-events: none;
+    }
+
     /* ---- דארק מוד ---- */
     body.dark { background: #131111; }
     body.dark .nav-link:not(.active) { color: #fff; }
@@ -2595,6 +2615,61 @@
       }
     }, 5000);
   }, 3000);
+
+  // ---- פדרי עוצמה ----
+  (function(){
+    var TRACK_H=160, THUMB_H=52, RANGE=TRACK_H-THUMB_H;
+    function volToTop(v){ return (1-v)*RANGE; }
+    function topToVol(top){ return 1-Math.max(0,Math.min(1,top/RANGE)); }
+
+    function initFader(faderEl, thumbEl, lsKey, onUpdate){
+      var v = localStorage.getItem(lsKey);
+      v = v!==null ? +v : 1.0;
+      thumbEl.style.top = volToTop(v)+'px';
+
+      var dragging=false, startY=0, startTop=0;
+      function getTop(){ return parseFloat(thumbEl.style.top)||0; }
+
+      faderEl.addEventListener('pointerdown', function(e){
+        dragging=true; startY=e.clientY; startTop=getTop();
+        faderEl.setPointerCapture(e.pointerId);
+      });
+      faderEl.addEventListener('pointermove', function(e){
+        if(!dragging) return;
+        var dy=e.clientY-startY;
+        var newTop=Math.max(0,Math.min(RANGE,startTop+dy));
+        thumbEl.style.top=newTop+'px';
+        var vol=topToVol(newTop);
+        localStorage.setItem(lsKey, vol);
+        onUpdate(vol);
+      });
+      faderEl.addEventListener('pointerup', function(){ dragging=false; });
+      faderEl.addEventListener('pointercancel', function(){ dragging=false; });
+    }
+
+    setTimeout(function(){
+      if(location.search.includes('seq')){
+        document.getElementById('vol-faders').classList.add('visible');
+      }
+      initFader(
+        document.getElementById('fader-L'),
+        document.getElementById('thumb-L'),
+        'm_vL',
+        function(v){ cantorAudios.forEach(function(a){ a.volume=v; }); }
+      );
+      initFader(
+        document.getElementById('fader-R'),
+        document.getElementById('thumb-R'),
+        'm_vR',
+        function(v){ if(typeof tofimGain!=='undefined') tofimGain.gain.value=v*(typeof TOFIM_BASE_GAIN!=='undefined'?TOFIM_BASE_GAIN:1); }
+      );
+    }, 0);
+  })();
   </script>
+
+  <div id="vol-faders">
+    <div class="vol-fader" id="fader-L"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-L"></div></div>
+    <div class="vol-fader" id="fader-R"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-R"></div></div>
+  </div>
 </body>
 </html>
