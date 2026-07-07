@@ -90,7 +90,7 @@
 
     #solo-name {
       position: absolute;
-      right: calc(146/1920*100vw);
+      right: calc(146/1920*100vw + 50px);
       top: calc(750/1080*100vh);
       white-space: nowrap;
       font-size: clamp(80px, 8vw, 150px);
@@ -100,7 +100,7 @@
     }
     #solo-func {
       position: absolute;
-      right: calc(1131/1920*100vw + 15px);
+      right: calc(1131/1920*100vw + 65px);
       top: calc(220/1080*100vh);
       width: clamp(210px, 19vw, 360px);
       font-size: 17px;
@@ -109,7 +109,7 @@
     }
     #solo-interp {
       position: absolute;
-      right: calc(166/1920*100vw);
+      right: calc(166/1920*100vw + 50px);
       top: calc(220/1080*100vh);
       font-size: 17px;
       font-family: 'TheBasics', sans-serif;
@@ -117,7 +117,7 @@
     }
     #solo-symbol-visual {
       position: absolute;
-      right: calc(1131/1920*100vw + 15px);
+      right: calc(1131/1920*100vw + 65px);
       top: 50%;
       display: flex; flex-direction: column;
       align-items: center; gap: 9px;
@@ -155,17 +155,17 @@
     body.embed #tradition-wrap,
     body.embed #solo-info,
     body.embed #color-toggle,
-    body.embed #color-panel { display: none !important; }
+    body.embed #color-panel,
+    body.embed #vol-faders { display: none !important; }
 
     /* ---- פדרי עוצמה ---- */
     #vol-faders {
-      position: fixed; bottom: 70px; right: 38px; z-index: 15;
-      display: none; flex-direction: row; align-items: flex-end; gap: 8px;
+      position: fixed; bottom: 28px; right: 23px; z-index: 60;
+      display: flex; flex-direction: row; align-items: flex-end; gap: 8px;
     }
-    #vol-faders.visible { display: flex; }
     .vol-fader {
-      width: 25px; height: 145px;
-      position: relative; cursor: pointer; user-select: none; touch-action: none;
+      width: 25px; height: 130px;
+      position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none;
     }
     .vol-fader-track {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -190,15 +190,6 @@
     body.dark #ipus-btn { color: #555; border-color: #555; }
     body.dark #ipus-btn.seq-active { color: #fff; border-color: #fff; }
 
-    #shmor-btn {
-      background: none; border: 0.5px solid #ccc; border-radius: 16px; cursor: pointer; padding: 2px 8px;
-      font-family: 'TheBasics', sans-serif; font-size: 14px; color: #aaa;
-      text-align: center; pointer-events: all; display: block;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    #shmor-btn:hover, #shmor-btn.seq-active { color: #343434; border-color: #343434; }
-    body.dark #shmor-btn { color: #555; border-color: #555; }
-    body.dark #shmor-btn.seq-active { color: #fff; border-color: #fff; }
     .nav-spria { right: calc(520/1920*100vw); }
     body.dark #solo-name,
     body.dark #solo-func,
@@ -206,7 +197,7 @@
     body.dark #solo-symbol-visual img { filter: invert(1); }
     body.dark .mini-label { color: #fff; }
 
-    /* ---- מיקרו אנימציות חצים ---- */
+    /* ---- מיקרו אנימציות חיצים ---- */
     @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     @keyframes _afu { 0%{transform:none;opacity:1} 35%{transform:translateY(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
@@ -253,7 +244,7 @@
     #seq-hint {
       position: fixed; top: 82px; left: 50%; transform: translateX(-50%);
       font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 14px;
-      color: #343434; white-space: nowrap; direction: rtl;
+      color: #343434; direction: rtl; text-align: center; line-height: 1.7;
       display: none; pointer-events: none;
     }
     body.dark #seq-hint { color: #fff; }
@@ -331,11 +322,11 @@
     <div id="solo-interp"></div>
   </div>
 
-  <div id="seq-hint">[נגנו על המקלדת ושמרו בגלריה]</div>
+  <div id="seq-hint">[לחצו על הטעמים במקלדת כדי לנגן<br>לחצו על <svg width="9" height="15" viewBox="0 0 9 15" fill="none" style="vertical-align:-4px; margin:0 2px"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg> כדי לשמור בגלריה]</div>
 
   <!-- גריד פדים idle -->
   <div id="pad-grid-overlay">
-    <div id="pad-grid-label">[בחרו טעם במקלדת, החליפו נוסחים בחצים]</div>
+    <div id="pad-grid-label">[בחרו טעם במקלדת, החליפו נוסחים בחיצים]</div>
     <div id="pad-preview-container"></div>
   </div>
   <script>
@@ -367,7 +358,6 @@
   <div id="tradition-wrap">
     <button id="ipus-btn">נקה</button>
     <div id="trad-col">
-      <button class="trad-arrow" id="trad-up"><svg width="15" height="9" viewBox="0 0 15 9" fill="none"><polyline points="1.5,7.5 7.5,1.5 13.5,7.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
       <div id="trad-list">
         <div class="trad-item" data-trad="מרוקאי">מרוקאי</div>
         <div class="trad-item active" data-trad="ספרדי">ספרדי</div>
@@ -375,7 +365,17 @@
       </div>
       <button class="trad-arrow" id="trad-down"><svg width="15" height="9" viewBox="0 0 15 9" fill="none"><polyline points="1.5,1.5 7.5,7.5 13.5,1.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
     </div>
-    <button id="shmor-btn">שמירה<br>בגלריה</button>
+  </div>
+
+  <div id="vol-faders">
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div class="vol-fader" id="fader-L"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-L"></div></div>
+      <div class="vol-fader-label">תופים</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div class="vol-fader" id="fader-R"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-R"></div></div>
+      <div class="vol-fader-label">חזן</div>
+    </div>
   </div>
 
   <div id="color-panel" style="display:none!important">
@@ -644,10 +644,6 @@
     const btn = document.getElementById('ipus-btn');
     if(btn) btn.classList.toggle('seq-active', currentMode === 'רצף' && seqShapes.length > 0);
   }
-  function updateShmorColor() {
-    const btn = document.getElementById('shmor-btn');
-    if(btn) btn.classList.toggle('seq-active', currentMode === 'רצף' && seqShapes.length > 0);
-  }
   function captureStripScreenshot() {
     var cv = document.querySelector('#wrap canvas');
     if(!cv) return null;
@@ -696,8 +692,13 @@
     var fl = document.createElement('div');
     fl.style.cssText = 'position:absolute;inset:0;background:' + (darkMode ? '#131111' : '#fff') + ';opacity:1;pointer-events:none;transition:opacity 0.18s ease;';
     ov.appendChild(fl);
+    var pop = document.createElement('div');
+    pop.textContent = 'הנגינה שלך נשמרה בגלריה';
+    pop.style.cssText = 'position:absolute;top:calc(13% + 20px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid #FF179C;border-radius:10px;padding:10px 22px;font-family:\'TheBasics\',sans-serif;font-size:14px;color:#343434;white-space:nowrap;direction:rtl;z-index:1;opacity:0;transition:opacity 0.3s ease;';
+    ov.appendChild(pop);
     document.body.appendChild(ov);
     setTimeout(function(){ fl.style.opacity = '0'; }, 40);
+    setTimeout(function(){ pop.style.opacity = '1'; }, 200);
     setTimeout(function(){ window.location.href = 'ספריה.html'; }, 1800);
   }
 
@@ -717,8 +718,7 @@
     });
     scrollPos = wW;
     applyFaderVols(vR, vL);
-    updateIpusColor(); updateShmorColor();
-  }
+    updateIpusColor();  }
 
   function doReset() {
     resetAnimStates();
@@ -729,8 +729,7 @@
     document.getElementById('solo-info').classList.remove('active');
     selectTradition('ספרדי');
     updateIpusColor();
-    updateShmorColor();
-  }
+     }
 
   // ---- חמשה (4 קווים) ----
   function getStaffLines(h) {
@@ -826,6 +825,7 @@
       p.createCanvas(window.innerWidth, window.innerHeight).parent('wrap');
       p.noStroke();
       col1=p.color(A1.ball); col2=p.color(A2.ball);
+      if(window.parent !== window) window.parent.postMessage({type:'iframeReady'}, '*');
       resetAnimStates = function() {
         [p1,p2].forEach(s=>{s.playing=false;s.frozen=false;});
         [p3,p4,p5_,p6,p7,p8].forEach(s=>{s.playing=false;s.progress=0;s.frozen=false;});
@@ -973,7 +973,7 @@
         }
       }
       noGlow();
-      const cx=p.width*(1724/1920)-5, cy=p.height*0.586-50;
+      const cx=p.width*(1724/1920)-55, cy=p.height*0.586-50;
       const SOLO_POS = {
         'צ':{x:cx-9,    y:cy+50},
         'נ':{x:cx+7,    y:cy-90},
@@ -1160,7 +1160,7 @@
         return d[key]||{x:p.width/2,y:p.height/2};
       }
       // בודד
-      const bx=p.width*(1724/1920)-5, by=p.height*0.586-50;
+      const bx=p.width*(1724/1920)-55, by=p.height*0.586-50;
       const soloOff={'צ':{dx:-9,dy:50},'נ':{dx:7,dy:-90},'מ':{dx:-9,dy:0},'ת':{dx:-56,dy:0},'ב':{dx:-26,dy:60},'ך':{dx:-116,dy:0},'ל':{dx:-26,dy:0},'ח':{dx:-20,dy:0},'ה':{dx:-35,dy:0},'ע':{dx:17,dy:-40},'כ':{dx:-37,dy:0},'ג':{dx:-115,dy:40},'י':{dx:-7,dy:0},'ש':{dx:-57,dy:0},'ף':{dx:-121,dy:-185},'ד':{dx:-11,dy:0}};
       const off=soloOff[key]||{dx:0,dy:0};
       return {x:bx+off.dx, y:by+off.dy};
@@ -1217,7 +1217,7 @@
           }
           p1Trail.push({circles,baseAlpha});
           if(p1Trail.length>P1_TRAIL_LEN) p1Trail.shift();
-          const scx_1=p.width*(1724/1920)-5, scy_1=p.height*0.586-50;
+          const scx_1=p.width*(1724/1920)-55, scy_1=p.height*0.586-50;
           if(currentMode==='בודד'){ p.push(); p.translate(scx_1,scy_1); p.scale(SOLO_SCALE*szM()); p.translate(-scx_1,-scy_1); }
           p.noStroke();
           for(let t=0;t<p1Trail.length-1;t++){
@@ -1278,7 +1278,7 @@
             const hn=p.height*0.28*szM(), wn=p.height*0.009*7*szM();
             p.rect(x-wn/2, p.height*0.64-hn*eased, wn, hn*eased);
           } else {
-            const scx=p.width*(1724/1920)-5, scy=p.height*0.586-50;
+            const scx=p.width*(1724/1920)-55, scy=p.height*0.586-50;
             p.push(); p.translate(scx,scy); p.scale(SOLO_SCALE*szM()); p.translate(-scx,-scy);
             p.rect(x-12, getPos('נ').y, 24, 120*eased);
             p.pop();
@@ -1298,7 +1298,7 @@
           const vib=Math.sin(pv*Math.PI*24)*(1-pv)*12;
           const sz=currentMode==='רצף' ? p.height*0.28*szM()+vib*S : 120+vib;
           applyFill(0,0,0);
-          const scx_h=p.width*(1724/1920)-5, scy_h=p.height*0.586-50;
+          const scx_h=p.width*(1724/1920)-55, scy_h=p.height*0.586-50;
           if(currentMode==='בודד'){ p.push(); p.translate(scx_h,scy_h); p.scale(SOLO_SCALE*szM()); p.translate(-scx_h,-scy_h); }
           p.rectMode(p.CENTER); p.rect(pos.x,pos.y,sz,sz); p.rectMode(p.CORNER);
           if(currentMode==='בודד') p.pop();
@@ -1328,7 +1328,7 @@
             applyFill(238,146,3);
             p.triangle(cx-wt,p.height*0.64, cx,p.height*0.64, cx,p.height*0.64-ht);
           } else {
-            const scx=p.width*(1724/1920)-5, scy=p.height*0.586-50;
+            const scx=p.width*(1724/1920)-55, scy=p.height*0.586-50;
             p.push(); p.translate(scx,scy); p.scale(SOLO_SCALE*szM()); p.translate(-scx,-scy);
             const pvE=Math.max(0,pv-0.07), hsE=1+1.5*Math.pow(Math.sin(pvE*Math.PI),0.6);
             if(!darkMode){ p.fill(238,146,3,fadeA*50); p.noStroke(); }
@@ -1353,7 +1353,7 @@
           const rv=currentMode==='רצף' ? p.height*0.11*szM() : 75;
           const tY=currentMode==='רצף' ? p.height*0.53 : pos.y;
           const f6=rv/75; const gv=26*f6,cv=24*f6,rc=rv-gv-cv;
-          const scx_t=p.width*(1724/1920)-5, scy_t=p.height*0.586-50;
+          const scx_t=p.width*(1724/1920)-55, scy_t=p.height*0.586-50;
           if(currentMode==='בודד'){ p.push(); p.translate(scx_t,scy_t); p.scale(SOLO_SCALE*szM()); p.translate(-scx_t,-scy_t); }
           const hw=14*f6;
           applyFill(170,150,232);
@@ -1389,7 +1389,7 @@
             const hk=p.height*0.07*szM(), wk=p.height*0.32*szM();
             p.rect(pos.x-wk*eased, p.height*0.36, wk*eased, hk);
           } else {
-            const scx=p.width*(1724/1920)-5, scy=p.height*0.586-50;
+            const scx=p.width*(1724/1920)-55, scy=p.height*0.586-50;
             p.push(); p.translate(scx,scy); p.scale(SOLO_SCALE*szM()); p.translate(-scx,-scy);
             p.rect(pos.x - 150*eased + 150, pos.y-59, 150*eased, 27);
             p.pop();
@@ -1446,7 +1446,7 @@
             const hk=p.height*0.07*szM(), wk=p.height*0.32*szM();
             p.rect(pos.x-wk*eased, p.height*0.57, wk*eased, hk);
           } else {
-            const scx=p.width*(1724/1920)-5, scy=p.height*0.586-50;
+            const scx=p.width*(1724/1920)-55, scy=p.height*0.586-50;
             p.push();
             p.translate(scx,scy); p.scale(SOLO_SCALE*szM()); p.translate(-scx,-scy);
             p.rect(pos.x - 150*eased + 150, azlaY+61, 150*eased, 27);
@@ -1473,7 +1473,7 @@
             expandR=(112-t*56)*lSc; smallR=(48-t*20)*lSc;
           }
           const pos=getPos('ל');
-          const scx_l=p.width*(1724/1920)-5, scy_l=p.height*0.586-50;
+          const scx_l=p.width*(1724/1920)-55, scy_l=p.height*0.586-50;
           if(currentMode==='בודד'){ p.push(); p.translate(scx_l,scy_l); p.scale(SOLO_SCALE*szM()); p.translate(-scx_l,-scy_l); }
           applyFill(81,162,221,127); p.circle(pos.x,pos.y,expandR*2);
           applyFill(81,162,221); p.circle(pos.x,pos.y,smallR*2);
@@ -1494,7 +1494,7 @@
           const innerR=outerR*0.72;
           const eY=currentMode==='רצף' ? p.height*0.43 : pos.y;
           const currentA=p.lerp(p.PI, p.HALF_PI, pv);
-          const scx_e=p.width*(1724/1920)-5, scy_e=p.height*0.586-50;
+          const scx_e=p.width*(1724/1920)-55, scy_e=p.height*0.586-50;
           if(currentMode==='בודד'){ p.push(); p.translate(scx_e,scy_e); p.scale(SOLO_SCALE*szM()); p.translate(-scx_e,-scy_e); }
           applyFill(198,233,2);
           p.beginShape();
@@ -1527,7 +1527,7 @@
             p.triangle(0,curTop-bY,-hw,0,hw,0);
             p.pop();
           } else {
-            const scx=p.width*(1724/1920)-5, scy=p.height*0.586-50;
+            const scx=p.width*(1724/1920)-55, scy=p.height*0.586-50;
             p.push(); p.translate(scx,scy); p.scale(SOLO_SCALE*szM()); p.translate(-scx,-scy);
             const hw=75, hh=70;
             const bY_s=pos.y+hh;
@@ -1594,7 +1594,7 @@
             p.pop();
           } else {
             const yOff=p.lerp(-42,0,ev);
-            const scx=p.width*(1724/1920)-5, scy=p.height*0.586-50;
+            const scx=p.width*(1724/1920)-55, scy=p.height*0.586-50;
             p.push(); p.translate(scx,scy); p.scale(SOLO_SCALE*szM()); p.translate(-scx,-scy);
             p.push(); p.translate(pos.x, pos.y+yOff);
             for(let i=7;i>=1;i--){
@@ -1625,7 +1625,7 @@
           const hk=p.height*0.07*szM(), wk=p.height*0.32*szM();
           p.rect(pos.x-wk*eased, p.height*0.36, wk*eased, hk);
         } else {
-          const scx=p.width*(1724/1920)-5, scy=p.height*0.586-50;
+          const scx=p.width*(1724/1920)-55, scy=p.height*0.586-50;
           p.push();
           p.translate(scx,scy); p.scale(SOLO_SCALE*szM()); p.translate(-scx,-scy);
           p.rect(pos.x - 150*eased + 150, azlaY-59, 150*eased, 27);
@@ -1654,7 +1654,7 @@
           const startA=p.lerp(0,p.radians(130),m);
           const endA=p.lerp(p.TWO_PI,p.radians(310),m);
           applyFill(255,225,55);
-          const scx_s=p.width*(1724/1920)-5, scy_s=p.height*0.586-50;
+          const scx_s=p.width*(1724/1920)-55, scy_s=p.height*0.586-50;
           if(currentMode==='בודד'){ p.push(); p.translate(scx_s,scy_s); p.scale(SOLO_SCALE*szM()); p.translate(-scx_s,-scy_s); }
           p.push();
           p.translate(pos.x, currentMode==='רצף' ? p.height*0.50 : pos.y);
@@ -1966,8 +1966,7 @@
           seqLastTriggered[k]=ns;
           seqCurrentX[k]=p.width/2;
           updateIpusColor();
-          updateShmorColor();
-        }
+                 }
         showCanvas();
       }
       startAnimOnly(k);
@@ -2071,18 +2070,9 @@
         resetMidiLearn();
         return;
       }
-      if(e.key==='ArrowUp') {
-        flashArrow('trad-up','arrow-flash-up');
-        const i = TRADITION_ORDER.indexOf(currentTradition);
-        if(i === 0){ if(currentMode==='רצף') doReset(); return; }
-        selectTradition(TRADITION_ORDER[i - 1]);
-        return;
-      }
       if(e.key==='ArrowDown') {
         flashArrow('trad-down','arrow-flash-down');
-        const i = TRADITION_ORDER.indexOf(currentTradition);
-        if(i < TRADITION_ORDER.length - 1) selectTradition(TRADITION_ORDER[i + 1]);
-        else if(seqShapes.length>0) doScreenshotAndNavigate();
+        cycleTrad(1);
         return;
       }
 
@@ -2218,9 +2208,8 @@
 
       function cycleTrad(dir){
         const i=TRADITION_ORDER.indexOf(currentTradition);
-        if(dir===-1 && i===0){ if(currentMode==='רצף') doReset(); return; }
-        if(dir===1 && i===TRADITION_ORDER.length-1){ if(seqShapes.length>0) doScreenshotAndNavigate(); return; }
-        selectTradition(TRADITION_ORDER[i+dir]);
+        const next=(i+dir+TRADITION_ORDER.length)%TRADITION_ORDER.length;
+        selectTradition(TRADITION_ORDER[next]);
       }
 
       const NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
@@ -2229,9 +2218,12 @@
       document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
       let _nRprev=false, _nLprev=false;
       function navPage(dir){
-        setTimeout(function(){
-          window.location.href = NAV_PAGES[(CURRENT_PAGE_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length];
-        }, 350);
+        const dest = NAV_PAGES[(CURRENT_PAGE_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length];
+        if(dest === 'ספריה.html' && seqShapes.length > 0){
+          doScreenshotAndNavigate();
+          return;
+        }
+        window.location.href = dest;
       }
 
       function onMidiMsg(msg){
@@ -2260,8 +2252,8 @@
           // ---- מצב רגיל ----
           if((st&0xF0)===0x90&&vel>0){
             if(TAAM_SET.has(note)){ if(!location.search.includes('embed')) doKey(NOTE_KEY[note]); return; }
-            if(note===tU&&tUt==='note'){ flashArrow('trad-up','arrow-flash-up');     cycleTrad(-1); return; }
-            if(note===tD&&tDt==='note'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
+            if(note===tU&&tUt==='note'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
+            if(note===tD&&tDt==='note'){ doReset(); return; }
             if(note===nR&&nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1);   return; }
             if(note===nL&&nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);    return; }
             return;
@@ -2269,8 +2261,8 @@
 
           if((st&0xF0)===0xB0){
             const cc=note, val=vel/127;
-            if(cc===tU&&tUt==='cc'){ if(val>0.5){ flashArrow('trad-up','arrow-flash-up');     cycleTrad(-1); } return; }
-            if(cc===tD&&tDt==='cc'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
+            if(cc===tU&&tUt==='cc'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
+            if(cc===tD&&tDt==='cc'){ doReset(); return; }
             if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
             if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
@@ -2337,36 +2329,10 @@
     el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
   });
   document.getElementById('ipus-btn').addEventListener('click', doReset);
-  document.getElementById('shmor-btn').addEventListener('click', function(){
-    if(currentMode !== 'רצף' || seqShapes.length === 0) return;
-    const saved = JSON.parse(localStorage.getItem('taam_saved_melodies') || '[]');
-    const _itvls2 = [];
-    for(let _ii2=1;_ii2<seqShapes.length;_ii2++) _itvls2.push(seqShapes[_ii2].placedAt - seqShapes[_ii2-1].placedAt);
-    saved.push({
-      shapes: seqShapes.map(function(s){ return {key:s.key, sz:s.sz, str:s.str, tradition:s.tradition||currentTradition}; }),
-      intervals: _itvls2,
-      tradition: currentTradition,
-      dark: darkMode,
-      vR: localStorage.getItem('m_vR') !== null ? +localStorage.getItem('m_vR') : null,
-      vL: localStorage.getItem('m_vL') !== null ? +localStorage.getItem('m_vL') : null,
-      savedAt: Date.now(),
-      screenshot: captureStripScreenshot()
-    });
-    while(saved.length > 16) saved.shift();
-    localStorage.setItem('taam_saved_melodies', JSON.stringify(saved));
-    const btn = document.getElementById('shmor-btn');
-    const orig = btn.textContent;
-    btn.textContent = '✓';
-    setTimeout(function(){ btn.textContent = orig; }, 800);
-  });
-  document.getElementById('trad-up').addEventListener('click', function(){
-    const i = TRADITION_ORDER.indexOf(currentTradition);
-    if(i === 0){ if(currentMode==='רצף') doReset(); return; }
-    selectTradition(TRADITION_ORDER[i - 1]);
-  });
   document.getElementById('trad-down').addEventListener('click', function(){
     const i = TRADITION_ORDER.indexOf(currentTradition);
-    if(i < TRADITION_ORDER.length - 1) selectTradition(TRADITION_ORDER[i + 1]);
+    const next = (i + 1) % TRADITION_ORDER.length;
+    selectTradition(TRADITION_ORDER[next]);
   });
 
 
@@ -2379,7 +2345,11 @@
           if(typeof e.data.dark === 'boolean') setDarkMode(e.data.dark);
           loadMelodyShapes(e.data.shapes, e.data.vR, e.data.vL, e.data.intervals);
         }
-        if(e.data && e.data.type === 'stopMelody'){ stopAllAudio(); if(pInst) pInst.noLoop(); }
+        if(e.data && e.data.type === 'stopMelody'){
+          stopAllAudio();
+          if(window._volFaderCantorAudios) window._volFaderCantorAudios.forEach(function(a){ a.pause(); a.currentTime=0; });
+          if(pInst) pInst.noLoop();
+        }
       });
     }
     currentMode = location.search.includes('seq') ? 'רצף' : 'בודד';
@@ -2394,16 +2364,17 @@
     // tradition-wrap תמיד מוצג — מיידי, לא תלוי ב-load
     document.getElementById('tradition-wrap').classList.add('visible');
 
-    // במצב רצף — מסתיר pad-grid ומציג כיתוב נגינה
+    // במצב רצף — מסתיר pad-grid ומציג קנבס וכיתוב מיד
     if(currentMode === 'רצף') {
       var _pgOv = document.getElementById('pad-grid-overlay');
       if(_pgOv) _pgOv.style.display = 'none';
       document.getElementById('seq-hint').style.display = 'block';
+      var _wrapEl = document.getElementById('wrap');
+      if(_wrapEl){ _wrapEl.style.display='block'; _wrapEl.style.opacity='1'; }
     }
 
     // הסתרת איפוס ושמור במצב בודד
     if(currentMode === 'בודד') document.getElementById('ipus-btn').style.visibility = 'hidden';
-    if(currentMode === 'בודד') document.getElementById('shmor-btn').style.visibility = 'hidden';
 
     // שחזור דארק מוד (?light בURL מאפס לבהיר)
     if(location.search.includes('light')) { setDarkMode(false); }
@@ -2435,8 +2406,7 @@
               });
               scrollPos = wW;
               updateIpusColor();
-              updateShmorColor();
-            }
+                         }
           } catch(e) {}
         }
       } else {
@@ -2626,7 +2596,7 @@
 
   // ---- פדרי עוצמה ----
   (function(){
-    var TRACK_H=145, THUMB_H=32, PAD=5, RANGE=TRACK_H-THUMB_H-PAD*2;
+    var TRACK_H=130, THUMB_H=32, PAD=5, RANGE=TRACK_H-THUMB_H-PAD*2;
     function volToTop(v){ return PAD+(1-v)*RANGE; }
     function topToVol(top){ return 1-Math.max(0,Math.min(1,(top-PAD)/RANGE)); }
 
@@ -2655,9 +2625,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', function(){
-      if(location.search.includes('seq')){
-        document.getElementById('vol-faders').classList.add('visible');
-      }
       var thumbL = document.getElementById('thumb-L');
       var thumbR = document.getElementById('thumb-R');
       window._volFaderSetL = function(v){ thumbL.style.top = volToTop(v)+'px'; };
@@ -2674,15 +2641,6 @@
   })();
   </script>
 
-  <div id="vol-faders">
-    <div style="display:flex;flex-direction:column;align-items:center;">
-      <div class="vol-fader" id="fader-L"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-L"></div></div>
-      <div class="vol-fader-label">תופים</div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:center;">
-      <div class="vol-fader" id="fader-R"><div class="vol-fader-track"></div><div class="vol-fader-thumb" id="thumb-R"></div></div>
-      <div class="vol-fader-label">חזן</div>
-    </div>
-  </div>
+
 </body>
 </html>

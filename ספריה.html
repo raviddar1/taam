@@ -103,10 +103,23 @@
       color: #343434; white-space: nowrap; direction: rtl; pointer-events: none;
     }
     body.dark #gallery-hint { color: #fff; }
+
+    #gallery-loading {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #fff; display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.4s ease;
+    }
+    body.dark #gallery-loading { background: #131111; }
+    #gallery-loading.out { opacity: 0; pointer-events: none; }
+    @keyframes _gl-pulse { 0%,100%{r:10} 50%{r:22} }
+    #gallery-loading circle { animation: _gl-pulse 1.4s ease-in-out infinite; }
   </style>
 </head>
 <body>
   <script>if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark');</script>
+  <div id="gallery-loading">
+    <svg width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="10" fill="#FF179C"/></svg>
+  </div>
   <nav class="navbar">
     <button class="page-nav-btn" id="pnav-next"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
     <a href="טעמים.html" class="nav-link nav-taamim">טעמים</a>
@@ -118,8 +131,7 @@
   </nav>
   <div id="page-nav"></div>
 
-  <iframe src="טעמים.html" style="position:absolute;width:0;height:0;border:0;visibility:hidden;" tabindex="-1" aria-hidden="true"></iframe>
-  <div id="gallery-hint">[בחרו נגינה במקלדת]</div>
+<div id="gallery-hint">[לחצו על המקלדת לצפייה בנגינות השמורות]</div>
   <div id="grid"></div>
   <div id="melody-overlay">
     <div id="melody-frame-wrap">
@@ -139,10 +151,26 @@
     'אשכנזי':{'צ':'אשכנזי/א זקף גדול.mp4','מ':'אשכנזי/א זקף קטון.mp4','נ':'אשכנזי/א אתנחתא.mp4','ה':'אשכנזי/א סוף פסוק.mp4','ב':'אשכנזי/א שני גרשין.mp4','ת':'אשכנזי/א תביר.mp4','ך':'אשכנזי/א אזלא.mp4','ל':'אשכנזי/א שופר מהופך.mp4','ח':'אשכנזי/א רביע.mp4','ע':'אשכנזי/א טרחא.mp4','כ':'אשכנזי/א זרקא.mp4','ג':'אשכנזי/א שופר הולך.mp4','י':'אשכנזי/א יתיב.mp4','ש':'אשכנזי/א תרי קדמין.mp4','ף':'אשכנזי/א מאריך.mp3','ד':'אשכנזי/א דרגא.mp4'},
   };
 
+  // ---- מסך טעינה ----
+  (function(){
+    var ld = document.getElementById('gallery-loading');
+    var _hidden = false;
+    function hideLoading(){
+      if(_hidden) return; _hidden = true;
+      ld.classList.add('out');
+      setTimeout(function(){ ld.style.display='none'; }, 450);
+    }
+    window.addEventListener('message', function(e){
+      if(e.data && e.data.type === 'iframeReady') hideLoading();
+    });
+    setTimeout(hideLoading, 5000); // fallback
+  })();
+
   // ---- אוברליי ----
   let _activePadEl = null;
   let _activeSlot = -1;
   let _pageDark = false;
+  let _closeCooldown = false;
 
   // טעינת iframe ברקע מיידית
   (function(){
@@ -159,9 +187,9 @@
     _activeSlot = -1;
     document.body.classList.toggle('dark', _pageDark);
     const frame = document.getElementById('melody-frame');
-    setTimeout(function(){
-      if(frame.contentWindow) frame.contentWindow.postMessage({type:'stopMelody'}, '*');
-    }, 320);
+    if(frame.contentWindow) frame.contentWindow.postMessage({type:'stopMelody'}, '*');
+    _closeCooldown = true;
+    setTimeout(function(){ _closeCooldown = false; }, 400);
   }
 
   document.getElementById('melody-overlay').addEventListener('click', function(e){
@@ -170,6 +198,7 @@
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMelody(); });
 
   function openMelody(padSlot) {
+    if(_closeCooldown) return;
     if(padSlot === _activeSlot) { closeMelody(); return; }
     const arr = JSON.parse(localStorage.getItem('taam_saved_melodies') || '[]');
     const melIdx = arr.length - 1 - padSlot;
