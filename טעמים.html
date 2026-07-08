@@ -629,6 +629,7 @@
     darkMode = on;
     document.body.classList.toggle('dark', on);
     if(!location.search.includes('embed')) sessionStorage.setItem('darkMode', on ? '1' : '0');
+    if(window._padP5) { window._padP5.loop(); }
   }
 
   // ---- נוסחים ----
@@ -2469,6 +2470,8 @@
       };
 
       pg.draw = function(){
+        dark = document.body.classList.contains('dark');
+        bc = dark ? [60,60,60] : [190,190,190];
         var elapsed = pg.millis() - startT;
         pg.background(dark ? '#131111' : '#ffffff');
         for(var i=0;i<16;i++){
@@ -2476,7 +2479,7 @@
           var cellX = gap + col*(cellW+gap);
           var cellY = gap + row*(cellH+gap);
           var cx = cellX + cellW/2, cy = cellY + cellH/2;
-          pg.fill(dark ? 30 : 255);
+          if(dark) pg.fill(19,17,17); else pg.fill(255);
           pg.stroke(bc[0],bc[1],bc[2]); pg.strokeWeight(0.5);
           pg.rect(cellX, cellY, cellW, cellH);
           var t = Math.min(1, Math.max(0, (elapsed - i*STAGGER) / DUR));
