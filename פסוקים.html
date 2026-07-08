@@ -2701,6 +2701,7 @@
     const DUR15=900; const now15=performance.now();
     anim015.forEach(function(a){if(a.phase===1){a.t=Math.min(1,(now15-a.startTime)/DUR15);if(a.t>=1)a.phase=2;}});
     const t=animState[15].t;
+    _dfSW = 4;
     function eoc15(x){return 1-Math.pow(1-x,3);}
     function eio15(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
     function lS(a,b){return{x:p.lerp(a.x,b.x,t),y:p.lerp(a.y,b.y,t),w:p.lerp(a.w,b.w,t),h:p.lerp(a.h,b.h,t)};}
@@ -2751,7 +2752,7 @@
 
   new p5(function(p) {
     p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1400, 400).parent('canvas-wrap-015'); };
-    p.draw  = function() { drawScene15(p); };
+    p.draw  = function() { drawScene15(p); _dfSW=4; };
   });
 
   const anim015 = Array.from({length:6}, function(){ return {phase:0,t:0,startTime:null}; });
@@ -2786,6 +2787,7 @@
     const DUR16=900; const DUR16_YH=1500; const now16=performance.now();
     anim016.forEach(function(a,i){const dur=i===8?DUR16_YH:DUR16;if(a.phase===1){a.t=Math.min(1,(now16-a.startTime)/dur);if(a.t>=1)a.phase=2;}});
     const t=animState[16].t;
+    _dfSW = 4;
     function eoc16(x){return 1-Math.pow(1-x,3);}
     function eio16(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
     function lV(a,b,k){return p.lerp(a[k],b[k],t);}
@@ -2875,7 +2877,7 @@
 
   new p5(function(p) {
     p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1920, 750).parent('canvas-wrap-016'); };
-    p.draw  = function() { drawScene16(p); };
+    p.draw  = function() { drawScene16(p); _dfSW=4; };
   });
 
   const anim016 = Array.from({length:10}, function(){ return {phase:0,t:0,startTime:null}; });
@@ -2905,15 +2907,17 @@
       p.vertex(cx+Math.cos(_a)*(rx-hw), cy+Math.sin(_a)*(ry-hw));
     p.endShape(p.CLOSE);
   }
+  let _dfSW = 4; // strokeWeight override
   function df(p, r, g, b, a) {
-    const bk = (r === 0 && g === 0 && b === 0);
-    const dr = bk ? 255 : r, dg = bk ? 255 : g, db = bk ? 255 : b;
     if (isDark()) {
-      if (a !== undefined) p.fill(dr, dg, db, a); else p.fill(dr, dg, db);
+      p.noFill();
+      const bk = (r === 0 && g === 0 && b === 0);
+      p.stroke(bk ? 255 : r, bk ? 255 : g, bk ? 255 : b, a !== undefined ? a : 255);
+      p.strokeWeight(_dfSW);
     } else {
       if (a !== undefined) p.fill(r, g, b, a); else p.fill(r, g, b);
+      p.noStroke();
     }
-    p.noStroke();
   }
 
   // ---- פסוק 001 — רצף טעמים (ויזואלי בלבד) ----
@@ -3013,6 +3017,7 @@
     document.getElementById('tradition-wrap').classList.add('visible');
     document.getElementById('psuk-hint').classList.add('hidden');
     el.classList.add('open');
+    _applyPskScale();
     el.style.zIndex = 6;
     el.onclick = closeItem;
     document.getElementById('mini-label-' + pid(n)).style.display = 'none';
@@ -3100,7 +3105,10 @@
     srcElC.style.top   = '';
     srcElC.style.textAlign = '';
     srcElC.classList.remove('active');
-    document.getElementById('canvas-outer-' + pid(n)).classList.remove('open');
+    const _coEl = document.getElementById('canvas-outer-' + pid(n));
+    _coEl.classList.remove('open');
+    _coEl.style.removeProperty('transform');
+    _pskSz = 1.0;
     document.getElementById('bg').classList.remove('active');
     document.getElementById('tradition-wrap').classList.remove('visible');
     document.getElementById('psuk-hint').classList.remove('hidden');
@@ -3172,6 +3180,53 @@
   const _nL  = _LS.getItem('m_nL') !== null ? +_LS.getItem('m_nL') : null;
   const _nLt = _LS.getItem('m_nLt') || null;
   const _kR  = _LS.getItem('m_kR') !== null ? +_LS.getItem('m_kR') : null;
+  const _kL  = _LS.getItem('m_kL') !== null ? +_LS.getItem('m_kL') : null;
+
+  // ---- סקייל פסוק פתוח ע"י נוב ----
+  const _OPEN_TR = {
+    1:{tx:'calc(50vw - 530px)',ty:'calc(50vh - 128px)',s:1.95},
+    2:{tx:'calc(50vw - 820px)',ty:'calc(50vh - 334px)',s:1.55},
+    3:{tx:'calc(50vw - 690px)',ty:'calc(50vh - 240px)',s:1.25},
+    4:{tx:'calc(50vw - 725px)',ty:'calc(50vh - 160px)',s:1.0},
+    5:{tx:'calc(50vw - 1040px)',ty:'calc(50vh - 464px)',s:1.6},
+    6:{tx:'calc(50vw - 490px)',ty:'calc(50vh - 200px)',s:1.3},
+    7:{tx:'calc(50vw - 785px)',ty:'calc(50vh - 265px)',s:1.75},
+    8:{tx:'calc(50vw - 615px)',ty:'calc(50vh - 290px)',s:1.65},
+    9:{tx:'calc(50vw - 620px)',ty:'calc(50vh - 281px)',s:1.15},
+    10:{tx:'calc(50vw - 645px)',ty:'calc(50vh - 301px)',s:0.9},
+    11:{tx:'calc(50vw - 733px)',ty:'calc(50vh - 257px)',s:0.87},
+    12:{tx:'calc(50vw - 822px)',ty:'calc(50vh - 263px)',s:1.0},
+    13:{tx:'calc(50vw - 641px)',ty:'calc(50vh - 153px)',s:0.85},
+    14:{tx:'calc(50vw - 540px)',ty:'calc(50vh - 135px)',s:0.9},
+    15:{tx:'calc(50vw - 595px)',ty:'calc(50vh - 170px)',s:0.85},
+    16:{tx:'calc(50vw - 624px)',ty:'calc(50vh - 224px)',s:0.65}
+  };
+  let _pskSz = 1.0;
+  function _resolvePx(expr) {
+    const vw=window.innerWidth, vh=window.innerHeight;
+    const s=expr.replace(/calc\((.+)\)/,'$1')
+                .replace(/(\d+\.?\d*)vw/g,function(m,n){return vw*n/100;})
+                .replace(/(\d+\.?\d*)vh/g,function(m,n){return vh*n/100;})
+                .replace(/(\d+\.?\d*)px/g,'$1');
+    return Function('"use strict";return('+s+')')();
+  }
+  function _applyPskScale() {
+    if (currentItem === 0) return;
+    const tr = _OPEN_TR[currentItem]; if (!tr) return;
+    const el = document.getElementById('canvas-outer-' + pid(currentItem)); if (!el) return;
+    const cv = el.querySelector('canvas');
+    const cssW = cv ? cv.offsetWidth  : 0;
+    const cssH = cv ? cv.offsetHeight : 0;
+    const s0 = tr.s, sNew = s0 * _pskSz;
+    // מרכז הפסוק במצב הדיפולט
+    const cx = _resolvePx(tr.tx) + cssW * s0 / 2;
+    const cy = _resolvePx(tr.ty) + cssH * s0 / 2;
+    // translate חדש שמשמר את המרכז
+    const newTx = cx - cssW * sNew / 2;
+    const newTy = cy - cssH * sNew / 2;
+    el.style.setProperty('transform',
+      'translate('+newTx+'px, '+newTy+'px) scale('+sNew+')', 'important');
+  }
   const _fR  = _LS.getItem('m_fR') !== null ? +_LS.getItem('m_fR') : null;
   const _fL  = _LS.getItem('m_fL') !== null ? +_LS.getItem('m_fL') : null;
   const _tU  = _LS.getItem('m_tU') !== null ? +_LS.getItem('m_tU') : null;
@@ -3201,6 +3256,7 @@
       if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  _navPage(1);  } _nLprev=on; return; }
       if(note===_tU&&_tUt==='cc'){ if(vel/127>0.5){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  } return; }
       if(_kR!==null && note===_kR){ _setDark(val>0); return; }
+      if(_kL!==null && note===_kL){ _pskSz = val*2; _applyPskScale(); return; }
       if(_fR!==null && note===_fR){ _LS.setItem('m_vR',val); _drumsClones.forEach(function(a){ a.volume=val; }); if(window._pskFaderSetL) window._pskFaderSetL(val); return; }
       if(_fL!==null && note===_fL){ _LS.setItem('m_vL',val); if(_verseAudio) _verseAudio.volume=val; if(window._pskFaderSetR) window._pskFaderSetR(val); return; }
     }

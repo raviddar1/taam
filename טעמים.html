@@ -651,10 +651,13 @@
     if(!cv) return null;
     try {
       var thumb = document.createElement('canvas');
-      thumb.width  = 600;
-      thumb.height = Math.round(600 * cv.height / cv.width);
-      thumb.getContext('2d').drawImage(cv, 0, 0, cv.width, cv.height, 0, 0, thumb.width, thumb.height);
-      return thumb.toDataURL('image/jpeg', 0.75);
+      thumb.width  = 1200;
+      thumb.height = Math.round(1200 * cv.height / cv.width);
+      var ctx = thumb.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(cv, 0, 0, cv.width, cv.height, 0, 0, thumb.width, thumb.height);
+      return thumb.toDataURL('image/jpeg', 0.92);
     } catch(e) { return null; }
   }
 
@@ -2245,7 +2248,6 @@
         const ch = (st&0x0F)+1;
         console.log('[MIDI] '+type+' ch:'+ch+' note/cc:'+note+' vel/val:'+vel);
         unlockAudio();
-        if(typeof window._hidePadGrid==='function') window._hidePadGrid();
 
           // ---- מצב למידה ----
           if(learnStep>=0 && learnStep<8){
@@ -2259,11 +2261,11 @@
 
           // ---- מצב רגיל ----
           if((st&0xF0)===0x90&&vel>0){
-            if(TAAM_SET.has(note)){ if(!location.search.includes('embed')) doKey(NOTE_KEY[note]); return; }
+            if(TAAM_SET.has(note)){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); if(!location.search.includes('embed')) doKey(NOTE_KEY[note]); return; }
             if(note===tU&&tUt==='note'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
             if(note===tD&&tDt==='note'){ doReset(); return; }
-            if(note===nR&&nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1);   return; }
-            if(note===nL&&nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);    return; }
+            if(note===nR&&nRt==='note'){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); return; }
+            if(note===nL&&nLt==='note'){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-next','arrow-flash-left');  navPage(1);  return; }
             return;
           }
 
@@ -2271,8 +2273,8 @@
             const cc=note, val=vel/127;
             if(cc===tU&&tUt==='cc'){ if(val>0.5){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1); } return; }
             if(cc===tD&&tDt==='cc'){ if(val>0.5){ doReset(); } return; }
-            if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
-            if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
+            if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
+            if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
             if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); LS.setItem('m_vL',val); if(window._volFaderSetR) window._volFaderSetR(val); return; }
             if(cc===kR){
@@ -2486,10 +2488,16 @@
       function drawCell(key, cx, cy, H, t){
         var ez = 1.5; H = H*ez; var sf = H*0.009;
         var et = eoc(t), eb = eob(Math.min(1,t*1.1));
+        var sw = H*0.006;
+        function df(r,g,b,a){
+          var bk=(r===0&&g===0&&b===0);
+          if(dark){ pg.noFill(); pg.stroke(bk?255:r,bk?255:g,bk?255:b,a||255); pg.strokeWeight(sw); }
+          else { if(a!==undefined) pg.fill(r,g,b,a); else pg.fill(r,g,b); pg.noStroke(); }
+        }
         switch(key){
 
           case 'צ':{ // זקף גדול — 3 עיגולים זהב נופלים מלמעלה אחד אחד
-            var d=H*0.14; pg.fill(255,225,55);
+            var d=H*0.14; df(255,225,55);
             for(var i=0;i<3;i++){
               var it=Math.min(1,Math.max(0,(t-(i*0.25))/0.6));
               if(it<=0) continue;
@@ -2499,7 +2507,7 @@
             } break;}
 
           case 'מ':{ // זקף קטן — 3 עיגולים כחולים נפרשים שמאלה
-            var d=H*0.18, len=d*2; pg.fill(81,162,221);
+            var d=H*0.18, len=d*2; df(81,162,221);
             for(var i=0;i<3;i++){
               var fx=cx+35-i*len/2;
               pg.circle(cx+35+(fx-(cx+35))*et, cy-d/2+15, d);
@@ -2507,53 +2515,53 @@
 
           case 'נ':{ // אתנח — מלבן אדום גדל מלמטה למעלה
             var wn=sf*7, hn=H*0.28*et;
-            pg.fill(255,33,33); pg.rect(cx-wn/2, cy+H*0.14-hn, wn, hn); break;}
+            df(255,33,33); pg.rect(cx-wn/2, cy+H*0.14-hn, wn, hn); break;}
 
           case 'ה':{ // סוף פסוק — ריבוע שחור בזום
             var sq=H*0.28*eb;
-            pg.fill(0); pg.rectMode(pg.CENTER); pg.rect(cx,cy,sq,sq); pg.rectMode(pg.CORNER); break;}
+            df(0,0,0); pg.rectMode(pg.CENTER); pg.rect(cx,cy,sq,sq); pg.rectMode(pg.CORNER); break;}
 
           case 'ב':{ // שני גרשין — משולש מסתובב פנימה
-            var ht=H*0.21, wt=H*0.21; pg.fill(238,146,3);
+            var ht=H*0.21, wt=H*0.21; df(238,146,3);
             pg.push(); pg.translate(cx,cy); pg.scale(eb); pg.translate(-cx,-cy);
             pg.triangle(cx-wt/2, cy+ht/2, cx+wt/2, cy+ht/2, cx+wt/2, cy-ht/2);
             pg.pop(); break;}
 
           case 'ת':{ // תביר — קשת נפרשת משמאל לימין
             var rv=H*0.11, f=rv/75, gv=26*f, cv=24*f, hw=14*f;
-            var endA=pg.PI*et; pg.fill(170,150,232);
+            var endA=pg.PI*et; df(170,150,232);
             pg.beginShape();
             for(var a=0;a<=endA;a+=0.04) pg.vertex(cx+Math.cos(a)*(rv+hw), cy+Math.sin(a)*(rv+hw));
             for(var a=endA;a>=0;a-=0.04) pg.vertex(cx+Math.cos(a)*(rv-hw), cy+Math.sin(a)*(rv-hw));
             pg.endShape(pg.CLOSE);
-            if(t>0.7){ pg.fill(170,150,232); pg.circle(cx, cy+(rv-gv-cv), cv*2*eoc((t-0.7)/0.3)); }
+            if(t>0.7){ df(170,150,232); pg.circle(cx, cy+(rv-gv-cv), cv*2*eoc((t-0.7)/0.3)); }
             break;}
 
           case 'ך':{ // אזלא — ליים גדל מימין לשמאל
             var hk=H*0.07, wk=H*0.32*et;
-            pg.fill(198,233,2); pg.rect(cx-wk/2, cy-hk/2, wk, hk); break;}
+            df(198,233,2); pg.rect(cx-wk/2, cy-hk/2, wk, hk); break;}
 
           case 'ג':{ // שופר הולך — כחול גדל משמאל לימין
             var hk=H*0.07, wk=H*0.32*et;
-            pg.fill(81,162,221); pg.rect(cx-wk/2, cy-hk/2, wk, hk); break;}
+            df(81,162,221); pg.rect(cx-wk/2, cy-hk/2, wk, hk); break;}
 
           case 'ף':{ // מאריך — כחול גדל ממרכז לצדדים
             var hk=H*0.07, wk=H*0.32*et;
-            pg.fill(81,162,221); pg.rect(cx-wk/2, cy-hk/2, wk, hk); break;}
+            df(81,162,221); pg.rect(cx-wk/2, cy-hk/2, wk, hk); break;}
 
           case 'ד':{ // דרגא — משולש נופל מלמעלה
-            var s=H*0.21/135; pg.fill(170,150,232);
+            var s=H*0.21/135; df(170,150,232);
             var dy=(1-et)*(-H*0.3);
             pg.triangle(cx-70*s, cy-55*s+dy, cx+70*s, cy-55*s+dy, cx, cy+80*s+dy); break;}
 
           case 'ל':{ // שופר מהופך — עיגול חיצוני גדל, פנימי מופיע אחרי
             var t1=Math.min(1,t*1.5), t2=Math.max(0,(t-0.4)/0.6);
-            pg.fill(81,162,221,127); pg.circle(cx, cy, H*0.28*eoc(t1));
-            if(t2>0){ pg.fill(81,162,221,255); pg.circle(cx, cy, H*0.14*eob(t2)); }
+            df(81,162,221,127); pg.circle(cx, cy, H*0.28*eoc(t1));
+            if(t2>0){ df(81,162,221,255); pg.circle(cx, cy, H*0.14*eob(t2)); }
             break;}
 
           case 'ח':{ // רביע — שני משולשים יוצאים מהמרכז
-            var sW=sf*10.8, sH=H*0.252, gp=-sf*0.72; pg.fill(170,150,232);
+            var sW=sf*10.8, sH=H*0.252, gp=-sf*0.72; df(170,150,232);
             var lx=cx-sW-gp/2, rx=cx+gp/2;
             var spread=et;
             var lxA=cx+(lx-cx)*spread, rxA=cx+(rx-cx)*spread;
@@ -2561,13 +2569,13 @@
             pg.triangle(rxA-sW/2,cy, rxA+sW/2,cy-sH/2, rxA+sW/2,cy+sH/2); break;}
 
           case 'י':{ // יתיב — פופ בזינוק
-            var halfH=H*0.07, ww=H*0.125; pg.fill(255,225,55);
+            var halfH=H*0.07, ww=H*0.125; df(255,225,55);
             pg.push(); pg.translate(cx,cy); pg.scale(eb); pg.translate(-cx,-cy);
             pg.triangle(cx-ww/2,cy, cx+ww/2,cy-halfH, cx+ww/2,cy+halfH);
             pg.pop(); break;}
 
           case 'כ':{ // זרקא — משולש עולה מלמטה
-            var hw=H*0.15; pg.fill(238,146,3);
+            var hw=H*0.15; df(238,146,3);
             var dy=(1-et)*H*0.3;
             pg.triangle(cx, cy-H*0.14+dy, cx-hw, cy+H*0.14+dy, cx+hw, cy+H*0.14+dy); break;}
 
@@ -2575,14 +2583,14 @@
             var outerR=H*0.21, innerR=outerR*0.72;
             var ox=H*0.08, oy=-H*0.08;
             var startA=pg.PI, endA=pg.HALF_PI+(pg.PI-pg.HALF_PI)*(1-et);
-            pg.fill(198,233,2);
+            df(198,233,2);
             pg.beginShape();
             for(var a=pg.PI;a>=endA;a-=0.04) pg.vertex(cx+ox+Math.cos(a)*outerR, cy+oy+Math.sin(a)*outerR);
             for(var a=endA;a<=pg.PI;a+=0.04) pg.vertex(cx+ox+Math.cos(a)*innerR, cy+oy+Math.sin(a)*innerR);
             pg.endShape(pg.CLOSE); break;}
 
           case 'ש':{ // תרי קדמין — פאי מסתובב ונפתח
-            var r=H*0.14; pg.fill(255,225,55);
+            var r=H*0.14; df(255,225,55);
             pg.push(); pg.translate(cx,cy); pg.rotate(pg.radians(200));
             pg.arc(0,0,r*2,r*2,pg.radians(130),pg.radians(130+180*et),pg.PIE);
             pg.pop(); break;}
