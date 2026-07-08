@@ -619,7 +619,7 @@
 
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
-    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 14px; color: #343434; text-decoration: none; white-space: nowrap; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 17px; color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
@@ -637,7 +637,7 @@
     body.dark .nav-aodot .logo-dark  { display: block; }
     #psuk-hint {
       position: fixed; top: 92px; left: 50%; transform: translateX(-50%);
-      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 14px;
+      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 17px;
       color: #343434; white-space: nowrap; direction: rtl;
       pointer-events: none; transition: opacity 0.3s ease;
     }
@@ -672,7 +672,7 @@
     #tradition-wrap.visible { display: flex; }
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
     #trad-list { display:flex; flex-direction:column; gap:10px; text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:14px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    .trad-item { font-size:17px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
     .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
     body.dark .trad-item:not(.active) { color: #fff; }
@@ -995,10 +995,11 @@
   // ---- אנימציה משותפת ----
   const ANIM_DUR = 500;
   let currentItem = 0; // 0=none, 1=001, 2=002
-  let currentTradition = 'ספרדי';
+  let currentTradition = localStorage.getItem('m_trad') || 'ספרדי';
   const TRADITION_ORDER = ['מרוקאי', 'ספרדי', 'אשכנזי'];
   function selectTradition(t) {
     currentTradition = t;
+    localStorage.setItem('m_trad', t);
     document.querySelectorAll('#trad-list .trad-item').forEach(function(el){
       el.classList.toggle('active', el.dataset.trad === t);
     });
@@ -1360,7 +1361,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1098, 366).parent('canvas-wrap-001'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1098, 366).parent('canvas-wrap-001'); };
     p.draw  = function() { drawScene1(p); };
   });
 
@@ -1473,7 +1474,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1098, 366).parent('canvas-wrap-002'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1098, 366).parent('canvas-wrap-002'); };
     p.draw  = function() { drawScene2(p); };
   });
 
@@ -1586,7 +1587,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1200, 304).parent('canvas-wrap-003'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1200, 304).parent('canvas-wrap-003'); };
     p.draw  = function() { drawScene3(p); };
   });
 
@@ -1663,7 +1664,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1450, 690).parent('canvas-wrap-004'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1450, 690).parent('canvas-wrap-004'); };
     p.draw  = function() { drawScene4(p); };
   });
 
@@ -1775,7 +1776,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1300, 500).parent('canvas-wrap-005'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1300, 500).parent('canvas-wrap-005'); };
     p.draw  = function() { drawScene5(p); };
   });
 
@@ -1825,7 +1826,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(760, 230).parent('canvas-wrap-006'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(760, 230).parent('canvas-wrap-006'); };
     p.draw  = function() { drawScene6(p); };
   });
 
@@ -2124,7 +2125,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1100, 402).parent('canvas-wrap-009'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1100, 402).parent('canvas-wrap-009'); };
     p.draw  = function() { drawScene9(p); };
   });
 
@@ -2252,7 +2253,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1544, 525).parent('canvas-wrap-010'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1544, 525).parent('canvas-wrap-010'); };
     p.draw  = function() { drawScene10(p); };
   });
 
@@ -2351,7 +2352,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1684, 360).parent('canvas-wrap-011'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1684, 360).parent('canvas-wrap-011'); };
     p.draw  = function() { drawScene11(p); };
   });
 
@@ -2436,7 +2437,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1544, 425).parent('canvas-wrap-012'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1544, 425).parent('canvas-wrap-012'); };
     p.draw  = function() { drawScene12(p); };
   });
 
@@ -2584,7 +2585,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1548, 500).parent('canvas-wrap-013'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1548, 500).parent('canvas-wrap-013'); };
     p.draw  = function() { drawScene13(p); };
   });
 
@@ -2672,7 +2673,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1200, 300).parent('canvas-wrap-014'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1200, 300).parent('canvas-wrap-014'); };
     p.draw  = function() { drawScene14(p); };
   });
 
@@ -2749,7 +2750,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1400, 400).parent('canvas-wrap-015'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1400, 400).parent('canvas-wrap-015'); };
     p.draw  = function() { drawScene15(p); };
   });
 
@@ -2873,7 +2874,7 @@
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(2); p.createCanvas(1920, 750).parent('canvas-wrap-016'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio||1); p.createCanvas(1920, 750).parent('canvas-wrap-016'); };
     p.draw  = function() { drawScene16(p); };
   });
 
@@ -2905,15 +2906,14 @@
     p.endShape(p.CLOSE);
   }
   function df(p, r, g, b, a) {
+    const bk = (r === 0 && g === 0 && b === 0);
+    const dr = bk ? 255 : r, dg = bk ? 255 : g, db = bk ? 255 : b;
     if (isDark()) {
-      p.noFill();
-      const bk = (r === 0 && g === 0 && b === 0);
-      p.stroke(bk ? 255 : r, bk ? 255 : g, bk ? 255 : b, a !== undefined ? a : 255);
-      p.strokeWeight(2);
+      if (a !== undefined) p.fill(dr, dg, db, a); else p.fill(dr, dg, db);
     } else {
       if (a !== undefined) p.fill(r, g, b, a); else p.fill(r, g, b);
-      p.noStroke();
     }
+    p.noStroke();
   }
 
   // ---- פסוק 001 — רצף טעמים (ויזואלי בלבד) ----
@@ -3297,6 +3297,7 @@
     window._pskFaderSetL = function(v){ _pendingPskL = v; };
     window._pskFaderSetR = function(v){ _pendingPskR = v; };
     document.addEventListener('DOMContentLoaded', function(){
+      selectTradition(currentTradition);
       var thumbL2 = document.getElementById('psuk-thumb-L');
       var thumbR2 = document.getElementById('psuk-thumb-R');
       window._pskFaderSetL = function(v){ thumbL2.style.top = volToTop(v)+'px'; };

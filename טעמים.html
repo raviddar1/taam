@@ -28,7 +28,7 @@
     /* ---- נאב-בר ---- */
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
-    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 14px; color: #343434; text-decoration: none; white-space: nowrap; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 17px; color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
@@ -138,7 +138,7 @@
     #tradition-wrap.visible { display: flex; }
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
     #trad-list { display:flex; flex-direction:column; gap:10px; text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:14px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    .trad-item { font-size:17px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
     .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; align-self: flex-start; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
 
@@ -232,7 +232,7 @@
       left: 50%; transform: translateX(-50%);
       font-family: 'TheBasics', sans-serif;
       font-weight: 400;
-      font-size: 14px;
+      font-size: 17px;
       color: #343434;
       white-space: nowrap;
       direction: rtl;
@@ -244,7 +244,7 @@
     #pad-preview-container canvas { display: block; }
     #seq-hint {
       position: fixed; top: 82px; left: 50%; transform: translateX(-50%);
-      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 14px;
+      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 17px;
       color: #343434; direction: rtl; text-align: center; line-height: 1.7;
       display: none; pointer-events: none;
     }
@@ -635,6 +635,7 @@
   const TRADITION_ORDER = ['מרוקאי', 'ספרדי', 'אשכנזי'];
   function selectTradition(t) {
     currentTradition = t;
+    localStorage.setItem('m_trad', t);
     document.querySelectorAll('.trad-item').forEach(function(el){
       el.classList.toggle('active', el.dataset.trad === t);
     });
@@ -728,7 +729,7 @@
     staffShapes = [];
     seqShapes = []; scrollPos = 0; seqCurrentX = {}; seqLastTriggered = {};
     document.getElementById('solo-info').classList.remove('active');
-    selectTradition('ספרדי');
+    selectTradition(localStorage.getItem('m_trad') || 'ספרדי');
     updateIpusColor();
      }
 
@@ -1889,7 +1890,7 @@
     const audioCtx = new (window.AudioContext||window.webkitAudioContext)({ latencyHint: 'interactive' });
     audioCtx.resume().catch(function(){});
     const tofimGain = audioCtx.createGain();
-    const TOFIM_BASE_GAIN = 4.0;
+    const TOFIM_BASE_GAIN = 2.5;
     tofimGain.gain.value = TOFIM_BASE_GAIN;
     window._volFaderTofimGain = tofimGain; window._volFaderTofimBase = TOFIM_BASE_GAIN;
     tofimGain.connect(audioCtx.destination);
@@ -1991,9 +1992,12 @@
     }
     function playTradAudio(k, trad){
       const t = trad || currentTradition;
+      const _cv = localStorage.getItem('m_vL');
+      const _vol = _cv !== null ? +_cv : 0.7;
       const off=(k==='י'&&(t==='מרוקאי'||t==='אשכנזי'))?0.1:0;
       (TRADITION_AUDIO[t]?.[k]||TRADITION_AUDIO['ספרדי']?.[k]||[]).forEach(function(a){
         a.currentTime=off;
+        a.volume=_vol;
         a.play().catch(function(){});
       });
       // הגברת מאריך אשכנזי דרך gain node נפרד
@@ -2111,9 +2115,12 @@
 
       const LS = localStorage;
 
+      // איפוס חד-פעמי לברירות מחדל חדשות (vol_v2)
+      if(!LS.getItem('vol_v2')){ LS.removeItem('m_vR'); LS.removeItem('m_vL'); LS.setItem('vol_v2','1'); }
+
       applyFaderVols = function(vR, vL) {
         if(vR != null){ tofimGain.gain.value = vR * TOFIM_BASE_GAIN; LS.setItem('m_vR', vR); }
-        var cantorVol = (vL != null) ? vL : 1.0;
+        var cantorVol = (vL != null) ? vL : 0.7;
         cantorAudios.forEach(function(a){ a.volume = cantorVol; });
         if(vL != null) LS.setItem('m_vL', vL);
       };
@@ -2133,9 +2140,9 @@
       let nLt  = LS.getItem('m_nLt') || null;
 
       // שחזור ווליום
-      if(LS.getItem('m_vR')!==null) tofimGain.gain.value = +LS.getItem('m_vR')*TOFIM_BASE_GAIN;
+      tofimGain.gain.value = (LS.getItem('m_vR')!==null ? +LS.getItem('m_vR') : 1) * TOFIM_BASE_GAIN;
       const _vL = LS.getItem('m_vL');
-      if(_vL!==null) cantorAudios.forEach(function(a){ a.volume=+_vL; });
+      cantorAudios.forEach(function(a){ a.volume=_vL!==null?+_vL:0.7; });
 
       function saveM(){
         if(fR !==null) LS.setItem('m_fR', fR);
@@ -2262,8 +2269,8 @@
 
           if((st&0xF0)===0xB0){
             const cc=note, val=vel/127;
-            if(cc===tU&&tUt==='cc'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
-            if(cc===tD&&tDt==='cc'){ doReset(); return; }
+            if(cc===tU&&tUt==='cc'){ if(val>0.5){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1); } return; }
+            if(cc===tD&&tDt==='cc'){ if(val>0.5){ doReset(); } return; }
             if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
             if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
@@ -2426,7 +2433,7 @@
   (function(){
     if(location.search.includes('embed')) return;
     var t;
-    function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.setItem('m_vR','1'); localStorage.setItem('m_vL','1'); }
+    function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.removeItem('m_vR'); localStorage.removeItem('m_vL'); }
     function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='אודות.html'; },120000); }
     window._idleReset = reset;
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
@@ -2487,15 +2494,15 @@
               var it=Math.min(1,Math.max(0,(t-(i*0.25))/0.6));
               if(it<=0) continue;
               var eit=eoc(it);
-              var finalY=cy-i*d, startY=cy-H*0.4;
+              var finalY=cy+20-i*d, startY=cy-H*0.4;
               pg.circle(cx, startY+(finalY-startY)*eit, d);
             } break;}
 
           case 'מ':{ // זקף קטן — 3 עיגולים כחולים נפרשים שמאלה
             var d=H*0.18, len=d*2; pg.fill(81,162,221);
             for(var i=0;i<3;i++){
-              var fx=cx-i*len/2;
-              pg.circle(cx+(fx-cx)*et, cy-d/2, d);
+              var fx=cx+35-i*len/2;
+              pg.circle(cx+35+(fx-(cx+35))*et, cy-d/2+15, d);
             } break;}
 
           case 'נ':{ // אתנח — מלבן אדום גדל מלמטה למעלה
