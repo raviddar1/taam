@@ -297,7 +297,6 @@
       alive=false; cancelAnimationFrame(raf);
       ov.classList.add('out');
       setTimeout(function(){ if(ov.parentNode) ov.parentNode.removeChild(ov); },450);
-      if(window._padP5 && window._padP5._restart) window._padP5._restart();
     };
   })();
   </script>
@@ -2468,7 +2467,6 @@
         bc = dark ? [60,60,60] : [190,190,190];
         keys = ['ף','ש','ד','י', 'כ','ח','ג','ע', 'ל','ך','ב','ה', 'נ','מ','צ','ת'];
         startT = pg.millis();
-        pg.noLoop();
       };
 
       pg._restart = function(){
