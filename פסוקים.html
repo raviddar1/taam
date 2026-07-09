@@ -1041,7 +1041,7 @@
       if (n === 13) playVerse013();
       if (n === 14) playVerse014();
       playVerseAudio(n);
-      playVerseDrums(n);
+      if (VERSE_AUDIO[currentTradition] && VERSE_AUDIO[currentTradition][n]) playVerseDrums(n);
     }, 150);
   }
   function cycleTrad(dir) {
@@ -3082,7 +3082,7 @@
       if (n === 15) playVerse015();
       if (n === 16) playVerse016();
       playVerseAudio(n);
-      playVerseDrums(n);
+      if (VERSE_AUDIO[currentTradition] && VERSE_AUDIO[currentTradition][n]) playVerseDrums(n);
     }, 500);
   }
 
