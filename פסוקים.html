@@ -664,12 +664,11 @@
 
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
-      display: none;
+      display: flex;
       position: fixed; bottom: 60px; left: 2vw; z-index: 10;
       font-family: 'TheBasics', sans-serif;
       flex-direction: column; align-items: center; gap: 12px;
     }
-    #tradition-wrap.visible { display: flex; }
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
     #trad-list { display:flex; flex-direction:column; gap:10px; text-align:right; direction:rtl; min-width: max-content; }
     .trad-item { font-size:17px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
