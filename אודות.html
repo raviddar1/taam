@@ -110,7 +110,7 @@
     <div id="standby-text">לחצו על כל כפתור במקלדת כדי להתחיל</div>
   </div>
   <div id="video-wrap">
-    <video id="intro-vid" loop muted playsinline>
+    <video id="intro-vid" loop muted playsinline preload="auto">
       <source src="introWpad3.mp4" type="video/mp4">
     </video>
   </div>
@@ -171,7 +171,10 @@
       if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  unmute(); navPage(-1); return; }
       unmute();
     });
-    window.addEventListener('pageshow', function(){ vid.load(); vid.play().catch(function(){}); });
+    function _tryPlay(){ vid.play().catch(function(){}); }
+    if(vid.readyState >= 3) _tryPlay();
+    else vid.addEventListener('canplay', _tryPlay, {once:true});
+    window.addEventListener('pageshow', function(){ vid.load(); _tryPlay(); });
   </script>
   <script>
   if(navigator.requestMIDIAccess){
