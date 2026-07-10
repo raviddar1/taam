@@ -6,7 +6,7 @@
   <meta name="google" content="notranslate">
   <title>טעמים</title>
   <script>if(location.search.includes('seq')) document.title='נגינה';</script>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+  <script src="p5.min.js"></script>
   <style>
     @font-face {
       font-family: 'TheBasics';
@@ -1939,7 +1939,7 @@
         if(a.readyState>=2) check();
         else { a.addEventListener('loadeddata',check,{once:true}); a.addEventListener('canplay',check,{once:true}); a.addEventListener('canplaythrough',check,{once:true}); a.addEventListener('error',check,{once:true}); }
       });
-      setTimeout(function(){ if(window._hideLoader) window._hideLoader(); },1500);
+      setTimeout(function(){ if(window._hideLoader) window._hideLoader(); },400);
     })();
 
     let audioReady = false;
