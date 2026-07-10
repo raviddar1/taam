@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google" content="notranslate">
-  <link rel="preload" href="the basics/TheBasics-Regular.ttf" as="font" type="font/truetype">
   <title>מידע</title>
   <style>
-    @font-face { font-family: 'TheBasics'; font-display: optional; src: url('the basics/TheBasics-Regular.ttf') format('truetype'); }
-    @font-face { font-family: 'TheBasics'; font-weight: 600; font-display: optional; src: url('the basics/TheBasics-Medium.ttf') format('truetype'); }
+    @font-face { font-family: 'TheBasics'; src: url('the basics/TheBasics-Regular.ttf') format('truetype'); }
+    @font-face { font-family: 'TheBasics'; font-weight: 600; src: url('the basics/TheBasics-Medium.ttf') format('truetype'); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #130F10; font-family: 'TheBasics', sans-serif; }
     .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
@@ -148,7 +147,7 @@
       var st=document.getElementById('standby-text'); if(st) st.style.opacity='1';
       if(typeof _animReset==='function') _animReset();
     }
-    function hideStandby(){ _sb.classList.add('hidden'); document.body.classList.remove('standby-active'); startIdle(); vid.muted=false; if(vid.paused) vid.play().catch(function(){}); }
+    function hideStandby(){ _sb.classList.add('hidden'); document.body.classList.remove('standby-active'); startIdle(); vid.currentTime=0; vid.muted=false; vid.play().catch(function(){}); }
     function isStandby(){ return !_sb.classList.contains('hidden'); }
     function startIdle(){ clearTimeout(_idleTimer); _idleTimer = setTimeout(showStandby, 120000); }
     ['mousemove','mousedown','touchstart','wheel'].forEach(function(ev){
