@@ -286,7 +286,7 @@
   // MIDI ניווט
   const _spNAV = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
   const _spIDX = 0;
-  function navPage(dir){ setTimeout(function(){ window.location.href = _spNAV[(_spIDX + dir + _spNAV.length) % _spNAV.length]; }, 500); }
+  function navPage(dir){ window.location.href = _spNAV[(_spIDX + dir + _spNAV.length) % _spNAV.length]; }
   document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
   document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
   if(navigator.requestMIDIAccess){

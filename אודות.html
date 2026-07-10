@@ -160,7 +160,7 @@
       var el = document.getElementById(id); if(!el) return;
       el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
     }
-    function navPage(dir){ setTimeout(function(){ window.location.href = _NAV_PAGES[(_NAV_CUR + dir + _NAV_PAGES.length) % _NAV_PAGES.length]; }, 500); }
+    function navPage(dir){ window.location.href = _NAV_PAGES[(_NAV_CUR + dir + _NAV_PAGES.length) % _NAV_PAGES.length]; }
     vid.addEventListener('click', unmute);
     document.addEventListener('keydown', function(e){
       if(isStandby()){
