@@ -2095,6 +2095,21 @@
       doKey(e.key);
     });
 
+  // ---- ניווט עמודים ----
+  (function(){
+    const _NP = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+    const _NI = location.search.includes('seq') ? 1 : 3;
+    window._taamNavPage = function(dir){
+      const dest = _NP[(_NI + dir + _NP.length) % _NP.length];
+      if(dest === 'ספריה.html' && typeof seqShapes !== 'undefined' && seqShapes.length > 0 && typeof doScreenshotAndNavigate === 'function'){
+        doScreenshotAndNavigate(); return;
+      }
+      window.location.href = dest;
+    };
+    document.getElementById('pnav-next').addEventListener('click', function(){ window._taamNavPage(-1); });
+    document.getElementById('pnav-prev').addEventListener('click', function(){ window._taamNavPage(1); });
+  })();
+
   // ---- MIDI ----
     if(navigator.requestMIDIAccess){
       const NOTE_KEY = {
@@ -2228,17 +2243,8 @@
 
       const NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
       const CURRENT_PAGE_IDX = location.search.includes('seq') ? 1 : 3;
-      document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
-      document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
       let _nRprev=false, _nLprev=false;
-      function navPage(dir){
-        const dest = NAV_PAGES[(CURRENT_PAGE_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length];
-        if(dest === 'ספריה.html' && seqShapes.length > 0){
-          doScreenshotAndNavigate();
-          return;
-        }
-        window.location.href = dest;
-      }
+      function navPage(dir){ window._taamNavPage(dir); }
 
       function onMidiMsg(msg){
         if (document.hidden) return;

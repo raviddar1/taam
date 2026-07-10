@@ -284,6 +284,11 @@
   });
 
   // MIDI ניווט
+  const _spNAV = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+  const _spIDX = 0;
+  function navPage(dir){ setTimeout(function(){ window.location.href = _spNAV[(_spIDX + dir + _spNAV.length) % _spNAV.length]; }, 500); }
+  document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
+  document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
   if(navigator.requestMIDIAccess){
     const LS = localStorage;
     const nR  = LS.getItem('m_nR')  !== null ? +LS.getItem('m_nR')  : null;
@@ -291,12 +296,9 @@
     const nL  = LS.getItem('m_nL')  !== null ? +LS.getItem('m_nL')  : null;
     const nLt = LS.getItem('m_nLt') || null;
     const kR  = LS.getItem('m_kR')  !== null ? +LS.getItem('m_kR')  : null;
-    const NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+    const NAV_PAGES = _spNAV;
     const CURRENT_IDX = 0;
-    document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
-    document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
     let _nRprev=false, _nLprev=false;
-    function navPage(dir){ setTimeout(function(){ window.location.href = NAV_PAGES[(CURRENT_IDX + dir + NAV_PAGES.length) % NAV_PAGES.length]; }, 500); }
     function onMidiMsg(msg){
       if(typeof _idleReset==='function') _idleReset();
       const [st,note,vel]=msg.data;
