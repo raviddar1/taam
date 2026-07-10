@@ -749,7 +749,7 @@
   const SEQ_STEP = 90;
   let seqShapes = [];   // { key, placedAt, lastLoop }
   let scrollPos = 0;
-  const SCROLL_SPEED = 1.5;
+  const SCROLL_SPEED = 2.0;
   let seqCurrentX = {}; // מיקום x של הצורה שמתנגנת כרגע
   let seqLastTriggered = {}; // shape object שהפעיל אנימציה אחרון לכל מקש
   let keyProps = {};     // { key: {sz, str} } — ערכי גלגלת per-key
@@ -1083,6 +1083,8 @@
           const sly = ly*SEQ_SF + p.height*(1-SEQ_SF)/2;
           p.line(0, sly, p.width, sly);
         }
+        const _slyFirst = getStaffLines(p.height)[0]*SEQ_SF + p.height*(1-SEQ_SF)/2;
+        p.line(p.width/2, _slyFirst - p.height*0.018, p.width/2, _slyFirst);
         p.push();
         p.translate(p.width*(1-SEQ_SF)/2, p.height*(1-SEQ_SF)/2);
         p.scale(SEQ_SF);
