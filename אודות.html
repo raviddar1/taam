@@ -147,7 +147,12 @@
       var st=document.getElementById('standby-text'); if(st) st.style.opacity='1';
       if(typeof _animReset==='function') _animReset();
     }
-    function hideStandby(){ _sb.classList.add('hidden'); document.body.classList.remove('standby-active'); startIdle(); vid.currentTime=0; vid.muted=false; vid.play().catch(function(){}); }
+    function hideStandby(){
+      _sb.classList.add('hidden'); document.body.classList.remove('standby-active'); startIdle();
+      vid.currentTime=0;
+      if(!vid.paused){ vid.muted=false; }
+      else { vid.play().then(function(){ vid.muted=false; }).catch(function(){}); }
+    }
     function isStandby(){ return !_sb.classList.contains('hidden'); }
     function startIdle(){ clearTimeout(_idleTimer); _idleTimer = setTimeout(showStandby, 120000); }
     ['mousemove','mousedown','touchstart','wheel'].forEach(function(ev){
