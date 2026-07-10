@@ -291,10 +291,10 @@
   document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
   if(navigator.requestMIDIAccess){
     const LS = localStorage;
-    const nR  = LS.getItem('m_nR')  !== null ? +LS.getItem('m_nR')  : null;
-    const nRt = LS.getItem('m_nRt') || null;
-    const nL  = LS.getItem('m_nL')  !== null ? +LS.getItem('m_nL')  : null;
-    const nLt = LS.getItem('m_nLt') || null;
+    const nR  = LS.getItem('m_nR')  !== null ? +LS.getItem('m_nR')  : 26;
+    const nRt = LS.getItem('m_nRt') || 'cc';
+    const nL  = LS.getItem('m_nL')  !== null ? +LS.getItem('m_nL')  : 27;
+    const nLt = LS.getItem('m_nLt') || 'cc';
     const kR  = LS.getItem('m_kR')  !== null ? +LS.getItem('m_kR')  : null;
     const NAV_PAGES = _spNAV;
     const CURRENT_IDX = 0;

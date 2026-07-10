@@ -181,10 +181,10 @@
   document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
   if(navigator.requestMIDIAccess){
     const _LS  = localStorage;
-    const _nR  = _LS.getItem('m_nR') !== null ? +_LS.getItem('m_nR') : null;
-    const _nRt = _LS.getItem('m_nRt') || null;
-    const _nL  = _LS.getItem('m_nL') !== null ? +_LS.getItem('m_nL') : null;
-    const _nLt = _LS.getItem('m_nLt') || null;
+    const _nR  = _LS.getItem('m_nR') !== null ? +_LS.getItem('m_nR') : 26;
+    const _nRt = _LS.getItem('m_nRt') || 'cc';
+    const _nL  = _LS.getItem('m_nL') !== null ? +_LS.getItem('m_nL') : 27;
+    const _nLt = _LS.getItem('m_nLt') || 'cc';
     const _kR  = _LS.getItem('m_kR') !== null ? +_LS.getItem('m_kR') : null;
     let _nRprev=false, _nLprev=false;
     function _setDark(on){ document.body.classList.toggle('dark',on); sessionStorage.setItem('darkMode',on?'1':'0'); }

@@ -2155,10 +2155,10 @@
       let tUt  = LS.getItem('m_tUt') || 'cc';
       let tD   = LS.getItem('m_tD')  !== null ? +LS.getItem('m_tD')  : 62;  // למטה — CC 62
       let tDt  = LS.getItem('m_tDt') || 'cc';
-      let nR   = LS.getItem('m_nR')  !== null ? +LS.getItem('m_nR')  : null; // ימינה (עמוד הבא)
-      let nRt  = LS.getItem('m_nRt') || null;
-      let nL   = LS.getItem('m_nL')  !== null ? +LS.getItem('m_nL')  : null; // שמאלה (עמוד הקודם)
-      let nLt  = LS.getItem('m_nLt') || null;
+      let nR   = LS.getItem('m_nR')  !== null ? +LS.getItem('m_nR')  : 26;
+      let nRt  = LS.getItem('m_nRt') || 'cc';
+      let nL   = LS.getItem('m_nL')  !== null ? +LS.getItem('m_nL')  : 27;
+      let nLt  = LS.getItem('m_nLt') || 'cc';
 
       // שחזור ווליום
       tofimGain.gain.value = (LS.getItem('m_vR')!==null ? +LS.getItem('m_vR') : 1) * TOFIM_BASE_GAIN;
@@ -2316,6 +2316,7 @@
 
       navigator.requestMIDIAccess({sysex:false}).then(function(midi){
         midiAccess=midi;
+        audioCtx.resume().catch(function(){});
         attachMidiInputs(midi);
         updateMidiStatus();
         setTimeout(setPadColors,600);
