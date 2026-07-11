@@ -94,12 +94,12 @@
 <body>
   <script>if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark');</script>
   <nav class="navbar">
-    <button class="page-nav-btn" id="pnav-next" onclick="navPage(-1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
+    <button class="page-nav-btn" id="pnav-next" onclick="navPage(1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
     <a href="taamim.html" class="nav-link nav-taamim">טעמים</a>
     <a href="psukkim.html" class="nav-link nav-psukkim">פסוקים</a>
     <a href="taamim.html?seq" class="nav-link nav-rzf">נגינה</a>
     <a href="library.html" class="nav-link nav-info">גלריה</a>
-    <button class="page-nav-btn" id="pnav-prev" onclick="navPage(1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
+    <button class="page-nav-btn" id="pnav-prev" onclick="navPage(-1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
     <a href="about.html" class="nav-link nav-aodot active"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
   </nav>
   <div id="page-nav"></div>
@@ -182,8 +182,8 @@
     window.addEventListener('pageshow', function(){ vid.load(); _tryPlay(); });
   </script>
   <script>
-  document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
-  document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
+  document.getElementById('pnav-next').addEventListener('click', function(){ navPage(1); });
+  document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(-1); });
   if(navigator.requestMIDIAccess){
     const _LS  = localStorage;
     const _nR  = _LS.getItem('m_nR') !== null ? +_LS.getItem('m_nR') : 26;
@@ -199,13 +199,13 @@
       if(isStandby()){ hideStandby(); return; }
       if((st&0xF0)===0x90&&vel>0){
         unmute();
-        if(note===_nR&&_nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); return; }
-        if(note===_nL&&_nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  return; }
+        if(note===_nR&&_nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1); return; }
+        if(note===_nL&&_nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); return; }
       }
       if((st&0xF0)===0xB0){
         const val=vel/127;
-        if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(-1); } _nRprev=on; return; }
-        if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(1);  } _nLprev=on; return; }
+        if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1); } _nRprev=on; return; }
+        if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); } _nLprev=on; return; }
         if(_kR!==null && note===_kR){ _setDark(val>0); return; }
       }
     }
