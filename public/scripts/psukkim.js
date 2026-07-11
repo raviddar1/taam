@@ -2369,15 +2369,16 @@ setTimeout(function(){
     var _pendingPskL = null, _pendingPskR = null;
     window._pskFaderSetL = function(v){ _pendingPskL = v; };
     window._pskFaderSetR = function(v){ _pendingPskR = v; };
-    document.addEventListener('DOMContentLoaded', function(){
-      selectTradition(currentTradition);
+    // afterInteractive: DOM already ready, run immediately
+    selectTradition(currentTradition);
+    (function(){
       var thumbL2 = document.getElementById('psuk-thumb-L');
       var thumbR2 = document.getElementById('psuk-thumb-R');
       window._pskFaderSetL = function(v){ thumbL2.style.top = volToTop(v)+'px'; };
       window._pskFaderSetR = function(v){ thumbR2.style.top = volToTop(v)+'px'; };
       if(_pendingPskL !== null) window._pskFaderSetL(_pendingPskL);
       if(_pendingPskR !== null) window._pskFaderSetR(_pendingPskR);
-    });
+    })();
     var thumbL = document.getElementById('psuk-thumb-L');
     var thumbR = document.getElementById('psuk-thumb-R');
 

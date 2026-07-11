@@ -2346,7 +2346,8 @@ setTimeout(function(){
     window._volFaderSetL = function(v){ _pendingFaderL = v; };
     window._volFaderSetR = function(v){ _pendingFaderR = v; };
 
-    document.addEventListener('DOMContentLoaded', function(){
+    // afterInteractive: DOM already ready, run immediately
+    (function(){
       var thumbL = document.getElementById('thumb-L');
       var thumbR = document.getElementById('thumb-R');
       window._volFaderSetL = function(v){ thumbL.style.top = volToTop(v)+'px'; };
@@ -2361,5 +2362,5 @@ setTimeout(function(){
         document.getElementById('fader-R'), thumbR, 'm_vL',
         function(v){ localStorage.setItem('m_vL',v); if(window._volFaderCantorAudios) window._volFaderCantorAudios.forEach(function(a){ a.volume=v; }); }
       );
-    });
+    })();
   })();
