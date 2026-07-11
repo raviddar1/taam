@@ -98,7 +98,15 @@ export default function AboutPage() {
         </video>
       </div>
 
-      <Script src="/scripts/about.js" strategy="afterInteractive" />
+      <Script
+        src="/p5.min.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          const s = document.createElement('script')
+          s.src = '/scripts/about.js'
+          document.body.appendChild(s)
+        }}
+      />
     </>
   )
 }

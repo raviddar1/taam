@@ -7,19 +7,10 @@ const AUDIO_PATH = {
   'אשכנזי':{'צ':'ashkenazi/zakef-gadol.mp4','מ':'ashkenazi/zakef-katan.mp4','נ':'ashkenazi/etnachta.mp4','ה':'ashkenazi/sof-pasuk.mp4','ב':'ashkenazi/shnei-gershayim.mp4','ת':'ashkenazi/tavir.mp4','ך':'ashkenazi/azla.mp4','ל':'ashkenazi/shofar-mehupach.mp4','ח':'ashkenazi/ravia.mp4','ע':'ashkenazi/tarcha.mp4','כ':'ashkenazi/zarqa.mp4','ג':'ashkenazi/shofar-holech.mp4','י':'ashkenazi/yativ.mp4','ש':'ashkenazi/terei-kadmin.mp4','ף':'ashkenazi/marich.mp3','ד':'ashkenazi/darga.mp4'},
 };
 
-// ---- מסך טעינה ----
+// ---- מסך טעינה — מסיר מיד, iframe נטען לזית ----
 (function(){
   var ld = document.getElementById('gallery-loading');
-  var _hidden = false;
-  function hideLoading(){
-    if(_hidden) return; _hidden = true;
-    ld.classList.add('out');
-    setTimeout(function(){ ld.style.display='none'; }, 450);
-  }
-  window.addEventListener('message', function(e){
-    if(e.data && e.data.type === 'iframeReady') hideLoading();
-  });
-  setTimeout(hideLoading, 5000);
+  if(ld){ ld.classList.add('out'); setTimeout(function(){ ld.style.display='none'; },450); }
 })();
 
 // ---- אוברליי ----
@@ -27,12 +18,23 @@ let _activePadEl = null;
 let _activeSlot = -1;
 let _pageDark = false;
 let _closeCooldown = false;
+let _iframeLoaded = false;
 
-// טעינת iframe ברקע מיידית
-(function(){
+function _ensureIframe(cb){
+  const frame = document.getElementById('melody-frame');
+  if(_iframeLoaded){ if(cb) cb(); return; }
+  _iframeLoaded = true;
   const dark = sessionStorage.getItem('darkMode')==='1' ? '&light=0' : '&light=1';
-  document.getElementById('melody-frame').src = '/taamim?seq&embed' + dark;
-})();
+  frame.src = '/taamim?seq&embed' + dark;
+  // המתן לאתחול ה-iframe
+  window.addEventListener('message', function onReady(e){
+    if(e.data && e.data.type === 'iframeReady'){
+      window.removeEventListener('message', onReady);
+      if(cb) cb();
+    }
+  });
+  setTimeout(function(){ if(cb) cb(); }, 4000); // fallback
+}
 
 function closeMelody() {
   if(_activeSlot === -1) return;
@@ -91,10 +93,10 @@ function openMelody(padSlot) {
     const frame = document.getElementById('melody-frame');
     setTimeout(function(){
       if(frame.contentWindow) frame.contentWindow.postMessage({type:'stopMelody'}, '*');
-      doOpen();
+      _ensureIframe(doOpen);
     }, 320);
   } else {
-    doOpen();
+    _ensureIframe(doOpen);
   }
 }
 

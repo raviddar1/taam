@@ -1,26 +1,31 @@
 @font-face {
   font-family: 'TheBasics';
   font-weight: 400;
+  font-display: swap;
   src: url('/the-basics/TheBasics-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'TheBasics';
   font-weight: 600;
+  font-display: swap;
   src: url('/the-basics/TheBasics-Medium.ttf') format('truetype');
 }
 @font-face {
   font-family: 'TheBasics';
   font-weight: 300;
+  font-display: swap;
   src: url('/the-basics/TheBasics-Light.ttf') format('truetype');
 }
 @font-face {
   font-family: 'BuGlobal';
   font-weight: 400;
+  font-display: swap;
   src: url('/global/buGlobal1.0-Regular.otf') format('opentype');
 }
 @font-face {
   font-family: 'BuGlobal';
   font-weight: 300;
+  font-display: swap;
   src: url('/global/buGlobal1.0-Light.otf') format('opentype');
 }
 

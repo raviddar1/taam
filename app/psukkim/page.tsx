@@ -13,36 +13,6 @@ export default function PsukkimPage() {
   return (
     <>
       <style>{`
-@font-face {
-      font-family: 'TheBasics';
-      font-weight: 400;
-      
-      src: url('/the-basics/TheBasics-Regular.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'TheBasics';
-      font-weight: 300;
-      
-      src: url('/the-basics/TheBasics-Light.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'TheBasics';
-      font-weight: 600;
-      
-      src: url('/the-basics/TheBasics-Medium.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'BuGlobal';
-      font-weight: 400;
-      
-      src: url('/global/buGlobal1.0-Regular.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'BuGlobal';
-      font-weight: 300;
-      
-      src: url('/global/buGlobal1.0-Light.otf') format('opentype');
-    }
 * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #ffffff; font-family: 'TheBasics', sans-serif; }
 
@@ -1012,7 +982,15 @@ export default function PsukkimPage() {
     </div>
   </div>
 
-      <Script src="/scripts/psukkim.js" strategy="afterInteractive" />
+      <Script
+        src="/p5.min.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          const s = document.createElement('script')
+          s.src = '/scripts/psukkim.js'
+          document.body.appendChild(s)
+        }}
+      />
     </>
   )
 }

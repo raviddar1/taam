@@ -13,24 +13,6 @@ export default function TaanimPage() {
   return (
     <>
       <style>{`
-@font-face {
-      font-family: 'TheBasics';
-      font-weight: 400;
-      
-      src: url('/the-basics/TheBasics-Regular.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'TheBasics';
-      font-weight: 600;
-      
-      src: url('/the-basics/TheBasics-Medium.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'TheBasics';
-      font-weight: 300;
-      
-      src: url('/the-basics/TheBasics-Light.ttf') format('truetype');
-    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fff; font-family: 'TheBasics', sans-serif; }
     /* ---- נאב-בר ---- */
@@ -336,7 +318,15 @@ export default function TaanimPage() {
 
 
 
-      <Script src="/scripts/taamim.js" strategy="afterInteractive" />
+      <Script
+        src="/p5.min.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          const s = document.createElement('script')
+          s.src = '/scripts/taamim.js'
+          document.body.appendChild(s)
+        }}
+      />
     </>
   )
 }
