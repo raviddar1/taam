@@ -1859,10 +1859,17 @@
       if(!LS.getItem('vol_v2')){ LS.removeItem('m_vR'); LS.removeItem('m_vL'); LS.setItem('vol_v2','1'); }
 
       applyFaderVols = function(vR, vL) {
-        if(vR != null){ tofimGain.gain.value = vR * TOFIM_BASE_GAIN; LS.setItem('m_vR', vR); }
+        if(vR != null){
+          tofimGain.gain.value = vR * TOFIM_BASE_GAIN;
+          LS.setItem('m_vR', vR);
+          if(window._volFaderSetL) window._volFaderSetL(vR);
+        }
         var cantorVol = (vL != null) ? vL : 0.7;
         cantorAudios.forEach(function(a){ a.volume = cantorVol; });
-        if(vL != null) LS.setItem('m_vL', vL);
+        if(vL != null){
+          LS.setItem('m_vL', vL);
+          if(window._volFaderSetR) window._volFaderSetR(vL);
+        }
       };
 
       // ---- ערכים שמורים ----
@@ -2350,6 +2357,7 @@ setTimeout(function(){
     function initFader(faderEl, thumbEl, lsKey, onUpdate){
       var v = localStorage.getItem(lsKey) !== null ? +localStorage.getItem(lsKey) : 1;
       thumbEl.style.top = volToTop(v)+'px';
+      onUpdate(v); // סנכרן אודיו לערך השמור מיד בטעינה
 
       var dragging=false, startY=0, startTop=0;
       function getTop(){ return parseFloat(thumbEl.style.top)||0; }
