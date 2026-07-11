@@ -1615,18 +1615,11 @@
                        audioTariKadminSfaradi,audioTariKadminAshk,audioTariKadminMar,audioTariKadminTofim,
                        audioMarichSfaradi,audioMarichAshk,audioMarichMar,audioMarichTofim,
                        audioDargaSfaradi,audioDargaAshk,audioDargaMar,audioDargaTofim];
-    allAudios.forEach(function(a){ a.preload='auto'; });
+    allAudios.forEach(function(a){ a.preload='none'; });
 
-    // הסתרת אוברליי טעינה כשכל האודיו מוכן
+    // אודיו לא נטען מראש — מסיר אוברליי מיד אחרי אתחול
     (function(){
-      var n=0, total=allAudios.length;
-      allAudios.forEach(function(a){
-        var done=false;
-        function check(){ if(!done){ done=true; if(++n>=total&&window._hideLoader) window._hideLoader(); } }
-        if(a.readyState>=2) check();
-        else { a.addEventListener('loadeddata',check,{once:true}); a.addEventListener('canplay',check,{once:true}); a.addEventListener('canplaythrough',check,{once:true}); a.addEventListener('error',check,{once:true}); }
-      });
-      setTimeout(function(){ if(window._hideLoader) window._hideLoader(); },400);
+      setTimeout(function(){ if(window._hideLoader) window._hideLoader(); }, 100);
     })();
 
     let audioReady = false;

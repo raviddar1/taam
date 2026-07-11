@@ -12,6 +12,8 @@ export default function TaanimPage() {
 
   return (
     <>
+      {/* preload page script so it downloads in parallel with p5.min.js */}
+      <link rel="preload" href="/scripts/taamim.js" as="script" />
       <style>{`
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fff; font-family: 'TheBasics', sans-serif; }
