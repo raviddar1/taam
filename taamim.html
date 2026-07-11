@@ -153,6 +153,15 @@
       position: absolute; bottom: -2px; left: 57px;
     }
     #ipus-btn:hover, #ipus-btn.seq-active { color: #343434; border-color: #343434; }
+    #trad-learn-btn {
+      background: none; border: 0.5px solid #ccc; border-radius: 16px; cursor: pointer; padding: 4px 14px;
+      font-family: 'TheBasics', sans-serif; font-size: 17px; color: #aaa;
+      pointer-events: all; transition: color 0.15s, border-color 0.15s;
+      position: absolute; bottom: -2px; left: 130px;
+    }
+    #trad-learn-btn:hover, #trad-learn-btn.learning { color: #FF179C; border-color: #FF179C; }
+    body.dark #trad-learn-btn { color: #555; border-color: #555; }
+    body.dark #trad-learn-btn.learning { color: #FF179C; border-color: #FF179C; }
 
     /* ---- מצב embed ---- */
     body.embed .navbar,
@@ -361,6 +370,7 @@
   <!-- בוחר מסורת -->
   <div id="tradition-wrap">
     <button id="ipus-btn">נקה</button>
+    <button id="trad-learn-btn">הגדר MIDI</button>
     <div id="trad-col">
       <div id="trad-list">
         <div class="trad-item" data-trad="מרוקאי">מרוקאי</div>
