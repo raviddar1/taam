@@ -7,6 +7,7 @@
     }
     var ov  = document.getElementById('loading-overlay');
     var cvs = document.getElementById('loading-canvas');
+    if(!ov||!cvs){ window._hideLoader=function(){}; return; }
     if(sessionStorage.getItem('darkMode')==='1') ov.classList.add('dark');
     var ctx = cvs.getContext('2d');
     var W=200, H=70, PERIOD=1400, CX=W*0.5, CY=H*0.5;
@@ -2346,10 +2347,11 @@ setTimeout(function(){
     window._volFaderSetL = function(v){ _pendingFaderL = v; };
     window._volFaderSetR = function(v){ _pendingFaderR = v; };
 
-    // afterInteractive: DOM already ready, run immediately
-    (function(){
+    // afterInteractive: defer slightly so React has finished painting
+    function _initFaders(){
       var thumbL = document.getElementById('thumb-L');
       var thumbR = document.getElementById('thumb-R');
+      if(!thumbL||!thumbR) return;
       window._volFaderSetL = function(v){ thumbL.style.top = volToTop(v)+'px'; };
       window._volFaderSetR = function(v){ thumbR.style.top = volToTop(v)+'px'; };
       if(_pendingFaderL !== null) window._volFaderSetL(_pendingFaderL);
@@ -2362,5 +2364,7 @@ setTimeout(function(){
         document.getElementById('fader-R'), thumbR, 'm_vL',
         function(v){ localStorage.setItem('m_vL',v); if(window._volFaderCantorAudios) window._volFaderCantorAudios.forEach(function(a){ a.volume=v; }); }
       );
-    })();
+    }
+    _initFaders();
+    if(!document.getElementById('thumb-L')) setTimeout(_initFaders, 200);
   })();

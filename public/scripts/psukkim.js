@@ -2369,25 +2369,32 @@ setTimeout(function(){
     var _pendingPskL = null, _pendingPskR = null;
     window._pskFaderSetL = function(v){ _pendingPskL = v; };
     window._pskFaderSetR = function(v){ _pendingPskR = v; };
-    // afterInteractive: DOM already ready, run immediately
     selectTradition(currentTradition);
-    (function(){
+    function _initPskFaders(){
       var thumbL2 = document.getElementById('psuk-thumb-L');
       var thumbR2 = document.getElementById('psuk-thumb-R');
+      if(!thumbL2||!thumbR2) return;
       window._pskFaderSetL = function(v){ thumbL2.style.top = volToTop(v)+'px'; };
       window._pskFaderSetR = function(v){ thumbR2.style.top = volToTop(v)+'px'; };
       if(_pendingPskL !== null) window._pskFaderSetL(_pendingPskL);
       if(_pendingPskR !== null) window._pskFaderSetR(_pendingPskR);
-    })();
+    }
+    _initPskFaders();
+    if(!document.getElementById('psuk-thumb-L')) setTimeout(_initPskFaders, 200);
     var thumbL = document.getElementById('psuk-thumb-L');
     var thumbR = document.getElementById('psuk-thumb-R');
-
-    initFader(
-      document.getElementById('psuk-fader-L'), thumbL, 'm_vR',
-      function(v){ localStorage.setItem('m_vR',v); }
-    );
-    initFader(
-      document.getElementById('psuk-fader-R'), thumbR, 'm_vL',
-      function(v){ localStorage.setItem('m_vL',v); if(window._verseAudioRef) window._verseAudioRef.volume=v; }
-    );
+    if(!thumbL||!thumbR){ setTimeout(function(){
+      var tL=document.getElementById('psuk-thumb-L'), tR=document.getElementById('psuk-thumb-R');
+      if(tL&&tR){ initFader(document.getElementById('psuk-fader-L'),tL,'m_vR',function(v){localStorage.setItem('m_vR',v);}); initFader(document.getElementById('psuk-fader-R'),tR,'m_vL',function(v){localStorage.setItem('m_vL',v);if(window._verseAudioRef)window._verseAudioRef.volume=v;}); }
+    },200); }
+    if(thumbL&&thumbR){
+      initFader(
+        document.getElementById('psuk-fader-L'), thumbL, 'm_vR',
+        function(v){ localStorage.setItem('m_vR',v); }
+      );
+      initFader(
+        document.getElementById('psuk-fader-R'), thumbR, 'm_vL',
+        function(v){ localStorage.setItem('m_vL',v); if(window._verseAudioRef) window._verseAudioRef.volume=v; }
+      );
+    }
   })();
