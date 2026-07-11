@@ -4,4 +4,5 @@
 start.command
 node_modules/
 .next/
+migrate-midi.html
 
