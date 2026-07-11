@@ -698,16 +698,6 @@
   </div>
   <div id="psuk-hint">[בחרו פסוק במקלדת, החליפו נוסחים בחיצים]</div>
 
-  <div id="tradition-wrap" style="display:none">
-    <div id="trad-col">
-      <div id="trad-list">
-        <div class="trad-item" data-trad="מרוקאי">מרוקאי</div>
-        <div class="trad-item active" data-trad="ספרדי">ספרדי</div>
-        <div class="trad-item" data-trad="אשכנזי">אשכנזי</div>
-      </div>
-      <button class="trad-arrow" id="trad-down"><svg width="15" height="9" viewBox="0 0 15 9" fill="none"><polyline points="1.5,1.5 7.5,7.5 13.5,1.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    </div>
-  </div>
 
   <a id="back-btn" href="index.html">→</a>
   <div id="bg" onclick="closeItem()"></div>
@@ -1054,10 +1044,26 @@
     const next = (i + dir + TRADITION_ORDER.length) % TRADITION_ORDER.length;
     selectTradition(TRADITION_ORDER[next]);
   }
-  document.querySelectorAll('#trad-list .trad-item').forEach(function(el){
-    el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
-  });
-  document.getElementById('trad-down').addEventListener('click', function(){ cycleTrad(1); });
+  function createTraditionWrap() {
+    if (document.getElementById('tradition-wrap')) return;
+    var wrap = document.createElement('div');
+    wrap.id = 'tradition-wrap';
+    wrap.innerHTML = '<div id="trad-col"><div id="trad-list">' +
+      '<div class="trad-item" data-trad="מרוקאי">מרוקאי</div>' +
+      '<div class="trad-item" data-trad="ספרדי">ספרדי</div>' +
+      '<div class="trad-item" data-trad="אשכנזי">אשכנזי</div>' +
+      '</div><button class="trad-arrow" id="trad-down"><svg width="15" height="9" viewBox="0 0 15 9" fill="none"><polyline points="1.5,1.5 7.5,7.5 13.5,1.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button></div>';
+    document.body.appendChild(wrap);
+    wrap.querySelectorAll('.trad-item').forEach(function(el){
+      el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
+    });
+    wrap.querySelector('#trad-down').addEventListener('click', function(){ cycleTrad(1); });
+    selectTradition(currentTradition);
+  }
+  function removeTraditionWrap() {
+    var el = document.getElementById('tradition-wrap');
+    if (el) el.parentNode.removeChild(el);
+  }
 
   // ---- תופים פסוקים (רצף קשיח) ----
   const _shofarHolechMar = new Audio('morocai/shofar-holech.mp3');
@@ -3019,7 +3025,7 @@
     const others = ALL_ITEMS.filter(i => i !== n);
 
     document.getElementById('bg').classList.add('active');
-    document.getElementById('tradition-wrap').style.display = 'flex';
+    createTraditionWrap();
     document.getElementById('psuk-hint').classList.add('hidden');
     el.classList.add('open');
     _applyPskScale();
@@ -3115,7 +3121,7 @@
     _coEl.style.removeProperty('transform');
     _pskSz = 1.0;
     document.getElementById('bg').classList.remove('active');
-    document.getElementById('tradition-wrap').style.display = 'none';
+    removeTraditionWrap();
     document.getElementById('psuk-hint').classList.remove('hidden');
     stopVerseAudio();
     stopVerseDrums();
