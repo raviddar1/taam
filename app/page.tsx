@@ -59,6 +59,14 @@ export default function AboutPage() {
         }
         .nav-aodot .logo-dark { display: block; }
         .nav-aodot .logo-light { display: none; }
+        #midi-permission-btn {
+          display: none;
+          position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+          z-index: 600; background: none; border: 1px solid #FF179C;
+          color: #FF179C; font-family: 'TheBasics', sans-serif; font-size: 15px;
+          padding: 7px 22px; border-radius: 50px; cursor: pointer;
+          animation: _afu 1.5s ease-in-out infinite;
+        }
       `}</style>
 
       <nav className="navbar">
@@ -81,6 +89,8 @@ export default function AboutPage() {
         <div id="taam-strip"></div>
         <div id="standby-text">לחצו על כל כפתור במקלדת כדי להתחיל</div>
       </div>
+
+      <button id="midi-permission-btn">אפשר MIDI ▸</button>
 
       <div id="video-wrap">
         <video id="intro-vid" loop muted playsInline preload="auto">

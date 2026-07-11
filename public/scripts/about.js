@@ -68,6 +68,32 @@ window.addEventListener('pageshow', function(){ vid.load(); _tryPlay(); });
 
 document.getElementById('pnav-next').addEventListener('click', function(){ navPage(1); });
 document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(-1); });
+
+// ---- בקשת הרשאת MIDI על HTTPS ----
+(function(){
+  if(!navigator.requestMIDIAccess) return;
+  var btn = document.getElementById('midi-permission-btn');
+  function requestMidi(){
+    navigator.requestMIDIAccess({sysex:false}).then(function(){
+      if(btn) btn.style.display='none';
+    }).catch(function(){
+      if(btn){ btn.style.display='block'; btn.textContent='MIDI נחסם — לחץ לניסיון חוזר'; }
+    });
+  }
+  // נסה אוטומטית (עובד אחרי שהמשתמש כבר אישר פעם)
+  requestMidi();
+  if(btn) btn.addEventListener('click', requestMidi);
+  // הצג כפתור אם אחרי 2 שניות עדיין לא קיבלנו גישה
+  setTimeout(function(){
+    if(!navigator.requestMIDIAccess) return;
+    // בדוק אם ניתן לגשת בלי popup (כלומר כבר אושר)
+    navigator.permissions && navigator.permissions.query({name:'midi',sysex:false}).then(function(perm){
+      if(perm.state==='prompt' && btn) btn.style.display='block';
+      if(perm.state==='denied' && btn){ btn.style.display='block'; btn.textContent='MIDI נחסם — אפשר ב-Chrome → נעילה'; }
+    }).catch(function(){});
+  }, 1500);
+})();
+
 if(navigator.requestMIDIAccess){
   const _LS  = localStorage;
   const _nR  = _LS.getItem('m_nR') !== null ? +_LS.getItem('m_nR') : 26;
