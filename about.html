@@ -95,17 +95,17 @@
   <script>if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark');</script>
   <nav class="navbar">
     <button class="page-nav-btn" id="pnav-next" onclick="navPage(-1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="טעמים.html" class="nav-link nav-taamim">טעמים</a>
-    <a href="פסוקים.html" class="nav-link nav-psukkim">פסוקים</a>
-    <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
-    <a href="ספריה.html" class="nav-link nav-info">גלריה</a>
+    <a href="taamim.html" class="nav-link nav-taamim">טעמים</a>
+    <a href="psukkim.html" class="nav-link nav-psukkim">פסוקים</a>
+    <a href="taamim.html?seq" class="nav-link nav-rzf">נגינה</a>
+    <a href="library.html" class="nav-link nav-info">גלריה</a>
     <button class="page-nav-btn" id="pnav-prev" onclick="navPage(1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="אודות.html" class="nav-link nav-aodot active"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
+    <a href="about.html" class="nav-link nav-aodot active"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
   </nav>
   <div id="page-nav"></div>
   <div id="standby">
     <img id="logo-reveal" src="logomid.png" alt="" class="logo-light-mode">
-    <img id="logo-reveal-dark" src="logomid dark.png" alt="" class="logo-dark-mode">
+    <img id="logo-reveal-dark" src="logomid-dark.png" alt="" class="logo-dark-mode">
     <div id="taam-strip"></div>
     <div id="standby-text">לחצו על כל כפתור במקלדת כדי להתחיל</div>
   </div>
@@ -159,8 +159,8 @@
       document.addEventListener(ev, function(){ if(!isStandby()) startIdle(); }, {passive:true});
     });
 
-    var _NAV_PAGES = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
-    var _NAV_CUR = _NAV_PAGES.indexOf('אודות.html');
+    var _NAV_PAGES = ['library.html','taamim.html?seq','psukkim.html','taamim.html','about.html'];
+    var _NAV_CUR = _NAV_PAGES.indexOf('about.html');
     function flashArrow(id, cls) {
       var el = document.getElementById(id); if(!el) return;
       el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
@@ -195,6 +195,7 @@
     function _setDark(on){ document.body.classList.toggle('dark',on); sessionStorage.setItem('darkMode',on?'1':'0'); }
     function onMidiMsg(msg){
       const [st,note,vel] = msg.data;
+      console.log('[MIDI] st:'+((st&0xF0)===0x90?'note_on':(st&0xF0)===0x80?'note_off':(st&0xF0)===0xB0?'cc':'0x'+st.toString(16))+' ch:'+(st&0x0F)+' note/cc:'+note+' vel/val:'+vel);
       if(isStandby()){ hideStandby(); return; }
       if((st&0xF0)===0x90&&vel>0){
         unmute();

@@ -29,13 +29,13 @@
       font-family: 'BuGlobal';
       font-weight: 400;
       
-      src: url('גלובל/buGlobal1.0-Regular.otf') format('opentype');
+      src: url('global/buGlobal1.0-Regular.otf') format('opentype');
     }
     @font-face {
       font-family: 'BuGlobal';
       font-weight: 300;
       
-      src: url('גלובל/buGlobal1.0-Light.otf') format('opentype');
+      src: url('global/buGlobal1.0-Light.otf') format('opentype');
     }
 * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #ffffff; font-family: 'TheBasics', sans-serif; }
@@ -669,11 +669,12 @@
 
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
-      display: flex;
+      display: none;
       position: fixed; bottom: 60px; left: 2vw; z-index: 10;
       font-family: 'TheBasics', sans-serif;
       flex-direction: column; align-items: center; gap: 12px;
     }
+    #tradition-wrap.visible { display: flex; }
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
     #trad-list { display:flex; flex-direction:column; gap:10px; text-align:right; direction:rtl; min-width: max-content; }
     .trad-item { font-size:17px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
@@ -686,18 +687,18 @@
   <script>if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark');</script>
   <nav class="navbar">
     <button class="page-nav-btn" id="pnav-next" onclick="_navPage(-1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="טעמים.html" class="nav-link nav-taamim">טעמים</a>
-    <a href="פסוקים.html" class="nav-link nav-psukkim active">פסוקים</a>
-    <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
-    <a href="ספריה.html" class="nav-link nav-info">גלריה</a>
+    <a href="taamim.html" class="nav-link nav-taamim">טעמים</a>
+    <a href="psukkim.html" class="nav-link nav-psukkim active">פסוקים</a>
+    <a href="taamim.html?seq" class="nav-link nav-rzf">נגינה</a>
+    <a href="library.html" class="nav-link nav-info">גלריה</a>
     <button class="page-nav-btn" id="pnav-prev" onclick="_navPage(1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="אודות.html" class="nav-link nav-aodot"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
+    <a href="about.html" class="nav-link nav-aodot"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
   </nav>
   <div id="page-nav">
   </div>
   <div id="psuk-hint">[בחרו פסוק במקלדת, החליפו נוסחים בחיצים]</div>
 
-  <div id="tradition-wrap">
+  <div id="tradition-wrap" style="display:none">
     <div id="trad-col">
       <div id="trad-list">
         <div class="trad-item" data-trad="מרוקאי">מרוקאי</div>
@@ -1059,25 +1060,25 @@
   document.getElementById('trad-down').addEventListener('click', function(){ cycleTrad(1); });
 
   // ---- תופים פסוקים (רצף קשיח) ----
-  const _shofarHolechMar = new Audio('מרוקאי/שופר הולך.mp3');
+  const _shofarHolechMar = new Audio('morocai/shofar-holech.mp3');
 
   const PSK_DRUMS_AUDIO = {
-    'נ': new Audio('תופים/אתנח (עותק).m4a'),
-    'מ': new Audio('תופים/זקף קטון (עותק).m4a'),
-    'צ': new Audio('תופים/זקף גדול (עותק).m4a'),
-    'ת': new Audio('תופים/תביר (עותק).m4a'),
-    'ל': new Audio('תופים/שופר מהופך (עותק).m4a'),
-    'ך': new Audio('תופים/אזלא (עותק).m4a'),
-    'ב': new Audio('תופים/שני גרשין  (עותק).m4a'),
-    'ה': new Audio('תופים/סוף פסוק (עותק).m4a'),
-    'כ': new Audio('תופים/זרקא (עותק).m4a'),
-    'ג': new Audio('תופים/שופר הולך  (עותק).m4a'),
-    'י': new Audio('תופים/יתיב 2 (עותק).m4a'),
-    'ח': new Audio('תופים/רביע (2) (עותק).m4a'),
-    'ע': new Audio('תופים/טרחא (עותק).m4a'),
-    'ש': new Audio('תופים/תרי קדמין  (עותק).m4a'),
-    'ף': new Audio('תופים/מאריך (עותק).m4a'),
-    'ד': new Audio('תופים/דרגא  (עותק).m4a'),
+    'נ': new Audio('drums/etnachta.m4a'),
+    'מ': new Audio('drums/zakef-katan.m4a'),
+    'צ': new Audio('drums/zakef-gadol.m4a'),
+    'ת': new Audio('drums/tavir.m4a'),
+    'ל': new Audio('drums/shofar-mehupach.m4a'),
+    'ך': new Audio('drums/azla.m4a'),
+    'ב': new Audio('drums/shnei-gershayim.m4a'),
+    'ה': new Audio('drums/sof-pasuk.m4a'),
+    'כ': new Audio('drums/zarqa.m4a'),
+    'ג': new Audio('drums/shofar-holech.m4a'),
+    'י': new Audio('drums/yativ2.m4a'),
+    'ח': new Audio('drums/ravia.m4a'),
+    'ע': new Audio('drums/tarcha.m4a'),
+    'ש': new Audio('drums/terei-kadmin.m4a'),
+    'ף': new Audio('drums/marich.m4a'),
+    'ד': new Audio('drums/darga.m4a'),
   };
   const VERSE_DRUMS = {
     1:  ['ע','נ','ף','ע','ף','ה'],
@@ -1158,40 +1159,40 @@
 
   const VERSE_AUDIO = {
     'ספרדי': {
-      1:  new Audio('פסוקים ספרדי/פסוק 1 שמע ישראל.mp3'),
-      2:  new Audio('פסוקים ספרדי/פסוק 2 על משכבי בלילות.mp3'),
-      3:  new Audio('פסוקים ספרדי/פסוק 3 מים רבים.mp3'),
-      4:  new Audio('פסוקים ספרדי/פסוק 4 שיר למעלות.mp3'),
-      5:  new Audio('פסוקים ספרדי/פסוק 5 כבד את.mp3'),
-      6:  new Audio('פסוקים ספרדי/פסוק 6 זכור את יום השבת.mp3'),
-      7:  new Audio('פסוקים ספרדי/פסוק 7 ה משמרך.mp3'),
-      8:  new Audio('פסוקים ספרדי/פסוק 8 ברכת הכהנים.mp3'),
-      9:  new Audio('פסוקים ספרדי/פסוק 9 ויכל אלוהים.mp3'),
-      10: new Audio('פסוקים ספרדי/פסוק 10 בראשית ברא.mp3'),
-      11: new Audio('פסוקים ספרדי/פסוק 11 בקרוב עליי.mp3'),
-      12: new Audio('פסוקים ספרדי/פסוק 12 הבל הבלים.mp3'),
-      13: new Audio('פסוקים ספרדי/פסוק 13 עזר כנגדו.mp3'),
-      14: new Audio('פסוקים ספרדי/פסוק 14 יושב בסתר.mp3'),
-      15: new Audio('פסוקים ספרדי/פסוק 15 כולך יפה.mp3'),
-      16: new Audio('פסוקים ספרדי/פסוק 16 כי עזה.mp3'),
+      1:  new Audio('psukkim-sfaradi/psuk01.mp3'),
+      2:  new Audio('psukkim-sfaradi/psuk02.mp3'),
+      3:  new Audio('psukkim-sfaradi/psuk03.mp3'),
+      4:  new Audio('psukkim-sfaradi/psuk04.mp3'),
+      5:  new Audio('psukkim-sfaradi/psuk05.mp3'),
+      6:  new Audio('psukkim-sfaradi/psuk06.mp3'),
+      7:  new Audio('psukkim-sfaradi/psuk07.mp3'),
+      8:  new Audio('psukkim-sfaradi/psuk08.mp3'),
+      9:  new Audio('psukkim-sfaradi/psuk09.mp3'),
+      10: new Audio('psukkim-sfaradi/psuk10.mp3'),
+      11: new Audio('psukkim-sfaradi/psuk11.mp3'),
+      12: new Audio('psukkim-sfaradi/psuk12.mp3'),
+      13: new Audio('psukkim-sfaradi/psuk13.mp3'),
+      14: new Audio('psukkim-sfaradi/psuk14.mp3'),
+      15: new Audio('psukkim-sfaradi/psuk15.mp3'),
+      16: new Audio('psukkim-sfaradi/psuk16.mp3'),
     },
     'אשכנזי': {
-      1:  new Audio('פסוקים אשכנזי/פסוק 1 שמע ישראל.mp3'),
-      2:  new Audio('פסוקים אשכנזי/פסוק 2 על משכבי.mp3'),
-      3:  new Audio('פסוקים אשכנזי/פסוק 3 מים רבים.mp3'),
-      4:  new Audio('פסוקים אשכנזי/פסוק 4 שיר למעלות.mp3'),
-      5:  new Audio('פסוקים אשכנזי/פסוק 5 כבד את.mp3'),
-      6:  new Audio('פסוקים אשכנזי/פסוק 6 זכור.mp3'),
-      7:  new Audio('פסוקים אשכנזי/פסוק 7 ישמרך.mp3'),
-      8:  new Audio('פסוקים אשכנזי/פסוק 8 ברכת הכהנים.mp3'),
-      9:  new Audio('פסוקים אשכנזי/פסוק 9 ויכל.mp3'),
-      10: new Audio('פסוקים אשכנזי/פסוק 10 בראשית.mp3'),
-      11: new Audio('פסוקים אשכנזי/פסוק 11 בקרוב עליי.mp3'),
-      12: new Audio('פסוקים אשכנזי/פסוק 12 הבל הבלים.mp3'),
-      13: new Audio('פסוקים אשכנזי/פסוק 13 עזר כנגדו.mp3'),
-      14: new Audio('פסוקים אשכנזי/פסוק 14 יושב בסתר.mp3'),
-      15: new Audio('פסוקים אשכנזי/פסוק 15 כולך יפה.mp3'),
-      16: new Audio('פסוקים אשכנזי/פסוק 16 כי עזה.mp3'),
+      1:  new Audio('psukkim-ashkenazi/psuk01.mp3'),
+      2:  new Audio('psukkim-ashkenazi/psuk02.mp3'),
+      3:  new Audio('psukkim-ashkenazi/psuk03.mp3'),
+      4:  new Audio('psukkim-ashkenazi/psuk04.mp3'),
+      5:  new Audio('psukkim-ashkenazi/psuk05.mp3'),
+      6:  new Audio('psukkim-ashkenazi/psuk06.mp3'),
+      7:  new Audio('psukkim-ashkenazi/psuk07.mp3'),
+      8:  new Audio('psukkim-ashkenazi/psuk08.mp3'),
+      9:  new Audio('psukkim-ashkenazi/psuk09.mp3'),
+      10: new Audio('psukkim-ashkenazi/psuk10.mp3'),
+      11: new Audio('psukkim-ashkenazi/psuk11.mp3'),
+      12: new Audio('psukkim-ashkenazi/psuk12.mp3'),
+      13: new Audio('psukkim-ashkenazi/psuk13.mp3'),
+      14: new Audio('psukkim-ashkenazi/psuk14.mp3'),
+      15: new Audio('psukkim-ashkenazi/psuk15.mp3'),
+      16: new Audio('psukkim-ashkenazi/psuk16.mp3'),
     }
   };
   let _verseAudio = null;
@@ -3018,7 +3019,7 @@
     const others = ALL_ITEMS.filter(i => i !== n);
 
     document.getElementById('bg').classList.add('active');
-    document.getElementById('tradition-wrap').classList.add('visible');
+    document.getElementById('tradition-wrap').style.display = 'flex';
     document.getElementById('psuk-hint').classList.add('hidden');
     el.classList.add('open');
     _applyPskScale();
@@ -3114,7 +3115,7 @@
     _coEl.style.removeProperty('transform');
     _pskSz = 1.0;
     document.getElementById('bg').classList.remove('active');
-    document.getElementById('tradition-wrap').classList.remove('visible');
+    document.getElementById('tradition-wrap').style.display = 'none';
     document.getElementById('psuk-hint').classList.remove('hidden');
     stopVerseAudio();
     stopVerseDrums();
@@ -3153,7 +3154,7 @@
   }
 
   // ---- ניווט עמודים (חיצים + MIDI) ----
-  const _NAV = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+  const _NAV = ['library.html','taamim.html?seq','psukkim.html','taamim.html','about.html'];
   const _CUR = 2;
   function flashArrow(id, cls) {
     var el = document.getElementById(id); if(!el) return;
@@ -3288,7 +3289,7 @@
   (function(){
     var t;
     function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.setItem('m_vR','1'); localStorage.setItem('m_vL','1'); }
-    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='אודות.html'; },120000); }
+    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='about.html'; },120000); }
     window._idleReset = reset;
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
     document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });

@@ -122,12 +122,12 @@
   </div>
   <nav class="navbar">
     <button class="page-nav-btn" id="pnav-next" onclick="navPage(-1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="טעמים.html" class="nav-link nav-taamim">טעמים</a>
-    <a href="פסוקים.html" class="nav-link nav-psukkim">פסוקים</a>
-    <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
-    <a href="ספריה.html" class="nav-link nav-info active">גלריה</a>
+    <a href="taamim.html" class="nav-link nav-taamim">טעמים</a>
+    <a href="psukkim.html" class="nav-link nav-psukkim">פסוקים</a>
+    <a href="taamim.html?seq" class="nav-link nav-rzf">נגינה</a>
+    <a href="library.html" class="nav-link nav-info active">גלריה</a>
     <button class="page-nav-btn" id="pnav-prev" onclick="navPage(1)"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
-    <a href="אודות.html" class="nav-link nav-aodot"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
+    <a href="about.html" class="nav-link nav-aodot"><img src="logolight.png" class="logo-light" alt="אודות"><img src="logodark.png" class="logo-dark" alt="אודות"></a>
   </nav>
   <div id="page-nav"></div>
 
@@ -135,7 +135,7 @@
   <div id="grid"></div>
   <div id="melody-overlay">
     <div id="melody-frame-wrap">
-      <iframe id="melody-frame" src="" allowautoplay></iframe>
+      <iframe id="melody-frame" src="" allowautoplay allow="midi *"></iframe>
 
     <div id="melody-meta">
       <div id="meta-datetime"><span id="meta-date"></span><span id="meta-time"></span></div>
@@ -146,9 +146,9 @@
   <script>
   // ---- מיפוי שמע ----
   const AUDIO_PATH = {
-    'ספרדי': {'צ':'ספרדי/זקף גדול.mp3','מ':'ספרדי/זקף קטון.mp3','נ':'ספרדי/אתנח.mp3','ה':'ספרדי/סוף פסוק.mp3','ב':'ספרדי/שני גרשין.mp3','ת':'ספרדי/תביר.mp3','ך':'ספרדי/אזלא.mp3','ל':'ספרדי/שופר מהופך.mp3','ח':'ספרדי/רביע.mp3','ע':'ספרדי/טרחא.mp3','כ':'ספרדי/זרקא.mp3','ג':'ספרדי/שופר הולך.mp3','י':'ספרדי/יתיב.mp3','ש':'ספרדי/תרי קדמין.mp3','ף':'ספרדי/מאריך.mp3','ד':'ספרדי/דרגא.mp3'},
-    'מרוקאי':{'צ':'מרוקאי/מ זקף גדול.mp4','מ':'מרוקאי/מ זקף קטון.mp4','נ':'מרוקאי/מ אתנח.mp4','ה':'מרוקאי/מ סוף פסוק.mp4','ב':'מרוקאי/מ שני גרשין.mp4','ת':'מרוקאי/מ תביר.mp4','ך':'מרוקאי/מ אזלא.mp4','ל':'מרוקאי/מ שופר מהופך.mp4','ח':'מרוקאי/מ רביע.mp4','ע':'מרוקאי/מ טרחא.mp4','כ':'מרוקאי/מ זרקא.mp4','ג':'מרוקאי/מ שופר הולך.mp4','י':'מרוקאי/מ יתיב.mp4','ש':'מרוקאי/מ תרי קדמין.mp4','ף':'מרוקאי/מ מאריך.mp4','ד':'מרוקאי/מ דרגא.mp4'},
-    'אשכנזי':{'צ':'אשכנזי/א זקף גדול.mp4','מ':'אשכנזי/א זקף קטון.mp4','נ':'אשכנזי/א אתנחתא.mp4','ה':'אשכנזי/א סוף פסוק.mp4','ב':'אשכנזי/א שני גרשין.mp4','ת':'אשכנזי/א תביר.mp4','ך':'אשכנזי/א אזלא.mp4','ל':'אשכנזי/א שופר מהופך.mp4','ח':'אשכנזי/א רביע.mp4','ע':'אשכנזי/א טרחא.mp4','כ':'אשכנזי/א זרקא.mp4','ג':'אשכנזי/א שופר הולך.mp4','י':'אשכנזי/א יתיב.mp4','ש':'אשכנזי/א תרי קדמין.mp4','ף':'אשכנזי/א מאריך.mp3','ד':'אשכנזי/א דרגא.mp4'},
+    'ספרדי': {'צ':'sfaradi/zakef-gadol.mp3','מ':'sfaradi/zakef-katan.mp3','נ':'sfaradi/etnachta.mp3','ה':'sfaradi/sof-pasuk.mp3','ב':'sfaradi/shnei-gershayim.mp3','ת':'sfaradi/tavir.mp3','ך':'sfaradi/azla.mp3','ל':'sfaradi/shofar-mehupach.mp3','ח':'sfaradi/ravia.mp3','ע':'sfaradi/tarcha.mp3','כ':'sfaradi/zarqa.mp3','ג':'sfaradi/shofar-holech.mp3','י':'sfaradi/yativ.mp3','ש':'sfaradi/terei-kadmin.mp3','ף':'sfaradi/marich.mp3','ד':'sfaradi/darga.mp3'},
+    'מרוקאי':{'צ':'morocai/zakef-gadol.mp4','מ':'morocai/zakef-katan.mp4','נ':'morocai/etnachta.mp4','ה':'morocai/sof-pasuk.mp4','ב':'morocai/shnei-gershayim.mp4','ת':'morocai/tavir.mp4','ך':'morocai/azla.mp4','ל':'morocai/shofar-mehupach.mp4','ח':'morocai/ravia.mp4','ע':'morocai/tarcha.mp4','כ':'morocai/zarqa.mp4','ג':'morocai/shofar-holech.mp4','י':'morocai/yativ.mp4','ש':'morocai/terei-kadmin.mp4','ף':'morocai/marich.mp4','ד':'morocai/darga.mp4'},
+    'אשכנזי':{'צ':'ashkenazi/zakef-gadol.mp4','מ':'ashkenazi/zakef-katan.mp4','נ':'ashkenazi/etnachta.mp4','ה':'ashkenazi/sof-pasuk.mp4','ב':'ashkenazi/shnei-gershayim.mp4','ת':'ashkenazi/tavir.mp4','ך':'ashkenazi/azla.mp4','ל':'ashkenazi/shofar-mehupach.mp4','ח':'ashkenazi/ravia.mp4','ע':'ashkenazi/tarcha.mp4','כ':'ashkenazi/zarqa.mp4','ג':'ashkenazi/shofar-holech.mp4','י':'ashkenazi/yativ.mp4','ש':'ashkenazi/terei-kadmin.mp4','ף':'ashkenazi/marich.mp3','ד':'ashkenazi/darga.mp4'},
   };
 
   // ---- מסך טעינה ----
@@ -175,7 +175,7 @@
   // טעינת iframe ברקע מיידית
   (function(){
     const dark = sessionStorage.getItem('darkMode')==='1' ? '&light=0' : '&light=1';
-    document.getElementById('melody-frame').src = 'טעמים.html?seq&embed' + dark;
+    document.getElementById('melody-frame').src = 'taamim.html?seq&embed' + dark;
   })();
 
   function closeMelody() {
@@ -284,7 +284,7 @@
   });
 
   // MIDI ניווט
-  const _spNAV = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+  const _spNAV = ['library.html','taamim.html?seq','psukkim.html','taamim.html','about.html'];
   const _spIDX = 0;
   function navPage(dir){ window.location.href = _spNAV[(_spIDX + dir + _spNAV.length) % _spNAV.length]; }
   document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
@@ -302,6 +302,7 @@
     function onMidiMsg(msg){
       if(typeof _idleReset==='function') _idleReset();
       const [st,note,vel]=msg.data;
+      console.log('[MIDI] st:'+((st&0xF0)===0x90?'note_on':(st&0xF0)===0x80?'note_off':(st&0xF0)===0xB0?'cc':'0x'+st.toString(16))+' ch:'+(st&0x0F)+' note/cc:'+note+' vel/val:'+vel);
       if((st&0xF0)===0x90&&vel>0){
         const PAD_NOTE_TO_SLOT={53:0,52:1,51:2,50:3,49:4,48:5,47:6,46:7,45:8,44:9,43:10,42:11,41:12,40:13,39:14,38:15};
         if(note in PAD_NOTE_TO_SLOT){ openMelody(PAD_NOTE_TO_SLOT[note]); return; }
@@ -320,7 +321,7 @@
       });
       midi.onstatechange=function(e){
         if(e.port.type==='input'&&e.port.state==='connected'){
-          e.port.open().then(function(){ inp.onmidimessage=onMidiMsg; }).catch(function(){ inp.onmidimessage=onMidiMsg; });
+          e.port.open().then(function(){ e.port.onmidimessage=onMidiMsg; }).catch(function(){ e.port.onmidimessage=onMidiMsg; });
         }
       };
     }).catch(function(){});
@@ -330,7 +331,7 @@
   (function(){
     var t;
     function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.setItem('m_vR','1'); localStorage.setItem('m_vL','1'); }
-    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='אודות.html'; },120000); }
+    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='about.html'; },120000); }
     window._idleReset = reset;
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
     document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });

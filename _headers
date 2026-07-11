@@ -1,0 +1,3 @@
+/*
+  Permissions-Policy: midi=*
+  Cross-Origin-Opener-Policy: same-origin

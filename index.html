@@ -52,18 +52,18 @@
     sessionStorage.removeItem('darkMode');
     localStorage.setItem('m_vR','1');
     localStorage.setItem('m_vL','1');
-    location.replace('אודות.html');
+    location.replace('about.html');
   </script>
 
   <nav class="navbar">
     <a class="nav-logo-sq" href="index.html" id="nav-logo-sq"></a>
     <div id="nav-center">
-      <a href="טעמים.html" class="nav-link nav-taamim">טעמים</a>
-      <a href="פסוקים.html" class="nav-link nav-psukkim">פסוקים</a>
-      <a href="טעמים.html?seq" class="nav-link nav-rzf">נגינה</a>
-      <a href="ספריה.html" class="nav-link nav-spria">גלריה</a>
+      <a href="taamim.html" class="nav-link nav-taamim">טעמים</a>
+      <a href="psukkim.html" class="nav-link nav-psukkim">פסוקים</a>
+      <a href="taamim.html?seq" class="nav-link nav-rzf">נגינה</a>
+      <a href="library.html" class="nav-link nav-spria">גלריה</a>
     </div>
-    <a href="אודות.html" class="nav-link nav-info">אודות</a>
+    <a href="about.html" class="nav-link nav-info">אודות</a>
     <div id="page-nav">
       <button class="page-nav-btn" id="pnav-next"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
       <button class="page-nav-btn" id="pnav-prev"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
@@ -112,7 +112,7 @@
     if (!heroAtCenter) flyHeroToCenter();
   });
 
-  const _iNAV = ['ספריה.html','טעמים.html?seq','פסוקים.html','טעמים.html','אודות.html'];
+  const _iNAV = ['library.html','taamim.html?seq','psukkim.html','taamim.html','about.html'];
   document.getElementById('pnav-next').addEventListener('click', function(){ window.location.href = _iNAV[_iNAV.length - 1]; });
   document.getElementById('pnav-prev').addEventListener('click', function(){ window.location.href = _iNAV[0]; });
 
