@@ -1630,16 +1630,37 @@
     })();
 
     let audioReady = false;
+
+    // ---- toast "לחץ להפעיל שמע" אם MIDI מגיע לפני gesture ----
+    var _audioToast = (function(){
+      var el = document.createElement('div');
+      el.style.cssText = 'display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:9999;' +
+        'background:rgba(0,0,0,0.75);color:#fff;font-family:TheBasics,sans-serif;font-size:15px;' +
+        'padding:9px 22px;border-radius:50px;pointer-events:none;transition:opacity .3s;white-space:nowrap;';
+      el.textContent = 'לחץ כדי להפעיל שמע';
+      document.body.appendChild(el);
+      var _t;
+      return {
+        show: function(){ clearTimeout(_t); el.style.display='block'; el.style.opacity='1'; },
+        hide: function(){ el.style.opacity='0'; _t=setTimeout(function(){ el.style.display='none'; },300); }
+      };
+    })();
+
     function unlockAudio() {
       if(!audioReady) {
-        audioReady = true;
-        audioCtx.resume().catch(function(){});
+        audioCtx.resume().then(function(){
+          audioReady = true;
+          _audioToast.hide();
+        }).catch(function(){
+          // MIDI event — not a user gesture on HTTPS; show toast
+          _audioToast.show();
+        });
       }
-      return Promise.resolve();
     }
     window.addEventListener('load', function(){ audioCtx.resume().catch(function(){}); });
-    document.addEventListener('click', unlockAudio);
-    document.addEventListener('keydown', unlockAudio);
+    document.addEventListener('click',    function(){ unlockAudio(); _audioToast.hide(); });
+    document.addEventListener('keydown',  function(){ unlockAudio(); _audioToast.hide(); });
+    document.addEventListener('touchstart', function(){ unlockAudio(); _audioToast.hide(); }, {passive:true});
 
     // ---- הפעלת אנימציה לפי מקש (רצף — תמיד ספרדי) ----
     function triggerAnim(k) {
