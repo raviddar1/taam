@@ -12,6 +12,7 @@ export default function PsukkimPage() {
 
   return (
     <>
+      <link rel="preload" href="/scripts/psukkim.js" as="script" />
       <style>{`
 * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #ffffff; font-family: 'TheBasics', sans-serif; }

@@ -216,6 +216,12 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       16: new Audio('psukkim-ashkenazi/psuk16.mp3'),
     }
   };
+
+  // אל תטען אודיו מראש — רק בעת ניגון
+  [_shofarHolechMar, ...Object.values(PSK_DRUMS_AUDIO),
+   ...[].concat(...Object.values(VERSE_AUDIO).map(t => Object.values(t)))
+  ].forEach(function(a){ if(a) a.preload='none'; });
+
   let _verseAudio = null;
   function playVerseAudio(n) {
     stopVerseAudio();

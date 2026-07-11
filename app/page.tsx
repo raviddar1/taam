@@ -12,6 +12,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <link rel="preload" href="/scripts/about.js" as="script" />
       <style>{`
         body { background: #130F10; font-family: 'TheBasics', sans-serif; }
         body.dark { background: #130F10; }
@@ -93,7 +94,7 @@ export default function AboutPage() {
       <button id="midi-permission-btn">אפשר MIDI ▸</button>
 
       <div id="video-wrap">
-        <video id="intro-vid" loop muted playsInline preload="auto">
+        <video id="intro-vid" loop muted playsInline preload="metadata">
           <source src="/introWpad3.mp4" type="video/mp4" />
         </video>
       </div>
