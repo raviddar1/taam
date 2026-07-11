@@ -44,7 +44,7 @@ function startIdle(){ clearTimeout(_idleTimer); _idleTimer = setTimeout(showStan
   document.addEventListener(ev, function(){ if(!isStandby()) startIdle(); }, {passive:true});
 });
 
-var _NAV_PAGES = ['/taamim','/about','/library','/taamim?seq','/psukkim'];
+var _NAV_PAGES = ['/taamim','/','/library','/taamim?seq','/psukkim'];
 var _NAV_CUR = 1;
 function flashArrow(id, cls) {
   var el = document.getElementById(id); if(!el) return;

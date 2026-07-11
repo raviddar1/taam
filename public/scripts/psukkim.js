@@ -2175,7 +2175,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   }
 
   // ---- ניווט עמודים (חיצים + MIDI) ----
-  const _NAV = ['/taamim','/about','/library','/taamim?seq','/psukkim'];
+  const _NAV = ['/taamim','/','/library','/taamim?seq','/psukkim'];
   const _CUR = 4;
   function flashArrow(id, cls) {
     var el = document.getElementById(id); if(!el) return;
@@ -2329,7 +2329,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 (function(){
     var t;
     function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.setItem('m_vR','1'); localStorage.setItem('m_vL','1'); }
-    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/about'; },120000); }
+    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/'; },120000); }
     window._idleReset = reset;
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
     document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });

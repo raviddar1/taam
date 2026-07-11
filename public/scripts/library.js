@@ -138,7 +138,7 @@ document.addEventListener('keydown', function(e){
   if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  }
 });
 
-const _spNAV = ['/taamim','/about','/library','/taamim?seq','/psukkim'];
+const _spNAV = ['/taamim','/','/library','/taamim?seq','/psukkim'];
 const _spIDX = 2;
 function navPage(dir){ window.location.href = _spNAV[(_spIDX + dir + _spNAV.length) % _spNAV.length]; }
 document.getElementById('pnav-next').addEventListener('click', function(){ navPage(1); });
@@ -182,7 +182,7 @@ if(navigator.requestMIDIAccess){
 (function(){
   var t;
   function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.setItem('m_vR','1'); localStorage.setItem('m_vL','1'); }
-  function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/about'; },120000); }
+  function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/'; },120000); }
   window._idleReset = reset;
   ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
   document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });

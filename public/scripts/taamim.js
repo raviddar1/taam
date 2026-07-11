@@ -1787,7 +1787,7 @@
 
   // ---- ניווט עמודים ----
   (function(){
-    const _NP = ['/taamim','/about','/library','/taamim?seq','/psukkim'];
+    const _NP = ['/taamim','/','/library','/taamim?seq','/psukkim'];
     const _NI = location.search.includes('seq') ? 3 : 0;
     window._taamNavPage = function(dir){
       const dest = _NP[(_NI + dir + _NP.length) % _NP.length];
@@ -1931,7 +1931,7 @@
         selectTradition(TRADITION_ORDER[next]);
       }
 
-      const NAV_PAGES = ['/library','/taamim?seq','/psukkim','/taamim','/about'];
+      const NAV_PAGES = ['/library','/taamim?seq','/psukkim','/taamim','/'];
       const CURRENT_PAGE_IDX = location.search.includes('seq') ? 1 : 3;
       let _nRprev=false, _nLprev=false;
       function navPage(dir){ window._taamNavPage(dir); }
@@ -2133,7 +2133,7 @@
     if(location.search.includes('embed')) return;
     var t;
     function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.removeItem('m_vR'); localStorage.removeItem('m_vL'); }
-    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/about'; },120000); }
+    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/'; },120000); }
     window._idleReset = reset;
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
     document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });
