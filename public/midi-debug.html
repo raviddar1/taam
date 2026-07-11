@@ -22,7 +22,8 @@
 <table id="tbl"></table>
 
 <div style="margin:16px 0">
-  <button onclick="resetLearn()">🗑 מחק הכל (MIDI learn מחדש)</button>
+  <button onclick="shareSettings()" style="background:#0cf;font-size:15px;padding:10px 20px">⎘ שתף הגדרות (קישור)</button>
+  <button onclick="resetLearn()">🗑 מחק הכל</button>
   <button class="red" onclick="swapKLtU()">⇄ החלף kL ↔ tU</button>
 </div>
 
@@ -63,6 +64,18 @@ function render(){
     }).join('');
 }
 render();
+
+function shareSettings(){
+  const data = {};
+  KEYS.forEach(({k}) => { const v = localStorage.getItem(k); if(v !== null) data[k] = v; });
+  if(Object.keys(data).length === 0){ alert('אין הגדרות לשתף'); return; }
+  const url = location.origin + '/taamim#midi-migrate=' + encodeURIComponent(JSON.stringify(data));
+  navigator.clipboard.writeText(url).then(function(){
+    alert('✓ הקישור הועתק לזיכרון!\n\nפתח אותו בכל מחשב — ההגדרות יועתקו אוטומטית.');
+  }).catch(function(){
+    prompt('העתק את הקישור הזה:', url);
+  });
+}
 
 function resetLearn(){
   if(!confirm('מחק את כל הגדרות ה-MIDI?')) return;
