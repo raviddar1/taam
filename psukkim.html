@@ -3250,6 +3250,7 @@
 
   function onMidiMsg(msg) {
     if (document.hidden) return;
+    _unlockAudio();
     if(typeof _idleReset==='function') _idleReset();
     const [st, note, vel] = msg.data;
     if ((st & 0xF0) === 0x90 && vel > 0) {
@@ -3274,6 +3275,25 @@
       if(_fL!==null && note===_fL){ _LS.setItem('m_vL',val); if(_verseAudio) _verseAudio.volume=val; if(window._pskFaderSetR) window._pskFaderSetR(val); return; }
     }
   }
+
+  // unlock HTML Audio autoplay on first user interaction or MIDI message
+  var _audioUnlocked = false;
+  function _unlockAudio() {
+    if (_audioUnlocked) return;
+    _audioUnlocked = true;
+    var allAudio = [_shofarHolechMar].concat(Object.values(PSK_DRUMS_AUDIO));
+    ['ספרדי','אשכנזי'].forEach(function(t){
+      if (VERSE_AUDIO[t]) Object.values(VERSE_AUDIO[t]).forEach(function(a){ allAudio.push(a); });
+    });
+    allAudio.forEach(function(a){
+      if (!a) return;
+      a.volume = 0;
+      a.play().then(function(){ a.pause(); a.currentTime = 0; a.volume = 1; }).catch(function(){ a.volume = 1; });
+    });
+  }
+  document.addEventListener('click',   _unlockAudio, { once: false });
+  document.addEventListener('keydown',  _unlockAudio, { once: false });
+  document.addEventListener('touchstart', _unlockAudio, { once: false });
 
   if (navigator.requestMIDIAccess) {
     navigator.requestMIDIAccess({ sysex: false }).then(function(midi) {
