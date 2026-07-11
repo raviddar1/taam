@@ -702,13 +702,13 @@ export default function PsukkimPage() {
       `}</style>
 
 <nav className="navbar">
-    <button className="page-nav-btn" id="pnav-next" onClick={() => { const _f = (window as any)._navPage; if(_f) _f(1); }}><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg></button>
+    <button className="page-nav-btn" id="pnav-next"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="1.5,1.5 7.5,7.5 1.5,13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg></button>
     <a href="/taamim" className="nav-link nav-taamim">טעמים</a>
     <a href="/psukkim" className="nav-link nav-psukkim active">פסוקים</a>
     <a href="/taamim?seq" className="nav-link nav-rzf">נגינה</a>
     <a href="/library" className="nav-link nav-info">גלריה</a>
-    <button className="page-nav-btn" id="pnav-prev" onClick={() => { const _f = (window as any)._navPage; if(_f) _f(-1); }}><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg></button>
-    <a href="/about" className="nav-link nav-aodot"><img src="/logolight.png" className="logo-light" alt="אודות" /><img src="/logodark.png" className="logo-dark" alt="אודות" /></a>
+    <button className="page-nav-btn" id="pnav-prev"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg></button>
+    <a href="/" className="nav-link nav-aodot"><img src="/logolight.png" className="logo-light" alt="אודות" /><img src="/logodark.png" className="logo-dark" alt="אודות" /></a>
   </nav>
   <div id="page-nav">
   </div>
