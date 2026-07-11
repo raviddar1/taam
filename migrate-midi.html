@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>MIDI Migrate</title>
+<style>
+  body { font-family: monospace; padding: 20px; background: #111; color: #0f0; }
+  button { background: #0f0; color: #000; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; margin: 10px 0; display: block; }
+  #out { white-space: pre; margin-top: 20px; color: #ff0; }
+  #status { color: #0ff; margin-top: 10px; }
+</style>
+</head>
+<body>
+<h2>MIDI Settings Migration: 8080 → 3000</h2>
+<button onclick="migrate()">Copy settings to localhost:3000</button>
+<div id="status"></div>
+<div id="out"></div>
+<script>
+const KEYS = ['m_fR','m_fL','m_nR','m_nL','m_nRt','m_nLt','m_kR','m_kL',
+              'm_tU','m_tUt','m_tD','m_tDt','m_vR','m_vL','vol_v2'];
+
+function migrate() {
+  const data = {};
+  KEYS.forEach(k => { const v = localStorage.getItem(k); if(v !== null) data[k] = v; });
+
+  const out = document.getElementById('out');
+  const st  = document.getElementById('status');
+  out.textContent = 'Values from localhost:8080:\n' + JSON.stringify(data, null, 2);
+
+  if(Object.keys(data).length === 0) {
+    st.textContent = '⚠ No MIDI values found in this origin.';
+    return;
+  }
+
+  // Open 3000 in iframe and postMessage the values
+  // Can't cross-origin — instead redirect with hash
+  const hash = encodeURIComponent(JSON.stringify(data));
+  st.textContent = 'Redirecting to localhost:3000 to apply values...';
+  setTimeout(() => {
+    window.location.href = 'http://localhost:3000/taamim#midi-migrate=' + hash;
+  }, 800);
+}
+</script>
+</body>
+</html>

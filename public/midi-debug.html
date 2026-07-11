@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head><meta charset="UTF-8"><title>MIDI Debug</title>
+<style>
+  body { font-family: monospace; padding: 24px; background: #111; color: #eee; direction: rtl; }
+  table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+  td,th { border: 1px solid #444; padding: 6px 12px; text-align: right; }
+  th { background: #222; color: #0f0; }
+  td:first-child { color: #ff0; }
+  td:last-child { color: #0cf; }
+  .null { color: #555 !important; }
+  button { background: #0f0; color: #000; border: none; padding: 8px 16px; font-size: 14px; cursor: pointer; margin: 4px; }
+  button.red { background: #f44; color: #fff; }
+  h2 { color: #0cf; margin-bottom: 12px; }
+  #midi-in { color: #ff0; margin-top: 10px; font-size: 13px; }
+  input { background: #222; color: #eee; border: 1px solid #555; padding: 4px 8px; width: 60px; font-family: monospace; }
+</style>
+</head>
+<body>
+<h2>MIDI Mapping Debug</h2>
+
+<table id="tbl"></table>
+
+<div style="margin:16px 0">
+  <button onclick="resetLearn()">🗑 מחק הכל (MIDI learn מחדש)</button>
+  <button class="red" onclick="swapKLtU()">⇄ החלף kL ↔ tU</button>
+</div>
+
+<div>
+  <strong>קבע ערך ישירות:</strong><br><br>
+  key: <input id="k" placeholder="m_kL">
+  val: <input id="v" placeholder="19">
+  <button onclick="setVal()">שמור</button>
+</div>
+
+<h2 style="margin-top:20px">MIDI Monitor</h2>
+<div id="midi-in">ממתין להודעות MIDI...</div>
+
+<script>
+const KEYS = [
+  {k:'m_fR',  label:'פיידר תופים (fR)'},
+  {k:'m_fL',  label:'פיידר חזן (fL)'},
+  {k:'m_kR',  label:'נוב לייט/דארק (kR)'},
+  {k:'m_kL',  label:'נוב גודל צורות (kL)'},
+  {k:'m_tU',  label:'כפתור ניווט נוסחים (tU)'},
+  {k:'m_tUt', label:'סוג tU (cc/note)'},
+  {k:'m_tD',  label:'כפתור נקה (tD)'},
+  {k:'m_tDt', label:'סוג tD'},
+  {k:'m_nR',  label:'כפתור ניווט ימין (nR)'},
+  {k:'m_nRt', label:'סוג nR'},
+  {k:'m_nL',  label:'כפתור ניווט שמאל (nL)'},
+  {k:'m_nLt', label:'סוג nL'},
+  {k:'m_vR',  label:'עוצמת תופים (vR)'},
+  {k:'m_vL',  label:'עוצמת חזן (vL)'},
+];
+
+function render(){
+  const tbl = document.getElementById('tbl');
+  tbl.innerHTML = '<tr><th>מפתח</th><th>תיאור</th><th>ערך</th></tr>' +
+    KEYS.map(({k,label}) => {
+      const v = localStorage.getItem(k);
+      return `<tr><td>${k}</td><td>${label}</td><td class="${v===null?'null':''}">${v===null?'(לא מוגדר)':v}</td></tr>`;
+    }).join('');
+}
+render();
+
+function resetLearn(){
+  if(!confirm('מחק את כל הגדרות ה-MIDI?')) return;
+  KEYS.forEach(({k}) => localStorage.removeItem(k));
+  render(); alert('נמחק. צריך לעשות MIDI learn מחדש.');
+}
+
+function swapKLtU(){
+  const kL = localStorage.getItem('m_kL');
+  const tU = localStorage.getItem('m_tU');
+  const tUt = localStorage.getItem('m_tUt');
+  if(kL !== null) localStorage.setItem('m_tU', kL);
+  else localStorage.removeItem('m_tU');
+  localStorage.setItem('m_tUt','cc');
+  if(tU !== null) localStorage.setItem('m_kL', tU);
+  else localStorage.removeItem('m_kL');
+  render(); alert('הוחלף! רענן את דף הטעמים.');
+}
+
+function setVal(){
+  const k = document.getElementById('k').value.trim();
+  const v = document.getElementById('v').value.trim();
+  if(!k||!v){ alert('הזן key ו-value'); return; }
+  localStorage.setItem(k, v);
+  render();
+}
+
+// MIDI monitor
+if(navigator.requestMIDIAccess){
+  navigator.requestMIDIAccess({sysex:false}).then(function(midi){
+    const log = document.getElementById('midi-in');
+    function onMsg(msg){
+      const [st,note,vel] = msg.data;
+      const type = (st&0xF0)===0x90?'note_on':(st&0xF0)===0x80?'note_off':(st&0xF0)===0xB0?'cc':'other';
+      log.innerHTML = `<div style="color:#ff0">[${type}] ${type==='cc'?'CC':'Note'}: <b>${note}</b>  Val: <b>${vel}</b>  (ch ${st&0x0F})</div>` + log.innerHTML;
+      if(log.children.length > 20) log.removeChild(log.lastChild);
+    }
+    midi.inputs.forEach(i => { i.open().then(()=>{ i.onmidimessage=onMsg; }).catch(()=>{i.onmidimessage=onMsg;}); });
+    midi.onstatechange = e => { if(e.port.type==='input'&&e.port.state==='connected') e.port.open().then(()=>{e.port.onmidimessage=onMsg;}).catch(()=>{e.port.onmidimessage=onMsg;}); };
+  }).catch(()=>{});
+}
+</script>
+</body>
+</html>

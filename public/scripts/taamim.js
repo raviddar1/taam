@@ -60,6 +60,20 @@
     });
   })();
 
+// ---- מיגרציית MIDI מ-8080 (דרך hash) ----
+(function(){
+  var h = location.hash;
+  var m = h.match(/[#&]midi-migrate=([^&]*)/);
+  if(!m) return;
+  try {
+    var data = JSON.parse(decodeURIComponent(m[1]));
+    Object.keys(data).forEach(function(k){ if(data[k]!==null) localStorage.setItem(k, data[k]); });
+    history.replaceState(null,'',location.pathname+location.search);
+    alert('✓ הגדרות MIDI הועתקו בהצלחה! טוען מחדש...');
+    location.reload();
+  } catch(e) {}
+})();
+
 // ---- צבעי פאדים MIDI (velocity→LED color, Donner Starrypad) ----
   const MIDI_COLORS = [
     { name: 'אדום',    vel: 5,   css: '#ff2020' },
