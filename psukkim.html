@@ -990,7 +990,7 @@
   // ---- אנימציה משותפת ----
   const ANIM_DUR = 500;
   let currentItem = 0; // 0=none, 1=001, 2=002
-  let currentTradition = localStorage.getItem('m_trad') || 'ספרדי';
+  let currentTradition = 'ספרדי';
   const TRADITION_ORDER = ['מרוקאי', 'ספרדי', 'אשכנזי'];
   function selectTradition(t) {
     currentTradition = t;
@@ -1055,6 +1055,7 @@
       '<div class="trad-item" data-trad="אשכנזי">אשכנזי</div>' +
       '</div><button class="trad-arrow" id="trad-down"><svg width="15" height="9" viewBox="0 0 15 9" fill="none"><polyline points="1.5,1.5 7.5,7.5 13.5,1.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button></div>';
     document.body.appendChild(wrap);
+    wrap.addEventListener('click', function(e){ e.stopPropagation(); });
     wrap.querySelectorAll('.trad-item').forEach(function(el){
       el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
     });
