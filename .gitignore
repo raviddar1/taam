@@ -2,3 +2,6 @@
 *.DS_Store
 .claude/
 start.command
+node_modules/
+.next/
+

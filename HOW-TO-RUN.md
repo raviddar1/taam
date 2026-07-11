@@ -1,6 +1,11 @@
 # How to Run Locally
 
-**Requirement:** Python 3 and Google Chrome must be installed.
+**Requirement:** Node.js 18+ and Google Chrome must be installed.
+
+First time only — install dependencies:
+```
+npm install
+```
 
 ---
 
@@ -12,22 +17,22 @@ Double-click **`start.command`** in Finder.
 ## Windows
 Double-click **`start.bat`**.
 
-## Linux
-Run in terminal:
+## Linux / Manual
 ```
-bash start.sh
+npm run dev
 ```
+Then open `http://localhost:3000` in Chrome.
 
 ---
 
-The site opens automatically at `http://localhost:8080` with MIDI and audio enabled.
+The site opens automatically at `http://localhost:3000` with MIDI and audio enabled.
 
-To stop the server, close the terminal window that opened, or run:
+To stop the server, press `Ctrl+C` in the terminal, or run:
 ```
 # Mac / Linux
-kill $(lsof -ti:8080)
+kill $(lsof -ti:3000)
 
 # Windows
-netstat -ano | findstr :8080
+netstat -ano | findstr :3000
 taskkill /PID <PID> /F
 ```
