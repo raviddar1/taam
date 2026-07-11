@@ -159,8 +159,8 @@
       document.addEventListener(ev, function(){ if(!isStandby()) startIdle(); }, {passive:true});
     });
 
-    var _NAV_PAGES = ['library.html','taamim.html?seq','psukkim.html','taamim.html','about.html'];
-    var _NAV_CUR = _NAV_PAGES.indexOf('about.html');
+    var _NAV_PAGES = ['taamim.html','about.html','library.html','taamim.html?seq','psukkim.html'];
+    var _NAV_CUR = 1;
     function flashArrow(id, cls) {
       var el = document.getElementById(id); if(!el) return;
       el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);

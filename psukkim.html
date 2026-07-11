@@ -1037,7 +1037,7 @@
       if (n === 14) playVerse014();
       playVerseAudio(n);
       playVerseDrums(n);
-    }, 150);
+    }, 0);
   }
   function cycleTrad(dir) {
     const i = TRADITION_ORDER.indexOf(currentTradition);
@@ -3162,8 +3162,8 @@
   }
 
   // ---- ניווט עמודים (חיצים + MIDI) ----
-  const _NAV = ['library.html','taamim.html?seq','psukkim.html','taamim.html','about.html'];
-  const _CUR = 2;
+  const _NAV = ['taamim.html','about.html','library.html','taamim.html?seq','psukkim.html'];
+  const _CUR = 4;
   function flashArrow(id, cls) {
     var el = document.getElementById(id); if(!el) return;
     el.classList.remove('arrow-flash-left','arrow-flash-right','arrow-flash-up','arrow-flash-down'); void el.offsetWidth; el.classList.add(cls);

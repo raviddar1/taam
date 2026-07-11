@@ -284,8 +284,8 @@
   });
 
   // MIDI ניווט
-  const _spNAV = ['library.html','taamim.html?seq','psukkim.html','taamim.html','about.html'];
-  const _spIDX = 0;
+  const _spNAV = ['taamim.html','about.html','library.html','taamim.html?seq','psukkim.html'];
+  const _spIDX = 2;
   function navPage(dir){ window.location.href = _spNAV[(_spIDX + dir + _spNAV.length) % _spNAV.length]; }
   document.getElementById('pnav-next').addEventListener('click', function(){ navPage(-1); });
   document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(1); });
