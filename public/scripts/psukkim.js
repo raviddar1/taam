@@ -2192,6 +2192,16 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
   document.getElementById('pnav-next').addEventListener('click', function(){ _navPage(1); });
   document.getElementById('pnav-prev').addEventListener('click', function(){ _navPage(-1); });
+
+  // רישום click handlers ראשוני לכל הפסוקים (מונע double-fire עם React onClick)
+  for(var _i=1; _i<=16; _i++){
+    (function(n){
+      var co = document.getElementById('canvas-outer-' + pid(n));
+      var ml = document.getElementById('mini-label-' + pid(n));
+      if(co) co.onclick = function(){ openItem(n); };
+      if(ml) ml.onclick = function(){ openItem(n); };
+    })(_i);
+  }
   document.addEventListener('keydown', function(e){
     if(e.key==='ArrowDown'){  flashArrow('trad-down','arrow-flash-down');  cycleTrad(1);  }
     if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  _navPage(-1); }

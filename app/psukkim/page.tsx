@@ -690,8 +690,8 @@ export default function PsukkimPage() {
   <div id="bg" onClick={() => { const _f = (window as any).closeItem; if(_f) _f(); }}></div>
 
 
-  <div id="mini-label-001" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(1); }}>001</div>
-  <div id="canvas-outer-001" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(1); }}>
+  <div id="mini-label-001" className="mini-label">001</div>
+  <div id="canvas-outer-001" className="canvas-outer">
     <div id="canvas-wrap-001"></div>
   </div>
   <div id="meta-001" className="meta-panel">
@@ -704,8 +704,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-002" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(2); }}>002</div>
-  <div id="canvas-outer-002" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(2); }}>
+  <div id="mini-label-002" className="mini-label">002</div>
+  <div id="canvas-outer-002" className="canvas-outer">
     <div id="canvas-wrap-002"></div>
   </div>
   <div id="meta-002" className="meta-panel">
@@ -721,8 +721,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-003" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(3); }}>003</div>
-  <div id="canvas-outer-003" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(3); }}>
+  <div id="mini-label-003" className="mini-label">003</div>
+  <div id="canvas-outer-003" className="canvas-outer">
     <div id="canvas-wrap-003"></div>
   </div>
   <div id="meta-003" className="meta-panel">
@@ -738,8 +738,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-004" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(4); }}>004</div>
-  <div id="canvas-outer-004" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(4); }}>
+  <div id="mini-label-004" className="mini-label">004</div>
+  <div id="canvas-outer-004" className="canvas-outer">
     <div id="canvas-wrap-004"></div>
   </div>
   <div id="meta-004" className="meta-panel">
@@ -754,8 +754,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-005" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(5); }}>005</div>
-  <div id="canvas-outer-005" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(5); }}>
+  <div id="mini-label-005" className="mini-label">005</div>
+  <div id="canvas-outer-005" className="canvas-outer">
     <div id="canvas-wrap-005"></div>
   </div>
   <div id="meta-005" className="meta-panel">
@@ -774,8 +774,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-006" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(6); }}>006</div>
-  <div id="canvas-outer-006" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(6); }}>
+  <div id="mini-label-006" className="mini-label">006</div>
+  <div id="canvas-outer-006" className="canvas-outer">
     <div id="canvas-wrap-006"></div>
   </div>
   <div id="meta-006" className="meta-panel">
@@ -786,8 +786,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-007" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(7); }}>007</div>
-  <div id="canvas-outer-007" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(7); }}>
+  <div id="mini-label-007" className="mini-label">007</div>
+  <div id="canvas-outer-007" className="canvas-outer">
     <div id="canvas-wrap-007"></div>
   </div>
   <div id="meta-007" className="meta-panel">
@@ -804,8 +804,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-008" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(8); }}>008</div>
-  <div id="canvas-outer-008" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(8); }}>
+  <div id="mini-label-008" className="mini-label">008</div>
+  <div id="canvas-outer-008" className="canvas-outer">
     <div id="canvas-wrap-008"></div>
   </div>
   <div id="meta-008" className="meta-panel">
@@ -827,8 +827,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-009" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(9); }}>009</div>
-  <div id="canvas-outer-009" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(9); }}>
+  <div id="mini-label-009" className="mini-label">009</div>
+  <div id="canvas-outer-009" className="canvas-outer">
     <div id="canvas-wrap-009"></div>
   </div>
   <div id="meta-009" className="meta-panel">
@@ -848,8 +848,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-010" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(10); }}>010</div>
-  <div id="canvas-outer-010" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(10); }}>
+  <div id="mini-label-010" className="mini-label">010</div>
+  <div id="canvas-outer-010" className="canvas-outer">
     <div id="canvas-wrap-010"></div>
   </div>
   <div id="meta-010" className="meta-panel">
@@ -875,8 +875,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-011" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(11); }}>011</div>
-  <div id="canvas-outer-011" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(11); }}>
+  <div id="mini-label-011" className="mini-label">011</div>
+  <div id="canvas-outer-011" className="canvas-outer">
     <div id="canvas-wrap-011"></div>
   </div>
   <div id="meta-011" className="meta-panel">
@@ -894,8 +894,8 @@ export default function PsukkimPage() {
   </div>
 
 
-  <div id="mini-label-012" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(12); }}>012</div>
-  <div id="canvas-outer-012" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(12); }}>
+  <div id="mini-label-012" className="mini-label">012</div>
+  <div id="canvas-outer-012" className="canvas-outer">
     <div id="canvas-wrap-012"></div>
   </div>
   <div id="meta-012" className="meta-panel">
@@ -909,8 +909,8 @@ export default function PsukkimPage() {
     <span className="w012 w012-8">הבל׃</span>
   </div>
 
-  <div id="mini-label-013" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(13); }}>013</div>
-  <div id="canvas-outer-013" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(13); }}>
+  <div id="mini-label-013" className="mini-label">013</div>
+  <div id="canvas-outer-013" className="canvas-outer">
     <div id="canvas-wrap-013"></div>
   </div>
   <div id="meta-013" className="meta-panel">
@@ -926,8 +926,8 @@ export default function PsukkimPage() {
     <span className="w013 w013-10">כנגדֽו׃</span>
   </div>
 
-  <div id="mini-label-014" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(14); }}>014</div>
-  <div id="canvas-outer-014" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(14); }}>
+  <div id="mini-label-014" className="mini-label">014</div>
+  <div id="canvas-outer-014" className="canvas-outer">
     <div id="canvas-wrap-014"></div>
   </div>
   <div id="meta-014" className="meta-panel">
@@ -939,8 +939,8 @@ export default function PsukkimPage() {
     <span className="w014 w014-6">יתלונֽן׃</span>
   </div>
 
-  <div id="mini-label-015" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(15); }}>015</div>
-  <div id="canvas-outer-015" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(15); }}>
+  <div id="mini-label-015" className="mini-label">015</div>
+  <div id="canvas-outer-015" className="canvas-outer">
     <div id="canvas-wrap-015"></div>
   </div>
   <div id="meta-015" className="meta-panel">
@@ -952,8 +952,8 @@ export default function PsukkimPage() {
     <span className="w015 w015-6">בֽך׃</span>
   </div>
 
-  <div id="mini-label-016" className="mini-label" onClick={() => { const _f = (window as any).openItem; if(_f) _f(16); }}>016</div>
-  <div id="canvas-outer-016" className="canvas-outer" onClick={() => { const _f = (window as any).openItem; if(_f) _f(16); }}>
+  <div id="mini-label-016" className="mini-label">016</div>
+  <div id="canvas-outer-016" className="canvas-outer">
     <div id="canvas-wrap-016"></div>
   </div>
   <div id="meta-016" className="meta-panel">
