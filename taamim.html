@@ -2240,8 +2240,8 @@
           case 3: if(val===fR||val===fL||val===kR) return; kL=val; break;
           case 4: tU=val; tUt=type; break;
           case 5: if(val===tU) return; tD=val; tDt=type; break;
-          case 6: nR=val; nRt=type; break;
-          case 7: if(val===nR) return; nL=val; nLt=type; break;
+          case 6: if(val===tU||val===tD) return; nR=val; nRt=type; break;
+          case 7: if(val===nR||val===tU||val===tD) return; nL=val; nLt=type; break;
         }
         saveM();
         learnStep++;
