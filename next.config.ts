@@ -1,7 +1,17 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // allow serving existing static files alongside Next.js
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'Permissions-Policy', value: 'midi=*' },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+        ],
+      },
+    ]
+  },
 }
 
 export default nextConfig
