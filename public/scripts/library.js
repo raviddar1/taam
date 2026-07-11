@@ -158,12 +158,12 @@ if(navigator.requestMIDIAccess){
     if((st&0xF0)===0x90&&vel>0){
       const PAD_NOTE_TO_SLOT={53:0,52:1,51:2,50:3,49:4,48:5,47:6,46:7,45:8,44:9,43:10,42:11,41:12,40:13,39:14,38:15};
       if(note in PAD_NOTE_TO_SLOT){ openMelody(PAD_NOTE_TO_SLOT[note]); return; }
-      if(note===nR&&nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1); return; }
-      if(note===nL&&nLt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); return; }
+      if(note===nR&&nRt==='note'){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); return; }
+      if(note===nL&&nLt==='note'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  return; }
     }
     if((st&0xF0)===0xB0){
-      if(note===nR&&nRt==='cc'){ const on=vel/127>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1); } _nRprev=on; return; }
-      if(note===nL&&nLt==='cc'){ const on=vel/127>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); } _nLprev=on; return; }
+      if(note===nR&&nRt==='cc'){ const on=vel/127>0.5; if(on&&!_nRprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); } _nRprev=on; return; }
+      if(note===nL&&nLt==='cc'){ const on=vel/127>0.5; if(on&&!_nLprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  } _nLprev=on; return; }
       if(note===kR){ const dark=vel/127>0; document.body.classList.toggle('dark',dark); sessionStorage.setItem('darkMode',dark?'1':'0'); return; }
     }
   }
