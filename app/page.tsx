@@ -30,7 +30,7 @@ export default function AboutPage() {
         }
         #standby.hidden { opacity: 0; pointer-events: none; }
         #standby-video {
-          width: 60%; height: auto;
+          width: 75%; height: auto;
           object-fit: contain; pointer-events: none;
         }
         #taam-strip {
