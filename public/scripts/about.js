@@ -26,14 +26,16 @@ function unmute(){
 var _sb = document.getElementById('standby');
 document.body.classList.add('standby-active');
 var _idleTimer;
+var _sbVid = document.getElementById('standby-video');
 function showStandby(){
   _sb.classList.remove('hidden'); document.body.classList.add('standby-active');
-  var lr=document.getElementById('logo-reveal'); if(lr) lr.style.opacity='0';
   var st=document.getElementById('standby-text'); if(st) st.style.opacity='1';
+  if(_sbVid){ _sbVid.currentTime=0; _sbVid.play().catch(function(){}); }
   if(typeof _animReset==='function') _animReset();
 }
 function hideStandby(){
   _sb.classList.add('hidden'); document.body.classList.remove('standby-active'); startIdle();
+  if(_sbVid) _sbVid.pause();
   vid.currentTime=0;
   if(!vid.paused){ vid.muted=false; }
   else { vid.play().then(function(){ vid.muted=false; }).catch(function(){}); }

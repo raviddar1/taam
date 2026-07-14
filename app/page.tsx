@@ -21,24 +21,31 @@ export default function AboutPage() {
 
         #standby {
           position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-          background: #fff;
+          background: #000;
           display: flex; flex-direction: column;
           align-items: center; justify-content: center;
           z-index: 500; opacity: 1; pointer-events: auto;
           transition: opacity 0.5s ease;
+          overflow: hidden;
         }
         #standby.hidden { opacity: 0; pointer-events: none; }
+        #standby-video {
+          position: absolute; inset: 0;
+          width: 100%; height: 100%;
+          object-fit: cover; pointer-events: none;
+        }
         #taam-strip {
           position: absolute; top: 50%; left: 50%;
           transform: translate(-50%,-50%); margin-top: -30px;
-          pointer-events: none; z-index: 700;
+          pointer-events: none; z-index: 505; opacity: 0;
         }
         #standby-text {
           position: fixed; bottom: 160px; left: 50%;
           transform: translateX(-50%);
           font-family: 'TheBasics', sans-serif; font-weight: 400;
-          font-size: 17px; color: #343434; direction: rtl;
+          font-size: 17px; color: #fff; direction: rtl;
           white-space: nowrap; transition: opacity 0.5s ease;
+          z-index: 510;
         }
         #logo-reveal, #logo-reveal-dark {
           position: fixed; left: 50%; top: 50%;
@@ -85,10 +92,9 @@ export default function AboutPage() {
       <div id="page-nav"></div>
 
       <div id="standby">
-        <img id="logo-reveal" src="/logomid.png" alt="" className="logo-light-mode" />
-        <img id="logo-reveal-dark" src="/logomid-dark.png" alt="" className="logo-dark-mode" />
+        <video id="standby-video" src="/shapes.mp4" loop muted playsInline autoPlay />
         <div id="taam-strip"></div>
-        <div id="standby-text">לחצו על כל כפתור במקלדת כדי להתחיל</div>
+        <div id="standby-text">לחצו על כל כפתור במידי פד כדי להתחיל</div>
       </div>
 
       <button id="midi-permission-btn">אפשר MIDI ▸</button>
