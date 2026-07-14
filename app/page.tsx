@@ -32,7 +32,7 @@ export default function AboutPage() {
         #standby-video {
           position: absolute; inset: 0;
           width: 100%; height: 100%;
-          object-fit: cover; pointer-events: none;
+          object-fit: contain; pointer-events: none;
         }
         #taam-strip {
           position: absolute; top: 50%; left: 50%;
