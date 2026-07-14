@@ -21,7 +21,7 @@ export default function AboutPage() {
 
         #standby {
           position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-          background: #000;
+          background: #130F10;
           display: flex; flex-direction: column;
           align-items: center; justify-content: center;
           z-index: 500; opacity: 1; pointer-events: auto;
@@ -30,8 +30,7 @@ export default function AboutPage() {
         }
         #standby.hidden { opacity: 0; pointer-events: none; }
         #standby-video {
-          position: absolute; inset: 0;
-          width: 100%; height: 100%;
+          width: 60%; height: auto;
           object-fit: contain; pointer-events: none;
         }
         #taam-strip {
@@ -55,9 +54,7 @@ export default function AboutPage() {
         }
         body.dark .logo-light-mode { display: none; }
         body:not(.dark) .logo-dark-mode { display: none; }
-        body.standby-active .nav-link { color: #343434 !important; }
-        body.standby-active .nav-logo-sq { display: none !important; }
-        body.standby-active .nav-aodot { display: none !important; }
+        body.standby-active .navbar { display: none !important; }
         #video-wrap {
           position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
           display: flex; align-items: center; justify-content: center; z-index: 1;
