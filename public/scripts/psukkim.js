@@ -222,7 +222,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       13: new Audio('psukkim-morocai/psuk13.mp3'),
       14: new Audio('psukkim-morocai/psuk14.mp3'),
       15: new Audio('psukkim-morocai/psuk15.mp3'),
-      16: new Audio('psukkim-morocai/psuk16.wav'),
+      16: new Audio('psukkim-morocai/psuk16.mp3'),
     },
     'אשכנזי': {
       1:  new Audio('psukkim-ashkenazi/psuk01.mp3'),
