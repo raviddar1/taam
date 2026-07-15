@@ -653,8 +653,8 @@ export default function PsukkimPage() {
     }
     #tradition-wrap.visible { display: flex; }
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    #trad-list { display:flex; flex-direction:column; gap:10px; text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:17px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    #trad-list { display:flex; flex-direction:column; gap:11px; text-align:right; direction:rtl; min-width: max-content; }
+    .trad-item { font-size:19px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
     .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
     body.dark .trad-item:not(.active) { color: #fff; }
@@ -664,10 +664,10 @@ export default function PsukkimPage() {
       display: none; flex-direction: row; align-items: flex-end; gap: 8px;
     }
     #psuk-vol-faders.visible { display: flex; }
-    .psuk-vol-fader { width: 25px; height: 130px; position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
+    .psuk-vol-fader { width: 28px; height: 143px; position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
     .psuk-vol-fader-track { position: absolute; top:0; left:0; right:0; bottom:0; border:1px solid #343434; border-radius:10px; background:transparent; }
     body.dark .psuk-vol-fader-track { border-color:#fff; }
-    .psuk-vol-fader-thumb { position:absolute; left:5px; right:5px; height:32px; background:#bbb; border-radius:8px; pointer-events:none; }
+    .psuk-vol-fader-thumb { position:absolute; left:5px; right:5px; height:35px; background:#bbb; border-radius:8px; pointer-events:none; }
     .psuk-vol-fader-label { text-align:center; font-family:'TheBasics',sans-serif; font-size:14px; color:#343434; margin-top:5px; position:relative; top:10px; }
     body.dark .psuk-vol-fader-label { color:#fff; }
       `}</style>
