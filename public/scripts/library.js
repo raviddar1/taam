@@ -136,8 +136,8 @@ function flashArrow(id, cls) {
   el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
 }
 document.addEventListener('keydown', function(e){
-  if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-right'); navPage(-1); }
-  if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-left');  navPage(1);  }
+  if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-right'); navPage(1);  }
+  if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-left');  navPage(-1); }
 });
 
 const _spNAV = ['/taamim','/?intro=1','/library','/taamim?seq','/psukkim'];

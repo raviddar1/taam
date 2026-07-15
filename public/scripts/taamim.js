@@ -1799,8 +1799,8 @@
       if(e.key==='1'){ selectTradition('ספרדי'); return; }
       if(e.key==='2'){ selectTradition('מרוקאי'); return; }
       if(e.key==='3'){ selectTradition('אשכנזי'); return; }
-      if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-right'); if(typeof navPage==='function') navPage(-1); return; }
-      if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-left');  if(typeof navPage==='function') navPage(1);  return; }
+      if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-right'); if(typeof navPage==='function') navPage(1);  return; }
+      if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-left');  if(typeof navPage==='function') navPage(-1); return; }
       doKey(e.key);
     });
 
