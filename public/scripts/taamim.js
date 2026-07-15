@@ -1742,28 +1742,7 @@
     }
 
     retriggerSolo = function() {
-      if(currentMode === 'בודד') {
-        if(!activeKey) return;
-        resetAnimStates();
-        showCanvas();
-        startAnimOnly(activeKey);
-        allAudios.forEach(function(a){ a.pause(); a.currentTime=0; });
-        playTradAudio(activeKey);
-        playTofim(activeKey);
-      } else if(currentMode === 'רצף') {
-        // בנגינה — מנגן מחדש את הטעם האחרון עם הנוסח החדש
-        var lastKey = Object.keys(seqLastTriggered).reduce(function(best, k) {
-          var s = seqLastTriggered[k];
-          if(!s) return best;
-          if(!best || s.placedAt > seqLastTriggered[best].placedAt) return k;
-          return best;
-        }, null);
-        if(lastKey) {
-          allAudios.forEach(function(a){ a.pause(); a.currentTime=0; });
-          playTradAudio(lastKey);
-          playTofim(lastKey);
-        }
-      }
+      allAudios.forEach(function(a){ a.pause(); a.currentTime=0; });
     };
 
     function flashArrow(id, cls) {
