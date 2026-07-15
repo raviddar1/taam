@@ -48,6 +48,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if (n === 12) playVerse012();
       if (n === 13) playVerse013();
       if (n === 14) playVerse014();
+      if (n === 15) playVerse015();
+      if (n === 16) playVerse016();
       playVerseAudio(n);
       playVerseDrums(n);
     }, 0);
