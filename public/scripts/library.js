@@ -166,7 +166,7 @@ if(navigator.requestMIDIAccess){
     if((st&0xF0)===0xB0){
       if(note===nR&&nRt==='cc'){ const on=vel/127>0.5; if(on&&!_nRprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); } _nRprev=on; return; }
       if(note===nL&&nLt==='cc'){ const on=vel/127>0.5; if(on&&!_nLprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  } _nLprev=on; return; }
-      if(note===kR){ const v=vel/127; if(_kRprev!==null && Math.abs(v-_kRprev)>2/127){ const dark=v<_kRprev; document.body.classList.toggle('dark',dark); sessionStorage.setItem('darkMode',dark?'1':'0'); } _kRprev=v; return; }
+      if(note===kR){ const v=vel/127; if(_kRprev===null){ _kRprev=v; } else if(Math.abs(v-_kRprev)>2/127){ const dark=v<_kRprev; document.body.classList.toggle('dark',dark); sessionStorage.setItem('darkMode',dark?'1':'0'); _kRprev=v; } return; }
     }
   }
   navigator.requestMIDIAccess({sysex:false}).then(function(midi){

@@ -2013,7 +2013,7 @@
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
             if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); LS.setItem('m_vL',val); if(window._volFaderSetR) window._volFaderSetR(val); return; }
             if(cc===kR){
-              if(_kRprev!==null && Math.abs(val-_kRprev)>2/127){ setDarkMode(val<_kRprev); } _kRprev=val;
+              if(_kRprev===null){ _kRprev=val; } else if(Math.abs(val-_kRprev)>2/127){ setDarkMode(val<_kRprev); _kRprev=val; }
               if(lastKey){
                 if(currentMode==='רצף'&&seqLastTriggered[lastKey]) seqLastTriggered[lastKey].str=val;
                 else { if(!keyProps[lastKey]) keyProps[lastKey]={sz:1,str:0}; keyProps[lastKey].str=val; }
