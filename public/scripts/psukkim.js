@@ -1941,7 +1941,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const anim016 = Array.from({length:10}, function(){ return {phase:0,t:0,startTime:null}; });
   let timers016 = [];
   const VERSE016_DELAYS = [9000, 8000, 6500, 5300, 4200, 3800, 3100, 2000, 1000, 0];
-  function playVerse016(){stopVerse016();for(var _i=0;_i<10;_i++){(function(idx){timers016.push(setTimeout(function(){anim016[idx].phase=1;anim016[idx].t=0;anim016[idx].startTime=performance.now();},VERSE016_DELAYS[idx]));})(_i);}}
+  const VERSE016_DELAYS_MAR = VERSE016_DELAYS.map(function(d){return d+40;});
+  function playVerse016(){stopVerse016();var _d16=currentTradition==='מרוקאי'?VERSE016_DELAYS_MAR:VERSE016_DELAYS;for(var _i=0;_i<10;_i++){(function(idx){timers016.push(setTimeout(function(){anim016[idx].phase=1;anim016[idx].t=0;anim016[idx].startTime=performance.now();},_d16[idx]));})(_i);}}
   function stopVerse016(){timers016.forEach(clearTimeout);timers016=[];anim016.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   // ---- dark-mode fill helper ----
