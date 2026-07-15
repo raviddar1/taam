@@ -146,12 +146,16 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     15: [4150, 3550, 2700, 1650, 900, 0],
     16: [9000, 8000, 6500, 5300, 4200, 3800, 3100, 2000, 1000, 0],
   };
+  const VERSE_DRUM_DELAYS_MAR = {
+    12: [350, 850, 2250, 3050, 4350, 4850, 6350, 7150],
+  };
   function playVerseDrums(n) {
     stopVerseDrums();
     var keys = VERSE_DRUMS[n];
     if (!keys) return;
     var rates = VERSE_DRUM_RATES[n] || [];
-    var delays = VERSE_DRUM_DELAYS[n];
+    var _marDelays = currentTradition === 'מרוקאי' && VERSE_DRUM_DELAYS_MAR[n];
+    var delays = _marDelays || VERSE_DRUM_DELAYS[n];
     keys.forEach(function(key, i) {
       var delay = delays ? delays[i] : i * 1000;
       _drumsTimers.push(setTimeout(function() {
@@ -1993,6 +1997,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE010_DELAYS = [500, 1500, 2100, 3300, 3600, 5900, 6900, 8900, 11400, 12400, 12900, 14400, 15900, 16400, 17900, 19000, 20250, 22350, 23700];
   const VERSE011_DELAYS = [500, 1000, 1500, 2800, 3300, 4600, 5000, 6000, 7200, 8200, 8900];
   const VERSE012_DELAYS = [500, 1000, 2700, 3500, 4500, 5000, 6500, 7300];
+  const VERSE012_DELAYS_MAR = [500, 1000, 2400, 3200, 4500, 5000, 6500, 7300];
   const VERSE013_DELAYS = [10800, 8700, 7900, 6700, 6000, 5200, 4000, 2000, 1000, 0];
   function playVerse001() {
     stopVerse001();
@@ -2055,7 +2060,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   function stopVerse011(){timers011.forEach(clearTimeout);timers011=[];anim011.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim012=Array.from({length:8},function(){return{phase:0,t:0,startTime:null};});let timers012=[];
-  function playVerse012(){stopVerse012();for(var _i=0;_i<8;_i++){(function(idx){timers012.push(setTimeout(function(){anim012[idx].phase=1;anim012[idx].t=0;anim012[idx].startTime=performance.now();},VERSE012_DELAYS[idx]));})(_i);}}
+  function playVerse012(){stopVerse012();var _d12=currentTradition==='מרוקאי'?VERSE012_DELAYS_MAR:VERSE012_DELAYS;for(var _i=0;_i<8;_i++){(function(idx){timers012.push(setTimeout(function(){anim012[idx].phase=1;anim012[idx].t=0;anim012[idx].startTime=performance.now();},_d12[idx]));})(_i);}}
   function stopVerse012(){timers012.forEach(clearTimeout);timers012=[];anim012.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   // ---- פתיחה / סגירה ----
