@@ -683,7 +683,7 @@ export default function PsukkimPage() {
   </nav>
   <div id="page-nav">
   </div>
-  <div id="psuk-hint">[בחרו פסוק במקלדת, החליפו נוסחים בחיצים]</div>
+  <div id="psuk-hint">[בחרו פסוק במידי פד, החליפו נוסחים בחיצים]</div>
 
 
   <a id="back-btn" href="/">→</a>
