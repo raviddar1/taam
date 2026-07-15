@@ -613,7 +613,7 @@ export default function PsukkimPage() {
     .arrow-flash-down  { animation:_afd .55s ease-out; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
-    .nav-aodot img          { height: 11px; width: auto; display: none; }
+    .nav-aodot img          { height: 21px; width: auto; display: none; }
     .nav-aodot .logo-light  { display: block; }
     body.dark .nav-aodot .logo-light { display: none; }
     body.dark .nav-aodot .logo-dark  { display: block; }
