@@ -1546,9 +1546,9 @@
       if (d['ג'] != null) shofarHolechDuration     = d['ג'];
       // progress-based speeds
       const sp = {
-        'ספרדי':  {sp:0.008, az:0.009, sh:0.009, shR:1.0, rvT:4.8, rvE:1.8},
-        'מרוקאי': {sp:0.008, az:0.015, sh:0.006, shR:1.9, rvT:6.5, rvE:2.8},
-        'אשכנזי': {sp:0.005, az:0.015, sh:0.009, shR:1.0, rvT:4.8, rvE:1.8},
+        'ספרדי':  {sp:0.008, az:0.015, sh:0.009, shR:1.0, rvT:4.8, rvE:1.8},
+        'מרוקאי': {sp:0.008, az:0.022, sh:0.006, shR:1.9, rvT:6.5, rvE:2.8},
+        'אשכנזי': {sp:0.005, az:0.022, sh:0.009, shR:1.0, rvT:4.8, rvE:1.8},
       }[currentTradition] || {sp:0.008, az:0.01, sh:0.009, shR:1.0, rvT:3.3, rvE:1.5};
       sofPasukSpeed     = sp.sp;
       azlaSpeed         = sp.az;
