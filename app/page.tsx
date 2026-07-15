@@ -100,7 +100,7 @@ export default function AboutPage() {
 
       <div id="video-wrap">
         <video id="intro-vid" loop muted playsInline preload="metadata">
-          <source src="/intro-only-pad.mp4?v=9" type="video/mp4" />
+          <source src="/intro-only-pad-logo.mp4?v=10" type="video/mp4" />
         </video>
       </div>
 
