@@ -279,7 +279,7 @@ export default function TaanimPage() {
 
   
   <div id="pad-grid-overlay">
-    <div id="pad-grid-label">[בחרו טעם במקלדת, החליפו נוסחים בחיצים]</div>
+    <div id="pad-grid-label">[בחרו טעם בריבועים במקלדת, החליפו נוסחים בחיצים]</div>
     <div id="pad-preview-container"></div>
   </div>
   <div id="tradition-wrap">
