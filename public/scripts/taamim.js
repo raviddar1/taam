@@ -1446,6 +1446,7 @@
     function loadDur(trad, key, audio) {
       audio.addEventListener('loadedmetadata', function() {
         TRAD_DURATIONS[trad][key] = audio.duration;
+        if (currentTradition === trad) updateAnimDurations();
       });
     }
 
@@ -1595,7 +1596,11 @@
                        audioTariKadminSfaradi,audioTariKadminAshk,audioTariKadminMar,audioTariKadminTofim,
                        audioMarichSfaradi,audioMarichAshk,audioMarichMar,audioMarichTofim,
                        audioDargaSfaradi,audioDargaAshk,audioDargaMar,audioDargaTofim];
-    allAudios.forEach(function(a){ a.preload='none'; });
+    const _drumAudios = new Set([audioZakefTofim,audioEtnachtaTofim,audioTabirTofim,audioZakefGadolTofim,
+      audioAzlaTofim,audioShneiGereshinTofim,audioSofPasukTofim,audioShofarMehupachTofim,
+      audioRaviyaTofim,audioTarchaTofim,audioZarqaTofim,audioShofarHolechTofim,
+      audioYetivTofim,audioTariKadminTofim,audioMarichTofim,audioDargaTofim]);
+    allAudios.forEach(function(a){ a.preload = _drumAudios.has(a) ? 'none' : 'metadata'; });
 
     // אודיו לא נטען מראש — מסיר אוברליי מיד אחרי אתחול
     (function(){
