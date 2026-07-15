@@ -574,11 +574,7 @@
           p.strokeWeight(2);
           return;
         }
-        const t=Math.min(1,effStr*2);
-        const fillA=(1-t)*base;
-        const sw=t*2;
-        if(fillA>1) p.fill(r,g,b,fillA); else p.noFill();
-        if(sw>0.3){ p.stroke(r,g,b,t*255); p.strokeWeight(sw); } else p.noStroke();
+        p.fill(r,g,b,base); p.noStroke();
       }
       switch(key){
         case 'צ': {
@@ -877,13 +873,7 @@
           p.strokeWeight(2);
           return;
         }
-        if(currentMode==='בודד'){ p.fill(r,g,b,base); p.noStroke(); return; }
-        const effStroke = currentMode==='רצף' ? (seqLastTriggered[_dk]?.str ?? 0) : (keyProps[_dk]?.str ?? 0);
-        const t=Math.min(1, effStroke*2);
-        const fillA=(1-t)*base;
-        const sw=t*2;
-        if(fillA>1) p.fill(r,g,b,fillA); else p.noFill();
-        if(sw>0.3){ p.stroke(r,g,b,t*255); p.strokeWeight(sw); } else p.noStroke();
+        p.fill(r,g,b,base); p.noStroke();
       }
 
       // צ
