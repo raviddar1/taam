@@ -655,7 +655,7 @@ export default function PsukkimPage() {
     #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
     #trad-list { display:flex; flex-direction:column; gap:11px; text-align:right; direction:rtl; min-width: max-content; }
     .trad-item { font-size:19px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
-    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
+    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 2px; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
     body.dark .trad-item:not(.active) { color: #fff; }
 

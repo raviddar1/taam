@@ -261,7 +261,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     if (trad && trad[n]) {
       _verseAudio = trad[n];
       _verseAudio.currentTime = 0;
-      _verseAudio.volume = _pskCantorVol();
+      _verseAudio.volume = currentTradition === 'אשכנזי' ? Math.min(1, _pskCantorVol() * (1/0.7)) : _pskCantorVol();
       _verseAudio.play().catch(function(){});
     }
   }
@@ -2343,7 +2343,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if(_kR!==null && note===_kR){ if(_kRprev===null){ _kRprev=val; } else if(Math.abs(val-_kRprev)>2/127){ _setDark(val<_kRprev); _kRprev=val; } return; }
       if(_kL!==null && note===_kL){ _pskSz = val*2; _applyPskScale(); return; }
       if(_fR!==null && note===_fR){ _LS.setItem('m_vR',val); _drumsClones.forEach(function(a){ a.volume=val; }); if(window._pskFaderSetL) window._pskFaderSetL(val); return; }
-      if(_fL!==null && note===_fL){ _LS.setItem('m_vL',val); if(_verseAudio) _verseAudio.volume=val; if(window._pskFaderSetR) window._pskFaderSetR(val); return; }
+      if(_fL!==null && note===_fL){ _LS.setItem('m_vL',val); if(_verseAudio) _verseAudio.volume=currentTradition==='אשכנזי'?Math.min(1,val*(1/0.7)):val; if(window._pskFaderSetR) window._pskFaderSetR(val); return; }
     }
   }
 
