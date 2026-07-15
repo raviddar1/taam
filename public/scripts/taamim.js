@@ -563,8 +563,7 @@
       noGlow();
       const {key,x,y} = s;
       const effSz  = s.sz  ?? keyProps[key]?.sz  ?? 1.0;
-      const effStr = s.str ?? keyProps[key]?.str ?? 0;
-      const sf=p.height*0.009*effSz;
+      const sf=p.height*0.009;
       function applyStyle(r,g,b,a){
         const base=a!==undefined?a:255;
         if(darkMode){
@@ -576,24 +575,27 @@
         }
         p.fill(r,g,b,base); p.noStroke();
       }
+      const scaleY = p.height*0.50;
+      p.push();
+      p.translate(x, scaleY); p.scale(effSz); p.translate(-x, -scaleY);
       switch(key){
         case 'צ': {
-          const d=p.height*0.14*effSz; applyStyle(255,225,55);
+          const d=p.height*0.14; applyStyle(255,225,55);
           for(let i=0;i<3;i++) p.circle(x, p.height*0.50-i*d, d); break;}
         case 'מ': {
-          const d=p.height*0.14*effSz, len=d*2; applyStyle(81,162,221);
+          const d=p.height*0.14, len=d*2; applyStyle(81,162,221);
           for(let i=0;i<3;i++) p.circle(x-(i/2)*len, p.height*0.50, d); break;}
         case 'נ': {
-          const wn=sf*7, hn=p.height*0.28*effSz; applyStyle(255,33,33);
+          const wn=sf*7, hn=p.height*0.28; applyStyle(255,33,33);
           p.rect(x-wn/2, p.height*0.64-hn, wn, hn); break;}
         case 'ה': {
-          const sq=p.height*0.28*effSz; applyStyle(0,0,0);
+          const sq=p.height*0.28; applyStyle(0,0,0);
           p.rectMode(p.CENTER); p.rect(x,y,sq,sq); p.rectMode(p.CORNER); break;}
         case 'ב': {
-          const ht=p.height*0.21*effSz, wt=p.height*0.21*effSz; applyStyle(238,146,3);
+          const wt=p.height*0.21; applyStyle(238,146,3);
           p.triangle(x-wt,p.height*0.64,x,p.height*0.64,x,p.height*0.43); break;}
         case 'ת': {
-          const tY=p.height*0.53, rv=p.height*0.11*effSz, f=rv/75, gv=26*f, cv=24*f, hw=14*f;
+          const tY=p.height*0.53, rv=p.height*0.11, f=rv/75, gv=26*f, cv=24*f, hw=14*f;
           applyStyle(170,150,232);
           p.beginShape();
           for(let a=0; a<=p.PI; a+=0.02) p.vertex(x+Math.cos(a)*(rv+hw), tY+Math.sin(a)*(rv+hw));
@@ -602,25 +604,25 @@
           applyStyle(170,150,232);
           p.circle(x, tY+(rv-gv-cv), cv*2); break;}
         case 'ך': {
-          const hk=p.height*0.07*effSz, wk=p.height*0.32*effSz; applyStyle(198,233,2);
+          const hk=p.height*0.07, wk=p.height*0.32; applyStyle(198,233,2);
           p.rect(x-wk,p.height*0.36,wk,hk); break;}
         case 'ג': {
-          const hk=p.height*0.07*effSz, wk=p.height*0.32*effSz; applyStyle(81,162,221);
+          const hk=p.height*0.07, wk=p.height*0.32; applyStyle(81,162,221);
           p.rect(x-wk,p.height*0.57,wk,hk); break;}
         case 'ף': {
-          const hk=p.height*0.07*effSz, wk=p.height*0.32*effSz; applyStyle(81,162,221);
+          const hk=p.height*0.07, wk=p.height*0.32; applyStyle(81,162,221);
           p.rect(x-wk,p.height*0.36,wk,hk); break;}
         case 'ד': {
-          const sf=p.height*0.21/135*effSz, cy_d=p.height*0.516;
+          const sf2=p.height*0.21/135, cy_d=p.height*0.516;
           applyStyle(170,150,232);
-          p.triangle(x-70*sf, cy_d-55*sf, x+70*sf, cy_d-55*sf, x, cy_d+80*sf);
+          p.triangle(x-70*sf2, cy_d-55*sf2, x+70*sf2, cy_d-55*sf2, x, cy_d+80*sf2);
           break;}
         case 'ל':
-          applyStyle(81,162,221,127); p.circle(x,y,p.height*0.28*effSz);
-          applyStyle(81,162,221); p.circle(x,y,p.height*0.14*effSz);
+          applyStyle(81,162,221,127); p.circle(x,y,p.height*0.28);
+          applyStyle(81,162,221); p.circle(x,y,p.height*0.14);
           break;
         case 'ח': {
-          const sW=sf*10.8, sH=p.height*0.252*effSz, gp=-sf*0.72;
+          const sW=sf*10.8, sH=p.height*0.252, gp=-sf*0.72;
           const cy=p.height*0.535;
           const cx=x-sf*1.74;
           const lx=cx-sW/2-gp/2, rx=cx+sW/2+gp/2;
@@ -628,15 +630,15 @@
           applyStyle(170,150,232); drawRaviyaTriangle(rx,cy,sW,sH);
           break;}
         case 'י': {
-          const halfH=p.height*0.07*effSz, ww=p.height*0.125*effSz, cy2=p.height*0.57;
+          const halfH=p.height*0.07, ww=p.height*0.125, cy2=p.height*0.57;
           applyStyle(255,225,55);
           p.triangle(x-ww/2,cy2, x+ww/2,cy2-halfH, x+ww/2,cy2+halfH); break;}
         case 'כ': {
-          const hw=p.height*0.15*effSz; applyStyle(238,146,3);
+          const hw=p.height*0.15; applyStyle(238,146,3);
           p.triangle(x, p.height*0.36, x-hw, p.height*0.64, x+hw, p.height*0.64);
           break;}
         case 'ע': {
-          const eY=p.height*0.43, outerR=p.height*0.21*effSz, innerR=outerR*0.72;
+          const eY=p.height*0.43, outerR=p.height*0.21, innerR=outerR*0.72;
           applyStyle(198,233,2);
           p.beginShape();
           for(let a=p.PI; a>=p.HALF_PI; a-=0.02) p.vertex(x+Math.cos(a)*outerR, eY+Math.sin(a)*outerR);
@@ -644,11 +646,12 @@
           p.endShape(p.CLOSE);
           break;}
         case 'ש': {
-          const r=p.height*0.14*effSz; applyStyle(255,225,55);
+          const r=p.height*0.14; applyStyle(255,225,55);
           p.push(); p.translate(x, p.height*0.50); p.rotate(p.radians(200));
           p.arc(0,0,r*2,r*2,p.radians(130),p.radians(310),p.PIE);
           p.pop(); break;}
       }
+      p.pop();
     }
 
     // ---- ציור צורה בודד (קפואה) ----
