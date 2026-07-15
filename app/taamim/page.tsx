@@ -275,11 +275,11 @@ export default function TaanimPage() {
     <div id="solo-interp"></div>
   </div>
 
-  <div id="seq-hint">[לחצו על הטעמים במידי פד כדי לנגן.<br />לחצו על <svg width="9" height="15" viewBox="0 0 9 15" fill="none" style={{verticalAlign: "-4px", margin: "0 2px"}}><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg> כדי לשמור בגלריה]</div>
+  <div id="seq-hint">[לחצו על הטעמים במקלדת כדי לנגן.<br />לחצו על <svg width="9" height="15" viewBox="0 0 9 15" fill="none" style={{verticalAlign: "-4px", margin: "0 2px"}}><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg> כדי לשמור בגלריה]</div>
 
   
   <div id="pad-grid-overlay">
-    <div id="pad-grid-label">[בחרו טעם במידי פד, החליפו נוסחים בחיצים]</div>
+    <div id="pad-grid-label">[בחרו טעם במקלדת, החליפו נוסחים בחיצים]</div>
     <div id="pad-preview-container"></div>
   </div>
   <div id="tradition-wrap">

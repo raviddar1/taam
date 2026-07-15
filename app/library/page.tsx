@@ -100,7 +100,7 @@ export default function LibraryPage() {
       </nav>
       <div id="page-nav"></div>
 
-      <div id="gallery-hint">[לחצו על המידי פד לצפייה בנגינות השמורות]</div>
+      <div id="gallery-hint">[לחצו על המקלדת לצפייה בנגינות השמורות]</div>
       <div id="grid"></div>
 
       <div id="melody-overlay">
