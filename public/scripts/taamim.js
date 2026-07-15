@@ -390,7 +390,7 @@
     ov.appendChild(fl);
     var pop = document.createElement('div');
     pop.textContent = 'הנגינה שלך נשמרה בגלריה';
-    pop.style.cssText = 'position:absolute;top:calc(13% + 20px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid #FF179C;border-radius:10px;padding:10px 22px;font-family:\'TheBasics\',sans-serif;font-size:14px;color:#343434;white-space:nowrap;direction:rtl;z-index:1;opacity:0;transition:opacity 0.3s ease;';
+    pop.style.cssText = 'position:absolute;top:calc(13% + 60px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid #FF179C;border-radius:10px;padding:12px 28px;font-family:\'TheBasics\',sans-serif;font-size:18px;color:#343434;white-space:nowrap;direction:rtl;z-index:1;opacity:0;transition:opacity 0.3s ease;';
     ov.appendChild(pop);
     document.body.appendChild(ov);
     setTimeout(function(){ fl.style.opacity = '0'; }, 40);
