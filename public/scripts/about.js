@@ -39,7 +39,7 @@ function hideStandby(){
   vid.currentTime=0;
   document.body.classList.add('intro-active');
   if(vid.paused) vid.play().catch(function(){});
-  setTimeout(function(){ vid.muted=false; }, 500);
+  setTimeout(function(){ vid.muted=false; }, 1000);
 }
 vid.addEventListener('ended', function(){ document.body.classList.remove('intro-active'); });
 function isStandby(){ return !_sb.classList.contains('hidden'); }
