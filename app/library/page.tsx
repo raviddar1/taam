@@ -94,8 +94,8 @@ export default function LibraryPage() {
         <a href="/library" className="nav-link nav-info active">גלריה</a>
         <button className="page-nav-btn" id="pnav-prev"><svg width="9" height="15" viewBox="0 0 9 15" fill="none"><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg></button>
         <a href="/" className="nav-link nav-aodot">
-          <img src="/logolight.png" className="logo-light" alt="אודות" />
-          <img src="/logodark.png" className="logo-dark" alt="אודות" />
+          <img src="/logolight.png?v=2" className="logo-light" alt="אודות" />
+          <img src="/logodark.png?v=2" className="logo-dark" alt="אודות" />
         </a>
       </nav>
       <div id="page-nav"></div>
