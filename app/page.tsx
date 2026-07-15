@@ -32,6 +32,7 @@ export default function AboutPage() {
         #standby-video {
           width: 75%; height: auto;
           object-fit: contain; pointer-events: none;
+          position: relative; left: 20px;
         }
         #taam-strip {
           position: absolute; top: 50%; left: 50%;
@@ -98,7 +99,7 @@ export default function AboutPage() {
 
       <div id="video-wrap">
         <video id="intro-vid" loop muted playsInline preload="metadata">
-          <source src="/introWpad3.mp4" type="video/mp4" />
+          <source src="/intro-only-pad.mp4" type="video/mp4" />
         </video>
       </div>
 
