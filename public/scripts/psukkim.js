@@ -151,7 +151,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     10: [350, 1350, 1750, 3150, 3450, 5800, 6450, 8100, 9400, 9800, 12650, 13700, 14200, 15400, 16850, 17450, 19000, 20650, 21350],
     11: [350, 850, 2250, 3750, 4250, 5750, 6450, 6950, 8150, 9150, 9850],
     12: [350, 850, 2250, 3050, 4350, 4850, 6350, 7150],
-    13: [10800, 9800, 9000, 8200, 7500, 6500, 4900, 3400, 2500, 0],
+    13: [10000, 9800, 9000, 8200, 7500, 6500, 4900, 3400, 2500, 0],
   };
   function playVerseDrums(n) {
     stopVerseDrums();
@@ -2008,7 +2008,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE012_DELAYS = [500, 1000, 2700, 3500, 4500, 5000, 6500, 7300];
   const VERSE012_DELAYS_MAR = [500, 1000, 2400, 3200, 4500, 5000, 6500, 7300];
   const VERSE013_DELAYS = [10800, 8700, 7900, 6700, 6000, 5200, 4000, 2000, 1000, 0];
-  const VERSE013_DELAYS_MAR = [10800, 9800, 9000, 8200, 7500, 6500, 4900, 3400, 2500, 0];
+  const VERSE013_DELAYS_MAR = [10000, 9800, 9000, 8200, 7500, 6500, 4900, 3400, 2500, 0];
   function playVerse001() {
     stopVerse001();
     var _delays = currentTradition === 'אשכנזי' ? VERSE001_DELAYS_ASH : VERSE001_DELAYS;
