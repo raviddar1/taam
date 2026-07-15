@@ -1742,7 +1742,15 @@
     }
 
     retriggerSolo = function() {
+      if(currentMode === 'רצף') return;
+      var k = currentMode === 'בודד' ? activeKey : lastKey;
+      if(!k) return;
       allAudios.forEach(function(a){ a.pause(); a.currentTime=0; });
+      resetAnimStates();
+      showCanvas();
+      startAnimOnly(k);
+      playTradAudio(k);
+      playTofim(k);
     };
 
     function flashArrow(id, cls) {
