@@ -148,6 +148,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   };
   const VERSE_DRUM_DELAYS_MAR = {
     8:  [350, 1450, 3950, 6450, 7300, 8800, 10300, 11800, 14500, 15200, 16200, 17200, 18900, 20000, 22400],
+    11: [350, 850, 1750, 3050, 3550, 4850, 5250, 6250, 7450, 8450, 9150],
     12: [350, 850, 2250, 3050, 4350, 4850, 6350, 7150],
   };
   function playVerseDrums(n) {
@@ -1999,6 +2000,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE009_DELAYS = [500, 900, 1600, 2100, 4100, 5450, 5800, 7300, 8300, 8950, 10400, 13400, 14100];
   const VERSE010_DELAYS = [500, 1500, 2100, 3300, 3600, 5900, 6900, 8900, 11400, 12400, 12900, 14400, 15900, 16400, 17900, 19000, 20250, 22350, 23700];
   const VERSE011_DELAYS = [500, 1000, 1500, 2800, 3300, 4600, 5000, 6000, 7200, 8200, 8900];
+  const VERSE011_DELAYS_MAR = [500, 1000, 1900, 3200, 3700, 5000, 5400, 6400, 7600, 8600, 9300];
   const VERSE012_DELAYS = [500, 1000, 2700, 3500, 4500, 5000, 6500, 7300];
   const VERSE012_DELAYS_MAR = [500, 1000, 2400, 3200, 4500, 5000, 6500, 7300];
   const VERSE013_DELAYS = [10800, 8700, 7900, 6700, 6000, 5200, 4000, 2000, 1000, 0];
@@ -2059,7 +2061,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   function stopVerse010(){timers010.forEach(clearTimeout);timers010=[];anim010.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim011=Array.from({length:11},function(){return{phase:0,t:0,startTime:null};});let timers011=[];
-  function playVerse011(){stopVerse011();for(var _i=0;_i<11;_i++){(function(idx){timers011.push(setTimeout(function(){anim011[idx].phase=1;anim011[idx].t=0;anim011[idx].startTime=performance.now();},VERSE011_DELAYS[idx]));})(_i);}}
+  function playVerse011(){stopVerse011();var _d11=currentTradition==='מרוקאי'?VERSE011_DELAYS_MAR:VERSE011_DELAYS;for(var _i=0;_i<11;_i++){(function(idx){timers011.push(setTimeout(function(){anim011[idx].phase=1;anim011[idx].t=0;anim011[idx].startTime=performance.now();},_d11[idx]));})(_i);}}
   function stopVerse011(){timers011.forEach(clearTimeout);timers011=[];anim011.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim012=Array.from({length:8},function(){return{phase:0,t:0,startTime:null};});let timers012=[];
