@@ -155,7 +155,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     keys.forEach(function(key, i) {
       var delay = delays ? delays[i] : i * 1000;
       _drumsTimers.push(setTimeout(function() {
-        var src = (currentTradition === 'מרוקאי' && key === 'ג') ? _shofarHolechMar : PSK_DRUMS_AUDIO[key];
+        var src = PSK_DRUMS_AUDIO[key];
         if (src) {
           var clone = src.cloneNode();
           clone.playbackRate = rates[i] || 1;
