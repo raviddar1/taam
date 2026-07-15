@@ -575,83 +575,70 @@
         }
         p.fill(r,g,b,base); p.noStroke();
       }
-      const scaleY = p.height*0.50;
-      p.push();
-      p.translate(x, scaleY); p.scale(effSz); p.translate(-x, -scaleY);
+      function sd(cx,cy,fn){ p.push(); p.translate(cx,cy); p.scale(effSz); p.translate(-cx,-cy); fn(); p.pop(); }
+      const h=p.height, sy=h*0.50;
       switch(key){
-        case 'צ': {
-          const d=p.height*0.14; applyStyle(255,225,55);
-          for(let i=0;i<3;i++) p.circle(x, p.height*0.50-i*d, d); break;}
-        case 'מ': {
-          const d=p.height*0.14, len=d*2; applyStyle(81,162,221);
-          for(let i=0;i<3;i++) p.circle(x-(i/2)*len, p.height*0.50, d); break;}
-        case 'נ': {
-          const wn=sf*7, hn=p.height*0.28; applyStyle(255,33,33);
-          p.rect(x-wn/2, p.height*0.64-hn, wn, hn); break;}
-        case 'ה': {
-          const sq=p.height*0.28; applyStyle(0,0,0);
-          p.rectMode(p.CENTER); p.rect(x,y,sq,sq); p.rectMode(p.CORNER); break;}
-        case 'ב': {
-          const wt=p.height*0.21; applyStyle(238,146,3);
-          p.triangle(x-wt,p.height*0.64,x,p.height*0.64,x,p.height*0.43); break;}
-        case 'ת': {
-          const tY=p.height*0.53, rv=p.height*0.11, f=rv/75, gv=26*f, cv=24*f, hw=14*f;
+        case 'צ': sd(x,sy,()=>{
+          const d=h*0.14; applyStyle(255,225,55);
+          for(let i=0;i<3;i++) p.circle(x,sy-i*d,d); }); break;
+        case 'מ': sd(x-h*0.14,sy,()=>{
+          const d=h*0.14,len=d*2; applyStyle(81,162,221);
+          for(let i=0;i<3;i++) p.circle(x-(i/2)*len,sy,d); }); break;
+        case 'נ': sd(x,sy,()=>{
+          const wn=sf*7,hn=h*0.28; applyStyle(255,33,33);
+          p.rect(x-wn/2,h*0.64-hn,wn,hn); }); break;
+        case 'ה': sd(x,y,()=>{
+          const sq=h*0.28; applyStyle(0,0,0);
+          p.rectMode(p.CENTER); p.rect(x,y,sq,sq); p.rectMode(p.CORNER); }); break;
+        case 'ב': sd(x,h*0.535,()=>{
+          const wt=h*0.21; applyStyle(238,146,3);
+          p.triangle(x-wt,h*0.64,x,h*0.64,x,h*0.43); }); break;
+        case 'ת': sd(x,h*0.53,()=>{
+          const tY=h*0.53,rv=h*0.11,f=rv/75,gv=26*f,cv=24*f,hw=14*f;
           applyStyle(170,150,232);
           p.beginShape();
-          for(let a=0; a<=p.PI; a+=0.02) p.vertex(x+Math.cos(a)*(rv+hw), tY+Math.sin(a)*(rv+hw));
-          for(let a=p.PI; a>=0; a-=0.02) p.vertex(x+Math.cos(a)*(rv-hw), tY+Math.sin(a)*(rv-hw));
-          p.endShape(p.CLOSE);
-          applyStyle(170,150,232);
-          p.circle(x, tY+(rv-gv-cv), cv*2); break;}
-        case 'ך': {
-          const hk=p.height*0.07, wk=p.height*0.32; applyStyle(198,233,2);
-          p.rect(x-wk,p.height*0.36,wk,hk); break;}
-        case 'ג': {
-          const hk=p.height*0.07, wk=p.height*0.32; applyStyle(81,162,221);
-          p.rect(x-wk,p.height*0.57,wk,hk); break;}
-        case 'ף': {
-          const hk=p.height*0.07, wk=p.height*0.32; applyStyle(81,162,221);
-          p.rect(x-wk,p.height*0.36,wk,hk); break;}
-        case 'ד': {
-          const sf2=p.height*0.21/135, cy_d=p.height*0.516;
-          applyStyle(170,150,232);
-          p.triangle(x-70*sf2, cy_d-55*sf2, x+70*sf2, cy_d-55*sf2, x, cy_d+80*sf2);
-          break;}
-        case 'ל':
-          applyStyle(81,162,221,127); p.circle(x,y,p.height*0.28);
-          applyStyle(81,162,221); p.circle(x,y,p.height*0.14);
-          break;
-        case 'ח': {
-          const sW=sf*10.8, sH=p.height*0.252, gp=-sf*0.72;
-          const cy=p.height*0.535;
-          const cx=x-sf*1.74;
-          const lx=cx-sW/2-gp/2, rx=cx+sW/2+gp/2;
+          for(let a=0;a<=p.PI;a+=0.02) p.vertex(x+Math.cos(a)*(rv+hw),tY+Math.sin(a)*(rv+hw));
+          for(let a=p.PI;a>=0;a-=0.02) p.vertex(x+Math.cos(a)*(rv-hw),tY+Math.sin(a)*(rv-hw));
+          p.endShape(p.CLOSE); applyStyle(170,150,232);
+          p.circle(x,tY+(rv-gv-cv),cv*2); }); break;
+        case 'ך': sd(x-h*0.16,h*0.395,()=>{
+          const hk=h*0.07,wk=h*0.32; applyStyle(198,233,2);
+          p.rect(x-wk,h*0.36,wk,hk); }); break;
+        case 'ג': sd(x-h*0.16,h*0.605,()=>{
+          const hk=h*0.07,wk=h*0.32; applyStyle(81,162,221);
+          p.rect(x-wk,h*0.57,wk,hk); }); break;
+        case 'ף': sd(x-h*0.16,h*0.395,()=>{
+          const hk=h*0.07,wk=h*0.32; applyStyle(81,162,221);
+          p.rect(x-wk,h*0.36,wk,hk); }); break;
+        case 'ד': sd(x,h*0.516,()=>{
+          const sf2=h*0.21/135,cy_d=h*0.516; applyStyle(170,150,232);
+          p.triangle(x-70*sf2,cy_d-55*sf2,x+70*sf2,cy_d-55*sf2,x,cy_d+80*sf2); }); break;
+        case 'ל': sd(x,y,()=>{
+          applyStyle(81,162,221,127); p.circle(x,y,h*0.28);
+          applyStyle(81,162,221); p.circle(x,y,h*0.14); }); break;
+        case 'ח': sd(x,h*0.535,()=>{
+          const sW=sf*10.8,sH=h*0.252,gp=-sf*0.72,cy=h*0.535,cx2=x-sf*1.74;
+          const lx=cx2-sW/2-gp/2,rx=cx2+sW/2+gp/2;
           applyStyle(170,150,232); drawRaviyaTriangle(lx,cy,sW,sH);
-          applyStyle(170,150,232); drawRaviyaTriangle(rx,cy,sW,sH);
-          break;}
-        case 'י': {
-          const halfH=p.height*0.07, ww=p.height*0.125, cy2=p.height*0.57;
-          applyStyle(255,225,55);
-          p.triangle(x-ww/2,cy2, x+ww/2,cy2-halfH, x+ww/2,cy2+halfH); break;}
-        case 'כ': {
-          const hw=p.height*0.15; applyStyle(238,146,3);
-          p.triangle(x, p.height*0.36, x-hw, p.height*0.64, x+hw, p.height*0.64);
-          break;}
-        case 'ע': {
-          const eY=p.height*0.43, outerR=p.height*0.21, innerR=outerR*0.72;
-          applyStyle(198,233,2);
+          applyStyle(170,150,232); drawRaviyaTriangle(rx,cy,sW,sH); }); break;
+        case 'י': sd(x+h*0.02,h*0.57,()=>{
+          const halfH=h*0.07,ww=h*0.125,cy2=h*0.57; applyStyle(255,225,55);
+          p.triangle(x-ww/2,cy2,x+ww/2,cy2-halfH,x+ww/2,cy2+halfH); }); break;
+        case 'כ': sd(x,h*0.547,()=>{
+          const hw=h*0.15; applyStyle(238,146,3);
+          p.triangle(x,h*0.36,x-hw,h*0.64,x+hw,h*0.64); }); break;
+        case 'ע': sd(x,h*0.43,()=>{
+          const eY=h*0.43,outerR=h*0.21,innerR=outerR*0.72; applyStyle(198,233,2);
           p.beginShape();
-          for(let a=p.PI; a>=p.HALF_PI; a-=0.02) p.vertex(x+Math.cos(a)*outerR, eY+Math.sin(a)*outerR);
-          for(let a=p.HALF_PI; a<=p.PI; a+=0.02) p.vertex(x+Math.cos(a)*innerR, eY+Math.sin(a)*innerR);
-          p.endShape(p.CLOSE);
-          break;}
-        case 'ש': {
-          const r=p.height*0.14; applyStyle(255,225,55);
-          p.push(); p.translate(x, p.height*0.50); p.rotate(p.radians(200));
+          for(let a=p.PI;a>=p.HALF_PI;a-=0.02) p.vertex(x+Math.cos(a)*outerR,eY+Math.sin(a)*outerR);
+          for(let a=p.HALF_PI;a<=p.PI;a+=0.02) p.vertex(x+Math.cos(a)*innerR,eY+Math.sin(a)*innerR);
+          p.endShape(p.CLOSE); }); break;
+        case 'ש': sd(x+h*0.03,h*0.449,()=>{
+          const r=h*0.14; applyStyle(255,225,55);
+          p.push(); p.translate(x,sy); p.rotate(p.radians(200));
           p.arc(0,0,r*2,r*2,p.radians(130),p.radians(310),p.PIE);
-          p.pop(); break;}
+          p.pop(); }); break;
       }
-      p.pop();
     }
 
     // ---- ציור צורה בודד (קפואה) ----
