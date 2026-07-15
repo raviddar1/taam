@@ -1995,6 +1995,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   let timers001 = [];
 
   const VERSE001_DELAYS = [0, 1000, 2000, 3000, 6000, 7000];
+  const VERSE001_DELAYS_ASH = [200, 1000, 2200, 3200, 6200, 7200];
   const VERSE002_DELAYS = [0, 1000, 2000, 4000, 4500, 5000, 6000, 6800, 7300];
   const VERSE003_DELAYS = [0, 1500, 2000, 2600, 3000, 4500, 5500, 7000, 7700];
   const VERSE004_DELAYS = [500, 2000, 3800, 4300, 5100, 6800, 7600, 8800];
@@ -2009,13 +2010,14 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE013_DELAYS = [10800, 8700, 7900, 6700, 6000, 5200, 4000, 2000, 1000, 0];
   function playVerse001() {
     stopVerse001();
+    var _delays = currentTradition === 'אשכנזי' ? VERSE001_DELAYS_ASH : VERSE001_DELAYS;
     for (var _i = 0; _i < 6; _i++) {
       (function(idx){
         timers001.push(setTimeout(function() {
           anim001[idx].phase = 1;
           anim001[idx].t = 0;
           anim001[idx].startTime = performance.now();
-        }, VERSE001_DELAYS[idx]));
+        }, _delays[idx]));
       })(_i);
     }
   }
