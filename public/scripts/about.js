@@ -38,8 +38,8 @@ function hideStandby(){
   if(_sbVid) _sbVid.pause();
   vid.currentTime=0;
   document.body.classList.add('intro-active');
-  if(!vid.paused){ vid.muted=false; }
-  else { vid.play().then(function(){ vid.muted=false; }).catch(function(){}); }
+  if(vid.paused) vid.play().catch(function(){});
+  setTimeout(function(){ vid.muted=false; }, 500);
 }
 vid.addEventListener('ended', function(){ document.body.classList.remove('intro-active'); });
 function isStandby(){ return !_sb.classList.contains('hidden'); }
