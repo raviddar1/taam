@@ -303,7 +303,7 @@ export default function PsukkimPage() {
     .w004-1 { right: calc(50vw - 544px); }  /* triRight center x=1269 → שיר */
     .w004-2 { right: calc(50vw - 372px); }  /* bluLower center x=1097 → למעלות */
     .w004-3 { right: calc(50vw - 192px); }  /* bluMiddle center x=917 → אשא */
-    .w004-4 { right: calc(50vw - 45px);  }  /* greenArc x=770 → עיני */
+    .w004-4 { right: calc(50vw - 15px);  }  /* greenArc x=770 → עיני */
     .w004-5 { right: calc(50vw + 110px); }  /* red center x=615 → אל-ההרים */
     .w004-6 { right: calc(50vw + 211px); }  /* triLeft center x=514 → מאין */
     .w004-7 { right: calc(50vw + 353px); }  /* bluUpper center x=372 → יבא */
