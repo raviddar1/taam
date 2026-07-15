@@ -78,7 +78,7 @@ export default function LibraryPage() {
         #gallery-loading.out { opacity: 0; pointer-events: none; }
         @keyframes _gl-pulse { 0%,100%{r:10} 50%{r:22} }
         #gallery-loading circle { animation: _gl-pulse 1.4s ease-in-out infinite; }
-        .nav-aodot img { height: 18px !important; width: auto !important; }
+        .nav-aodot img { height: 15px !important; width: auto !important; }
       `}</style>
 
       <div id="gallery-loading">
