@@ -38,8 +38,7 @@ function hideStandby(){
   if(_sbVid) _sbVid.pause();
   vid.currentTime=0;
   document.body.classList.add('intro-active');
-  if(!vid.paused){ vid.muted=false; }
-  else { vid.play().then(function(){ vid.muted=false; }).catch(function(){}); }
+  vid.play().catch(function(){});
 }
 vid.addEventListener('ended', function(){ document.body.classList.remove('intro-active'); });
 function isStandby(){ return !_sb.classList.contains('hidden'); }
@@ -70,7 +69,7 @@ document.addEventListener('keydown', function(e){
 function _tryPlay(){ vid.play().catch(function(){}); }
 if(vid.readyState >= 3) _tryPlay();
 else vid.addEventListener('canplay', _tryPlay, {once:true});
-window.addEventListener('pageshow', function(){ vid.load(); _tryPlay(); });
+window.addEventListener('pageshow', function(){ vid.muted=true; vid.load(); _tryPlay(); });
 
 document.getElementById('pnav-next').addEventListener('click', function(){ navPage(1); });
 document.getElementById('pnav-prev').addEventListener('click', function(){ navPage(-1); });
