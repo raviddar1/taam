@@ -2204,8 +2204,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   }
   document.addEventListener('keydown', function(e){
     if(e.key==='ArrowDown'){  flashArrow('trad-down','arrow-flash-down');  cycleTrad(1);  }
-    if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-left');  _navPage(-1); }
-    if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-right'); _navPage(1);  }
+    if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); _navPage(-1); }
+    if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  _navPage(1);  }
   });
 
   // ---- MIDI ----
