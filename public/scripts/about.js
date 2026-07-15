@@ -50,7 +50,8 @@ function startIdle(){ clearTimeout(_idleTimer); _idleTimer = setTimeout(showStan
 
 var _NAV_PAGES = ['/taamim','/?intro=1','/library','/taamim?seq','/psukkim'];
 var _NAV_CUR = 1;
-if(location.search.includes('intro')) hideStandby();
+var _isInternalNav = document.referrer && new URL(document.referrer).origin === location.origin;
+if(location.search.includes('intro') && _isInternalNav) hideStandby();
 function flashArrow(id, cls) {
   var el = document.getElementById(id); if(!el) return;
   el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
