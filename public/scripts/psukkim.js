@@ -245,7 +245,6 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   ].forEach(function(a){ if(a) a.preload='none'; });
 
   let _verseAudio = null;
-  let _verseAudioCtx = null, _verseGain = null;
   function playVerseAudio(n) {
     stopVerseAudio();
     const trad = VERSE_AUDIO[currentTradition];
@@ -253,19 +252,6 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       _verseAudio = trad[n];
       _verseAudio.currentTime = 0;
       _verseAudio.volume = _pskCantorVol();
-      if (currentTradition === 'מרוקאי') {
-        try {
-          if (!_verseAudioCtx) {
-            _verseAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            var src = _verseAudioCtx.createMediaElementSource(_verseAudio);
-            _verseGain = _verseAudioCtx.createGain();
-            _verseGain.gain.value = 2.5;
-            src.connect(_verseGain);
-            _verseGain.connect(_verseAudioCtx.destination);
-          }
-          _verseAudioCtx.resume();
-        } catch(e) {}
-      }
       _verseAudio.play().catch(function(){});
     }
   }
