@@ -136,11 +136,11 @@ function flashArrow(id, cls) {
   el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
 }
 document.addEventListener('keydown', function(e){
-  if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  navPage(-1); }
-  if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  }
+  if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); }
+  if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  }
 });
 
-const _spNAV = ['/taamim','/','/library','/taamim?seq','/psukkim'];
+const _spNAV = ['/taamim','/?intro=1','/library','/taamim?seq','/psukkim'];
 const _spIDX = 2;
 function navPage(dir){ window.location.href = _spNAV[(_spIDX + dir + _spNAV.length) % _spNAV.length]; }
 document.getElementById('pnav-next').addEventListener('click', function(){ navPage(1); });

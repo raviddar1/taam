@@ -1809,14 +1809,14 @@
       if(e.key==='1'){ selectTradition('ספרדי'); return; }
       if(e.key==='2'){ selectTradition('מרוקאי'); return; }
       if(e.key==='3'){ selectTradition('אשכנזי'); return; }
-      if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  if(typeof navPage==='function') navPage(-1); return; }
-      if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); if(typeof navPage==='function') navPage(1);  return; }
+      if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-left');  if(typeof navPage==='function') navPage(-1); return; }
+      if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-right'); if(typeof navPage==='function') navPage(1);  return; }
       doKey(e.key);
     });
 
   // ---- ניווט עמודים ----
   (function(){
-    const _NP = ['/taamim','/','/library','/taamim?seq','/psukkim'];
+    const _NP = ['/taamim','/?intro=1','/library','/taamim?seq','/psukkim'];
     const _NI = location.search.includes('seq') ? 3 : 0;
     window._taamNavPage = function(dir){
       const dest = _NP[(_NI + dir + _NP.length) % _NP.length];

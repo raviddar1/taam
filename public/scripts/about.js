@@ -48,8 +48,9 @@ function startIdle(){ clearTimeout(_idleTimer); _idleTimer = setTimeout(showStan
   document.addEventListener(ev, function(){ if(!isStandby()) startIdle(); }, {passive:true});
 });
 
-var _NAV_PAGES = ['/taamim','/','/library','/taamim?seq','/psukkim'];
+var _NAV_PAGES = ['/taamim','/?intro=1','/library','/taamim?seq','/psukkim'];
 var _NAV_CUR = 1;
+if(location.search.includes('intro')) hideStandby();
 function flashArrow(id, cls) {
   var el = document.getElementById(id); if(!el) return;
   el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
@@ -61,8 +62,8 @@ document.addEventListener('keydown', function(e){
     if(e.key==='Shift'||e.key==='Control'||e.key==='Meta'||/^[0-9]$/.test(e.key)) return;
     hideStandby(); return;
   }
-  if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); unmute(); navPage(1);  return; }
-  if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  unmute(); navPage(-1); return; }
+  if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-left');  unmute(); navPage(-1); return; }
+  if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-right'); unmute(); navPage(1);  return; }
   unmute();
 });
 function _tryPlay(){ vid.play().catch(function(){}); }

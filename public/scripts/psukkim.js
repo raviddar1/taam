@@ -2181,7 +2181,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   }
 
   // ---- ניווט עמודים (חיצים + MIDI) ----
-  const _NAV = ['/taamim','/','/library','/taamim?seq','/psukkim'];
+  const _NAV = ['/taamim','/?intro=1','/library','/taamim?seq','/psukkim'];
   const _CUR = 4;
   function flashArrow(id, cls) {
     var el = document.getElementById(id); if(!el) return;
@@ -2204,8 +2204,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   }
   document.addEventListener('keydown', function(e){
     if(e.key==='ArrowDown'){  flashArrow('trad-down','arrow-flash-down');  cycleTrad(1);  }
-    if(e.key==='ArrowLeft'){  flashArrow('pnav-next','arrow-flash-left');  _navPage(-1); }
-    if(e.key==='ArrowRight'){ flashArrow('pnav-prev','arrow-flash-right'); _navPage(1);  }
+    if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-left');  _navPage(-1); }
+    if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-right'); _navPage(1);  }
   });
 
   // ---- MIDI ----
