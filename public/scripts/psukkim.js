@@ -201,6 +201,9 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       15: new Audio('psukkim-sfaradi/psuk15.mp3'),
       16: new Audio('psukkim-sfaradi/psuk16.mp3'),
     },
+    'מרוקאי': {
+      16: new Audio('psukkim-morocai/psuk16.wav'),
+    },
     'אשכנזי': {
       1:  new Audio('psukkim-ashkenazi/psuk01.mp3'),
       2:  new Audio('psukkim-ashkenazi/psuk02.mp3'),
@@ -2315,7 +2318,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     if (_audioUnlocked) return;
     _audioUnlocked = true;
     var allAudio = [_shofarHolechMar].concat(Object.values(PSK_DRUMS_AUDIO));
-    ['ספרדי','אשכנזי'].forEach(function(t){
+    ['ספרדי','אשכנזי','מרוקאי'].forEach(function(t){
       if (VERSE_AUDIO[t]) Object.values(VERSE_AUDIO[t]).forEach(function(a){ allAudio.push(a); });
     });
     allAudio.forEach(function(a){
