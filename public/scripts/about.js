@@ -114,13 +114,13 @@ if(navigator.requestMIDIAccess){
     if(isStandby()){ hideStandby(); return; }
     if((st&0xF0)===0x90&&vel>0){
       unmute();
-      if(note===_nR&&_nRt==='note'){ flashArrow('pnav-next','arrow-flash-right');  navPage(-1); return; }
-      if(note===_nL&&_nLt==='note'){ flashArrow('pnav-prev','arrow-flash-left'); navPage(1);  return; }
+      if(note===_nR&&_nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right');  navPage(-1); return; }
+      if(note===_nL&&_nLt==='note'){ flashArrow('pnav-next','arrow-flash-left'); navPage(1);  return; }
     }
     if((st&0xF0)===0xB0){
       const val=vel/127;
-      if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-next','arrow-flash-right');  navPage(-1); } _nRprev=on; return; }
-      if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-prev','arrow-flash-left'); navPage(1);  } _nLprev=on; return; }
+      if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right');  navPage(-1); } _nRprev=on; return; }
+      if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left'); navPage(1);  } _nLprev=on; return; }
       if(_kR!==null && note===_kR){ if(_kRprev===null){ _kRprev=val; } else if(Math.abs(val-_kRprev)>2/127){ _setDark(val<_kRprev); _kRprev=val; } return; }
     }
   }

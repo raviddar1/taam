@@ -2284,8 +2284,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     const [st, note, vel] = msg.data;
     if ((st & 0xF0) === 0x90 && vel > 0) {
       console.log('[MIDI] note_on note:'+note+' → item:'+PAD_TO_ITEM[note]);
-      if(note===_nR&&_nRt==='note'){ flashArrow('pnav-next','arrow-flash-right');  _navPage(-1); return; }
-      if(note===_nL&&_nLt==='note'){ flashArrow('pnav-prev','arrow-flash-left'); _navPage(1);  return; }
+      if(note===_nR&&_nRt==='note'){ flashArrow('pnav-prev','arrow-flash-right');  _navPage(-1); return; }
+      if(note===_nL&&_nLt==='note'){ flashArrow('pnav-next','arrow-flash-left'); _navPage(1);  return; }
       if(note===_tU&&_tUt==='note'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
       const item = PAD_TO_ITEM[note];
       if (!item) return;
@@ -2295,8 +2295,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     }
     if ((st & 0xF0) === 0xB0) {
       const val = vel / 127;
-      if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-next','arrow-flash-right');  _navPage(-1); } _nRprev=on; return; }
-      if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-prev','arrow-flash-left'); _navPage(1);  } _nLprev=on; return; }
+      if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-prev','arrow-flash-right');  _navPage(-1); } _nRprev=on; return; }
+      if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-next','arrow-flash-left'); _navPage(1);  } _nLprev=on; return; }
       if(note===_tU&&_tUt==='cc'){ if(vel/127>0.5){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  } return; }
       if(_kR!==null && note===_kR){ if(_kRprev===null){ _kRprev=val; } else if(Math.abs(val-_kRprev)>2/127){ _setDark(val<_kRprev); _kRprev=val; } return; }
       if(_kL!==null && note===_kL){ _pskSz = val*2; _applyPskScale(); return; }
