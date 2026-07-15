@@ -56,6 +56,7 @@ export default function AboutPage() {
         body.dark .logo-light-mode { display: none; }
         body:not(.dark) .logo-dark-mode { display: none; }
         body.standby-active .navbar { display: none !important; }
+        body.intro-active .navbar { display: none !important; }
         #video-wrap {
           position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
           display: flex; align-items: center; justify-content: center; z-index: 1;
@@ -99,7 +100,7 @@ export default function AboutPage() {
 
       <div id="video-wrap">
         <video id="intro-vid" loop muted playsInline preload="metadata">
-          <source src="/intro-only-pad.mp4?v=2" type="video/mp4" />
+          <source src="/intro-only-pad.mp4?v=3" type="video/mp4" />
         </video>
       </div>
 
