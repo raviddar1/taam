@@ -1596,11 +1596,7 @@
                        audioTariKadminSfaradi,audioTariKadminAshk,audioTariKadminMar,audioTariKadminTofim,
                        audioMarichSfaradi,audioMarichAshk,audioMarichMar,audioMarichTofim,
                        audioDargaSfaradi,audioDargaAshk,audioDargaMar,audioDargaTofim];
-    const _drumAudios = new Set([audioZakefTofim,audioEtnachtaTofim,audioTabirTofim,audioZakefGadolTofim,
-      audioAzlaTofim,audioShneiGereshinTofim,audioSofPasukTofim,audioShofarMehupachTofim,
-      audioRaviyaTofim,audioTarchaTofim,audioZarqaTofim,audioShofarHolechTofim,
-      audioYetivTofim,audioTariKadminTofim,audioMarichTofim,audioDargaTofim]);
-    allAudios.forEach(function(a){ a.preload = _drumAudios.has(a) ? 'none' : 'metadata'; });
+    allAudios.forEach(function(a){ a.preload='none'; });
 
     // אודיו לא נטען מראש — מסיר אוברליי מיד אחרי אתחול
     (function(){
