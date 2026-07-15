@@ -73,7 +73,9 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
     });
     wrap.querySelector('#trad-down').addEventListener('click', function(){ cycleTrad(1); });
-    selectTradition(currentTradition);
+    wrap.querySelectorAll('.trad-item').forEach(function(el){
+      el.classList.toggle('active', el.dataset.trad === currentTradition);
+    });
   }
   function removeTraditionWrap() {
     var el = document.getElementById('tradition-wrap');
