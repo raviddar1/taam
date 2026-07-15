@@ -1969,7 +1969,7 @@
 
       const NAV_PAGES = ['/library','/taamim?seq','/psukkim','/taamim','/'];
       const CURRENT_PAGE_IDX = location.search.includes('seq') ? 1 : 3;
-      let _nRprev=false, _nLprev=false;
+      let _nRprev=false, _nLprev=false, _kRprev=null;
       function navPage(dir){ window._taamNavPage(dir); }
 
       function onMidiMsg(msg){
@@ -2013,7 +2013,7 @@
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
             if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); LS.setItem('m_vL',val); if(window._volFaderSetR) window._volFaderSetR(val); return; }
             if(cc===kR){
-              setDarkMode(val > 0);
+              if(_kRprev!==null && Math.abs(val-_kRprev)>2/127){ setDarkMode(val<_kRprev); } _kRprev=val;
               if(lastKey){
                 if(currentMode==='רצף'&&seqLastTriggered[lastKey]) seqLastTriggered[lastKey].str=val;
                 else { if(!keyProps[lastKey]) keyProps[lastKey]={sz:1,str:0}; keyProps[lastKey].str=val; }

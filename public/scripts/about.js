@@ -106,7 +106,7 @@ if(navigator.requestMIDIAccess){
   const _nL  = _LS.getItem('m_nL') !== null ? +_LS.getItem('m_nL') : 27;
   const _nLt = _LS.getItem('m_nLt') || 'cc';
   const _kR  = _LS.getItem('m_kR') !== null ? +_LS.getItem('m_kR') : null;
-  let _nRprev=false, _nLprev=false;
+  let _nRprev=false, _nLprev=false, _kRprev=null;
   function _setDark(on){ document.body.classList.toggle('dark',on); sessionStorage.setItem('darkMode',on?'1':'0'); }
   function onMidiMsg(msg){
     const [st,note,vel] = msg.data;
@@ -120,7 +120,7 @@ if(navigator.requestMIDIAccess){
       const val=vel/127;
       if(note===_nR&&_nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ flashArrow('pnav-next','arrow-flash-left');  navPage(-1); } _nRprev=on; return; }
       if(note===_nL&&_nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ flashArrow('pnav-prev','arrow-flash-right'); navPage(1);  } _nLprev=on; return; }
-      if(_kR!==null && note===_kR){ _setDark(val>0); return; }
+      if(_kR!==null && note===_kR){ if(_kRprev!==null && Math.abs(val-_kRprev)>2/127){ _setDark(val<_kRprev); } _kRprev=val; return; }
     }
   }
   navigator.requestMIDIAccess({sysex:false}).then(function(midi){
