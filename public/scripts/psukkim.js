@@ -160,6 +160,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     11: [100, 1000, 1500, 2000, 2500, 4200, 5000, 6000, 6500, 7900, 8500],
     12: [500, 1000, 2400, 3200, 4500, 5000, 6500, 7300],
     13: [10800, 10000, 9000, 7900, 6500, 6000, 4000, 2000, 1000, 0],
+    15: [6000, 5000, 4100, 2000, 900, 0],
   };
   const VERSE_DRUM_DELAYS_MAR = {
     1: [250, 850, 2050, 2550, 5350, 5950],
@@ -1848,7 +1849,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const anim015 = Array.from({length:6}, function(){ return {phase:0,t:0,startTime:null}; });
   let timers015 = [];
   const VERSE015_DELAYS = [4150, 3550, 2700, 1650, 900, 0];
-  function playVerse015(){stopVerse015();for(var _i=0;_i<6;_i++){(function(idx){timers015.push(setTimeout(function(){anim015[idx].phase=1;anim015[idx].t=0;anim015[idx].startTime=performance.now();},VERSE015_DELAYS[idx]));})(_i);}}
+  const VERSE015_DELAYS_ASH = [6000, 5000, 4100, 2000, 900, 0];
+  function playVerse015(){stopVerse015();var _d15=currentTradition==='אשכנזי'?VERSE015_DELAYS_ASH:VERSE015_DELAYS;for(var _i=0;_i<6;_i++){(function(idx){timers015.push(setTimeout(function(){anim015[idx].phase=1;anim015[idx].t=0;anim015[idx].startTime=performance.now();},_d15[idx]));})(_i);}}
   function stopVerse015(){timers015.forEach(clearTimeout);timers015=[];anim015.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   // ---- 016 ----
