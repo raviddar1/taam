@@ -155,6 +155,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     6: [350, 1850, 2650, 4350],
     7: [350, 1350, 2650, 4050, 4850, 7350, 8050, 9350, 11100, 12200],
     8: [250, 1250, 2050, 4550, 5650, 7350, 8450, 9850, 11550, 12350, 13350, 14250, 15250, 15750, 16750],
+    9: [350, 950, 2050, 2550, 3950, 5300, 5650, 7150, 8150, 8800, 10250, 13250, 13950],
   };
   const VERSE_DRUM_DELAYS_MAR = {
     1: [250, 850, 2050, 2550, 5350, 5950],
@@ -2035,6 +2036,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE008_DELAYS_ASH = [400, 1400, 2200, 4700, 5800, 7500, 8600, 10000, 11700, 12500, 13500, 14400, 15400, 15900, 16900];
   const VERSE008_DELAYS_MAR = [500, 1600, 3900, 5000, 5300, 7500, 9200, 10800, 12000, 12700, 13900, 14900, 16400, 17500, 19300];
   const VERSE009_DELAYS = [500, 900, 1600, 2100, 4100, 5450, 5800, 7300, 8300, 8950, 10400, 13400, 14100];
+  const VERSE009_DELAYS_ASH = [500, 1100, 2200, 2700, 4100, 5450, 5800, 7300, 8300, 8950, 10400, 13400, 14100];
   const VERSE010_DELAYS = [500, 1500, 2100, 3300, 3600, 5900, 6900, 8900, 11400, 12400, 12900, 14400, 15900, 16400, 17900, 19000, 20250, 22350, 23700];
   const VERSE010_DELAYS_MAR = [500, 1500, 1900, 3300, 3600, 5950, 6600, 8100, 9400, 9800, 12650, 13850, 14200, 15550, 17000, 17600, 19150, 20650, 21350];
   const VERSE011_DELAYS = [500, 1000, 1500, 2800, 3300, 4600, 5000, 6000, 7200, 8200, 8900];
@@ -2092,7 +2094,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   function stopVerse008(){timers008.forEach(clearTimeout);timers008=[];anim008.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim009=Array.from({length:13},function(){return{phase:0,t:0,startTime:null};});let timers009=[];
-  function playVerse009(){stopVerse009();for(var _i=0;_i<13;_i++){(function(idx){timers009.push(setTimeout(function(){anim009[idx].phase=1;anim009[idx].t=0;anim009[idx].startTime=performance.now();},VERSE009_DELAYS[idx]));})(_i);}}
+  function playVerse009(){stopVerse009();var _d9=currentTradition==='אשכנזי'?VERSE009_DELAYS_ASH:VERSE009_DELAYS;for(var _i=0;_i<13;_i++){(function(idx){timers009.push(setTimeout(function(){anim009[idx].phase=1;anim009[idx].t=0;anim009[idx].startTime=performance.now();},_d9[idx]));})(_i);}}
   function stopVerse009(){timers009.forEach(clearTimeout);timers009=[];anim009.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim010=Array.from({length:19},function(){return{phase:0,t:0,startTime:null};});let timers010=[];
