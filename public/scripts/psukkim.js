@@ -165,6 +165,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     6: [350, 1850, 2650, 4750],
     7: [250, 1550, 2500, 4050, 4850, 6150, 7450, 8850, 10350, 11350],
     8:  [350, 1450, 3750, 5000, 5300, 7500, 9200, 10800, 12000, 12700, 13900, 14900, 16400, 17500, 19300],
+    9: [350, 750, 1750, 1950, 3950, 5300, 5650, 7150, 8150, 8800, 10250, 13250, 13950],
     10: [350, 1350, 1750, 3150, 3450, 5800, 6450, 8100, 9400, 9800, 12650, 13700, 14200, 15400, 16850, 17450, 19000, 20650, 21350],
     11: [350, 850, 2250, 3750, 4250, 5750, 6450, 6950, 8150, 9150, 9850],
     12: [350, 850, 2250, 3050, 4350, 4850, 6350, 7150],
@@ -2036,6 +2037,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE008_DELAYS_ASH = [400, 1400, 2200, 4700, 5800, 7500, 8600, 10000, 11700, 12500, 13500, 14400, 15400, 15900, 16900];
   const VERSE008_DELAYS_MAR = [500, 1600, 3900, 5000, 5300, 7500, 9200, 10800, 12000, 12700, 13900, 14900, 16400, 17500, 19300];
   const VERSE009_DELAYS = [500, 900, 1600, 2100, 4100, 5450, 5800, 7300, 8300, 8950, 10400, 13400, 14100];
+  const VERSE009_DELAYS_MAR = [500, 900, 1900, 2100, 4100, 5450, 5800, 7300, 8300, 8950, 10400, 13400, 14100];
   const VERSE009_DELAYS_ASH = [500, 1100, 2200, 2700, 4300, 5450, 5800, 7300, 8300, 8950, 10400, 12900, 13600];
   const VERSE010_DELAYS = [500, 1500, 2100, 3300, 3600, 5900, 6900, 8900, 11400, 12400, 12900, 14400, 15900, 16400, 17900, 19000, 20250, 22350, 23700];
   const VERSE010_DELAYS_MAR = [500, 1500, 1900, 3300, 3600, 5950, 6600, 8100, 9400, 9800, 12650, 13850, 14200, 15550, 17000, 17600, 19150, 20650, 21350];
@@ -2094,7 +2096,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   function stopVerse008(){timers008.forEach(clearTimeout);timers008=[];anim008.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim009=Array.from({length:13},function(){return{phase:0,t:0,startTime:null};});let timers009=[];
-  function playVerse009(){stopVerse009();var _d9=currentTradition==='אשכנזי'?VERSE009_DELAYS_ASH:VERSE009_DELAYS;for(var _i=0;_i<13;_i++){(function(idx){timers009.push(setTimeout(function(){anim009[idx].phase=1;anim009[idx].t=0;anim009[idx].startTime=performance.now();},_d9[idx]));})(_i);}}
+  function playVerse009(){stopVerse009();var _d9=currentTradition==='מרוקאי'?VERSE009_DELAYS_MAR:currentTradition==='אשכנזי'?VERSE009_DELAYS_ASH:VERSE009_DELAYS;for(var _i=0;_i<13;_i++){(function(idx){timers009.push(setTimeout(function(){anim009[idx].phase=1;anim009[idx].t=0;anim009[idx].startTime=performance.now();},_d9[idx]));})(_i);}}
   function stopVerse009(){timers009.forEach(clearTimeout);timers009=[];anim009.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim010=Array.from({length:19},function(){return{phase:0,t:0,startTime:null};});let timers010=[];
