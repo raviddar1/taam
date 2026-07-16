@@ -610,18 +610,19 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [1] triTri — 2 purple triangles (רביע), verse-4 style scaled by 0.8 (s3=1.25 vs s4=1.0)
     { const _tt = anim003[1];
+      const ttOX=p.lerp(15,30,t), ttOY=p.lerp(0,10,t);
       if(_tt.phase>=1){
         const pR = Math.min(1, _tt.t*1.5);
         const pL = Math.max(0, Math.min(1, (_tt.t-0.2)*1.5));
         const eR=1-Math.pow(1-pR,3), eL=1-Math.pow(1-pL,3);
         df(p, 170,150,232);
-        p.triangle(tt.x-1.6+p.lerp(48,0,eR), tt.y, tt.x+27.2+p.lerp(48,0,eR), tt.y-29.6, tt.x+27.2+p.lerp(48,0,eR), tt.y+29.6);
-        p.triangle(tt.x-28.8+p.lerp(24,0,eL), tt.y, tt.x+p.lerp(24,0,eL), tt.y-29.6, tt.x+p.lerp(24,0,eL), tt.y+29.6);
+        p.triangle(tt.x+ttOX-1.6+p.lerp(48,0,eR), tt.y+ttOY, tt.x+ttOX+27.2+p.lerp(48,0,eR), tt.y+ttOY-29.6, tt.x+ttOX+27.2+p.lerp(48,0,eR), tt.y+ttOY+29.6);
+        p.triangle(tt.x+ttOX-28.8+p.lerp(24,0,eL), tt.y+ttOY, tt.x+ttOX+p.lerp(24,0,eL), tt.y+ttOY-29.6, tt.x+ttOX+p.lerp(24,0,eL), tt.y+ttOY+29.6);
       } else {
-        const tw3v=p.lerp(41.6,28.8,t), th3v=p.lerp(39.2,29.6,t), gap3v=p.lerp(0,-1.6,t);
+        const tw3v=p.lerp(35,28.8,t), th3v=p.lerp(33,29.6,t), gap3v=p.lerp(0,-1.6,t);
         df(p, 170,150,232);
-        p.triangle(tt.x-tw3v, tt.y, tt.x, tt.y-th3v, tt.x, tt.y+th3v);
-        p.triangle(tt.x+gap3v, tt.y, tt.x+gap3v+tw3v, tt.y-th3v, tt.x+gap3v+tw3v, tt.y+th3v);
+        p.triangle(tt.x+ttOX-tw3v, tt.y+ttOY, tt.x+ttOX, tt.y+ttOY-th3v, tt.x+ttOX, tt.y+ttOY+th3v);
+        p.triangle(tt.x+ttOX+gap3v, tt.y+ttOY, tt.x+ttOX+gap3v+tw3v, tt.y+ttOY-th3v, tt.x+ttOX+gap3v+tw3v, tt.y+ttOY+th3v);
       } }
 
     // [2] dblCirc — שופר מהופך: expand then contract
