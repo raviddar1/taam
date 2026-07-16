@@ -146,6 +146,12 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     15: [4150, 3550, 2700, 1650, 900, 0],
     16: [9000, 8000, 6500, 5300, 4200, 3800, 3100, 2000, 1000, 0],
   };
+  const VERSE_DRUM_DELAYS_ASH = {
+    1: [50, 850, 2650, 3150, 5450, 5650],
+    2: [0, 1850, 3850, 5850, 6850, 7650, 9050, 10350, 10850],
+    3: [50, 1050, 3000, 3450, 4350, 6150, 7350, 8850, 9350],
+    4: [0, 550, 1850, 2350, 3350, 4650, 5350, 6650],
+  };
   const VERSE_DRUM_DELAYS_MAR = {
     8:  [350, 1450, 3750, 5000, 5300, 7500, 9200, 10800, 12000, 12700, 13900, 14900, 16400, 17500, 19300],
     10: [350, 1350, 1750, 3150, 3450, 5800, 6450, 8100, 9400, 9800, 12650, 13700, 14200, 15400, 16850, 17450, 19000, 20650, 21350],
@@ -161,7 +167,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     if (!keys) return;
     var rates = VERSE_DRUM_RATES[n] || [];
     var _marDelays = currentTradition === 'מרוקאי' && VERSE_DRUM_DELAYS_MAR[n];
-    var delays = _marDelays || VERSE_DRUM_DELAYS[n];
+    var _ashDelays = currentTradition === 'אשכנזי' && VERSE_DRUM_DELAYS_ASH[n];
+    var delays = _marDelays || _ashDelays || VERSE_DRUM_DELAYS[n];
     keys.forEach(function(key, i) {
       var delay = delays ? delays[i] : i * 1000;
       _drumsTimers.push(setTimeout(function() {
@@ -2000,7 +2007,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE003_DELAYS = [0, 1500, 2000, 2600, 3000, 4500, 5500, 7000, 7700];
   const VERSE003_DELAYS_ASH = [200, 1200, 3150, 3600, 4500, 6300, 7500, 9000, 9500];
   const VERSE004_DELAYS = [500, 2000, 3800, 4300, 5100, 6800, 7600, 8800];
-  const VERSE004_DELAYS_ASH = [0, 700, 2000, 2500, 3500, 4500, 5500, 6800];
+  const VERSE004_DELAYS_ASH = [0, 700, 2000, 2500, 3500, 4800, 5500, 6800];
   const VERSE005_DELAYS = [500, 1000, 2500, 4000, 5500, 6500, 7500, 8000, 9500, 10500, 11800, 12800];
   const VERSE006_DELAYS = [500, 2000, 2800, 5200];
   const VERSE007_DELAYS = [500, 2000, 2800, 4200, 5000, 6300, 7600, 9000, 10500, 11500];
