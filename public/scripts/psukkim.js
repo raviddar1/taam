@@ -1994,7 +1994,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   let timers001 = [];
 
   const VERSE001_DELAYS = [0, 1000, 2000, 3000, 6000, 7000];
-  const VERSE001_DELAYS_ASH = [200, 1000, 2200, 3200, 6200, 7200];
+  const VERSE001_DELAYS_ASH = [200, 1000, 2400, 3300, 6200, 7200];
   const VERSE002_DELAYS = [0, 1000, 2000, 4000, 4500, 5000, 6000, 6800, 7300];
   const VERSE003_DELAYS = [0, 1500, 2000, 2600, 3000, 4500, 5500, 7000, 7700];
   const VERSE004_DELAYS = [500, 2000, 3800, 4300, 5100, 6800, 7600, 8800];
