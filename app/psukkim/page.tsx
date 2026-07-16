@@ -12,7 +12,7 @@ export default function PsukkimPage() {
 
   return (
     <>
-      <link rel="preload" href="/scripts/psukkim.js?v=2" as="script" />
+      <link rel="preload" href="/scripts/psukkim.js?v=3" as="script" />
       <style>{`
 * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #ffffff; font-family: 'TheBasics', sans-serif; }
@@ -988,7 +988,7 @@ export default function PsukkimPage() {
         strategy="afterInteractive"
         onLoad={() => {
           const s = document.createElement('script')
-          s.src = '/scripts/psukkim.js?v=2'
+          s.src = '/scripts/psukkim.js?v=3'
           document.body.appendChild(s)
         }}
       />
