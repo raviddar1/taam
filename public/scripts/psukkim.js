@@ -606,11 +606,11 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [0] bluBarR — slideIn
     { const pv=anim003[0].phase>=1?eoc3(anim003[0].t):1;
-      df(p,81,162,221); p.rect(blR.x+bw/2-bw*pv, blR.y-bh/2, bw*pv, bh); }
+      df(p,81,162,221); p.rect(blR.x+bw/2-bw*pv, blR.y-bh/2+p.lerp(0,8,t), bw*pv, bh); }
 
     // [1] triTri — 2 purple triangles (רביע), verse-4 style scaled by 0.8 (s3=1.25 vs s4=1.0)
     { const _tt = anim003[1];
-      const ttOX=p.lerp(15,30,t), ttOY=p.lerp(0,10,t);
+      const ttOX=p.lerp(20,30,t), ttOY=p.lerp(0,10,t);
       if(_tt.phase>=1){
         const pR = Math.min(1, _tt.t*1.5);
         const pL = Math.max(0, Math.min(1, (_tt.t-0.2)*1.5));
