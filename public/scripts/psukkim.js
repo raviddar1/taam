@@ -154,6 +154,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     5: [0, 850, 1350, 3850, 4850, 5850, 7350, 7850, 9350, 10350, 11650, 12350],
     6: [350, 1850, 2650, 4350],
     7: [350, 1350, 2650, 4050, 4850, 7350, 8050, 9350, 11100, 12200],
+    8: [0, 450, 2050, 5650, 6650, 7650, 9650, 11150, 13850, 14550, 15550, 16550, 18250, 19350, 21750],
   };
   const VERSE_DRUM_DELAYS_MAR = {
     8:  [350, 1450, 3750, 5000, 5300, 7500, 9200, 10800, 12000, 12700, 13900, 14900, 16400, 17500, 19300],
@@ -2018,6 +2019,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE007_DELAYS = [500, 2000, 2800, 4200, 5000, 6300, 7600, 9000, 10500, 11500];
   const VERSE007_DELAYS_ASH = [500, 1500, 2800, 4200, 5000, 7500, 8200, 9500, 11250, 12350];
   const VERSE008_DELAYS = [500, 1600, 4100, 6800, 7800, 9300, 10800, 12300, 15000, 15700, 16700, 17700, 19400, 20500, 22900];
+  const VERSE008_DELAYS_ASH = [0, 600, 2200, 5800, 6800, 7800, 9800, 11300, 14000, 14700, 15700, 16700, 18400, 19500, 21900];
   const VERSE008_DELAYS_MAR = [500, 1600, 3900, 5000, 5300, 7500, 9200, 10800, 12000, 12700, 13900, 14900, 16400, 17500, 19300];
   const VERSE009_DELAYS = [500, 900, 1600, 2100, 4100, 5450, 5800, 7300, 8300, 8950, 10400, 13400, 14100];
   const VERSE010_DELAYS = [500, 1500, 2100, 3300, 3600, 5900, 6900, 8900, 11400, 12400, 12900, 14400, 15900, 16400, 17900, 19000, 20250, 22350, 23700];
@@ -2073,7 +2075,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   function stopVerse007(){timers007.forEach(clearTimeout);timers007=[];anim007.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim008=Array.from({length:15},function(){return{phase:0,t:0,startTime:null};});let timers008=[];
-  function playVerse008(){stopVerse008();var _d8=currentTradition==='מרוקאי'?VERSE008_DELAYS_MAR:VERSE008_DELAYS;for(var _i=0;_i<15;_i++){(function(idx){timers008.push(setTimeout(function(){anim008[idx].phase=1;anim008[idx].t=0;anim008[idx].startTime=performance.now();},_d8[idx]));})(_i);}}
+  function playVerse008(){stopVerse008();var _d8=currentTradition==='מרוקאי'?VERSE008_DELAYS_MAR:currentTradition==='אשכנזי'?VERSE008_DELAYS_ASH:VERSE008_DELAYS;for(var _i=0;_i<15;_i++){(function(idx){timers008.push(setTimeout(function(){anim008[idx].phase=1;anim008[idx].t=0;anim008[idx].startTime=performance.now();},_d8[idx]));})(_i);}}
   function stopVerse008(){timers008.forEach(clearTimeout);timers008=[];anim008.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim009=Array.from({length:13},function(){return{phase:0,t:0,startTime:null};});let timers009=[];
