@@ -157,7 +157,8 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     8: [250, 1250, 2050, 4550, 5650, 7350, 8450, 9850, 11550, 12350, 13350, 14250, 15250, 15750, 16750],
   };
   const VERSE_DRUM_DELAYS_MAR = {
-    1: [250, 850, 2050, 2550, 5750, 6550],
+    1: [250, 850, 2050, 2550, 5350, 5950],
+    2: [0, 650, 2150, 4150, 4650, 4850, 5850, 6650, 7150],
     4: [350, 1450, 3050, 4150, 4950, 6650, 7450, 8650],
     5: [350, 850, 2350, 3850, 5350, 6350, 7350, 7850, 9350, 10350, 12050, 12650],
     6: [350, 1850, 2650, 4750],
@@ -2011,8 +2012,9 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
   const VERSE001_DELAYS = [0, 1000, 2000, 3000, 6000, 7000];
   const VERSE001_DELAYS_ASH = [200, 1000, 2800, 3300, 5600, 5800];
-  const VERSE001_DELAYS_MAR = [400, 1000, 2200, 2700, 5900, 6700];
+  const VERSE001_DELAYS_MAR = [400, 1000, 2200, 2700, 5500, 6100];
   const VERSE002_DELAYS = [0, 1000, 2000, 4000, 4500, 5000, 6000, 6800, 7300];
+  const VERSE002_DELAYS_MAR = [0, 800, 2300, 4300, 4800, 5000, 6000, 6800, 7300];
   const VERSE002_DELAYS_ASH = [0, 2000, 4000, 6000, 7000, 7800, 9200, 10500, 11000];
   const VERSE003_DELAYS = [0, 1500, 2000, 2600, 3000, 4500, 5500, 7000, 7700];
   const VERSE003_DELAYS_ASH = [200, 1200, 3150, 3600, 4500, 6300, 7500, 9000, 9500];
@@ -2061,7 +2063,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   }
 
   const anim002=Array.from({length:9},function(){return{phase:0,t:0,startTime:null};});let timers002=[];
-  function playVerse002(){stopVerse002();var _d2=currentTradition==='אשכנזי'?VERSE002_DELAYS_ASH:VERSE002_DELAYS;for(var _i=0;_i<9;_i++){(function(idx){timers002.push(setTimeout(function(){anim002[idx].phase=1;anim002[idx].t=0;anim002[idx].startTime=performance.now();},_d2[idx]));})(_i);}}
+  function playVerse002(){stopVerse002();var _d2=currentTradition==='מרוקאי'?VERSE002_DELAYS_MAR:currentTradition==='אשכנזי'?VERSE002_DELAYS_ASH:VERSE002_DELAYS;for(var _i=0;_i<9;_i++){(function(idx){timers002.push(setTimeout(function(){anim002[idx].phase=1;anim002[idx].t=0;anim002[idx].startTime=performance.now();},_d2[idx]));})(_i);}}
   function stopVerse002(){timers002.forEach(clearTimeout);timers002=[];anim002.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim003=Array.from({length:9},function(){return{phase:0,t:0,startTime:null};});let timers003=[];
