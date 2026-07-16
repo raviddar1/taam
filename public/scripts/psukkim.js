@@ -1996,6 +1996,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   const VERSE001_DELAYS = [0, 1000, 2000, 3000, 6000, 7000];
   const VERSE001_DELAYS_ASH = [200, 1000, 2800, 3300, 5600, 5800];
   const VERSE002_DELAYS = [0, 1000, 2000, 4000, 4500, 5000, 6000, 6800, 7300];
+  const VERSE002_DELAYS_ASH = [0, 2000, 4000, 6000, 7000, 5000, 6000, 6800, 7300];
   const VERSE003_DELAYS = [0, 1500, 2000, 2600, 3000, 4500, 5500, 7000, 7700];
   const VERSE004_DELAYS = [500, 2000, 3800, 4300, 5100, 6800, 7600, 8800];
   const VERSE005_DELAYS = [500, 1000, 2500, 4000, 5500, 6500, 7500, 8000, 9500, 10500, 11800, 12800];
@@ -2033,7 +2034,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   }
 
   const anim002=Array.from({length:9},function(){return{phase:0,t:0,startTime:null};});let timers002=[];
-  function playVerse002(){stopVerse002();for(var _i=0;_i<9;_i++){(function(idx){timers002.push(setTimeout(function(){anim002[idx].phase=1;anim002[idx].t=0;anim002[idx].startTime=performance.now();},VERSE002_DELAYS[idx]));})(_i);}}
+  function playVerse002(){stopVerse002();var _d2=currentTradition==='אשכנזי'?VERSE002_DELAYS_ASH:VERSE002_DELAYS;for(var _i=0;_i<9;_i++){(function(idx){timers002.push(setTimeout(function(){anim002[idx].phase=1;anim002[idx].t=0;anim002[idx].startTime=performance.now();},_d2[idx]));})(_i);}}
   function stopVerse002(){timers002.forEach(clearTimeout);timers002=[];anim002.forEach(function(a){a.phase=0;a.t=0;a.startTime=null;});}
 
   const anim003=Array.from({length:9},function(){return{phase:0,t:0,startTime:null};});let timers003=[];
