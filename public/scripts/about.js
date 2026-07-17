@@ -33,11 +33,11 @@ function showStandby(){
   if(_sbVid){ _sbVid.currentTime=0; _sbVid.play().catch(function(){}); }
   if(typeof _animReset==='function') _animReset();
 }
-function hideStandby(){
+function hideStandby(showNav){
   _sb.classList.add('hidden'); document.body.classList.remove('standby-active'); startIdle();
   if(_sbVid) _sbVid.pause();
   vid.currentTime=0;
-  document.body.classList.add('intro-active');
+  if(!showNav) document.body.classList.add('intro-active');
   if(vid.paused) vid.play().catch(function(){});
   setTimeout(function(){ vid.muted=false; }, 800);
 }
@@ -51,7 +51,7 @@ function startIdle(){ clearTimeout(_idleTimer); _idleTimer = setTimeout(showStan
 var _NAV_PAGES = ['/taamim','/?intro=1','/library','/taamim?seq','/psukkim'];
 var _NAV_CUR = 1;
 var _isInternalNav = document.referrer && new URL(document.referrer).origin === location.origin;
-if(location.search.includes('intro') && _isInternalNav) hideStandby();
+if(location.search.includes('intro') && _isInternalNav) hideStandby(true);
 function flashArrow(id, cls) {
   var el = document.getElementById(id); if(!el) return;
   el.classList.remove('arrow-flash-left','arrow-flash-right'); void el.offsetWidth; el.classList.add(cls);
