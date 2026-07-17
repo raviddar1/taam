@@ -2137,7 +2137,7 @@
     if(location.search.includes('embed')) return;
     var t;
     function doReset(){ sessionStorage.removeItem('darkMode'); localStorage.removeItem('m_vR'); localStorage.removeItem('m_vL'); }
-    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/'; },120000); }
+    function reset(){ clearTimeout(t); t=setTimeout(function(){ doReset(); window.location.href='/'; },60000); }
     window._idleReset = reset;
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
     document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });

@@ -139,7 +139,7 @@ export default function TaanimPage() {
       font-family: 'TheBasics', sans-serif; font-size: 17px; color: #aaa;
       text-align: center; pointer-events: all;
       transition: color 0.15s, border-color 0.15s;
-      position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%);
+      position: fixed; bottom: 168px; left: 50%; transform: translateX(-50%);
     }
     #ipus-btn:hover, #ipus-btn.seq-active { color: #343434; border-color: #343434; }
 
