@@ -16,7 +16,7 @@ export default function AboutPage() {
       <style>{`
         body { background: #130F10; font-family: 'TheBasics', sans-serif; }
         body.dark { background: #130F10; }
-        body.dark .nav-link:not(.active) { color: #fff; }
+        .nav-link:not(.active) { color: #fff; }
         body.dark .nav-logo-sq { background: #fff; }
 
         #standby {
