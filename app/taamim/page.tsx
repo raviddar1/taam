@@ -18,20 +18,20 @@ export default function TaanimPage() {
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fff; font-family: 'TheBasics', sans-serif; }
     /* ---- נאב-בר ---- */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
-    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
-    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 17px; color: #343434; text-decoration: none; white-space: nowrap; }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 74px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 92px; }
+    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 30px; height: 30px; background: #000; display: block; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 20px; color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
-    .nav-aodot img          { height: 14px; width: auto; display: none; }
+    .nav-aodot img          { height: 16px; width: auto; display: none; }
     .nav-aodot .logo-light  { display: block; }
     body.dark .nav-aodot .logo-light { display: none; }
     body.dark .nav-aodot .logo-dark  { display: block; }
     
     
     
-    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:18px; padding:2px 4px; line-height:1; }
+    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:21px; padding:2px 4px; line-height:1; }
 
     /* ---- קנבס ---- */
     #wrap {
@@ -125,12 +125,12 @@ export default function TaanimPage() {
       display: none;
       position: fixed; bottom: 60px; left: 2vw; z-index: 60;
       font-family: 'TheBasics', sans-serif;
-      flex-direction: column; align-items: center; gap: 12px;
+      flex-direction: column; align-items: center; gap: 14px;
     }
     #tradition-wrap.visible { display: flex; }
-    #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    #trad-list { display:flex; flex-direction:column; gap:11px; text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:19px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    #trad-col { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    #trad-list { display:flex; flex-direction:column; gap:13px; text-align:right; direction:rtl; min-width: max-content; }
+    .trad-item { font-size:22px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
     .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; align-self: flex-start; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
 
@@ -158,7 +158,7 @@ export default function TaanimPage() {
       display: flex; flex-direction: row; align-items: flex-end; gap: 8px;
     }
     .vol-fader {
-      width: 25px; height: 130px;
+      width: 29px; height: 150px;
       position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none;
     }
     .vol-fader-track {
@@ -167,12 +167,12 @@ export default function TaanimPage() {
     }
     body.dark .vol-fader-track { border-color: #fff; }
     .vol-fader-thumb {
-      position: absolute; left: 5px; right: 5px; height: 32px;
+      position: absolute; left: 6px; right: 6px; height: 37px;
       background: #bbb; border-radius: 8px; pointer-events: none;
     }
     .vol-fader-label {
       text-align: center; font-family: 'TheBasics', sans-serif;
-      font-size: 14px; color: #343434; margin-top: 5px;
+      font-size: 16px; color: #343434; margin-top: 6px;
     }
     body.dark .vol-fader-label { color: #fff; }
 
@@ -225,7 +225,7 @@ export default function TaanimPage() {
       left: 50%; transform: translateX(-50%);
       font-family: 'TheBasics', sans-serif;
       font-weight: 400;
-      font-size: 17px;
+      font-size: 20px;
       color: #343434;
       white-space: nowrap;
       direction: rtl;
@@ -237,7 +237,7 @@ export default function TaanimPage() {
     #pad-preview-container canvas { display: block; }
     #seq-hint {
       position: fixed; top: 82px; left: 50%; transform: translateX(-50%);
-      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 17px;
+      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 20px;
       color: #343434; direction: rtl; text-align: center; line-height: 1.7;
       display: none; pointer-events: none;
     }
@@ -245,7 +245,7 @@ export default function TaanimPage() {
 
     /* ---- חיצי ניווט טעמים ---- */
     #solo-nav { display:flex; position:absolute; right: calc(35/1920*100vw); top:50%; transform:translateY(-50%); align-items:center; gap:2px; }
-    .solo-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:18px; padding:2px 4px; line-height:1; }
+    .solo-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:21px; padding:2px 4px; line-height:1; }
       `}</style>
 
 
