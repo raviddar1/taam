@@ -653,28 +653,28 @@ export default function PsukkimPage() {
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
       display: none;
-      position: fixed; bottom: 66px; left: 2vw; z-index: 10;
+      position: fixed; bottom: 76px; left: 2vw; z-index: 10;
       font-family: 'TheBasics', sans-serif;
-      flex-direction: column; align-items: center; gap: 13px;
+      flex-direction: column; align-items: center; gap: 15px;
     }
     #tradition-wrap.visible { display: flex; }
-    #trad-col { display: flex; flex-direction: column; align-items: center; gap: 13px; }
-    #trad-list { display:flex; flex-direction:column; gap:12px; text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:21px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    #trad-col { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+    #trad-list { display:flex; flex-direction:column; gap:14px; text-align:right; direction:rtl; min-width: max-content; }
+    .trad-item { font-size:24px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
     .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 2px; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
     body.dark .trad-item:not(.active) { color: #fff; }
 
 #psuk-vol-faders {
-      position: fixed; bottom: 31px; right: 25px; z-index: 60;
-      display: none; flex-direction: row; align-items: flex-end; gap: 9px;
+      position: fixed; bottom: 36px; right: 29px; z-index: 60;
+      display: none; flex-direction: row; align-items: flex-end; gap: 10px;
     }
     #psuk-vol-faders.visible { display: flex; }
-    .psuk-vol-fader { width: 31px; height: 157px; position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
+    .psuk-vol-fader { width: 36px; height: 181px; position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
     .psuk-vol-fader-track { position: absolute; top:0; left:0; right:0; bottom:0; border:1px solid #343434; border-radius:10px; background:transparent; }
     body.dark .psuk-vol-fader-track { border-color:#fff; }
-    .psuk-vol-fader-thumb { position:absolute; left:6px; right:6px; height:39px; background:#bbb; border-radius:8px; pointer-events:none; }
-    .psuk-vol-fader-label { text-align:center; font-family:'TheBasics',sans-serif; font-size:15px; color:#343434; margin-top:5px; position:relative; top:10px; }
+    .psuk-vol-fader-thumb { position:absolute; left:7px; right:7px; height:45px; background:#bbb; border-radius:8px; pointer-events:none; }
+    .psuk-vol-fader-label { text-align:center; font-family:'TheBasics',sans-serif; font-size:17px; color:#343434; margin-top:5px; position:relative; top:10px; }
     body.dark .psuk-vol-fader-label { color:#fff; }
       `}</style>
 
