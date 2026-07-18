@@ -8,6 +8,12 @@ export default function PsukkimPage() {
     if (sessionStorage.getItem('darkMode') === '1') {
       document.body.classList.add('dark')
     }
+    const setVw = () => {
+      document.documentElement.style.setProperty('--vw', (window.innerWidth / 1920).toFixed(4))
+    }
+    setVw()
+    window.addEventListener('resize', setVw)
+    return () => window.removeEventListener('resize', setVw)
   }, [])
 
   return (
@@ -45,108 +51,108 @@ export default function PsukkimPage() {
     }
 
     #canvas-outer-001 {
-      transform: translate(calc(75vw + 75px), calc(24vh - 48px)) scale(0.36);
+      transform: translate(calc(75vw + 75px), calc(24vh - 48px)) scale(calc(0.49 * var(--vw, 1)));
     }
     #canvas-outer-001.open {
       transform: translate(calc(50vw - 530px), calc(50vh - 128px)) scale(1.95) !important;
     }
     #canvas-outer-002 {
-      transform: translate(calc(51vw + 57px), calc(24vh - 55px)) scale(0.37);
+      transform: translate(calc(51vw + 57px), calc(24vh - 55px)) scale(calc(0.50 * var(--vw, 1)));
     }
     #canvas-outer-002.open {
       transform: translate(calc(50vw - 820px), calc(50vh - 334px)) scale(1.55) !important;
     }
     #canvas-outer-003 {
-      transform: translate(calc(27vw + 50px), calc(24vh - 35px)) scale(0.36);
+      transform: translate(calc(27vw + 50px), calc(24vh - 35px)) scale(calc(0.49 * var(--vw, 1)));
     }
     #canvas-outer-003.open {
       transform: translate(calc(50vw - 690px), calc(50vh - 240px)) scale(1.25) !important;
     }
     #canvas-outer-004 {
-      transform: translate(calc(3vw + 75px), calc(24vh - 65px)) scale(0.20);
+      transform: translate(calc(3vw + 75px), calc(24vh - 65px)) scale(calc(0.27 * var(--vw, 1)));
     }
     #canvas-outer-004.open {
       transform: translate(calc(50vw - 725px), calc(50vh - 160px)) scale(1) !important;
     }
     #canvas-outer-005 {
-      transform: translate(calc(75vw + 33px), calc(39vh - 15px)) scale(0.40);
+      transform: translate(calc(75vw + 33px), calc(39vh - 15px)) scale(calc(0.54 * var(--vw, 1)));
     }
     #canvas-outer-005.open {
       transform: translate(calc(50vw - 1040px), calc(50vh - 464px)) scale(1.6) !important;
     }
     #canvas-outer-006 { z-index: 1; }
     #canvas-outer-006 {
-      transform: translate(calc(51vw + 92px), calc(39vh + 5px)) scale(0.37);
+      transform: translate(calc(51vw + 92px), calc(39vh + 5px)) scale(calc(0.50 * var(--vw, 1)));
     }
     #canvas-outer-006.open {
       transform: translate(calc(50vw - 490px), calc(50vh - 200px)) scale(1.3) !important;
     }
     #canvas-outer-007 { z-index: 2; }
     #canvas-outer-007 {
-      transform: translate(calc(27vw - 120px), calc(39vh + 7px)) scale(0.47);
+      transform: translate(calc(27vw - 120px), calc(39vh + 7px)) scale(calc(0.63 * var(--vw, 1)));
     }
     #canvas-outer-007.open {
       transform: translate(calc(50vw - 785px), calc(50vh - 265px)) scale(1.75) !important;
     }
     #canvas-outer-008 { z-index: 1; }
     #canvas-outer-008 {
-      transform: translate(calc(3vw + 40px), calc(39vh + 10px)) scale(0.47);
+      transform: translate(calc(3vw + 40px), calc(39vh + 10px)) scale(calc(0.63 * var(--vw, 1)));
     }
     #canvas-outer-008.open {
       transform: translate(calc(50vw - 615px), calc(50vh - 290px)) scale(1.65) !important;
     }
     #canvas-outer-009 { z-index: 5; }
     #canvas-outer-009 {
-      transform: translate(calc(75vw + 52px), calc(54vh + 40px)) scale(0.41);
+      transform: translate(calc(75vw + 52px), calc(54vh + 40px)) scale(calc(0.55 * var(--vw, 1)));
     }
     #canvas-outer-009.open {
       transform: translate(calc(50vw - 620px), calc(50vh - 281px)) scale(1.15) !important;
     }
     #canvas-outer-010 { z-index: 4; }
     #canvas-outer-010 {
-      transform: translate(calc(51vw + 60px), calc(54vh + 40px)) scale(0.30);
+      transform: translate(calc(51vw + 60px), calc(54vh + 40px)) scale(calc(0.41 * var(--vw, 1)));
     }
     #canvas-outer-010.open {
       transform: translate(calc(50vw - 645px), calc(50vh - 301px)) scale(0.9) !important;
     }
     #canvas-outer-011 { z-index: 2; }
     #canvas-outer-011 {
-      transform: translate(calc(27vw + 63px), calc(54vh + 45px)) scale(0.30);
+      transform: translate(calc(27vw + 63px), calc(54vh + 45px)) scale(calc(0.41 * var(--vw, 1)));
     }
     #canvas-outer-011.open {
       transform: translate(calc(50vw - 733px), calc(50vh - 257px)) scale(0.87) !important;
     }
     #canvas-outer-012 { z-index: 1; }
     #canvas-outer-012 {
-      transform: translate(calc(3vw + 70px), calc(54vh + 35px)) scale(0.24);
+      transform: translate(calc(3vw + 70px), calc(54vh + 35px)) scale(calc(0.32 * var(--vw, 1)));
     }
     #canvas-outer-012.open {
       transform: translate(calc(50vw - 822px), calc(50vh - 263px)) scale(1) !important;
     }
     #canvas-outer-013 { z-index: 1; }
     #canvas-outer-013 {
-      transform: translate(calc(75vw + 75px), calc(69vh + 75px)) scale(0.25);
+      transform: translate(calc(75vw + 75px), calc(69vh + 75px)) scale(calc(0.34 * var(--vw, 1)));
     }
     #canvas-outer-013.open {
       transform: translate(calc(50vw - 641px), calc(50vh - 153px)) scale(0.85) !important;
     }
     #canvas-outer-014 { z-index: 1; }
     #canvas-outer-014 {
-      transform: translate(calc(51vw + 60px), calc(69vh + 65px)) scale(0.35);
+      transform: translate(calc(51vw + 60px), calc(69vh + 65px)) scale(calc(0.47 * var(--vw, 1)));
     }
     #canvas-outer-014.open {
       transform: translate(calc(50vw - 540px), calc(50vh - 135px)) scale(0.9) !important;
     }
     #canvas-outer-015 { z-index: 1; }
     #canvas-outer-015 {
-      transform: translate(calc(27vw + 95px), calc(69vh + 85px)) scale(0.20);
+      transform: translate(calc(27vw + 95px), calc(69vh + 85px)) scale(calc(0.27 * var(--vw, 1)));
     }
     #canvas-outer-015.open {
       transform: translate(calc(50vw - 595px), calc(50vh - 170px)) scale(0.85) !important;
     }
     #canvas-outer-016 { z-index: 1; }
     #canvas-outer-016 {
-      transform: translate(calc(3vw + 83px), calc(69vh + 75px)) scale(0.16);
+      transform: translate(calc(3vw + 83px), calc(69vh + 75px)) scale(calc(0.22 * var(--vw, 1)));
     }
     #canvas-outer-016.open {
       transform: translate(calc(50vw - 624px), calc(50vh - 224px)) scale(0.65) !important;
@@ -599,9 +605,9 @@ export default function PsukkimPage() {
 
     #back-btn { display: none; }
 
-    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: 80px; }
-    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: #000; display: block; }
-    .nav-link { font-family: 'TheBasics', sans-serif; font-size: 17px; color: #343434; text-decoration: none; white-space: nowrap; }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(40px, 4.8vw, 92px); }
+    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: clamp(18px, 1.56vw, 30px); height: clamp(18px, 1.56vw, 30px); background: #000; display: block; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: clamp(13px, 1.04vw, 20px); color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
@@ -613,13 +619,13 @@ export default function PsukkimPage() {
     .arrow-flash-down  { animation:_afd .55s ease-out; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
-    .nav-aodot img          { height: 14px; width: auto; display: none; }
+    .nav-aodot img          { height: clamp(10px, 0.83vw, 16px); width: auto; display: none; }
     .nav-aodot .logo-light  { display: block; }
     body.dark .nav-aodot .logo-light { display: none; }
     body.dark .nav-aodot .logo-dark  { display: block; }
     #psuk-hint {
-      position: fixed; top: 92px; left: 50%; transform: translateX(-50%);
-      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 17px;
+      position: fixed; top: calc(var(--nb) + 18px); left: 50%; transform: translateX(-50%);
+      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(13px, 1.04vw, 20px);
       color: #343434; white-space: nowrap; direction: rtl;
       pointer-events: none; transition: opacity 0.3s ease;
     }
@@ -629,7 +635,7 @@ export default function PsukkimPage() {
     
     
     .w001,.w002,.w003,.w004,.w005,.w006,.w007,.w008,.w009,.w010,.w011,.w012,.w013,.w014,.w015,.w016 { font-family: 'BuGlobal', sans-serif; font-weight: 300; }
-    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:18px; padding:2px 4px; line-height:1; }
+    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:clamp(13px, 1.09vw, 21px); padding:2px 4px; line-height:1; }
     body.dark { background: #131111; }
     body.dark .nav-link:not(.active) { color: #fff; }
     body.dark .nav-logo-sq { background: #fff; }

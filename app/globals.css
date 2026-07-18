@@ -29,23 +29,24 @@
   src: url('/global/buGlobal1.0-Light.otf') format('opentype');
 }
 
+:root { --nb: clamp(48px, 3.85vw, 74px); }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #fff; font-family: 'TheBasics', sans-serif; }
 
 /* ---- נאב-בר משותף ---- */
 .navbar {
-  position: fixed; top: 0; left: 0; right: 0; height: 64px;
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nb);
   background: transparent; z-index: 10000;
   display: flex; direction: rtl; align-items: center;
-  justify-content: center; gap: 80px;
+  justify-content: center; gap: clamp(40px, 4.8vw, 92px);
 }
 .nav-logo-sq {
   position: absolute; right: calc(35/1920*100vw); top: 50%;
-  transform: translateY(-50%); width: 26px; height: 26px;
+  transform: translateY(-50%); width: clamp(18px, 1.56vw, 30px); height: clamp(18px, 1.56vw, 30px);
   background: #000; display: block;
 }
 .nav-link {
-  font-family: 'TheBasics', sans-serif; font-size: 17px;
+  font-family: 'TheBasics', sans-serif; font-size: clamp(13px, 1.04vw, 20px);
   color: #343434; text-decoration: none; white-space: nowrap;
 }
 .nav-link.active {
@@ -56,14 +57,14 @@ body { background: #fff; font-family: 'TheBasics', sans-serif; }
   position: absolute; right: calc(48/1920*100vw); top: 50%;
   transform: translateY(-30%); border-bottom: none !important;
 }
-.nav-aodot img { height: 14px; width: auto; display: none; }
+.nav-aodot img { height: clamp(10px, 0.83vw, 16px); width: auto; display: none; }
 .nav-aodot .logo-light { display: block; }
 body.dark .nav-aodot .logo-light { display: none; }
 body.dark .nav-aodot .logo-dark  { display: block; }
 
 .page-nav-btn {
   background: none; border: none; cursor: pointer;
-  color: #e91e8c; font-size: 18px; padding: 2px 4px; line-height: 1;
+  color: #e91e8c; font-size: clamp(13px, 1.09vw, 21px); padding: 2px 4px; line-height: 1;
 }
 
 /* ---- אנימציות חיצים ---- */

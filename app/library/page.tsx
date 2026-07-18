@@ -19,7 +19,7 @@ export default function LibraryPage() {
         body.dark .nav-logo-sq { background: #fff; }
 
         #grid {
-          position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+          position: fixed; top: var(--nb); left: 0; right: 0; bottom: 0;
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           grid-template-rows: repeat(4, 1fr);
@@ -64,8 +64,8 @@ export default function LibraryPage() {
         body.dark #melody-meta { color: #fff; }
         #meta-datetime { display: flex; direction: rtl; gap: 120px; }
         #gallery-hint {
-          position: fixed; top: 82px; left: 50%; transform: translateX(-50%);
-          font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: 17px;
+          position: fixed; top: calc(var(--nb) + 8px); left: 50%; transform: translateX(-50%);
+          font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(13px, 1.04vw, 20px);
           color: #343434; white-space: nowrap; direction: rtl; pointer-events: none;
         }
         body.dark #gallery-hint { color: #fff; }
@@ -78,7 +78,7 @@ export default function LibraryPage() {
         #gallery-loading.out { opacity: 0; pointer-events: none; }
         @keyframes _gl-pulse { 0%,100%{r:10} 50%{r:22} }
         #gallery-loading circle { animation: _gl-pulse 1.4s ease-in-out infinite; }
-        .nav-aodot img { height: 14px !important; width: auto !important; }
+        .nav-aodot img { height: clamp(10px, 0.83vw, 16px) !important; width: auto !important; }
       `}</style>
 
       <div id="gallery-loading">
