@@ -2449,7 +2449,7 @@ setTimeout(function(){
   }, 3000);
 
 (function(){
-    var TRACK_H=130, THUMB_H=32, PAD=5, RANGE=TRACK_H-THUMB_H-PAD*2;
+    var TRACK_H=130, THUMB_H=32, PAD=5, RANGE=TRACK_H-THUMB_H-PAD*2-20;
     function volToTop(v){ return PAD+(1-v)*RANGE; }
     function topToVol(top){ return 1-Math.max(0,Math.min(1,(top-PAD)/RANGE)); }
 
