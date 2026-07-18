@@ -418,34 +418,34 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     // [4] bluBar1 — מאריך: נבנה שמאלה לימינה
     {
       const pv = anim001[4].phase >= 1 ? eoc(anim001[4].t) : 1;
-      df(p, 81, 162, 221);
+      df(p, 139, 201, 245);
       p.rect(bl1.x + bw/2 - bw*pv, bl1.y - bh1/2, bw * pv, bh1);
     }
 
     // [3] arc1 — טרחא: קשת גדלה מ-PI ל-HALF_PI
     {
-      if(anim001[3].phase===1) dfArcAnim(p,198,233,2, a1.x,a1.y, 46,43.5, 9, eio(anim001[3].t));
-      else dfArc(p,198,233,2, a1.x,a1.y, 46,43.5, p.HALF_PI,p.PI, 9);
+      if(anim001[3].phase===1) dfArcAnim(p,231,254,104, a1.x,a1.y, 46,43.5, 9, eio(anim001[3].t));
+      else dfArc(p,231,254,104, a1.x,a1.y, 46,43.5, p.HALF_PI,p.PI, 9);
     }
 
     // [2] bluBar2 — מאריך: נבנה שמאלה לימינה
     {
       const pv = anim001[2].phase >= 1 ? eoc(anim001[2].t) : 1;
-      df(p, 81, 162, 221);
+      df(p, 139, 201, 245);
       p.rect(bl2.x + bw/2 - bw*pv, bl2.y - bh2/2, bw * pv, bh2);
     }
 
     // [1] redBar — אתנח: גדל מלמעלה למטה
     {
       const pv = anim001[1].phase >= 1 ? eoc(anim001[1].t) : 1;
-      df(p, 255, 33, 33);
+      df(p, 255, 76, 79);
       p.rect(red.x - rw/2, red.y - rh/2, rw, rh*pv);
     }
 
     // [0] arc2 — טרחא: קשת גדלה מ-PI ל-HALF_PI
     {
-      if(anim001[0].phase===1) dfArcAnim(p,198,233,2, a2.x,a2.y, 46,43.5, 9, eio(anim001[0].t));
-      else dfArc(p,198,233,2, a2.x,a2.y, 46,43.5, p.HALF_PI,p.PI, 9);
+      if(anim001[0].phase===1) dfArcAnim(p,231,254,104, a2.x,a2.y, 46,43.5, 9, eio(anim001[0].t));
+      else dfArc(p,231,254,104, a2.x,a2.y, 46,43.5, p.HALF_PI,p.PI, 9);
     }
   }
 
@@ -515,47 +515,47 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [0] grnBar — slideIn
     { const pv=anim002[0].phase>=1?eoc2(anim002[0].t):1;
-      df(p,198,233,2); p.rect(grn.x+gw/2-gw*pv, grn.y-gh/2, gw*pv, gh); }
+      df(p,231,254,104); p.rect(grn.x+gw/2-gw*pv, grn.y-gh/2, gw*pv, gh); }
 
     // [1] bluC group — horizontal spread from rightmost circle
     { const _a=anim002[1];
       if(_a.phase===1){
         const pv=eio2(_a.t);
-        df(p,81,162,221);
+        df(p,139,201,245);
         [bc1.x,bc2.x,bc3.x].forEach(function(fx){ p.circle(p.lerp(bc3.x,fx,pv),bc1.y,cd); });
       } else {
-        df(p,81,162,221); p.circle(bc1.x,bc1.y,cd); p.circle(bc2.x,bc2.y,cd); p.circle(bc3.x,bc3.y,cd);
+        df(p,139,201,245); p.circle(bc1.x,bc1.y,cd); p.circle(bc2.x,bc2.y,cd); p.circle(bc3.x,bc3.y,cd);
       } }
 
     // [2] yelC group — vertical spread from middle circle
     { const _a=anim002[2];
       if(_a.phase===1){
         const pv=eio2(_a.t);
-        df(p,255,225,55);
+        df(p,255,229,82);
         [yc1.y,yc2.y,yc3.y].forEach(function(fy){ p.circle(yc1.x,p.lerp(yc2.y,fy,pv),cd); });
       } else {
-        df(p,255,225,55); p.circle(yc1.x,yc1.y,cd); p.circle(yc2.x,yc2.y,cd); p.circle(yc3.x,yc3.y,cd);
+        df(p,255,229,82); p.circle(yc1.x,yc1.y,cd); p.circle(yc2.x,yc2.y,cd); p.circle(yc3.x,yc3.y,cd);
       } }
 
     // [3] bluBar2 — slideIn
     { const pv=anim002[3].phase>=1?eoc2(anim002[3].t):1;
-      df(p,81,162,221); p.rect(bl2.x+bw2/2-bw2*pv, bl2.y-bh/2, bw2*pv, bh); }
+      df(p,139,201,245); p.rect(bl2.x+bw2/2-bw2*pv, bl2.y-bh/2, bw2*pv, bh); }
 
     // [4] arc2 — builds from PI toward HALF_PI
-    { if(anim002[4].phase===1) dfArcAnim(p,198,233,2, a2.x,a2.y, 47,43.5, 9, eio2(anim002[4].t));
-      else dfArc(p,198,233,2, a2.x,a2.y, 47,43.5, p.HALF_PI,p.PI, 9); }
+    { if(anim002[4].phase===1) dfArcAnim(p,231,254,104, a2.x,a2.y, 47,43.5, 9, eio2(anim002[4].t));
+      else dfArc(p,231,254,104, a2.x,a2.y, 47,43.5, p.HALF_PI,p.PI, 9); }
 
     // [5] redBar — grows from TOP downward
     { const pv=anim002[5].phase>=1?eoc2(anim002[5].t):1;
-      df(p,255,33,33); p.rect(red.x-rw/2, red.y-rh/2, rw, rh*pv); }
+      df(p,255,76,79); p.rect(red.x-rw/2, red.y-rh/2, rw, rh*pv); }
 
     // [6] arc1 — builds from PI toward HALF_PI
-    { if(anim002[6].phase===1) dfArcAnim(p,198,233,2, a1.x,a1.y, 45.5,44, 9, eio2(anim002[6].t));
-      else dfArc(p,198,233,2, a1.x,a1.y, 45.5,44, p.HALF_PI,p.PI, 9); }
+    { if(anim002[6].phase===1) dfArcAnim(p,231,254,104, a1.x,a1.y, 45.5,44, 9, eio2(anim002[6].t));
+      else dfArc(p,231,254,104, a1.x,a1.y, 45.5,44, p.HALF_PI,p.PI, 9); }
 
     // [7] bluBar1 — slideIn
     { const pv=anim002[7].phase>=1?eoc2(anim002[7].t):1;
-      df(p,81,162,221); p.rect(bl1.x+bw/2-bw*pv, bl1.y-bh/2, bw*pv, bh); }
+      df(p,139,201,245); p.rect(bl1.x+bw/2-bw*pv, bl1.y-bh/2, bw*pv, bh); }
 
     // [8] blackSq — vibrate
     { const vib=anim002[8].phase>=1?Math.sin(anim002[8].t*p.PI*24)*(1-anim002[8].t)*8:0;
@@ -614,7 +614,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [0] bluBarR — slideIn
     { const pv=anim003[0].phase>=1?eoc3(anim003[0].t):1;
-      df(p,81,162,221); p.rect(blR.x+bw/2-bw*pv, blR.y-bh/2+p.lerp(0,8,t), bw*pv, bh); }
+      df(p,139,201,245); p.rect(blR.x+bw/2-bw*pv, blR.y-bh/2+p.lerp(0,8,t), bw*pv, bh); }
 
     // [1] triTri — 2 purple triangles (רביע), verse-4 style scaled by 0.8 (s3=1.25 vs s4=1.0)
     { const _tt = anim003[1];
@@ -623,12 +623,12 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
         const pR = Math.min(1, _tt.t*1.5);
         const pL = Math.max(0, Math.min(1, (_tt.t-0.2)*1.5));
         const eR=1-Math.pow(1-pR,3), eL=1-Math.pow(1-pL,3);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(tt.x+ttOX-1.6+p.lerp(48,0,eR), tt.y+ttOY, tt.x+ttOX+27.2+p.lerp(48,0,eR), tt.y+ttOY-29.6, tt.x+ttOX+27.2+p.lerp(48,0,eR), tt.y+ttOY+29.6);
         p.triangle(tt.x+ttOX-28.8+p.lerp(24,0,eL), tt.y+ttOY, tt.x+ttOX+p.lerp(24,0,eL), tt.y+ttOY-29.6, tt.x+ttOX+p.lerp(24,0,eL), tt.y+ttOY+29.6);
       } else {
         const tw3v=p.lerp(35,28.8,t), th3v=p.lerp(33,29.6,t), gap3v=p.lerp(0,-1.6,t);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(tt.x+ttOX-tw3v, tt.y+ttOY, tt.x+ttOX, tt.y+ttOY-th3v, tt.x+ttOX, tt.y+ttOY+th3v);
         p.triangle(tt.x+ttOX+gap3v, tt.y+ttOY, tt.x+ttOX+gap3v+tw3v, tt.y+ttOY-th3v, tt.x+ttOX+gap3v+tw3v, tt.y+ttOY+th3v);
       } }
@@ -637,43 +637,43 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     { const _dbl3 = anim003[2];
       if(_dbl3.phase>=1){
         const sc3=eoc3(_dbl3.t);
-        df(p, 168,208,238); p.circle(dc.x,dc.y, od3*sc3*1.2);
-        df(p, 81,162,221);  p.circle(dc.x,dc.y, cd*sc3);
+        df(p, 139,201,245); p.circle(dc.x,dc.y, od3*sc3*1.2);
+        df(p, 139,201,245);  p.circle(dc.x,dc.y, cd*sc3);
       } else {
-        df(p, 168,208,238); p.circle(dc.x,dc.y,od3);
-        df(p, 81,162,221);  p.circle(dc.x,dc.y,cd);
+        df(p, 139,201,245); p.circle(dc.x,dc.y,od3);
+        df(p, 139,201,245);  p.circle(dc.x,dc.y,cd);
       } }
 
     // [3] grnBar — slideIn
     { const pv=anim003[3].phase>=1?eoc3(anim003[3].t):1;
-      df(p,198,233,2); p.rect(grn.x+bw/2-bw*pv, grn.y-bh/2, bw*pv, bh); }
+      df(p,231,254,104); p.rect(grn.x+bw/2-bw*pv, grn.y-bh/2, bw*pv, bh); }
 
     // [4] bluBarM — slideIn
     { const pv=anim003[4].phase>=1?eoc3(anim003[4].t):1;
-      df(p,81,162,221); p.rect(blM.x+bw/2-bw*pv, blM.y-bh/2, bw*pv, bh); }
+      df(p,139,201,245); p.rect(blM.x+bw/2-bw*pv, blM.y-bh/2, bw*pv, bh); }
 
     // [5] triCirc — horizontal spread from rightmost circle
     { const _a=anim003[5];
       if(_a.phase===1){
         const pv=eio3(_a.t);
-        df(p,81,162,221);
+        df(p,139,201,245);
         [tc.x,tc.x+cd,tc.x+cd*2].forEach(function(fx){ p.circle(p.lerp(tc.x+cd*2,fx,pv),tc.y,cd); });
       } else {
-        df(p,81,162,221); p.circle(tc.x,tc.y,cd); p.circle(tc.x+cd,tc.y,cd); p.circle(tc.x+cd*2,tc.y,cd);
+        df(p,139,201,245); p.circle(tc.x,tc.y,cd); p.circle(tc.x+cd,tc.y,cd); p.circle(tc.x+cd*2,tc.y,cd);
       } }
 
     // [6] arc1 — builds from PI toward HALF_PI
     { const ar3=p.lerp(46,51,t), arh3=p.lerp(43.5,48,t);
-      if(anim003[6].phase===1) dfArcAnim(p,198,233,2, a1.x,a1.y, ar3,arh3, 9, eio3(anim003[6].t));
-      else dfArc(p,198,233,2, a1.x,a1.y, ar3,arh3, p.HALF_PI,p.PI, 9); }
+      if(anim003[6].phase===1) dfArcAnim(p,231,254,104, a1.x,a1.y, ar3,arh3, 9, eio3(anim003[6].t));
+      else dfArc(p,231,254,104, a1.x,a1.y, ar3,arh3, p.HALF_PI,p.PI, 9); }
 
     // [7] bluBarL — slideIn
     { const pv=anim003[7].phase>=1?eoc3(anim003[7].t):1;
-      df(p,81,162,221); p.rect(blL.x+bw/2-bw*pv, blL.y-bh/2, bw*pv, bh); }
+      df(p,139,201,245); p.rect(blL.x+bw/2-bw*pv, blL.y-bh/2, bw*pv, bh); }
 
     // [8] redBar — grows from TOP downward
     { const pv=anim003[8].phase>=1?eoc3(anim003[8].t):1;
-      df(p,255,33,33); p.rect(red.x-rw/2, red.y-rh/2, rw, rh*pv); }
+      df(p,255,76,79); p.rect(red.x-rw/2, red.y-rh/2, rw, rh*pv); }
   }
 
   new p5(function(p) {
@@ -701,31 +701,31 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if(_tr4.phase>=1){
         const pR4=Math.min(1,_tr4.t*1.5); const pL4=Math.max(0,Math.min(1,(_tr4.t-0.2)*1.5));
         const eR4=1-Math.pow(1-pR4,3), eL4=1-Math.pow(1-pL4,3);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(x4-2+p.lerp(60,0,eR4),y4, x4+34+p.lerp(60,0,eR4),y4-37, x4+34+p.lerp(60,0,eR4),y4+37);
         p.triangle(x4-36+p.lerp(30,0,eL4),y4, x4+p.lerp(30,0,eL4),y4-37, x4+p.lerp(30,0,eL4),y4+37);
       } else {
         const tw4=p.lerp(52,36,t), th4=p.lerp(49,37,t), gap4=p.lerp(0,-2,t);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(x4-tw4,y4, x4,y4-th4, x4,y4+th4);
         p.triangle(x4+gap4,y4, x4+gap4+tw4,y4-th4, x4+gap4+tw4,y4+th4);
       } }
 
     // [1] bluLower — slideIn (bx=1010)
     { const pv=anim004[1].phase>=1?eoc4(anim004[1].t):1;
-      df(p,81,162,221); p.rect(lx(178,1010) + 175*(1-pv), ly(500,60), 175*pv, 28); }
+      df(p,139,201,245); p.rect(lx(178,1010) + 175*(1-pv), ly(500,60), 175*pv, 28); }
 
     // [2] bluMiddle — slideIn (bx=830)
     { const pv=anim004[2].phase>=1?eoc4(anim004[2].t):1;
-      df(p,81,162,221); p.rect(lx(350,830) + 175*(1-pv), ly(360,170), 175*pv, 28); }
+      df(p,139,201,245); p.rect(lx(350,830) + 175*(1-pv), ly(360,170), 175*pv, 28); }
 
     // [3] greenArc — builds from PI toward HALF_PI (bx=770)
-    { if(anim004[3].phase===1) dfArcAnim(p,198,233,2, lx(352,770),ly(370,100), 86,86, 17, eio4(anim004[3].t));
-      else dfArc(p,198,233,2, lx(352,770),ly(370,100), 86,86, p.HALF_PI,p.PI, 17); }
+    { if(anim004[3].phase===1) dfArcAnim(p,231,254,104, lx(352,770),ly(370,100), 86,86, 17, eio4(anim004[3].t));
+      else dfArc(p,231,254,104, lx(352,770),ly(370,100), 86,86, p.HALF_PI,p.PI, 17); }
 
     // [4] red — grows from TOP downward (bx=600)
     { const pv=anim004[4].phase>=1?eoc4(anim004[4].t):1;
-      df(p,255,33,33); p.rect(lx(350,600), ly(190,77), 30, 113*pv); }
+      df(p,255,76,79); p.rect(lx(350,600), ly(190,77), 30, 113*pv); }
 
     // [5] triLeft — רביע-style, slide from right (bx=535)
     { const _tl4 = anim004[5];
@@ -733,19 +733,19 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if(_tl4.phase>=1){
         const pR4l=Math.min(1,_tl4.t*1.5); const pL4l=Math.max(0,Math.min(1,(_tl4.t-0.2)*1.5));
         const eR4l=1-Math.pow(1-pR4l,3), eL4l=1-Math.pow(1-pL4l,3);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(xl4-2+p.lerp(60,0,eR4l),yl4, xl4+34+p.lerp(60,0,eR4l),yl4-37, xl4+34+p.lerp(60,0,eR4l),yl4+37);
         p.triangle(xl4-36+p.lerp(30,0,eL4l),yl4, xl4+p.lerp(30,0,eL4l),yl4-37, xl4+p.lerp(30,0,eL4l),yl4+37);
       } else {
         const twl4=p.lerp(52,36,t), thl4=p.lerp(49,37,t), gapl4=p.lerp(0,-2,t);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(xl4-twl4,yl4, xl4,yl4-thl4, xl4,yl4+thl4);
         p.triangle(xl4+gapl4,yl4, xl4+gapl4+twl4,yl4-thl4, xl4+gapl4+twl4,yl4+thl4);
       } }
 
     // [6] bluUpper — slideIn (bx=285)
     { const pv=anim004[6].phase>=1?eoc4(anim004[6].t):1;
-      df(p,81,162,221); p.rect(lx(120,285) + 175*(1-pv), ly(275,60), 175*pv, 28); }
+      df(p,139,201,245); p.rect(lx(120,285) + 175*(1-pv), ly(275,60), 175*pv, 28); }
 
     // [7] blackSq — vibrate (bx=130), center=(lx(418,130)+65, ly(190,60)+65)
     { const vib4=anim004[7].phase>=1?Math.sin(anim004[7].t*p.PI*24)*(1-anim004[7].t)*8:0;
@@ -774,15 +774,15 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [0] blueLowerRight — אזלא
     { const pv=anim005[0].phase>=1?eoc5(anim005[0].t):1;
-      df(p,81,162,221); p.rect(lx(265,810) + 95*(1-pv), ly(267,140), 95*pv, 15); }
+      df(p,139,201,245); p.rect(lx(265,810) + 95*(1-pv), ly(267,140), 95*pv, 15); }
 
     // [1] greenArcLower — טרחא
-    { if(anim005[1].phase===1) dfArcAnim(p,198,233,2, lx(298,810),ly(214,154), 42,42, 8, eio5(anim005[1].t));
-      else dfArc(p,198,233,2, lx(298,810),ly(214,154), 42,42, p.HALF_PI,p.PI, 8); }
+    { if(anim005[1].phase===1) dfArcAnim(p,231,254,104, lx(298,810),ly(214,154), 42,42, 8, eio5(anim005[1].t));
+      else dfArc(p,231,254,104, lx(298,810),ly(214,154), 42,42, p.HALF_PI,p.PI, 8); }
 
     // [2] red — grows from TOP downward (bx=720)
     { const pv=anim005[2].phase>=1?eoc5(anim005[2].t):1;
-      df(p,255,33,33); p.rect(lx(370,720), ly(120,145), 15, 62*pv); }
+      df(p,255,76,79); p.rect(lx(370,720), ly(120,145), 15, 62*pv); }
 
     // [3] yellowHalf — תרי קדמין: עיגול גדל → מתעצב לחצי עיגול
     { const x5h=lx(109,650), y5h=ly(237,170);
@@ -793,7 +793,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
         const r=82*ge;
         const morph=Math.max(0,(pv-0.55)/0.45);
         const m=morph<0.5?4*morph*morph*morph:1-Math.pow(-2*morph+2,3)/2;
-        df(p,255,225,55);
+        df(p,255,229,82);
         p.push(); p.translate(x5h,y5h); p.rotate(-p.PI/4);
         if(m<0.02){
           if(r>0.5) p.circle(0,0,r);
@@ -802,7 +802,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
         }
         p.pop();
       } else {
-        df(p, 255,225,55);
+        df(p, 255,229,82);
         p.push(); p.translate(x5h,y5h); p.rotate(-p.PI/4);
         p.arc(0,0,82,82,0,p.PI,p.PIE);
         p.pop();
@@ -810,17 +810,17 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [4] blueCenter — slideIn (bx=510)
     { const pv=anim005[4].phase>=1?eoc5(anim005[4].t):1;
-      df(p,81,162,221); p.rect(lx(294,510) + 95*(1-pv), ly(203,190), 95*pv, 15); }
+      df(p,139,201,245); p.rect(lx(294,510) + 95*(1-pv), ly(203,190), 95*pv, 15); }
 
     // [5] upperDots — horizontal spread from rightmost circle (bx≈410)
     { const _a=anim005[5];
       const x5=lx(270,410), y5=ly(135,170);
       if(_a.phase===1){
         const pv=eio5(_a.t);
-        df(p,81,162,221);
+        df(p,139,201,245);
         [x5,x5+32,x5+64].forEach(function(fx){ p.circle(p.lerp(x5+64,fx,pv),y5,31); });
       } else {
-        df(p,81,162,221); p.circle(x5,y5,31); p.circle(x5+32,y5,31); p.circle(x5+64,y5,31);
+        df(p,139,201,245); p.circle(x5,y5,31); p.circle(x5+32,y5,31); p.circle(x5+64,y5,31);
       } }
 
     // [6] yellowTri — יתיב: slides from right (bx=895)
@@ -829,10 +829,10 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if(_yt5.phase>=1){
         const e5=1-Math.pow(1-_yt5.t,4);
         const xOff5=p.lerp(40,0,e5);
-        df(p, 255,225,55);
+        df(p, 255,229,82);
         p.triangle(x5t-10+xOff5,y5t, x5t+10+xOff5,y5t-14, x5t+10+xOff5,y5t+14);
       } else {
-        df(p, 255,225,55);
+        df(p, 255,229,82);
         p.triangle(x5t-10,y5t, x5t+10,y5t-14, x5t+10,y5t+14);
       } }
 
@@ -841,23 +841,23 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       const x5=lx(171,785), y5=ly(280,370);
       if(_a.phase===1){
         const pv=eio5(_a.t);
-        df(p,81,162,221);
+        df(p,139,201,245);
         [x5,x5+32,x5+64].forEach(function(fx){ p.circle(p.lerp(x5+64,fx,pv),y5,31); });
       } else {
-        df(p,81,162,221); p.circle(x5,y5,31); p.circle(x5+32,y5,31); p.circle(x5+64,y5,31);
+        df(p,139,201,245); p.circle(x5,y5,31); p.circle(x5+32,y5,31); p.circle(x5+64,y5,31);
       } }
 
     // [8] blueUpperRight — אזלא
     { const pv=anim005[8].phase>=1?eoc5(anim005[8].t):1;
-      df(p,81,162,221); p.rect(lx(259,655) + 95*(1-pv), ly(166,340), 95*pv, 15); }
+      df(p,139,201,245); p.rect(lx(259,655) + 95*(1-pv), ly(166,340), 95*pv, 15); }
 
     // [9] greenArcUpper — טרחא
-    { if(anim005[9].phase===1) dfArcAnim(p,198,233,2, lx(188,645),ly(126,354), 42,42, 8, eio5(anim005[9].t));
-      else dfArc(p,198,233,2, lx(188,645),ly(126,354), 42,42, p.HALF_PI,p.PI, 8); }
+    { if(anim005[9].phase===1) dfArcAnim(p,231,254,104, lx(188,645),ly(126,354), 42,42, 8, eio5(anim005[9].t));
+      else dfArc(p,231,254,104, lx(188,645),ly(126,354), 42,42, p.HALF_PI,p.PI, 8); }
 
     // [10] blueLeft — אזלא (bx=485)
     { const pv=anim005[10].phase>=1?eoc5(anim005[10].t):1;
-      df(p,81,162,221); p.rect(lx(61,485) + 95*(1-pv), ly(184,340), 95*pv, 15); }
+      df(p,139,201,245); p.rect(lx(61,485) + 95*(1-pv), ly(184,340), 95*pv, 15); }
 
     // [11] blackSq — סוף פסוק (bx=395)
     { const vib5=anim005[11].phase>=1?Math.sin(anim005[11].t*p.PI*24)*(1-anim005[11].t)*8:0;
@@ -876,9 +876,9 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     p.clear();
     const t = animState[6].t;
 
-    const purple = p.color(170, 150, 232);
-    const green  = p.color(198, 233, 2);
-    const blue   = p.color(81, 162, 221);
+    const purple = p.color(204, 188, 255);
+    const green  = p.color(231, 254, 104);
+    const blue   = p.color(139, 201, 245);
 
     const DUR6=900; const now6=performance.now();
     anim006.forEach(function(a){if(a.phase===1){a.t=Math.min(1,(now6-a.startTime)/DUR6);if(a.t>=1)a.phase=2;}});
@@ -887,26 +887,26 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [0] purpleArcCircle (בx≈612) — arc+circle always static, dot moves along arc during animation
     { const _a=anim006[0]; const px2=p.lerp(205,612,t), py2=p.lerp(78,82,t), ps=p.lerp(105,142,t);
-      dfArc(p,170,150,232, px2,py2, ps/2,ps/2, 0,p.PI, 9.5);
-      if(_a.phase===0){ df(p,170,150,232); p.circle(p.lerp(205,612,t), p.lerp(98,108,t), p.lerp(42,55,t)); }
+      dfArc(p,204,188,255, px2,py2, ps/2,ps/2, 0,p.PI, 9.5);
+      if(_a.phase===0){ df(p,204,188,255); p.circle(p.lerp(205,612,t), p.lerp(98,108,t), p.lerp(42,55,t)); }
       if(_a.phase>=1){
         const pr6=_a.t;
         let ang6;
         if(pr6<0.65){ const ea6=1-(1-pr6/0.65)*(1-pr6/0.65); ang6=ea6*p.PI; }
         else { ang6=p.PI-(1-(1-(pr6-0.65)/0.35)*(1-(pr6-0.65)/0.35))*p.HALF_PI; }
         const rv6=ps/2, rc6=rv6*0.33;
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.circle(px2+rc6*Math.cos(ang6), py2+rc6*Math.sin(ang6), rv6*0.32*2);
       } }
 
     // [1] blueRect — slideIn (bx=373)
     { const _a=anim006[1]; const pv=_a.phase>=1?eoc6(_a.t):1;
-      const w6=p.lerp(116,141,t); df(p,81,162,221); p.rect(p.lerp(139,373,t) + w6*(1-pv), p.lerp(156,142,t), w6*pv, p.lerp(20,23,t)); }
+      const w6=p.lerp(116,141,t); df(p,139,201,245); p.rect(p.lerp(139,373,t) + w6*(1-pv), p.lerp(156,142,t), w6*pv, p.lerp(20,23,t)); }
 
     // [2] greenArc — builds from PI toward HALF_PI (bx=337)
     { const gx=p.lerp(142,337,t), gy=p.lerp(161,100,t), gs=p.lerp(105,112,t);
-      if(anim006[2].phase===1) dfArcAnim(p,198,233,2, gx,gy, gs/2,gs/2, 9, eio6(anim006[2].t));
-      else dfArc(p,198,233,2, gx,gy, gs/2,gs/2, p.HALF_PI,p.PI, 9); }
+      if(anim006[2].phase===1) dfArcAnim(p,231,254,104, gx,gy, gs/2,gs/2, 9, eio6(anim006[2].t));
+      else dfArc(p,231,254,104, gx,gy, gs/2,gs/2, p.HALF_PI,p.PI, 9); }
 
     // [3] blackSq (bx=98) — vibrate, center≈(154,109)
     { const vib6=anim006[3].phase>=1?Math.sin(anim006[3].t*p.PI*24)*(1-anim006[3].t)*8:0;
@@ -926,9 +926,9 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     p.clear();
     const t = animState[7].t;
 
-    const purple = p.color(170, 150, 232);
-    const blue   = p.color(81, 162, 221);
-    const red    = p.color(255, 33, 33);
+    const purple = p.color(204, 188, 255);
+    const blue   = p.color(139, 201, 245);
+    const red    = p.color(255, 76, 79);
     const black  = p.color(0);
     const offsetA = 380;
     const baselineY = 158;
@@ -998,7 +998,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(3); p.createCanvas(1054, 246).parent('canvas-wrap-007'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio || 1); p.createCanvas(1054, 246).parent('canvas-wrap-007'); };
     p.draw  = function() { drawScene7(p); };
   });
 
@@ -1008,10 +1008,10 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     p.clear();
     const t = animState[8].t;
 
-    const green     = p.color(198, 233, 2);
-    const blue      = p.color(81, 162, 221);
-    const lightBlue = p.color(168, 208, 238);
-    const purple    = p.color(170, 150, 232);
+    const green     = p.color(231, 254, 104);
+    const blue      = p.color(139, 201, 245);
+    const lightBlue = p.color(139, 201, 245);
+    const purple    = p.color(204, 188, 255);
     const black     = p.color(0);
 
     const shapes = [
@@ -1076,13 +1076,13 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if (s.type === 'purpleArcCircle') {
         dfArc(p, p.red(s.c), p.green(s.c), p.blue(s.c), x, y, w/2, w/2, 0, p.PI, 5);
         if(_a8.phase===0){
-          df(p,170,150,232); p.circle(x, y+w*0.233, w*0.35);
+          df(p,204,188,255); p.circle(x, y+w*0.233, w*0.35);
         } else {
           const pr8p=_a8.t; let ang8p;
           if(pr8p<0.65){const ea8p=1-(1-pr8p/0.65)*(1-pr8p/0.65);ang8p=ea8p*p.PI;}
           else{ang8p=p.PI-(1-(1-(pr8p-0.65)/0.35)*(1-(pr8p-0.65)/0.35))*p.HALF_PI;}
           const rv8p=w/2, rc8p=rv8p*0.33;
-          df(p,170,150,232); p.circle(x+rc8p*Math.cos(ang8p), y+rc8p*Math.sin(ang8p), rv8p*0.32*2);
+          df(p,204,188,255); p.circle(x+rc8p*Math.cos(ang8p), y+rc8p*Math.sin(ang8p), rv8p*0.32*2);
         }
       }
       if (s.type === 'z') {
@@ -1104,18 +1104,18 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if (s.type === 'blueCircle') {
         if(_a8.phase>=1){
           const sc8=eoc8(_a8.t);
-          df(p,168,208,238); p.circle(x,y,w*sc8*1.2);
-          df(p,81,162,221);  p.circle(x,y,h*sc8);
+          df(p,139,201,245); p.circle(x,y,w*sc8*1.2);
+          df(p,139,201,245);  p.circle(x,y,h*sc8);
         } else {
-          df(p, 168, 208, 238); p.circle(x, y, w);
-          df(p, 81, 162, 221);  p.circle(x, y, h);
+          df(p, 139, 201, 245); p.circle(x, y, w);
+          df(p, 139, 201, 245);  p.circle(x, y, h);
         }
       }
     }
   }
 
   new p5(function(p) {
-    p.setup = function() { p.pixelDensity(3); p.createCanvas(860, 360).parent('canvas-wrap-008'); };
+    p.setup = function() { p.pixelDensity(window.devicePixelRatio || 1); p.createCanvas(860, 360).parent('canvas-wrap-008'); };
     p.draw  = function() { drawScene8(p); };
   });
 
@@ -1125,10 +1125,10 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     p.clear();
     const t = animState[9].t;
 
-    const blue      = p.color(81, 162, 221);
-    const lightBlue = p.color(168, 208, 238);
-    const green     = p.color(198, 233, 2);
-    const red       = p.color(255, 33, 33);
+    const blue      = p.color(139, 201, 245);
+    const lightBlue = p.color(139, 201, 245);
+    const green     = p.color(231, 254, 104);
+    const red       = p.color(255, 76, 79);
     const black     = p.color(0);
 
     const DUR9=900; const now9=performance.now();
@@ -1225,11 +1225,11 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     p.clear();
     const t = animState[10].t;
 
-    const blue   = p.color(81, 162, 221);
-    const green  = p.color(198, 233, 2);
-    const red    = p.color(255, 33, 33);
-    const purple = p.color(170, 150, 232);
-    const yellow = p.color(255, 225, 55);
+    const blue   = p.color(139, 201, 245);
+    const green  = p.color(231, 254, 104);
+    const red    = p.color(255, 76, 79);
+    const purple = p.color(204, 188, 255);
+    const yellow = p.color(255, 229, 82);
     const black  = p.color(0);
 
     const DUR10=900; const now10=performance.now();
@@ -1278,12 +1278,12 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
       if(_a10.phase>=1){
         const pR=Math.min(1,_a10.t*1.5), pL=Math.max(0,Math.min(1,(_a10.t-0.2)*1.5));
         const eR=1-Math.pow(1-pR,3), eL=1-Math.pow(1-pL,3);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(x10+34+p.lerp(60,0,eR),y10, x10+69+p.lerp(60,0,eR),y10-37, x10+69+p.lerp(60,0,eR),y10+37);
         p.triangle(x10+p.lerp(30,0,eL),y10, x10+36+p.lerp(30,0,eL),y10-37, x10+36+p.lerp(30,0,eL),y10+37);
       } else {
         const tw10=p.lerp(31,36,t), th10=p.lerp(34,37,t), gap10=p.lerp(0,-2,t);
-        df(p, 170,150,232);
+        df(p, 204,188,255);
         p.triangle(x10,            y10, x10+tw10,          y10-th10, x10+tw10,          y10+th10);
         p.triangle(x10+tw10+gap10, y10, x10+tw10*2+gap10,  y10-th10, x10+tw10*2+gap10,  y10+th10);
       }
@@ -1353,11 +1353,11 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     p.clear();
     const t = animState[11].t;
 
-    const blue      = p.color(81, 162, 221);
-    const lightBlue = p.color(168, 208, 238);
-    const green     = p.color(198, 233, 2);
-    const red       = p.color(255, 33, 33);
-    const orange    = p.color(238, 146, 3);
+    const blue      = p.color(139, 201, 245);
+    const lightBlue = p.color(139, 201, 245);
+    const green     = p.color(231, 254, 104);
+    const red       = p.color(255, 76, 79);
+    const orange    = p.color(255, 183, 71);
     const black     = p.color(0);
 
     const DUR11=900; const now11=performance.now();
@@ -1452,9 +1452,9 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     p.clear();
     const t = animState[12].t;
 
-    const blue      = p.color(81, 162, 221);
-    const lightBlue = p.color(168, 208, 238);
-    const green     = p.color(198, 233, 2);
+    const blue      = p.color(139, 201, 245);
+    const lightBlue = p.color(139, 201, 245);
+    const green     = p.color(231, 254, 104);
     const black     = p.color(0);
 
     const DUR12=900; const now12=performance.now();
@@ -1603,47 +1603,47 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     // [1] greenArc1 — טרחא (PI→HALF_PI)
     { if(anim013[1].phase===1){
         const _cA=p.lerp(p.PI,p.HALF_PI,eio13(anim013[1].t));
-        df(p,198,233,2);
+        df(p,231,254,104);
         p.beginShape();
         for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR+gaHw),ga1.y+Math.sin(_a)*(gaR+gaHw));
         p.vertex(ga1.x+Math.cos(_cA)*(gaR-gaHw),ga1.y+Math.sin(_cA)*(gaR-gaHw));
         for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(ga1.x+Math.cos(_a)*(gaR-gaHw),ga1.y+Math.sin(_a)*(gaR-gaHw));
         p.endShape(p.CLOSE);
-      } else dfArc(p,198,233,2,ga1.x,ga1.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
+      } else dfArc(p,231,254,104,ga1.x,ga1.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
 
     // [2] bluBar1 — מאריך
     { const pv=anim013[2].phase>=1?eoc13(anim013[2].t):1;
-      df(p,81,162,221); p.rect(bl1.x+bw/2-bw*pv,bl1.y-bh/2,bw*pv,bh); }
+      df(p,139,201,245); p.rect(bl1.x+bw/2-bw*pv,bl1.y-bh/2,bw*pv,bh); }
 
     // [3] redBar — אתנח
     { const pv=anim013[3].phase>=1?eoc13(anim013[3].t):1;
-      df(p,255,33,33); p.rect(red.x-rw/2,red.y-rh/2,rw,rh*pv); }
+      df(p,255,76,79); p.rect(red.x-rw/2,red.y-rh/2,rw,rh*pv); }
 
     // [4] greenArc2 — טרחא (PI→HALF_PI)
     { if(anim013[4].phase===1){
         const _cA=p.lerp(p.PI,p.HALF_PI,eio13(anim013[4].t));
-        df(p,198,233,2);
+        df(p,231,254,104);
         p.beginShape();
         for(let _a=p.PI;_a>=_cA-0.001;_a-=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR+gaHw),ga2.y+Math.sin(_a)*(gaR+gaHw));
         p.vertex(ga2.x+Math.cos(_cA)*(gaR-gaHw),ga2.y+Math.sin(_cA)*(gaR-gaHw));
         for(let _a=_cA;_a<=p.PI+0.001;_a+=0.02)p.vertex(ga2.x+Math.cos(_a)*(gaR-gaHw),ga2.y+Math.sin(_a)*(gaR-gaHw));
         p.endShape(p.CLOSE);
-      } else dfArc(p,198,233,2,ga2.x,ga2.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
+      } else dfArc(p,231,254,104,ga2.x,ga2.y,gaR,gaR,p.HALF_PI,p.PI,gaHw); }
 
     // [5] bluBar2 — מאריך
     { const pv=anim013[5].phase>=1?eoc13(anim013[5].t):1;
-      df(p,81,162,221); p.rect(bl2.x+bw/2-bw*pv,bl2.y-bh/2,bw*pv,bh); }
+      df(p,139,201,245); p.rect(bl2.x+bw/2-bw*pv,bl2.y-bh/2,bw*pv,bh); }
 
     // [6] purpleArc — תביר: קשת סגולה + עיגול
     { const a=anim013[6];
       const purHw=p.lerp(10,11,t);
-      dfArc(p,170,150,232,pur.x,pur.y,purD/2,purD/2,0,p.PI,purHw);
-      if(a.phase===0){ df(p,170,150,232); p.circle(pur.x,pur.y+purD*0.233,purD*0.35); }
+      dfArc(p,204,188,255,pur.x,pur.y,purD/2,purD/2,0,p.PI,purHw);
+      if(a.phase===0){ df(p,204,188,255); p.circle(pur.x,pur.y+purD*0.233,purD*0.35); }
       else { const pr=a.t; let ang=pr<0.65?(1-(1-pr/0.65)*(1-pr/0.65))*p.PI:p.PI-(1-(1-(pr-0.65)/0.35)*(1-(pr-0.65)/0.35))*p.HALF_PI;
-        df(p,170,150,232); p.circle(pur.x+(purD/2)*0.33*Math.cos(ang),pur.y+(purD/2)*0.33*Math.sin(ang),purD*0.35); } }
+        df(p,204,188,255); p.circle(pur.x+(purD/2)*0.33*Math.cos(ang),pur.y+(purD/2)*0.33*Math.sin(ang),purD*0.35); } }
 
     // [7] bluC — זקף קטון: שלושה עיגולים מתפשטים ממרכז
-    { df(p,81,162,221);
+    { df(p,139,201,245);
       if(anim013[7].phase===1){
         const pv=eio13(anim013[7].t);
         p.circle(bc2.x+(bc1.x-bc2.x)*pv, bc2.y, cd);
@@ -1656,10 +1656,10 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [8] bluBar3 — שופר הולך
     { const pv=anim013[8].phase>=1?eoc13(anim013[8].t):1;
-      df(p,81,162,221); p.rect(bl3.x+bw/2-bw*pv,bl3.y-bh/2,bw*pv,bh); }
+      df(p,139,201,245); p.rect(bl3.x+bw/2-bw*pv,bl3.y-bh/2,bw*pv,bh); }
 
     // [9] yelHalf — תרי קדמין — grow כעיגול שלם, morph לפרוסת פאי (כמו בטעמים)
-    { df(p,255,220,45); p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(-40));
+    { df(p,255,229,82); p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(-40));
       if(anim013[9].phase===1){
         const t13=eio13(anim013[9].t);
         const grow=Math.min(1,Math.max(0,t13/0.38));
@@ -1722,7 +1722,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     // [1] doubleTriangle — purple, right slides first (like verse 7)
     { const _a14=anim014[1];
       const cy14=dt.y+dt.h/2, gap14=dt.w*0.04, triW14=(dt.w-gap14)/2;
-      df(p,165,145,230);
+      df(p,204,188,255);
       if(_a14.phase>=1){
         const pR14=Math.min(1,_a14.t*1.5), pL14=Math.max(0,Math.min(1,(_a14.t-0.2)*1.5));
         const eR14=1-Math.pow(1-pR14,3), eL14=1-Math.pow(1-pL14,3);
@@ -1735,19 +1735,19 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [2] blueRect1 — slide in from right
     { const pv=anim014[2].phase>=1?eoc14(anim014[2].t):1;
-      df(p,82,160,215); p.rect(b1.x+b1.w*(1-pv),b1.y,b1.w*pv,b1.h); }
+      df(p,139,201,245); p.rect(b1.x+b1.w*(1-pv),b1.y,b1.w*pv,b1.h); }
 
     // [3] redRect — grow height downward
     { const pv=anim014[3].phase>=1?eoc14(anim014[3].t):1;
-      df(p,255,35,35); p.rect(rr.x,rr.y,rr.w,rr.h*pv); }
+      df(p,255,76,79); p.rect(rr.x,rr.y,rr.w,rr.h*pv); }
 
     // [4] blueRect2 — slide in from right
     { const pv=anim014[4].phase>=1?eoc14(anim014[4].t):1;
-      df(p,82,160,215); p.rect(b2.x+b2.w*(1-pv),b2.y,b2.w*pv,b2.h); }
+      df(p,139,201,245); p.rect(b2.x+b2.w*(1-pv),b2.y,b2.w*pv,b2.h); }
 
     // [5] arc — green, sweep from PI to HALF_PI
     { const thick=ar.w*0.14;
-      df(p,200,235,0);
+      df(p,231,254,104);
       if(anim014[5].phase===1){
         const _cA=p.lerp(p.PI,p.HALF_PI,eio14(anim014[5].t));
         p.beginShape();
@@ -1812,15 +1812,15 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [1] blueRect — slide in from right
     { const pv=anim015[1].phase>=1?eoc15(anim015[1].t):1;
-      df(p,82,160,215); p.rect(br.x+br.w*(1-pv),br.y,br.w*pv,br.h); }
+      df(p,139,201,245); p.rect(br.x+br.w*(1-pv),br.y,br.w*pv,br.h); }
 
     // [2] arc — green, PI→HALF_PI (like verse 2)
     { const thick=ar.w*0.09;
-      if(anim015[2].phase===1) dfArcAnim(p,200,235,0, ar.x,ar.y, ar.w/2,ar.h/2, thick, eio15(anim015[2].t));
-      else dfArc(p,200,235,0, ar.x,ar.y, ar.w/2,ar.h/2, p.HALF_PI,p.PI, thick); }
+      if(anim015[2].phase===1) dfArcAnim(p,231,254,104, ar.x,ar.y, ar.w/2,ar.h/2, thick, eio15(anim015[2].t));
+      else dfArc(p,231,254,104, ar.x,ar.y, ar.w/2,ar.h/2, p.HALF_PI,p.PI, thick); }
 
     // [3] threeCircles — spread from center
-    { df(p,82,160,215);
+    { df(p,139,201,245);
       if(anim015[3].phase===1){
         const pv=eio15(anim015[3].t);
         p.circle(tc.x+tc.gap*(1-pv), tc.y, tc.r*2);
@@ -1834,12 +1834,12 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [4] greenRect — slide in from right
     { const pv=anim015[4].phase>=1?eoc15(anim015[4].t):1;
-      df(p,200,235,0); p.rect(gr.x+gr.w*(1-pv),gr.y,gr.w*pv,gr.h); }
+      df(p,231,254,104); p.rect(gr.x+gr.w*(1-pv),gr.y,gr.w*pv,gr.h); }
 
     // [5] targetCircle — scale up
     { const pv=anim015[5].phase>=1?eoc15(anim015[5].t):1;
-      df(p,165,210,240); p.circle(tg.x,tg.y,tg.outer*pv);
-      df(p,82,160,215);  p.circle(tg.x,tg.y,tg.inner*pv); }
+      df(p,139,201,245); p.circle(tg.x,tg.y,tg.outer*pv);
+      df(p,139,201,245);  p.circle(tg.x,tg.y,tg.inner*pv); }
   }
 
   new p5(function(p) {
@@ -1896,7 +1896,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     const yh ={x:lV(stateA16.yh, stateB16.yh, 'x'),y:lV(stateA16.yh, stateB16.yh, 'y'),size:lV(stateA16.yh,stateB16.yh,'size'),rot:stateB16.yh.rot};
 
     function drawGA(g,idx){
-      df(p,200,235,0);
+      df(p,231,254,104);
       if(anim016[idx].phase===1){
         const _cA=p.lerp(p.PI,p.HALF_PI,eio16(anim016[idx].t));
         p.beginShape();
@@ -1914,42 +1914,42 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 
     // [0] blueRect1 — slide
     { const pv=anim016[0].phase>=1?eoc16(anim016[0].t):1;
-      df(p,82,160,215); p.rect(bl1.x+bl1.w*(1-pv),bl1.y,bl1.w*pv,bl1.h); }
+      df(p,139,201,245); p.rect(bl1.x+bl1.w*(1-pv),bl1.y,bl1.w*pv,bl1.h); }
 
     // [1] greenArc1
     drawGA(ga1,1);
 
     // [2] yellowVert1 — spread vertical
-    { df(p,255,220,45);
+    { df(p,255,229,82);
       if(anim016[2].phase===1){const pv=eio16(anim016[2].t);
         p.circle(yv1.x,yv1.y+yv1.gap*(1-pv),yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap,yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap*(1+pv),yv1.r*2);
       } else { p.circle(yv1.x,yv1.y,yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap,yv1.r*2); p.circle(yv1.x,yv1.y+yv1.gap*2,yv1.r*2); } }
 
     // [3] yellowVert2
-    { df(p,255,220,45);
+    { df(p,255,229,82);
       if(anim016[3].phase===1){const pv=eio16(anim016[3].t);
         p.circle(yv2.x,yv2.y+yv2.gap*(1-pv),yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap,yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap*(1+pv),yv2.r*2);
       } else { p.circle(yv2.x,yv2.y,yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap,yv2.r*2); p.circle(yv2.x,yv2.y+yv2.gap*2,yv2.r*2); } }
 
     // [4] redRect — grow height
     { const pv=anim016[4].phase>=1?eoc16(anim016[4].t):1;
-      df(p,255,35,35); p.rect(rr.x,rr.y,rr.w,rr.h*pv); }
+      df(p,255,76,79); p.rect(rr.x,rr.y,rr.w,rr.h*pv); }
 
     // [5] greenArc2
     drawGA(ga2,5);
 
     // [6] blueRect2 — slide
     { const pv=anim016[6].phase>=1?eoc16(anim016[6].t):1;
-      df(p,82,160,215); p.rect(bl2.x+bl2.w*(1-pv),bl2.y,bl2.w*pv,bl2.h); }
+      df(p,139,201,245); p.rect(bl2.x+bl2.w*(1-pv),bl2.y,bl2.w*pv,bl2.h); }
 
     // [7] blueHorizontal — spread horizontal
-    { df(p,82,160,215);
+    { df(p,139,201,245);
       if(anim016[7].phase===1){const pv=eio16(anim016[7].t);
         p.circle(bh.x+bh.gap*(1-pv),bh.y,bh.r*2); p.circle(bh.x+bh.gap,bh.y,bh.r*2); p.circle(bh.x+bh.gap*(1+pv),bh.y,bh.r*2);
       } else { p.circle(bh.x,bh.y,bh.r*2); p.circle(bh.x+bh.gap,bh.y,bh.r*2); p.circle(bh.x+bh.gap*2,bh.y,bh.r*2); } }
 
     // [8] yellowHalf — grow+morph (like verse 13)
-    { df(p,255,220,45); p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(yh.rot));
+    { df(p,255,229,82); p.push(); p.translate(yh.x,yh.y); p.rotate(p.radians(yh.rot));
       if(anim016[8].phase===1){
         const t16=eio16(anim016[8].t);
         const grow=Math.min(1,Math.max(0,t16/0.38));
@@ -1965,7 +1965,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     // [9] blueCircleSet — scale up
     { const pv=anim016[9].phase>=1?eoc16(anim016[9].t):1;
       df(p,160,205,235); p.circle(bc.x,bc.y,bc.outer*pv);
-      df(p,82,160,215);  p.circle(bc.x,bc.y,bc.inner*pv); }
+      df(p,139,201,245);  p.circle(bc.x,bc.y,bc.inner*pv); }
   }
 
   new p5(function(p) {
