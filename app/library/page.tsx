@@ -65,7 +65,7 @@ export default function LibraryPage() {
         #meta-datetime { display: flex; direction: rtl; gap: 120px; }
         #gallery-hint {
           position: fixed; top: calc(var(--nb) + 8px); left: 50%; transform: translateX(-50%);
-          font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(13px, 1.04vw, 20px);
+          font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(14px, 1.14vw, 22px);
           color: #343434; white-space: nowrap; direction: rtl; pointer-events: none;
         }
         body.dark #gallery-hint { color: #fff; }
@@ -78,7 +78,7 @@ export default function LibraryPage() {
         #gallery-loading.out { opacity: 0; pointer-events: none; }
         @keyframes _gl-pulse { 0%,100%{r:10} 50%{r:22} }
         #gallery-loading circle { animation: _gl-pulse 1.4s ease-in-out infinite; }
-        .nav-aodot img { height: clamp(10px, 0.83vw, 16px) !important; width: auto !important; }
+        .nav-aodot img { height: clamp(11px, 0.91vw, 18px) !important; width: auto !important; }
       `}</style>
 
       <div id="gallery-loading">

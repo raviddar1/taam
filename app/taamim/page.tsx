@@ -15,24 +15,24 @@ export default function TaanimPage() {
       {/* preload page script so it downloads in parallel with p5.min.js */}
       <link rel="preload" href="/scripts/taamim.js" as="script" />
       <style>{`
-    :root { --nb: clamp(48px, 3.85vw, 74px); }
+    :root { --nb: clamp(53px, 4.24vw, 81px); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fff; font-family: 'TheBasics', sans-serif; }
     /* ---- נאב-בר ---- */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(40px, 4.8vw, 92px); }
-    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: clamp(18px, 1.56vw, 30px); height: clamp(18px, 1.56vw, 30px); background: #000; display: block; }
-    .nav-link { font-family: 'TheBasics', sans-serif; font-size: clamp(13px, 1.04vw, 20px); color: #343434; text-decoration: none; white-space: nowrap; }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(44px, 5.28vw, 101px); }
+    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: clamp(20px, 1.72vw, 33px); height: clamp(20px, 1.72vw, 33px); background: #000; display: block; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: clamp(14px, 1.14vw, 22px); color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
-    .nav-aodot img          { height: clamp(10px, 0.83vw, 16px); width: auto; display: none; }
+    .nav-aodot img          { height: clamp(11px, 0.91vw, 18px); width: auto; display: none; }
     .nav-aodot .logo-light  { display: block; }
     body.dark .nav-aodot .logo-light { display: none; }
     body.dark .nav-aodot .logo-dark  { display: block; }
 
 
 
-    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:clamp(13px, 1.09vw, 21px); padding:2px 4px; line-height:1; }
+    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:clamp(14px, 1.20vw, 23px); padding:2px 4px; line-height:1; }
 
     /* ---- קנבס ---- */
     #wrap {
@@ -96,7 +96,7 @@ export default function TaanimPage() {
       right: calc(1131/1920*100vw + 65px);
       top: calc(220/1080*100vh);
       width: clamp(210px, 19vw, 360px);
-      font-size: clamp(11px, 0.885vw, 17px);
+      font-size: clamp(12px, 0.97vw, 19px);
       font-family: 'TheBasics', sans-serif;
       color: #343434; line-height: 1.25; text-align: right; direction: rtl;
     }
@@ -104,7 +104,7 @@ export default function TaanimPage() {
       position: absolute;
       right: calc(166/1920*100vw + 50px);
       top: calc(220/1080*100vh);
-      font-size: clamp(11px, 0.885vw, 17px);
+      font-size: clamp(12px, 0.97vw, 19px);
       font-family: 'TheBasics', sans-serif;
       color: #343434; line-height: 1.55; text-align: right; direction: rtl;
     }
@@ -124,20 +124,20 @@ export default function TaanimPage() {
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
       display: none;
-      position: fixed; bottom: clamp(38px, 5.56vh, 60px); left: 2vw; z-index: 60;
+      position: fixed; bottom: clamp(42px, 6.12vh, 66px); left: 2vw; z-index: 60;
       font-family: 'TheBasics', sans-serif;
-      flex-direction: column; align-items: center; gap: clamp(8px, 0.73vw, 14px);
+      flex-direction: column; align-items: center; gap: clamp(9px, 0.80vw, 15px);
     }
     #tradition-wrap.visible { display: flex; }
-    #trad-col { display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 0.73vw, 14px); }
-    #trad-list { display:flex; flex-direction:column; gap:clamp(7px, 0.68vw, 13px); text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:clamp(14px, 1.15vw, 22px); color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    #trad-col { display: flex; flex-direction: column; align-items: center; gap: clamp(9px, 0.80vw, 15px); }
+    #trad-list { display:flex; flex-direction:column; gap:clamp(8px, 0.75vw, 14px); text-align:right; direction:rtl; min-width: max-content; }
+    .trad-item { font-size:clamp(15px, 1.27vw, 24px); color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
     .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; align-self: flex-start; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
 
     #ipus-btn {
       background: none; border: 0.5px solid #ccc; border-radius: 16px; cursor: pointer; padding: 4px 14px;
-      font-family: 'TheBasics', sans-serif; font-size: clamp(11px, 0.885vw, 17px); color: #aaa;
+      font-family: 'TheBasics', sans-serif; font-size: clamp(12px, 0.97vw, 19px); color: #aaa;
       text-align: center; pointer-events: all;
       transition: color 0.15s, border-color 0.15s;
       position: fixed; bottom: clamp(100px, 15.6vh, 168px); left: 50%; transform: translateX(-50%);
@@ -155,11 +155,11 @@ export default function TaanimPage() {
 
     /* ---- פדרי עוצמה ---- */
     #vol-faders {
-      position: fixed; bottom: clamp(18px, 2.6vh, 28px); right: clamp(14px, 1.2vw, 23px); z-index: 60;
-      display: flex; flex-direction: row; align-items: flex-end; gap: clamp(5px, 0.42vw, 8px);
+      position: fixed; bottom: clamp(20px, 2.86vh, 31px); right: clamp(15px, 1.32vw, 25px); z-index: 60;
+      display: flex; flex-direction: row; align-items: flex-end; gap: clamp(6px, 0.46vw, 9px);
     }
     .vol-fader {
-      width: clamp(18px, 1.51vw, 29px); height: clamp(90px, 13.9vh, 150px);
+      width: clamp(20px, 1.66vw, 32px); height: clamp(99px, 15.3vh, 165px);
       position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none;
     }
     .vol-fader-track {
@@ -168,12 +168,12 @@ export default function TaanimPage() {
     }
     body.dark .vol-fader-track { border-color: #fff; }
     .vol-fader-thumb {
-      position: absolute; left: clamp(3px, 0.31vw, 6px); right: clamp(3px, 0.31vw, 6px); height: clamp(22px, 3.4vh, 37px);
+      position: absolute; left: clamp(3px, 0.34vw, 7px); right: clamp(3px, 0.34vw, 7px); height: clamp(24px, 3.7vh, 41px);
       background: #bbb; border-radius: 8px; pointer-events: none;
     }
     .vol-fader-label {
       text-align: center; font-family: 'TheBasics', sans-serif;
-      font-size: clamp(10px, 0.83vw, 16px); color: #343434; margin-top: clamp(3px, 0.56vh, 6px);
+      font-size: clamp(11px, 0.91vw, 18px); color: #343434; margin-top: clamp(3px, 0.56vh, 6px);
     }
     body.dark .vol-fader-label { color: #fff; }
 
@@ -226,7 +226,7 @@ export default function TaanimPage() {
       left: 50%; transform: translateX(-50%);
       font-family: 'TheBasics', sans-serif;
       font-weight: 400;
-      font-size: clamp(13px, 1.04vw, 20px);
+      font-size: clamp(14px, 1.14vw, 22px);
       color: #343434;
       white-space: nowrap;
       direction: rtl;
@@ -238,7 +238,7 @@ export default function TaanimPage() {
     #pad-preview-container canvas { display: block; }
     #seq-hint {
       position: fixed; top: calc(var(--nb) + 8px); left: 50%; transform: translateX(-50%);
-      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(13px, 1.04vw, 20px);
+      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(14px, 1.14vw, 22px);
       color: #343434; direction: rtl; text-align: center; line-height: 1.7;
       display: none; pointer-events: none;
     }
@@ -246,7 +246,7 @@ export default function TaanimPage() {
 
     /* ---- חיצי ניווט טעמים ---- */
     #solo-nav { display:flex; position:absolute; right: calc(35/1920*100vw); top:50%; transform:translateY(-50%); align-items:center; gap:2px; }
-    .solo-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:clamp(13px, 1.09vw, 21px); padding:2px 4px; line-height:1; }
+    .solo-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:clamp(14px, 1.20vw, 23px); padding:2px 4px; line-height:1; }
       `}</style>
 
 

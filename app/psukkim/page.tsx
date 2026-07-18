@@ -605,9 +605,9 @@ export default function PsukkimPage() {
 
     #back-btn { display: none; }
 
-    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(40px, 4.8vw, 92px); }
-    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: clamp(18px, 1.56vw, 30px); height: clamp(18px, 1.56vw, 30px); background: #000; display: block; }
-    .nav-link { font-family: 'TheBasics', sans-serif; font-size: clamp(13px, 1.04vw, 20px); color: #343434; text-decoration: none; white-space: nowrap; }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(44px, 5.28vw, 101px); }
+    .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: clamp(20px, 1.72vw, 33px); height: clamp(20px, 1.72vw, 33px); background: #000; display: block; }
+    .nav-link { font-family: 'TheBasics', sans-serif; font-size: clamp(14px, 1.14vw, 22px); color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
     @keyframes _afl { 0%{transform:none;opacity:1} 35%{transform:translateX(-16px) scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
     @keyframes _afr { 0%{transform:none;opacity:1} 35%{transform:translateX(16px)  scale(1.6);opacity:0.15} 100%{transform:none;opacity:1} }
@@ -619,13 +619,13 @@ export default function PsukkimPage() {
     .arrow-flash-down  { animation:_afd .55s ease-out; }
 
     .nav-aodot { position: absolute; right: calc(48/1920*100vw); top: 50%; transform: translateY(-30%); border-bottom: none !important; }
-    .nav-aodot img          { height: clamp(10px, 0.83vw, 16px); width: auto; display: none; }
+    .nav-aodot img          { height: clamp(11px, 0.91vw, 18px); width: auto; display: none; }
     .nav-aodot .logo-light  { display: block; }
     body.dark .nav-aodot .logo-light { display: none; }
     body.dark .nav-aodot .logo-dark  { display: block; }
     #psuk-hint {
       position: fixed; top: calc(var(--nb) + 18px); left: 50%; transform: translateX(-50%);
-      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(13px, 1.04vw, 20px);
+      font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(14px, 1.14vw, 22px);
       color: #343434; white-space: nowrap; direction: rtl;
       pointer-events: none; transition: opacity 0.3s ease;
     }
@@ -635,7 +635,7 @@ export default function PsukkimPage() {
     
     
     .w001,.w002,.w003,.w004,.w005,.w006,.w007,.w008,.w009,.w010,.w011,.w012,.w013,.w014,.w015,.w016 { font-family: 'BuGlobal', sans-serif; font-weight: 300; }
-    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:clamp(13px, 1.09vw, 21px); padding:2px 4px; line-height:1; }
+    .page-nav-btn { background:none; border:none; cursor:pointer; color:#e91e8c; font-size:clamp(14px, 1.20vw, 23px); padding:2px 4px; line-height:1; }
     body.dark { background: #131111; }
     body.dark .nav-link:not(.active) { color: #fff; }
     body.dark .nav-logo-sq { background: #fff; }
@@ -653,28 +653,28 @@ export default function PsukkimPage() {
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
       display: none;
-      position: fixed; bottom: 60px; left: 2vw; z-index: 10;
+      position: fixed; bottom: 66px; left: 2vw; z-index: 10;
       font-family: 'TheBasics', sans-serif;
-      flex-direction: column; align-items: center; gap: 12px;
+      flex-direction: column; align-items: center; gap: 13px;
     }
     #tradition-wrap.visible { display: flex; }
-    #trad-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    #trad-list { display:flex; flex-direction:column; gap:11px; text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:19px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    #trad-col { display: flex; flex-direction: column; align-items: center; gap: 13px; }
+    #trad-list { display:flex; flex-direction:column; gap:12px; text-align:right; direction:rtl; min-width: max-content; }
+    .trad-item { font-size:21px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
     .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 2px; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
     body.dark .trad-item:not(.active) { color: #fff; }
 
 #psuk-vol-faders {
-      position: fixed; bottom: 28px; right: 23px; z-index: 60;
-      display: none; flex-direction: row; align-items: flex-end; gap: 8px;
+      position: fixed; bottom: 31px; right: 25px; z-index: 60;
+      display: none; flex-direction: row; align-items: flex-end; gap: 9px;
     }
     #psuk-vol-faders.visible { display: flex; }
-    .psuk-vol-fader { width: 28px; height: 143px; position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
+    .psuk-vol-fader { width: 31px; height: 157px; position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
     .psuk-vol-fader-track { position: absolute; top:0; left:0; right:0; bottom:0; border:1px solid #343434; border-radius:10px; background:transparent; }
     body.dark .psuk-vol-fader-track { border-color:#fff; }
-    .psuk-vol-fader-thumb { position:absolute; left:5px; right:5px; height:35px; background:#bbb; border-radius:8px; pointer-events:none; }
-    .psuk-vol-fader-label { text-align:center; font-family:'TheBasics',sans-serif; font-size:14px; color:#343434; margin-top:5px; position:relative; top:10px; }
+    .psuk-vol-fader-thumb { position:absolute; left:6px; right:6px; height:39px; background:#bbb; border-radius:8px; pointer-events:none; }
+    .psuk-vol-fader-label { text-align:center; font-family:'TheBasics',sans-serif; font-size:15px; color:#343434; margin-top:5px; position:relative; top:10px; }
     body.dark .psuk-vol-fader-label { color:#fff; }
       `}</style>
 
