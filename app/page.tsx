@@ -73,6 +73,14 @@ export default function AboutPage() {
         }
         .nav-aodot .logo-dark { display: block; }
         .nav-aodot .logo-light { display: none; }
+        #intro-hint {
+          display: none;
+          position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+          font-family: 'TheBasics', sans-serif; font-weight: 400;
+          font-size: clamp(18px, 1.4vw, 27px); color: #fff; direction: rtl;
+          white-space: nowrap; z-index: 10;
+        }
+        body.intro-active #intro-hint { display: block; }
         #midi-permission-btn {
           display: none;
           position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
@@ -100,7 +108,7 @@ export default function AboutPage() {
       <div id="standby">
         <video id="standby-video" src="/shapes.mp4" loop muted playsInline autoPlay />
         <div id="taam-strip"></div>
-        <div id="standby-text">לחצו על החץ <svg width="11" height="18" viewBox="0 0 9 15" fill="none" style={{display:'inline-block',verticalAlign:'middle',margin:'0 2px'}}><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg> במקלדת כדי להתחיל</div>
+        <div id="standby-text">לחצו על כל כפתור במקלדת כדי להתחיל</div>
       </div>
 
       <button id="midi-permission-btn">אפשר MIDI ▸</button>
@@ -110,6 +118,7 @@ export default function AboutPage() {
           <source src="/intro newwww.mp4" type="video/mp4" />
         </video>
       </div>
+      <div id="intro-hint">לחצו על החץ <svg width="11" height="18" viewBox="0 0 9 15" fill="none" style={{display:'inline-block',verticalAlign:'middle',margin:'0 2px'}}><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg> במקלדת כדי להתחיל</div>
 
       <Script
         src="/p5.min.js"
