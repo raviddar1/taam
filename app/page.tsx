@@ -80,7 +80,7 @@ export default function AboutPage() {
           font-size: clamp(18px, 1.4vw, 27px); color: #fff; direction: rtl;
           white-space: nowrap; z-index: 10;
         }
-        body.intro-active #intro-hint { display: block; }
+        body:not(.standby-active) #intro-hint { display: block; }
         #midi-permission-btn {
           display: none;
           position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
