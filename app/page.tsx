@@ -76,7 +76,7 @@ export default function AboutPage() {
         #intro-hint {
           display: none;
           position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
-          font-family: 'TheBasics', sans-serif; font-weight: 400;
+          font-family: 'TheBasics', sans-serif; font-weight: 300;
           font-size: clamp(18px, 1.4vw, 27px); color: #fff; direction: rtl;
           white-space: nowrap; z-index: 10;
         }
