@@ -118,7 +118,7 @@ export default function AboutPage() {
           <source src="/intro newwww.mp4" type="video/mp4" />
         </video>
       </div>
-      <div id="intro-hint">לחצו על החץ <svg width="11" height="18" viewBox="0 0 9 15" fill="none" style={{display:'inline-block',verticalAlign:'middle',margin:'0 2px'}}><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg> במקלדת כדי להתחיל</div>
+      <div id="intro-hint">לחצו על החץ <svg width="11" height="18" viewBox="0 0 9 15" fill="none" style={{display:'inline-block',verticalAlign:'middle',margin:'0 2px'}}><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg> במקלדת כדי לדלג</div>
 
       <Script
         src="/p5.min.js"
