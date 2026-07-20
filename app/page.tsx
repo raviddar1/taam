@@ -8,6 +8,13 @@ export default function AboutPage() {
     if (sessionStorage.getItem('darkMode') === '1') {
       document.body.classList.add('dark')
     }
+    // 5-minute idle reload on standby/home page
+    var _t: ReturnType<typeof setTimeout>
+    function _r(){ clearTimeout(_t); _t = setTimeout(function(){ location.reload(); }, 300000); }
+    const evts = ['mousemove','keydown','mousedown','touchstart','click'] as const
+    evts.forEach(function(ev){ document.addEventListener(ev, _r, {passive:true}); })
+    _r()
+    return () => { clearTimeout(_t); evts.forEach(function(ev){ document.removeEventListener(ev, _r); }); }
   }, [])
 
   return (

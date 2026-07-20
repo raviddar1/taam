@@ -749,6 +749,7 @@
     }
 
     p.draw = function() {
+      if(window._wdPing) window._wdPing();
       p.background(darkMode ? '#131111' : '#fff');
 
       // ---- רצף ----
@@ -1943,6 +1944,7 @@
       function onMidiMsg(msg){
         if (document.hidden) return;
         if(typeof _idleReset==='function') _idleReset();
+        if(typeof window._idle5Reset==='function') window._idle5Reset();
         const [st,note,vel]=msg.data;
         const type = (st&0xF0)===0x90 ? (vel>0?'note_on ':'note_off')
                    : (st&0xF0)===0x80 ? 'note_off'
@@ -2142,6 +2144,28 @@
     ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){ document.addEventListener(ev,reset,{passive:true}); });
     document.querySelectorAll('.nav-aodot,.nav-logo-sq').forEach(function(el){ el.addEventListener('click', doReset); });
     reset();
+  })();
+
+  // ---- Watchdog: reload if p5 stops rendering for 8s ----
+  (function(){
+    if(location.search.includes('embed')) return;
+    var _wdLast = Date.now();
+    window._wdPing = function(){ _wdLast = Date.now(); };
+    setInterval(function(){
+      if(Date.now() - _wdLast > 8000) location.reload();
+    }, 5000);
+  })();
+
+  // ---- 5-minute idle reload (resets on DOM events + MIDI) ----
+  (function(){
+    if(location.search.includes('embed')) return;
+    var _t5;
+    function _r5(){ clearTimeout(_t5); _t5 = setTimeout(function(){ location.reload(); }, 300000); }
+    ['mousemove','keydown','mousedown','touchstart','click'].forEach(function(ev){
+      document.addEventListener(ev, _r5, {passive:true});
+    });
+    window._idle5Reset = _r5;
+    _r5();
   })();
 
 if(!location.search.includes('embed')){
