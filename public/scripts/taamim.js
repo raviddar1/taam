@@ -1966,7 +1966,7 @@
           if((st&0xF0)===0x90&&vel>0){
             if(TAAM_SET.has(note)){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); if(!location.search.includes('embed')) doKey(NOTE_KEY[note]); return; }
             if(note===tU&&tUt==='note'){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1);  return; }
-            if(note===tD&&tDt==='note'){ doReset(); return; }
+            if(note===tD&&tDt==='note'){ if(currentMode==='רצף') doReset(); return; }
             if(note===nR&&nRt==='note'){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-prev','arrow-flash-right');  navPage(-1); return; }
             if(note===nL&&nLt==='note'){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-next','arrow-flash-left'); navPage(1);  return; }
             return;
@@ -1975,7 +1975,7 @@
           if((st&0xF0)===0xB0){
             const cc=note, val=vel/127;
             if(cc===tU&&tUt==='cc'){ if(val>0.5){ flashArrow('trad-down','arrow-flash-down'); cycleTrad(1); } return; }
-            if(cc===tD&&tDt==='cc'){ doReset(); return; }
+            if(cc===tD&&tDt==='cc'){ if(currentMode==='רצף') doReset(); return; }
             if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-prev','arrow-flash-right');  navPage(-1); } _nRprev=on; return; }
             if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-next','arrow-flash-left'); navPage(1);  } _nLprev=on; return; }
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
@@ -2042,7 +2042,7 @@
   document.querySelectorAll('.trad-item').forEach(function(el){
     el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
   });
-  document.getElementById('ipus-btn').addEventListener('click', doReset);
+  document.getElementById('ipus-btn').addEventListener('click', function(){ if(currentMode==='רצף') doReset(); });
   document.getElementById('trad-down').addEventListener('click', function(){
     const i = TRADITION_ORDER.indexOf(currentTradition);
     const next = (i + 1) % TRADITION_ORDER.length;
