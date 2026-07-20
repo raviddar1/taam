@@ -100,7 +100,7 @@ export default function AboutPage() {
       <div id="standby">
         <video id="standby-video" src="/shapes.mp4" loop muted playsInline autoPlay />
         <div id="taam-strip"></div>
-        <div id="standby-text">לחצו על כל כפתור במקלדת כדי להתחיל</div>
+        <div id="standby-text">לחצו על החץ <svg width="11" height="18" viewBox="0 0 9 15" fill="none" style={{display:'inline-block',verticalAlign:'middle',margin:'0 2px'}}><polyline points="7.5,1.5 1.5,7.5 7.5,13.5" stroke="#FF179C" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/></svg> במקלדת כדי להתחיל</div>
       </div>
 
       <button id="midi-permission-btn">אפשר MIDI ▸</button>
