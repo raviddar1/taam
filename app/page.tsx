@@ -43,7 +43,7 @@ export default function AboutPage() {
           position: fixed; bottom: 160px; left: 50%;
           transform: translateX(-50%);
           font-family: 'TheBasics', sans-serif; font-weight: 400;
-          font-size: clamp(20px, 2vw, 38px); color: #fff; direction: rtl;
+          font-size: clamp(18px, 1.4vw, 27px); color: #fff; direction: rtl;
           white-space: nowrap; transition: opacity 0.5s ease;
           z-index: 510;
         }
