@@ -105,6 +105,15 @@ export default function AboutPage() {
       </nav>
       <div id="page-nav"></div>
 
+      <script dangerouslySetInnerHTML={{__html:`
+        (function(){
+          var isInternal = document.referrer && new URL(document.referrer).origin === location.origin;
+          if(location.search.includes('intro') && isInternal){
+            var el = document.getElementById('standby');
+            if(el) el.style.display = 'none';
+          }
+        })();
+      `}} />
       <div id="standby">
         <video id="standby-video" src="/shapes.mp4" loop muted playsInline autoPlay />
         <div id="taam-strip"></div>
