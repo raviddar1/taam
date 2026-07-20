@@ -100,7 +100,7 @@ export default function AboutPage() {
       <div id="standby">
         <video id="standby-video" src="/shapes.mp4" loop muted playsInline autoPlay />
         <div id="taam-strip"></div>
-        <div id="standby-text">לחצו על כל כפתור במידי פד כדי להתחיל</div>
+        <div id="standby-text">לחצו על כל כפתור במקלדת כדי להתחיל</div>
       </div>
 
       <button id="midi-permission-btn">אפשר MIDI ▸</button>
