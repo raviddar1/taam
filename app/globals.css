@@ -33,6 +33,11 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #fff; font-family: 'TheBasics', sans-serif; }
 
+/* ---- TV safe-zone 10px ---- */
+@media (min-width: 1920px) {
+  html { transform: scale(0.9896); transform-origin: center center; overflow: hidden; }
+}
+
 /* ---- נאב-בר משותף ---- */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; height: var(--nb);
