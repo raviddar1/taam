@@ -1632,7 +1632,9 @@
         audioCtx.resume().then(function(){
           audioReady = true;
           _audioToast.hide();
-          setTimeout(function(){ if(window._preloadOtherTraditions) window._preloadOtherTraditions(currentTradition); }, 1500);
+          // טוען את הנוסח הנוכחי מיד, ואת השאר לאט ברקע
+          window._preloadTradition(currentTradition);
+          setTimeout(function(){ if(window._preloadOtherTraditions) window._preloadOtherTraditions(currentTradition); }, 2000);
         }).catch(function(){
           // MIDI event — not a user gesture on HTTPS; show toast
           _audioToast.show();
@@ -1743,12 +1745,19 @@
                      audioRaviyaTofim,audioTarchaTofim,audioZarqaTofim,audioShofarHolechTofim,
                      audioYetivTofim,audioTariKadminTofim,audioMarichTofim,audioDargaTofim];
 
-    // נוסח ספציפי — טוען קובץ-קובץ
+    // נוסח ספציפי — טוען את כל 16 הקבצים מיד (לשינוי נוסח)
     window._preloadTradition = function(t) {
+      var map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
+      Object.values(map).forEach(function(arr){
+        arr.forEach(function(a){ a.preload='auto'; a.load(); });
+      });
+    };
+    // גרסה איטית לרקע בלבד
+    window._preloadTraditionSlow = function(t) {
       var map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
       var list = [];
       Object.values(map).forEach(function(arr){ arr.forEach(function(a){ list.push(a); }); });
-      _loadQueue(list, 250);
+      _loadQueue(list, 300);
     };
 
     // טעינת שאר הנוסחים ברקע (איטי יותר)
@@ -1761,10 +1770,10 @@
       _loadQueue(list, 400);
     };
 
-    // מופעל מהגריד ברקע בזמן שמסך הפתיחה מוצג
+    // מופעל מהגריד ברקע בזמן שמסך הפתיחה מוצג (איטי — לא קורס)
     window._startBackgroundPreload = function(trad) {
-      window._preloadTradition(trad);
-      setTimeout(function(){ _loadQueue(_drumList, 250); }, 300);
+      window._preloadTraditionSlow(trad);
+      setTimeout(function(){ _loadQueue(_drumList, 300); }, 400);
     };
 
     function startAnimOnly(k) {
