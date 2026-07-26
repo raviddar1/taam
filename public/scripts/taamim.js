@@ -50,6 +50,11 @@
     window._hidePadGrid = function(){ hidePadGrid(); if(window._padP5) window._padP5.noLoop(); };
     document.addEventListener('keydown', hidePadGrid);
     document.addEventListener('mousedown', hidePadGrid);
+    // טעינת אודיו ברקע בזמן שהגריד הויזואלי מוצג
+    setTimeout(function(){
+      var trad = localStorage.getItem('m_trad') || 'ספרדי';
+      if(window._startBackgroundPreload) window._startBackgroundPreload(trad);
+    }, 800);
     window.addEventListener('pageshow', function(e) {
       if (!e.persisted) return;
       ov.classList.remove('out');
@@ -1627,7 +1632,7 @@
         audioCtx.resume().then(function(){
           audioReady = true;
           _audioToast.hide();
-          if(window._preloadAllAudio){ window._preloadAllAudio(); window._preloadAllAudio=null; }
+          setTimeout(function(){ if(window._preloadOtherTraditions) window._preloadOtherTraditions(currentTradition); }, 1500);
         }).catch(function(){
           // MIDI event — not a user gesture on HTTPS; show toast
           _audioToast.show();
@@ -1726,15 +1731,40 @@
       },
     };
 
-    // expose preload hook for tradition switching and first-gesture preload
+    // ---- טעינה מדורגת (queue) — קובץ אחד כל 250ms, לא קורס הדפדפן ----
+    function _loadQueue(list, ms) {
+      var i=0;
+      function step(){ if(i>=list.length) return; var a=list[i++]; a.preload='auto'; a.load(); setTimeout(step,ms); }
+      step();
+    }
+
+    var _drumList = [audioZakefTofim,audioEtnachtaTofim,audioTabirTofim,audioZakefGadolTofim,
+                     audioAzlaTofim,audioShneiGereshinTofim,audioSofPasukTofim,audioShofarMehupachTofim,
+                     audioRaviyaTofim,audioTarchaTofim,audioZarqaTofim,audioShofarHolechTofim,
+                     audioYetivTofim,audioTariKadminTofim,audioMarichTofim,audioDargaTofim];
+
+    // נוסח ספציפי — טוען קובץ-קובץ
     window._preloadTradition = function(t) {
-      const map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
-      Object.values(map).forEach(function(arr) {
-        arr.forEach(function(a){ a.preload='auto'; a.load(); });
-      });
+      var map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
+      var list = [];
+      Object.values(map).forEach(function(arr){ arr.forEach(function(a){ list.push(a); }); });
+      _loadQueue(list, 250);
     };
-    window._preloadAllAudio = function() {
-      allAudios.forEach(function(a){ a.preload='auto'; a.load(); });
+
+    // טעינת שאר הנוסחים ברקע (איטי יותר)
+    window._preloadOtherTraditions = function(current) {
+      var list = [];
+      Object.keys(TRADITION_AUDIO).forEach(function(t){
+        if(t===current) return;
+        Object.values(TRADITION_AUDIO[t]).forEach(function(arr){ arr.forEach(function(a){ list.push(a); }); });
+      });
+      _loadQueue(list, 400);
+    };
+
+    // מופעל מהגריד ברקע בזמן שמסך הפתיחה מוצג
+    window._startBackgroundPreload = function(trad) {
+      window._preloadTradition(trad);
+      setTimeout(function(){ _loadQueue(_drumList, 250); }, 300);
     };
 
     function startAnimOnly(k) {
