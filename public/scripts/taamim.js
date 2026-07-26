@@ -1598,8 +1598,7 @@
                        audioTariKadminSfaradi,audioTariKadminAshk,audioTariKadminMar,audioTariKadminTofim,
                        audioMarichSfaradi,audioMarichAshk,audioMarichMar,audioMarichTofim,
                        audioDargaSfaradi,audioDargaAshk,audioDargaMar,audioDargaTofim];
-    // preload all audio in background after 1s so first-play is instant
-    setTimeout(function(){ allAudios.forEach(function(a){ a.preload='auto'; a.load(); }); }, 1000);
+    allAudios.forEach(function(a){ a.preload='none'; });
 
     // מסיר אוברליי מיד אחרי אתחול
     (function(){
@@ -1628,6 +1627,7 @@
         audioCtx.resume().then(function(){
           audioReady = true;
           _audioToast.hide();
+          if(window._preloadAllAudio){ window._preloadAllAudio(); window._preloadAllAudio=null; }
         }).catch(function(){
           // MIDI event — not a user gesture on HTTPS; show toast
           _audioToast.show();
@@ -1726,14 +1726,16 @@
       },
     };
 
-    // expose preload hook for tradition switching
+    // expose preload hook for tradition switching and first-gesture preload
     window._preloadTradition = function(t) {
       const map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
       Object.values(map).forEach(function(arr) {
         arr.forEach(function(a){ a.preload='auto'; a.load(); });
       });
     };
-    window._preloadTradition(currentTradition);
+    window._preloadAllAudio = function() {
+      allAudios.forEach(function(a){ a.preload='auto'; a.load(); });
+    };
 
     function startAnimOnly(k) {
       if(k==='צ'){p1.playing=true; p1.startMs=p.millis();}
