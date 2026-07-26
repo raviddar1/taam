@@ -1568,6 +1568,8 @@
 
     stopAllAudio = function() {
       allAudios.forEach(function(a){ a.pause(); a.currentTime=0; });
+      _activeCantorSources.forEach(function(s){ try{ s.stop(); }catch(e){} });
+      _activeCantorSources = [];
     };
 
     // ---- הגברת תופים דרך Web Audio ----
@@ -1587,6 +1589,43 @@
     marichAshkGain.gain.value = 4.0;
     marichAshkGain.connect(audioCtx.destination);
     audioCtx.createMediaElementSource(audioMarichAshkBoost).connect(marichAshkGain);
+
+    // ---- חזן דרך Web Audio (לסנכרון מיידי עם תופים) ----
+    const cantorGain = audioCtx.createGain();
+    const _cv0 = localStorage.getItem('m_vL');
+    cantorGain.gain.value = _cv0 !== null ? +_cv0 : 0.7;
+    cantorGain.connect(audioCtx.destination);
+    window._cantorGain = cantorGain;
+
+    const _cantorBuffers = new Map();
+    var _activeCantorSources = [];
+
+    function _decodeCantorAudio(a) {
+      if(_cantorBuffers.has(a)) return;
+      _cantorBuffers.set(a, null); // mark as pending
+      fetch(a.src)
+        .then(function(r){ return r.arrayBuffer(); })
+        .then(function(buf){ return audioCtx.decodeAudioData(buf); })
+        .then(function(decoded){ _cantorBuffers.set(a, decoded); })
+        .catch(function(){ _cantorBuffers.delete(a); });
+    }
+
+    function _playCantorNow(a, startAt) {
+      var buf = _cantorBuffers.get(a);
+      if(buf) {
+        var src = audioCtx.createBufferSource();
+        src.buffer = buf;
+        src.connect(cantorGain);
+        src.start(0, startAt);
+        _activeCantorSources.push(src);
+        src.onended = function(){ _activeCantorSources = _activeCantorSources.filter(function(s){ return s!==src; }); };
+      } else {
+        // fallback — HTML Audio (קובץ עדיין מתפענח)
+        a.currentTime = startAt;
+        a.volume = cantorGain.gain.value;
+        a.play().catch(function(){});
+      }
+    }
 
 
 
@@ -1693,20 +1732,10 @@
     }
     function playTradAudio(k, trad){
       const t = trad || currentTradition;
-      const _cv = localStorage.getItem('m_vL');
-      const _vol = _cv !== null ? +_cv : 0.7;
       const off=(k==='י'&&(t==='מרוקאי'||t==='אשכנזי'))?0.1:0;
       (TRADITION_AUDIO[t]?.[k]||TRADITION_AUDIO['ספרדי']?.[k]||[]).forEach(function(a){
-        a.currentTime=off;
-        a.volume=_vol;
-        a.play().catch(function(){
-          // קובץ עדיין טוען — נסה שוב אחרי 400ms
-          setTimeout(function(){ a.preload='auto'; a.load();
-            setTimeout(function(){ a.currentTime=off; a.volume=_vol; a.play().catch(function(){}); }, 400);
-          }, 50);
-        });
+        _playCantorNow(a, off);
       });
-      // הגברת מאריך אשכנזי דרך gain node נפרד
       if(k==='ף' && t==='אשכנזי'){
         audioMarichAshkBoost.currentTime=0;
         audioMarichAshkBoost.play().catch(function(){});
@@ -1750,19 +1779,19 @@
                      audioRaviyaTofim,audioTarchaTofim,audioZarqaTofim,audioShofarHolechTofim,
                      audioYetivTofim,audioTariKadminTofim,audioMarichTofim,audioDargaTofim];
 
-    // נוסח ספציפי — טוען את כל 16 הקבצים מיד (לשינוי נוסח)
+    // פענוח מיידי של נוסח (fetch + decodeAudioData)
     window._preloadTradition = function(t) {
       var map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
-      Object.values(map).forEach(function(arr){
-        arr.forEach(function(a){ a.preload='auto'; a.load(); });
-      });
+      Object.values(map).forEach(function(arr){ arr.forEach(function(a){ _decodeCantorAudio(a); }); });
     };
-    // גרסה איטית לרקע בלבד
+    // פענוח איטי לרקע — קובץ-קובץ כל 300ms
     window._preloadTraditionSlow = function(t) {
       var map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
       var list = [];
       Object.values(map).forEach(function(arr){ arr.forEach(function(a){ list.push(a); }); });
-      _loadQueue(list, 300);
+      var i=0;
+      function step(){ if(i>=list.length) return; _decodeCantorAudio(list[i++]); setTimeout(step,300); }
+      step();
     };
 
     // טעינת שאר הנוסחים ברקע (איטי יותר)
@@ -1902,6 +1931,7 @@
         }
         var cantorVol = (vL != null) ? vL : 0.7;
         cantorAudios.forEach(function(a){ a.volume = cantorVol; });
+        if(window._cantorGain) window._cantorGain.gain.value = cantorVol;
         if(vL != null){
           LS.setItem('m_vL', vL);
           if(window._volFaderSetR) window._volFaderSetR(vL);
@@ -2048,7 +2078,7 @@
             if(cc===nR&&nRt==='cc'){ const on=val>0.5; if(on&&!_nRprev){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-prev','arrow-flash-right');  navPage(-1); } _nRprev=on; return; }
             if(cc===nL&&nLt==='cc'){ const on=val>0.5; if(on&&!_nLprev){ if(typeof window._hidePadGrid==='function') window._hidePadGrid(); flashArrow('pnav-next','arrow-flash-left'); navPage(1);  } _nLprev=on; return; }
             if(cc===fR){ tofimGain.gain.value=val*TOFIM_BASE_GAIN; LS.setItem('m_vR',val); if(window._volFaderSetL) window._volFaderSetL(val); return; }
-            if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); LS.setItem('m_vL',val); if(window._volFaderSetR) window._volFaderSetR(val); return; }
+            if(cc===fL){ cantorAudios.forEach(function(a){ a.volume=val; }); if(window._cantorGain) window._cantorGain.gain.value=val; LS.setItem('m_vL',val); if(window._volFaderSetR) window._volFaderSetR(val); return; }
             if(cc===kR){
               if(_kRprev===null){ _kRprev=val; } else if(Math.abs(val-_kRprev)>2/127){ setDarkMode(val<_kRprev); _kRprev=val; }
               if(lastKey){
