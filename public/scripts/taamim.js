@@ -1699,7 +1699,12 @@
       (TRADITION_AUDIO[t]?.[k]||TRADITION_AUDIO['ספרדי']?.[k]||[]).forEach(function(a){
         a.currentTime=off;
         a.volume=_vol;
-        a.play().catch(function(){});
+        a.play().catch(function(){
+          // קובץ עדיין טוען — נסה שוב אחרי 400ms
+          setTimeout(function(){ a.preload='auto'; a.load();
+            setTimeout(function(){ a.currentTime=off; a.volume=_vol; a.play().catch(function(){}); }, 400);
+          }, 50);
+        });
       });
       // הגברת מאריך אשכנזי דרך gain node נפרד
       if(k==='ף' && t==='אשכנזי'){
@@ -1770,10 +1775,20 @@
       _loadQueue(list, 400);
     };
 
-    // מופעל מהגריד ברקע בזמן שמסך הפתיחה מוצג (איטי — לא קורס)
+    // מופעל מהגריד ברקע — טוען את כל הנוסחים לאט כדי שהכל יהיה מוכן
     window._startBackgroundPreload = function(trad) {
+      // קודם הנוסח הנוכחי (מהיר יותר)
       window._preloadTraditionSlow(trad);
-      setTimeout(function(){ _loadQueue(_drumList, 300); }, 400);
+      // אחר כך שאר הנוסחים וה-תופים
+      var delay = 300;
+      Object.keys(TRADITION_AUDIO).forEach(function(t) {
+        if(t === trad) return;
+        var list = [];
+        Object.values(TRADITION_AUDIO[t]).forEach(function(arr){ arr.forEach(function(a){ list.push(a); }); });
+        setTimeout(function(){ _loadQueue(list, 300); }, delay);
+        delay += list.length * 300 + 500;
+      });
+      setTimeout(function(){ _loadQueue(_drumList, 200); }, delay);
     };
 
     function startAnimOnly(k) {
