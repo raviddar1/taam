@@ -35,7 +35,7 @@ body { background: #fff; font-family: 'TheBasics', sans-serif; }
 
 /* ---- נאב-בר משותף ---- */
 .navbar {
-  position: fixed; top: 0; left: 0; right: 0; height: var(--nb);
+  position: fixed; top: 10px; left: 0; right: 0; height: var(--nb);
   background: transparent; z-index: 10000;
   display: flex; direction: rtl; align-items: center;
   justify-content: center; gap: clamp(44px, 5.28vw, 101px);

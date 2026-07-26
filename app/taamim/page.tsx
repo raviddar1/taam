@@ -19,7 +19,7 @@ export default function TaanimPage() {
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fff; font-family: 'TheBasics', sans-serif; }
     /* ---- נאב-בר ---- */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(44px, 5.28vw, 101px); }
+    .navbar { position: fixed; top: 10px; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(44px, 5.28vw, 101px); }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: clamp(20px, 1.72vw, 33px); height: clamp(20px, 1.72vw, 33px); background: #000; display: block; }
     .nav-link { font-family: 'TheBasics', sans-serif; font-size: clamp(14px, 1.14vw, 22px); color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
@@ -124,7 +124,7 @@ export default function TaanimPage() {
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
       display: none;
-      position: fixed; bottom: clamp(42px, 6.12vh, 66px); left: 2vw; z-index: 60;
+      position: fixed; bottom: clamp(42px, 6.12vh, 66px); left: calc(2vw + 10px); z-index: 60;
       font-family: 'TheBasics', sans-serif;
       flex-direction: column; align-items: center; gap: clamp(9px, 0.80vw, 15px);
     }
@@ -155,7 +155,7 @@ export default function TaanimPage() {
 
     /* ---- פדרי עוצמה ---- */
     #vol-faders {
-      position: fixed; bottom: clamp(20px, 2.86vh, 31px); right: clamp(15px, 1.32vw, 25px); z-index: 60;
+      position: fixed; bottom: clamp(20px, 2.86vh, 31px); right: clamp(30px, calc(1.32vw + 15px), 40px); z-index: 60;
       display: flex; flex-direction: row; align-items: flex-end; gap: clamp(6px, 0.46vw, 9px);
     }
     .vol-fader {
@@ -204,7 +204,7 @@ export default function TaanimPage() {
 
     /* ---- אוברליי טעינה ---- */
     #loading-overlay {
-      position: fixed; top: var(--nb); left: 0; right: 0; bottom: 0; z-index: 9999;
+      position: fixed; top: calc(var(--nb) + 10px); left: 0; right: 0; bottom: 0; z-index: 9999;
       background: #fff;
       display: flex; align-items: center; justify-content: center;
       transition: opacity 0.45s ease;
@@ -214,7 +214,7 @@ export default function TaanimPage() {
 
     /* ---- גריד פדים (idle) ---- */
     #pad-grid-overlay {
-      position: fixed; top: var(--nb); left: 0; right: 0; bottom: 0; z-index: 55;
+      position: fixed; top: calc(var(--nb) + 10px); left: 0; right: 0; bottom: 0; z-index: 55;
       background: #fff;
       display: flex; align-items: center; justify-content: center;
       transition: opacity 0.4s ease;
@@ -237,7 +237,7 @@ export default function TaanimPage() {
     body.embed #pad-grid-overlay { display: none !important; }
     #pad-preview-container canvas { display: block; }
     #seq-hint {
-      position: fixed; top: calc(var(--nb) + 8px); left: 50%; transform: translateX(-50%);
+      position: fixed; top: calc(var(--nb) + 18px); left: 50%; transform: translateX(-50%);
       font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(14px, 1.14vw, 22px);
       color: #343434; direction: rtl; text-align: center; line-height: 1.7;
       display: none; pointer-events: none;

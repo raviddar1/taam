@@ -605,7 +605,7 @@ export default function PsukkimPage() {
 
     #back-btn { display: none; }
 
-    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(44px, 5.28vw, 101px); }
+    .navbar { position: fixed; top: 10px; left: 0; right: 0; height: var(--nb); background: transparent; z-index: 10000; display: flex; direction: rtl; align-items: center; justify-content: center; gap: clamp(44px, 5.28vw, 101px); }
     .nav-logo-sq { position: absolute; right: calc(35/1920*100vw); top: 50%; transform: translateY(-50%); width: clamp(20px, 1.72vw, 33px); height: clamp(20px, 1.72vw, 33px); background: #000; display: block; }
     .nav-link { font-family: 'TheBasics', sans-serif; font-size: clamp(14px, 1.14vw, 22px); color: #343434; text-decoration: none; white-space: nowrap; }
     .nav-link.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; font-weight: 600; }
@@ -624,7 +624,7 @@ export default function PsukkimPage() {
     body.dark .nav-aodot .logo-light { display: none; }
     body.dark .nav-aodot .logo-dark  { display: block; }
     #psuk-hint {
-      position: fixed; top: calc(var(--nb) + 18px); left: 50%; transform: translateX(-50%);
+      position: fixed; top: calc(var(--nb) + 28px); left: 50%; transform: translateX(-50%);
       font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(14px, 1.14vw, 22px);
       color: #343434; white-space: nowrap; direction: rtl;
       pointer-events: none; transition: opacity 0.3s ease;
@@ -653,7 +653,7 @@ export default function PsukkimPage() {
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
       display: none;
-      position: fixed; bottom: 76px; left: 2vw; z-index: 10;
+      position: fixed; bottom: 76px; left: calc(2vw + 10px); z-index: 10;
       font-family: 'TheBasics', sans-serif;
       flex-direction: column; align-items: center; gap: 15px;
     }
@@ -666,7 +666,7 @@ export default function PsukkimPage() {
     body.dark .trad-item:not(.active) { color: #fff; }
 
 #psuk-vol-faders {
-      position: fixed; bottom: 36px; right: 29px; z-index: 60;
+      position: fixed; bottom: 36px; right: 44px; z-index: 60;
       display: none; flex-direction: row; align-items: flex-end; gap: 10px;
     }
     #psuk-vol-faders.visible { display: flex; }

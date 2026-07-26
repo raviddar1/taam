@@ -19,7 +19,7 @@ export default function LibraryPage() {
         body.dark .nav-logo-sq { background: #fff; }
 
         #grid {
-          position: fixed; top: var(--nb); left: 0; right: 0; bottom: 0;
+          position: fixed; top: calc(var(--nb) + 10px); left: 0; right: 0; bottom: 0;
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           grid-template-rows: repeat(4, 1fr);
@@ -64,7 +64,7 @@ export default function LibraryPage() {
         body.dark #melody-meta { color: #fff; }
         #meta-datetime { display: flex; direction: rtl; gap: 120px; }
         #gallery-hint {
-          position: fixed; top: calc(var(--nb) + 8px); left: 50%; transform: translateX(-50%);
+          position: fixed; top: calc(var(--nb) + 18px); left: 50%; transform: translateX(-50%);
           font-family: 'TheBasics', sans-serif; font-weight: 400; font-size: clamp(14px, 1.14vw, 22px);
           color: #343434; white-space: nowrap; direction: rtl; pointer-events: none;
         }
