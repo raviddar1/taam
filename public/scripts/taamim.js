@@ -332,6 +332,7 @@
     });
     updateAnimDurations();
     retriggerSolo();
+    if(window._preloadTradition) window._preloadTradition(t);
   }
   function updateIpusColor() {
     const btn = document.getElementById('ipus-btn');
@@ -1597,9 +1598,10 @@
                        audioTariKadminSfaradi,audioTariKadminAshk,audioTariKadminMar,audioTariKadminTofim,
                        audioMarichSfaradi,audioMarichAshk,audioMarichMar,audioMarichTofim,
                        audioDargaSfaradi,audioDargaAshk,audioDargaMar,audioDargaTofim];
-    allAudios.forEach(function(a){ a.preload='none'; });
+    // preload all audio in background after 1s so first-play is instant
+    setTimeout(function(){ allAudios.forEach(function(a){ a.preload='auto'; a.load(); }); }, 1000);
 
-    // אודיו לא נטען מראש — מסיר אוברליי מיד אחרי אתחול
+    // מסיר אוברליי מיד אחרי אתחול
     (function(){
       setTimeout(function(){ if(window._hideLoader) window._hideLoader(); }, 100);
     })();
@@ -1723,6 +1725,15 @@
         'ח':[audioRaviyaAshk],     'ע':[audioTarchaAshk],  'כ':[audioZarqaAshk], 'ג':[audioShofarHolechAshk], 'י':[audioYetivAshk], 'ש':[audioTariKadminAshk], 'ף':[audioMarichAshk], 'ד':[audioDargaAshk],
       },
     };
+
+    // expose preload hook for tradition switching
+    window._preloadTradition = function(t) {
+      const map = TRADITION_AUDIO[t] || TRADITION_AUDIO['ספרדי'];
+      Object.values(map).forEach(function(arr) {
+        arr.forEach(function(a){ a.preload='auto'; a.load(); });
+      });
+    };
+    window._preloadTradition(currentTradition);
 
     function startAnimOnly(k) {
       if(k==='צ'){p1.playing=true; p1.startMs=p.millis();}
