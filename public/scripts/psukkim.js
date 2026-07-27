@@ -2467,26 +2467,42 @@ setTimeout(function(){
   }, 3000);
 
 (function(){
-    var TRACK_H=130, THUMB_H=32, PAD=5, RANGE=TRACK_H-THUMB_H-PAD*2-20;
-    function volToTop(v){ return PAD+(1-v)*RANGE; }
-    function topToVol(top){ return 1-Math.max(0,Math.min(1,(top-PAD)/RANGE)); }
+    var PAD=5;
+    // גובה הפדר לפי אותו clamp של ה-CSS — מחושב דינמית לפי גובה המסך
+    function _trackH(){ return Math.min(165, Math.max(99, window.innerHeight * 0.153)); }
+    function _thumbH(){ return Math.min(41,  Math.max(24, window.innerHeight * 0.037)); }
+    function _range() { return _trackH() - _thumbH() - PAD*2; }
+    function volToTop(v){ return PAD+(1-v)*_range(); }
+    function topToVol(top){ return 1-Math.max(0,Math.min(1,(top-PAD)/_range())); }
 
     function initFader(faderEl, thumbEl, lsKey, onUpdate){
       var v = localStorage.getItem(lsKey) !== null ? +localStorage.getItem(lsKey) : 1;
       thumbEl.style.top = volToTop(v)+'px';
       var dragging=false, startY=0, startTop=0;
       function getTop(){ return parseFloat(thumbEl.style.top)||0; }
-      faderEl.addEventListener('pointerdown', function(e){ dragging=true; startY=e.clientY; startTop=getTop(); faderEl.setPointerCapture(e.pointerId); });
+      faderEl.addEventListener('pointerdown', function(e){
+        e.preventDefault();
+        dragging=true; startY=e.clientY; startTop=getTop();
+        faderEl.setPointerCapture(e.pointerId);
+      });
       faderEl.addEventListener('pointermove', function(e){
         if(!dragging) return;
-        var newTop=Math.max(PAD,Math.min(PAD+RANGE,startTop+(e.clientY-startY)));
+        var r=_range();
+        var newTop=Math.max(PAD,Math.min(PAD+r,startTop+(e.clientY-startY)));
         thumbEl.style.top=newTop+'px';
-        var vol=topToVol(newTop);
-        localStorage.setItem(lsKey, vol);
-        onUpdate(vol);
+        onUpdate(topToVol(newTop));
       });
-      faderEl.addEventListener('pointerup', function(){ dragging=false; });
+      faderEl.addEventListener('pointerup',     function(){ dragging=false; });
       faderEl.addEventListener('pointercancel', function(){ dragging=false; });
+    }
+
+    function _onDrumVol(v){
+      localStorage.setItem('m_vR', v);
+      _drumsClones.forEach(function(a){ a.volume=v; });
+    }
+    function _onCantorVol(v){
+      localStorage.setItem('m_vL', v);
+      if(_verseAudio) _verseAudio.volume = currentTradition==='אשכנזי' ? Math.min(1,v*(1/0.7)) : v;
     }
 
     var _pendingPskL = null, _pendingPskR = null;
@@ -2508,16 +2524,13 @@ setTimeout(function(){
     var thumbR = document.getElementById('psuk-thumb-R');
     if(!thumbL||!thumbR){ setTimeout(function(){
       var tL=document.getElementById('psuk-thumb-L'), tR=document.getElementById('psuk-thumb-R');
-      if(tL&&tR){ initFader(document.getElementById('psuk-fader-L'),tL,'m_vR',function(v){localStorage.setItem('m_vR',v);}); initFader(document.getElementById('psuk-fader-R'),tR,'m_vL',function(v){localStorage.setItem('m_vL',v);if(window._verseAudioRef)window._verseAudioRef.volume=v;}); }
+      if(tL&&tR){
+        initFader(document.getElementById('psuk-fader-L'), tL, 'm_vR', _onDrumVol);
+        initFader(document.getElementById('psuk-fader-R'), tR, 'm_vL', _onCantorVol);
+      }
     },200); }
     if(thumbL&&thumbR){
-      initFader(
-        document.getElementById('psuk-fader-L'), thumbL, 'm_vR',
-        function(v){ localStorage.setItem('m_vR',v); }
-      );
-      initFader(
-        document.getElementById('psuk-fader-R'), thumbR, 'm_vL',
-        function(v){ localStorage.setItem('m_vL',v); if(window._verseAudioRef) window._verseAudioRef.volume=v; }
-      );
+      initFader(document.getElementById('psuk-fader-L'), thumbL, 'm_vR', _onDrumVol);
+      initFader(document.getElementById('psuk-fader-R'), thumbR, 'm_vL', _onCantorVol);
     }
   })();
