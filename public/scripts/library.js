@@ -26,14 +26,15 @@ function _ensureIframe(cb){
   _iframeLoaded = true;
   const dark = sessionStorage.getItem('darkMode')==='1' ? '&light=0' : '&light=1';
   frame.src = '/taamim?seq&embed' + dark;
-  // המתן לאתחול ה-iframe
+  var _cbFired = false;
+  function _fireCb(){ if(_cbFired) return; _cbFired=true; if(cb) cb(); }
   window.addEventListener('message', function onReady(e){
     if(e.data && e.data.type === 'iframeReady'){
       window.removeEventListener('message', onReady);
-      if(cb) cb();
+      _fireCb();
     }
   });
-  setTimeout(function(){ if(cb) cb(); }, 4000); // fallback
+  setTimeout(_fireCb, 4000); // fallback
 }
 
 function closeMelody() {
@@ -50,10 +51,15 @@ function closeMelody() {
   setTimeout(function(){ _closeCooldown = false; }, 400);
 }
 
-document.getElementById('melody-overlay').addEventListener('click', function(e){
-  if(e.target === this || e.target === document.getElementById('melody-frame-wrap')) closeMelody();
+document.getElementById('melody-overlay').addEventListener('click', function(){ closeMelody(); });
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape') closeMelody();
+  if(e.key==='/'){
+    var dark = !document.body.classList.contains('dark');
+    document.body.classList.toggle('dark', dark);
+    sessionStorage.setItem('darkMode', dark ? '1' : '0');
+  }
 });
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMelody(); });
 
 function openMelody(padSlot) {
   if(_closeCooldown) return;

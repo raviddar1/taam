@@ -52,7 +52,7 @@ export default function LibraryPage() {
         }
         #melody-overlay.open { pointer-events: all; opacity: 1; }
         #melody-frame-wrap { position: absolute; inset: 0; }
-        #melody-frame { width: 100%; height: 100%; border: none; display: block; }
+        #melody-frame { width: 100%; height: 100%; border: none; display: block; pointer-events: none; }
         #melody-meta {
           display: none; position: absolute; bottom: calc(26vh + 70px); left: 0; right: 0;
           padding: 0 2vw;
