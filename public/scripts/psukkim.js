@@ -3,7 +3,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 // ---- אנימציה משותפת ----
   const ANIM_DUR = 500;
   let currentItem = 0; // 0=none, 1=001, 2=002
-  let currentTradition = localStorage.getItem('m_trad') || 'ספרדי';
+  let currentTradition = 'ספרדי';
   const TRADITION_ORDER = ['מרוקאי', 'ספרדי', 'אשכנזי'];
   function selectTradition(t) {
     currentTradition = t;

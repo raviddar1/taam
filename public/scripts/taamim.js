@@ -52,8 +52,7 @@
     document.addEventListener('mousedown', hidePadGrid);
     // טעינת אודיו ברקע בזמן שהגריד הויזואלי מוצג
     setTimeout(function(){
-      var trad = localStorage.getItem('m_trad') || 'ספרדי';
-      if(window._startBackgroundPreload) window._startBackgroundPreload(trad);
+      if(window._startBackgroundPreload) window._startBackgroundPreload('ספרדי');
     }, 800);
     window.addEventListener('pageshow', function(e) {
       if (!e.persisted) return;
@@ -316,7 +315,7 @@
   // ---- מצב ----
   let currentMode = 'בודד';
   let activeKey   = null;
-  let currentTradition = localStorage.getItem('m_trad') || 'ספרדי';
+  let currentTradition = 'ספרדי';
 
   // ---- דארק מוד ----
   let darkMode = false;
@@ -429,7 +428,7 @@
     staffShapes = [];
     seqShapes = []; scrollPos = 0; seqCurrentX = {}; seqLastTriggered = {};
     document.getElementById('solo-info').classList.remove('active');
-    selectTradition(localStorage.getItem('m_trad') || 'ספרדי');
+    selectTradition('ספרדי');
     updateIpusColor();
      }
 
@@ -1831,7 +1830,7 @@
     // ---- פרה-לוד מיידי בזמן האנימציות הפותחות ----
     // decodeAudioData לא דורש gesture — מתחיל מייד, לפני כל לחיצה
     (function(){
-      var _initTrad = localStorage.getItem('m_trad') || 'ספרדי';
+      var _initTrad = 'ספרדי';
       // נוסח נוכחי: כל הקבצים במקביל
       window._preloadTradition(_initTrad);
       // נוסחים אחרים: קובץ כל 150ms, מתחיל אחרי 500ms
