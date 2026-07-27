@@ -1445,12 +1445,14 @@
     });
 
     // ---- משכי אנימציה לפי נוסח ----
+    const _audioTradKey = new Map(); // audio element → {trad, key}
     const TRAD_DURATIONS = {
       'ספרדי':  {'צ':A1.period,'מ':A2.period,'נ':1.7,'ת':1.5,'ב':2.0,'ע':2.0,'כ':2.0,'י':0.35,'ש':2.0,'ף':2.0,'ד':2.0,'ה':2.0,'ך':2.0,'ל':2.0,'ג':2.0},
       'מרוקאי': {'צ':A1.period,'מ':A2.period,'נ':1.7,'ת':1.5,'ב':2.0,'ע':2.0,'כ':2.0,'י':0.35,'ש':2.0,'ף':2.0,'ד':2.0,'ה':2.0,'ך':2.0,'ל':2.0,'ג':2.0},
       'אשכנזי': {'צ':A1.period,'מ':A2.period,'נ':1.7,'ת':1.5,'ב':2.0,'ע':2.0,'כ':2.0,'י':0.35,'ש':2.0,'ף':2.0,'ד':2.0,'ה':2.0,'ך':2.0,'ל':2.0,'ג':2.0},
     };
     function loadDur(trad, key, audio) {
+      _audioTradKey.set(audio, {trad: trad, key: key});
       audio.addEventListener('loadedmetadata', function() {
         TRAD_DURATIONS[trad][key] = audio.duration;
         if (currentTradition === trad) updateAnimDurations();
@@ -1606,7 +1608,15 @@
       fetch(a.src)
         .then(function(r){ return r.arrayBuffer(); })
         .then(function(buf){ return audioCtx.decodeAudioData(buf); })
-        .then(function(decoded){ _cantorBuffers.set(a, decoded); })
+        .then(function(decoded){
+          _cantorBuffers.set(a, decoded);
+          // עדכון משך האנימציה לפי אורך הסאונד האמיתי
+          var tk = _audioTradKey.get(a);
+          if(tk && TRAD_DURATIONS[tk.trad]){
+            TRAD_DURATIONS[tk.trad][tk.key] = decoded.duration;
+            if(currentTradition === tk.trad) updateAnimDurations();
+          }
+        })
         .catch(function(){ _cantorBuffers.delete(a); });
     }
 
