@@ -653,28 +653,28 @@ export default function PsukkimPage() {
     /* ---- בוחר מסורת ---- */
     #tradition-wrap {
       display: none;
-      position: fixed; bottom: 76px; left: calc(2vw + 10px); z-index: 10;
+      position: fixed; bottom: clamp(42px, 6.12vh, 66px); left: calc(2vw + 10px); z-index: 60;
       font-family: 'TheBasics', sans-serif;
-      flex-direction: column; align-items: center; gap: 15px;
+      flex-direction: column; align-items: center; gap: clamp(9px, 0.80vw, 15px);
     }
     #tradition-wrap.visible { display: flex; }
-    #trad-col { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-    #trad-list { display:flex; flex-direction:column; gap:14px; text-align:right; direction:rtl; min-width: max-content; }
-    .trad-item { font-size:24px; color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
-    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 2px; font-weight: 600; }
+    #trad-col { display: flex; flex-direction: column; align-items: center; gap: clamp(9px, 0.80vw, 15px); }
+    #trad-list { display:flex; flex-direction:column; gap:clamp(8px, 0.75vw, 14px); text-align:right; direction:rtl; min-width: max-content; }
+    .trad-item { font-size:clamp(15px, 1.27vw, 24px); color:#343434; cursor:pointer; pointer-events:all; font-family:'TheBasics', sans-serif; padding:3px 0; }
+    .trad-item.active { color: #FF179C; border-bottom: 1px solid currentColor; padding-bottom: 0px; align-self: flex-start; font-weight: 600; }
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
     body.dark .trad-item:not(.active) { color: #fff; }
 
 #psuk-vol-faders {
-      position: fixed; bottom: 36px; right: 44px; z-index: 60;
-      display: none; flex-direction: row; align-items: flex-end; gap: 10px;
+      position: fixed; bottom: clamp(20px, 2.86vh, 31px); right: clamp(30px, calc(1.32vw + 15px), 40px); z-index: 60;
+      display: none; flex-direction: row; align-items: flex-end; gap: clamp(6px, 0.46vw, 9px);
     }
     #psuk-vol-faders.visible { display: flex; }
-    .psuk-vol-fader { width: 36px; height: 181px; position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
+    .psuk-vol-fader { width: clamp(20px, 1.66vw, 32px); height: clamp(99px, 15.3vh, 165px); position: relative; top: -10px; cursor: pointer; user-select: none; touch-action: none; }
     .psuk-vol-fader-track { position: absolute; top:0; left:0; right:0; bottom:0; border:1px solid #343434; border-radius:10px; background:transparent; }
     body.dark .psuk-vol-fader-track { border-color:#fff; }
-    .psuk-vol-fader-thumb { position:absolute; left:7px; right:7px; height:45px; background:#bbb; border-radius:8px; pointer-events:none; }
-    .psuk-vol-fader-label { text-align:center; font-family:'TheBasics',sans-serif; font-size:17px; color:#343434; margin-top:5px; position:relative; top:10px; }
+    .psuk-vol-fader-thumb { position:absolute; left:clamp(3px, 0.34vw, 7px); right:clamp(3px, 0.34vw, 7px); height:clamp(24px, 3.7vh, 41px); background:#bbb; border-radius:8px; pointer-events:none; }
+    .psuk-vol-fader-label { text-align:center; font-family:'TheBasics',sans-serif; font-size:clamp(11px, 0.91vw, 18px); color:#343434; margin-top:clamp(3px, 0.56vh, 6px); }
     body.dark .psuk-vol-fader-label { color:#fff; }
       `}</style>
 
@@ -978,14 +978,14 @@ export default function PsukkimPage() {
   <div id="open-number"></div>
   <div id="source-label"></div>
   <button id="close-btn" onClick={() => { const _f = (window as any).closeItem; if(_f) _f(); }}>→</button>
-<div id="psuk-vol-faders">
+<div id="psuk-vol-faders" style={{position:"fixed", bottom:"clamp(20px, 2.86vh, 31px)", right:"clamp(30px, calc(1.32vw + 15px), 40px)", zIndex:60, flexDirection:"row", alignItems:"flex-end", gap:"clamp(6px, 0.46vw, 9px)"}}>
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-      <div className="psuk-vol-fader" id="psuk-fader-L"><div className="psuk-vol-fader-track"></div><div className="psuk-vol-fader-thumb" id="psuk-thumb-L"></div></div>
-      <div className="psuk-vol-fader-label">תופים</div>
+      <div className="psuk-vol-fader" id="psuk-fader-L" style={{width:"clamp(20px, 1.66vw, 32px)", height:"clamp(99px, 15.3vh, 165px)", position:"relative", top:"-10px", cursor:"pointer", userSelect:"none", touchAction:"none"}}><div className="psuk-vol-fader-track" style={{position:"absolute", top:0, left:0, right:0, bottom:0, border:"1px solid #343434", borderRadius:"10px"}}></div><div className="psuk-vol-fader-thumb" id="psuk-thumb-L" style={{position:"absolute", left:"clamp(3px, 0.34vw, 7px)", right:"clamp(3px, 0.34vw, 7px)", height:"clamp(24px, 3.7vh, 41px)", background:"#bbb", borderRadius:"8px", pointerEvents:"none"}}></div></div>
+      <div className="psuk-vol-fader-label" style={{textAlign:"center", fontFamily:"'TheBasics',sans-serif", fontSize:"clamp(11px, 0.91vw, 18px)", color:"#343434", marginTop:"clamp(3px, 0.56vh, 6px)"}}>תופים</div>
     </div>
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-      <div className="psuk-vol-fader" id="psuk-fader-R"><div className="psuk-vol-fader-track"></div><div className="psuk-vol-fader-thumb" id="psuk-thumb-R"></div></div>
-      <div className="psuk-vol-fader-label">חזן</div>
+      <div className="psuk-vol-fader" id="psuk-fader-R" style={{width:"clamp(20px, 1.66vw, 32px)", height:"clamp(99px, 15.3vh, 165px)", position:"relative", top:"-10px", cursor:"pointer", userSelect:"none", touchAction:"none"}}><div className="psuk-vol-fader-track" style={{position:"absolute", top:0, left:0, right:0, bottom:0, border:"1px solid #343434", borderRadius:"10px"}}></div><div className="psuk-vol-fader-thumb" id="psuk-thumb-R" style={{position:"absolute", left:"clamp(3px, 0.34vw, 7px)", right:"clamp(3px, 0.34vw, 7px)", height:"clamp(24px, 3.7vh, 41px)", background:"#bbb", borderRadius:"8px", pointerEvents:"none"}}></div></div>
+      <div className="psuk-vol-fader-label" style={{textAlign:"center", fontFamily:"'TheBasics',sans-serif", fontSize:"clamp(11px, 0.91vw, 18px)", color:"#343434", marginTop:"clamp(3px, 0.56vh, 6px)"}}>חזן</div>
     </div>
   </div>
 

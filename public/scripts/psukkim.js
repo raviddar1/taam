@@ -3,13 +3,14 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
 // ---- אנימציה משותפת ----
   const ANIM_DUR = 500;
   let currentItem = 0; // 0=none, 1=001, 2=002
-  let currentTradition = 'ספרדי';
+  let currentTradition = localStorage.getItem('m_trad') || 'ספרדי';
   const TRADITION_ORDER = ['מרוקאי', 'ספרדי', 'אשכנזי'];
   function selectTradition(t) {
     currentTradition = t;
     localStorage.setItem('m_trad', t);
     document.querySelectorAll('#trad-list .trad-item').forEach(function(el){
       el.classList.toggle('active', el.dataset.trad === t);
+      if (typeof _applyTradItemStyle === 'function') _applyTradItemStyle(el, el.dataset.trad === t);
     });
     if (currentItem !== 0) restartVerse(currentItem);
   }
@@ -59,25 +60,42 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     const next = (i + dir + TRADITION_ORDER.length) % TRADITION_ORDER.length;
     selectTradition(TRADITION_ORDER[next]);
   }
+  var _TRAD_FS = 'clamp(15px,1.27vw,24px)';
+  function _applyTradItemStyle(el, isActive) {
+    el.style.fontSize = _TRAD_FS;
+    el.style.cursor = 'pointer';
+    el.style.fontFamily = 'TheBasics,sans-serif';
+    el.style.padding = '3px 0';
+    if (isActive) {
+      el.style.color = '#FF179C';
+      el.style.borderBottom = '1px solid #FF179C';
+      el.style.paddingBottom = '0px';
+      el.style.fontWeight = '600';
+      el.style.alignSelf = 'flex-start';
+    } else {
+      el.style.color = document.body.classList.contains('dark') ? '#fff' : '#343434';
+      el.style.borderBottom = '';
+      el.style.fontWeight = '';
+      el.style.alignSelf = '';
+    }
+  }
   function createTraditionWrap() {
     if (document.getElementById('tradition-wrap')) return;
     var wrap = document.createElement('div');
     wrap.id = 'tradition-wrap';
-    wrap.style.display = 'flex';
-    wrap.innerHTML = '<div id="trad-col"><div id="trad-list">' +
+    wrap.style.cssText = 'display:flex; position:fixed; bottom:clamp(42px,6.12vh,66px); left:calc(2vw + 10px); z-index:60; font-family:TheBasics,sans-serif; flex-direction:column; align-items:center; gap:clamp(9px,0.80vw,15px);';
+    wrap.innerHTML = '<div id="trad-col" style="display:flex;flex-direction:column;align-items:center;gap:clamp(9px,0.80vw,15px)"><div id="trad-list" style="display:flex;flex-direction:column;gap:clamp(8px,0.75vw,14px);text-align:right;direction:rtl;min-width:max-content">' +
       '<div class="trad-item" data-trad="מרוקאי">מרוקאי</div>' +
       '<div class="trad-item" data-trad="ספרדי">ספרדי</div>' +
       '<div class="trad-item" data-trad="אשכנזי">אשכנזי</div>' +
-      '</div><button class="trad-arrow" id="trad-down"><svg width="15" height="9" viewBox="0 0 15 9" fill="none"><polyline points="1.5,1.5 7.5,7.5 13.5,1.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button></div>';
+      '</div><button class="trad-arrow" id="trad-down" style="background:none;border:none;cursor:pointer;color:#e91e8c;padding:0;display:flex;align-items:center"><svg width="15" height="9" viewBox="0 0 15 9" fill="none"><polyline points="1.5,1.5 7.5,7.5 13.5,1.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></button></div>';
     document.body.appendChild(wrap);
     wrap.addEventListener('click', function(e){ e.stopPropagation(); });
     wrap.querySelectorAll('.trad-item').forEach(function(el){
       el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
+      _applyTradItemStyle(el, el.dataset.trad === currentTradition);
     });
     wrap.querySelector('#trad-down').addEventListener('click', function(){ cycleTrad(1); });
-    wrap.querySelectorAll('.trad-item').forEach(function(el){
-      el.classList.toggle('active', el.dataset.trad === currentTradition);
-    });
   }
   function removeTraditionWrap() {
     var el = document.getElementById('tradition-wrap');

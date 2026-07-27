@@ -316,7 +316,7 @@
   // ---- מצב ----
   let currentMode = 'בודד';
   let activeKey   = null;
-  let currentTradition = 'ספרדי';
+  let currentTradition = localStorage.getItem('m_trad') || 'ספרדי';
 
   // ---- דארק מוד ----
   let darkMode = false;
@@ -1804,31 +1804,48 @@
       step();
     };
 
-    // טעינת שאר הנוסחים ברקע (איטי יותר)
+    // פענוח שאר הנוסחים ברקע
     window._preloadOtherTraditions = function(current) {
-      var list = [];
+      var i=0, list=[];
       Object.keys(TRADITION_AUDIO).forEach(function(t){
         if(t===current) return;
         Object.values(TRADITION_AUDIO[t]).forEach(function(arr){ arr.forEach(function(a){ list.push(a); }); });
       });
-      _loadQueue(list, 400);
+      function step(){ if(i>=list.length) return; _decodeCantorAudio(list[i++]); setTimeout(step,150); }
+      step();
     };
 
-    // מופעל מהגריד ברקע — טוען את כל הנוסחים לאט כדי שהכל יהיה מוכן
+    // מופעל מהגריד ברקע — מפענח את כל הנוסחים לWeb Audio
     window._startBackgroundPreload = function(trad) {
-      // קודם הנוסח הנוכחי (מהיר יותר)
-      window._preloadTraditionSlow(trad);
-      // אחר כך שאר הנוסחים וה-תופים
-      var delay = 300;
-      Object.keys(TRADITION_AUDIO).forEach(function(t) {
-        if(t === trad) return;
-        var list = [];
-        Object.values(TRADITION_AUDIO[t]).forEach(function(arr){ arr.forEach(function(a){ list.push(a); }); });
-        setTimeout(function(){ _loadQueue(list, 300); }, delay);
-        delay += list.length * 300 + 500;
-      });
-      setTimeout(function(){ _loadQueue(_drumList, 200); }, delay);
+      // נוסח נוכחי קודם (150ms בין קבצים)
+      var cur=[], i=0;
+      Object.values(TRADITION_AUDIO[trad]||TRADITION_AUDIO['ספרדי']).forEach(function(arr){ arr.forEach(function(a){ cur.push(a); }); });
+      function stepCur(){ if(i>=cur.length) return; _decodeCantorAudio(cur[i++]); setTimeout(stepCur,150); }
+      stepCur();
+      // שאר הנוסחים אחרי עיכוב קטן (200ms בין קבצים)
+      setTimeout(function(){ window._preloadOtherTraditions(trad); }, cur.length*150 + 300);
+      // תופים ב-HTML Audio (כבר מחוברים ל-Web Audio ישירות)
+      setTimeout(function(){ _loadQueue(_drumList, 150); }, cur.length*150 + 600);
     };
+
+    // ---- פרה-לוד מיידי בזמן האנימציות הפותחות ----
+    // decodeAudioData לא דורש gesture — מתחיל מייד, לפני כל לחיצה
+    (function(){
+      var _initTrad = localStorage.getItem('m_trad') || 'ספרדי';
+      // נוסח נוכחי: כל הקבצים במקביל
+      window._preloadTradition(_initTrad);
+      // נוסחים אחרים: קובץ כל 150ms, מתחיל אחרי 500ms
+      var _oList = [], _oi = 0;
+      TRADITION_ORDER.forEach(function(tr){
+        if(tr === _initTrad) return;
+        var m = TRADITION_AUDIO[tr]; if(!m) return;
+        Object.values(m).forEach(function(arr){ arr.forEach(function(a){ _oList.push(a); }); });
+      });
+      function _stepOther(){ if(_oi >= _oList.length) return; _decodeCantorAudio(_oList[_oi++]); setTimeout(_stepOther, 150); }
+      setTimeout(_stepOther, 500);
+      // תופים — HTML Audio preload מיידי (לא דורש gesture)
+      setTimeout(function(){ _loadQueue(_drumList, 100); }, 200);
+    })();
 
     function startAnimOnly(k) {
       if(k==='צ'){p1.playing=true; p1.startMs=p.millis();}
@@ -2149,6 +2166,7 @@
 
   // ---- בוחר מסורת ----
   document.querySelectorAll('.trad-item').forEach(function(el){
+    el.classList.toggle('active', el.dataset.trad === currentTradition);
     el.addEventListener('click', function(){ selectTradition(this.dataset.trad); });
   });
   document.getElementById('ipus-btn').addEventListener('click', function(){ if(currentMode==='רצף') doReset(); });
