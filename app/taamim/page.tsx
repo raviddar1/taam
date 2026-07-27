@@ -151,7 +151,8 @@ export default function TaanimPage() {
     body.embed #solo-info,
     body.embed #color-toggle,
     body.embed #color-panel,
-    body.embed #vol-faders { display: none !important; }
+    body.embed #vol-faders,
+    body.embed #seq-hint { display: none !important; }
 
     /* ---- פדרי עוצמה ---- */
     #vol-faders {
