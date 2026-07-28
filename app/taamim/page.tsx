@@ -136,8 +136,8 @@ export default function TaanimPage() {
     .trad-arrow { background:none; border:none; cursor:pointer; color:#e91e8c; padding:0; pointer-events:all; display:flex; align-items:center; justify-content:center; }
 
     #ipus-btn {
-      background: none; border: 0.5px solid #ccc; border-radius: 16px; cursor: pointer; padding: 4px 14px;
-      font-family: 'TheBasics', sans-serif; font-size: clamp(12px, 0.97vw, 19px); color: #aaa;
+      background: none; border: 0.5px solid #ccc; border-radius: 20px; cursor: pointer; padding: 7px 26px;
+      font-family: 'TheBasics', sans-serif; font-size: clamp(15px, 1.25vw, 24px); color: #aaa;
       text-align: center; pointer-events: all;
       transition: color 0.15s, border-color 0.15s;
       position: fixed; bottom: clamp(100px, 15.6vh, 168px); left: 50%; transform: translateX(-50%);
