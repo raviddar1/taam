@@ -2310,6 +2310,7 @@ if(sessionStorage.getItem('darkMode')==='1') document.body.classList.add('dark')
     })(_i);
   }
   document.addEventListener('keydown', function(e){
+    if(e.key==='/'){  var _d=!document.body.classList.contains('dark'); document.body.classList.toggle('dark',_d); sessionStorage.setItem('darkMode',_d?'1':'0'); return; }
     if(e.key==='ArrowDown'){  flashArrow('trad-down','arrow-flash-down');  cycleTrad(1);  }
     if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-right'); _navPage(1);  }
     if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-left');  _navPage(-1); }

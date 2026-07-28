@@ -63,6 +63,7 @@ document.addEventListener('keydown', function(e){
     if(e.key==='Shift'||e.key==='Control'||e.key==='Meta'||/^[0-9]$/.test(e.key)) return;
     hideStandby(); return;
   }
+  if(e.key==='/'){ var _d=!document.body.classList.contains('dark'); document.body.classList.toggle('dark',_d); sessionStorage.setItem('darkMode',_d?'1':'0'); return; }
   if(e.key==='ArrowRight'){ flashArrow('pnav-next','arrow-flash-right'); unmute(); navPage(1);  return; }
   if(e.key==='ArrowLeft'){  flashArrow('pnav-prev','arrow-flash-left');  unmute(); navPage(-1); return; }
   unmute();

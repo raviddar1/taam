@@ -1887,6 +1887,7 @@
     window.flashArrow = flashArrow;
 
     document.addEventListener('keydown', function(e){
+      if(e.key==='/'){  setDarkMode(!darkMode); return; }
       if(e.key==='m'||e.key==='M'){
         resetMidiLearn();
         return;
