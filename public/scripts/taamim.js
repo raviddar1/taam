@@ -290,7 +290,7 @@
       name: 'טרחא',
       funcText: 'תפקיד הטעם במקרא; טעם מפסיק קל, המסמן הפסקה קלה או נשימה קצרה במהלך הקריאה ומוביל אל הטעם הבא.',
       graphicText: 'משמעות הצורה; קשת ירוקה - עצירה קטנה לפני תנועה.',
-      symbolHtml: '',
+      symbolHtml: '<img src="visuals/tarcha.png?v=2" style="height:42px;object-fit:contain;">',
     },
     'ש': {
       name: 'תרי קדמין',
